@@ -106,17 +106,6 @@ export const hazard = (
 	return clamp(baseHazard(r, age) * classMortalityMultiplier * healthMult, 0, 0.98);
 };
 
-/** 他の「同じ瞬間に生まれた人」用: 一生分の死亡年齢をサンプリング */
-export const sampleDeathAge = (
-	r: RegionProfile,
-	classMortalityMultiplier: number,
-	rng: Rng
-): number => {
-	for (let age = 0; age < MAX_AGE; age++) {
-		if (rng() < hazard(r, age, classMortalityMultiplier, 50)) return age;
-	}
-	return MAX_AGE;
-};
 
 export const ageGroup = (age: number): 'infant' | 'child' | 'youth' | 'adult' | 'elder' =>
 	age < 1 ? 'infant' : age < 15 ? 'child' : age < 30 ? 'youth' : age < 60 ? 'adult' : 'elder';

@@ -119,18 +119,6 @@
 
 	<div class="col">
 		<div class="panel">
-			<h3><span>同じ瞬間に生まれた人たち</span><span class="lbl">同じ時代の別の場所で</span></h3>
-			<ul class="comps">
-				{#each c.contemporaries as o (o.id)}
-					{@const alive = c.age < (o.deathAge ?? 999)}
-					<li class:gone={!alive}>
-						<span><b>{o.name}</b><small>{o.regionName} · {o.socialClass}</small></span>
-						<span class="cs">{alive ? o.currentStatus : `${o.deathAge}歳で亡くなった`}</span>
-					</li>
-				{/each}
-			</ul>
-		</div>
-		<div class="panel">
 			<h3><span>世界の出来事</span><span class="lbl">古い順 · 下へ追加</span></h3>
 			<ul class="chronicle" bind:this={chronicleEl} aria-live="polite">
 				{#each c.chronicle as ev (ev.id)}
@@ -434,29 +422,6 @@
 		font-family: var(--f-display);
 		font-size: 17px;
 		font-weight: 700;
-	}
-	.comps {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-	.comps li {
-		display: grid;
-		gap: 2px;
-		padding: 8px 0;
-		border-bottom: 1px solid var(--rule2);
-		font-size: 13.5px;
-	}
-	.comps small {
-		display: block;
-		color: var(--ink3);
-		font-size: 12px;
-	}
-	.comps .cs {
-		color: var(--ink2);
-	}
-	.comps li.gone {
-		color: var(--ink3);
 	}
 	.chronicle {
 		list-style: none;

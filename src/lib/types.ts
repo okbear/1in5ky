@@ -167,18 +167,6 @@ export interface FeedEntry {
 	starred?: boolean;
 }
 
-export interface Contemporary {
-	id: string;
-	name: string;
-	sex: 'M' | 'F';
-	regionName: string;
-	place: string;
-	socialClass: string;
-	alive: boolean;
-	deathAge?: number;
-	deathCause?: string;
-	currentStatus: string;
-}
 
 export interface FamilyMember {
 	relation: string;
@@ -260,7 +248,6 @@ export interface CharacterState {
 	deathCause?: string;
 	deathContext?: string;
 	family: FamilyMember[];
-	contemporaries: Contemporary[];
 	feed: FeedEntry[];
 	chronicle: ChronicleEntry[];
 	triggeredEventIds: string[];

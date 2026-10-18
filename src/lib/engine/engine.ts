@@ -5,7 +5,6 @@ import { ERA_CHRONICLES, OVERTURNED_BELIEFS, WORLD_TIMELINE } from '../data/time
 import type {
 	CharacterState,
 	ChoiceOption,
-	Contemporary,
 	DecisionEvent,
 	EraId,
 	FamilyMember,
@@ -22,7 +21,6 @@ import {
 	formatYear,
 	hazard,
 	pick,
-	sampleDeathAge,
 	weighted,
 	type Rng
 } from './util';
@@ -53,31 +51,6 @@ const pickUniqueName = (pool: readonly string[], used: Set<string>, rng: Rng): s
 	return chosen;
 };
 
-const makeContemporaries = (
-	eraId: EraId,
-	usedNames: Set<string>,
-	rng: Rng
-): Contemporary[] => {
-	const out: Contemporary[] = [];
-	for (let i = 0; i < 4; i++) {
-		const r = weighted(regionsForEra(eraId), (x) => x.birthWeight, rng);
-		const c = weighted(r.classes, (x) => x.share, rng);
-		const sex: 'M' | 'F' = rng() < 0.5 ? 'M' : 'F';
-		const urban = rng() * 100 < r.urbanizationRate;
-		out.push({
-			id: `c${i}`,
-			name: pickUniqueName(sex === 'M' ? r.maleNames : r.femaleNames, usedNames, rng),
-			sex,
-			regionName: r.name,
-			place: urban ? pick(r.cities, rng) : pick(r.ruralAreas, rng),
-			socialClass: c.name,
-			alive: true,
-			deathAge: sampleDeathAge(r, c.mortalityMultiplier, rng),
-			currentStatus: pick(c.occupations, rng)
-		});
-	}
-	return out;
-};
 
 const makeFamily = (r: RegionProfile, usedNames: Set<string>, rng: Rng): FamilyMember[] => {
 	const fam: FamilyMember[] = [
@@ -185,7 +158,6 @@ export const rollBirth = (
 		focus: 'survival',
 		alive: true,
 		family: makeFamily(region, usedNames, rng),
-		contemporaries: makeContemporaries(eraId, new Set([playerName]), rng),
 		feed: [],
 		chronicle: [],
 		triggeredEventIds: [],
