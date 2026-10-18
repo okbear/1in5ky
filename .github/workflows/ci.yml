@@ -48,3 +48,9 @@ jobs:
           }
           console.log("3,000 lives simulation passed successfully.");
           '
+
+      - name: Install Playwright Chromium
+        run: bunx playwright install --with-deps chromium
+
+      - name: Run E2E Smoke Tests
+        run: bun run test:e2e
