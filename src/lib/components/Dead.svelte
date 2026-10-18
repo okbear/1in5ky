@@ -2,12 +2,15 @@
 	import { game } from '#lib/game.svelte';
 	import { formatYear } from '#lib/engine/util';
 	import Timeline from './Timeline.svelte';
+	import GraveScene from './GraveScene.svelte';
+	import { getGraveInfo } from '#lib/data/graveData';
 
 	const c = $derived(game.char!);
 	const pm = $derived(game.pm);
 	const lostKids = $derived(c.family.filter((f) => f.relation === '子' && !f.alive).length);
 	const kids = $derived(c.family.filter((f) => f.relation === '子').length);
 	const stars = $derived(c.feed.filter((f) => f.type === 'historical' || f.type === 'danger').reverse());
+	const grave = $derived(getGraveInfo(c.region.id));
 </script>
 
 <section class="wrap dead">
@@ -17,23 +20,37 @@
 			<span>{c.era.periodLabel}</span>
 		</div>
 		<div class="body">
-			<div>
-				<h1>{c.name}</h1>
-				<div class="span mono">{formatYear(c.birthYear)} — {c.ongoing ? '現在' : formatYear(c.currentYear)} · {c.age}歳</div>
-				{#if c.ongoing}
-					<p class="cause">この人生は、いまも続いています。</p>
-				{:else}
-					<p class="cause">死因：<b>{c.deathCause}</b></p>
-				{/if}
-				<p class="ctx">{c.epitaph}</p>
-				{#if stars.length > 0}
-					<ul class="stars">
-						{#each stars as s (s.id)}
-							<li><span class="mono">{s.age}歳</span> {s.text}</li>
-						{/each}
-					</ul>
-				{/if}
+			<div class="hero">
+				<div class="portrait-card">
+					<div class="frame">
+						<GraveScene region={c.region} />
+						<span class="badge">永眠の地</span>
+					</div>
+					<div class="caption">
+						<span class="caption-title">{grave.title}</span>
+						<p class="caption-desc">{grave.desc}</p>
+					</div>
+				</div>
+
+				<div class="bio">
+					<h1>{c.name}</h1>
+					<div class="span mono">{formatYear(c.birthYear)} — {c.ongoing ? '現在' : formatYear(c.currentYear)} · {c.age}歳</div>
+					{#if c.ongoing}
+						<p class="cause">この人生は、いまも続いています。</p>
+					{:else}
+						<p class="cause">死因：<b>{c.deathCause}</b></p>
+					{/if}
+					<p class="ctx">{c.epitaph}</p>
+					{#if stars.length > 0}
+						<ul class="stars">
+							{#each stars as s (s.id)}
+								<li><span class="mono">{s.age}歳</span> {s.text}</li>
+							{/each}
+						</ul>
+					{/if}
+				</div>
 			</div>
+
 			<div class="summary">
 				<div><small>地域</small><b>{c.region.name}</b></div>
 				<div><small>身分</small><b>{c.socialClass.name}</b></div>
@@ -104,14 +121,74 @@
 	}
 	.body {
 		padding: 24px 22px;
-		display: grid;
-		grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-		gap: 28px;
 	}
-	@media (max-width: 860px) {
-		.body {
+	.hero {
+		display: grid;
+		grid-template-columns: 180px 1fr;
+		gap: 24px;
+		align-items: start;
+		margin-bottom: 24px;
+	}
+	@media (max-width: 640px) {
+		.hero {
 			grid-template-columns: 1fr;
+			gap: 16px;
 		}
+	}
+	.portrait-card {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		max-width: 180px;
+	}
+	@media (max-width: 640px) {
+		.portrait-card {
+			max-width: 160px;
+			margin: 0 auto;
+			text-align: center;
+		}
+	}
+	.frame {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		border-radius: 4px;
+		overflow: hidden;
+		background: #100b17;
+		border: 1px solid var(--rule);
+		box-shadow: 0 2px 8px rgba(35, 28, 22, 0.08);
+	}
+	.badge {
+		position: absolute;
+		bottom: 8px;
+		right: 8px;
+		background: rgba(16, 11, 23, 0.85);
+		color: #f4eee2;
+		font-size: 11px;
+		padding: 2px 8px;
+		border-radius: 3px;
+		letter-spacing: 0.03em;
+		backdrop-filter: blur(4px);
+		pointer-events: none;
+	}
+	.caption {
+		font-size: 12px;
+		color: var(--ink3);
+		line-height: 1.5;
+		padding: 2px 4px;
+	}
+	.caption-title {
+		display: block;
+		font-weight: 600;
+		color: var(--ink2);
+		margin-bottom: 2px;
+	}
+	.caption-desc {
+		margin: 0;
+		line-height: 1.45;
+	}
+	.bio {
+		min-width: 0;
 	}
 	h1 {
 		font-family: var(--f-display);
@@ -148,10 +225,16 @@
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 14px 18px;
-		align-content: start;
+		border-top: 1px solid var(--rule);
+		padding-top: 20px;
+	}
+	@media (max-width: 560px) {
+		.summary {
+			grid-template-columns: 1fr;
+		}
 	}
 	.summary div {
-		border-top: 1px solid var(--rule);
+		border-top: 1px solid var(--rule2);
 		padding-top: 8px;
 	}
 	.summary b {
