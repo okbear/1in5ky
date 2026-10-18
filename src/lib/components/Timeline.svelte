@@ -28,7 +28,7 @@
 
 <style>
 	.tl {
-		padding: 10px 0 28px;
+		padding: 10px 48px 28px;
 	}
 	.axis {
 		position: relative;

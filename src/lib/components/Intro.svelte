@@ -89,7 +89,8 @@
 		margin: 0;
 	}
 	.odds {
-		max-width: 560px;
+		max-width: 580px;
+		padding: 20px 24px;
 	}
 	.orow {
 		display: grid;
