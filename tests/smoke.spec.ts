@@ -61,6 +61,12 @@ test.describe('1in5ky E2E smoke tests', () => {
 		await rebornBtn.click();
 		await expect(page.locator('.cert')).toBeVisible();
 
+		// 9. Click back button on Certificate and verify returning to Title screen
+		const backBtn = page.locator('.cert button.back');
+		await expect(backBtn).toBeVisible();
+		await backBtn.click();
+		await expect(page.locator('.intro')).toBeVisible();
+
 		// Ensure 0 unhandled console/page errors occurred
 		expect(pageErrors).toEqual([]);
 	});

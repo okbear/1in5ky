@@ -61,8 +61,11 @@
 			</div>
 		</div>
 		<div class="foot">
-			<button class="ghost" onclick={() => game.roll()}>生まれ直す</button>
-			<button class="cta" onclick={() => game.begin()}>人生を始める</button>
+			<button class="ghost back" onclick={() => game.quit()}>最初に戻る</button>
+			<div class="actions">
+				<button class="ghost" onclick={() => game.roll()}>生まれ直す</button>
+				<button class="cta" onclick={() => game.begin()}>人生を始める</button>
+			</div>
 		</div>
 	</div>
 </section>
@@ -221,7 +224,29 @@
 	.foot {
 		padding: 0 22px 22px;
 		display: flex;
-		justify-content: flex-end;
+		justify-content: space-between;
+		align-items: center;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+	.actions {
+		display: flex;
+		align-items: center;
 		gap: 10px;
+	}
+	@media (max-width: 560px) {
+		.foot {
+			flex-direction: column-reverse;
+			align-items: stretch;
+			gap: 10px;
+		}
+		.actions {
+			display: grid;
+			grid-template-columns: 1fr 1.3fr;
+			width: 100%;
+		}
+		.back {
+			text-align: center;
+		}
 	}
 </style>
