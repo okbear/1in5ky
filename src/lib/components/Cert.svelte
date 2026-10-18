@@ -3,6 +3,7 @@
 	import { ERAS } from '#lib/data/eras';
 	import { expectedLifespan, formatYear, formatYen } from '#lib/engine/util';
 	import { regionsForEra } from '#lib/data/regions';
+	import { getBabyImage } from '#lib/data/babyImages';
 
 	const c = $derived(game.char!);
 	const regionShare = $derived(
@@ -14,17 +15,39 @@
 	);
 	const u5 = $derived(Math.round(c.region.under5Mortality / 10));
 	const e0 = $derived(Math.round(expectedLifespan(c.region, c.socialClass.mortalityMultiplier)));
+	const baby = $derived(getBabyImage(c.region.id));
 </script>
 
 <section class="wrap roll">
 	<div class="cert">
 		<div class="band"><b>出生届</b><span class="mono">{c.era.periodLabel}</span></div>
 		<div class="body">
-			<span class="lbl">名前</span>
-			<h2>{c.name}</h2>
-			<p class="story">
-				{formatYear(c.birthYear)}、{c.region.name}（{c.region.subName}）の{c.place}に、{c.socialClass.name}の{c.sex === 'M' ? '男の子' : '女の子'}として生まれました。{c.region.worldviewCommonSense}
-			</p>
+			<div class="hero">
+				<div class="portrait-card">
+					<div class="frame">
+						<img
+							src={baby.src}
+							alt="{c.name}の出生時の姿（{c.era.name}・{c.region.name}）"
+							loading="eager"
+							decoding="async"
+						/>
+						<span class="badge">出生時の姿</span>
+					</div>
+					<div class="caption">
+						<span class="caption-title">{baby.caption}</span>
+						<p class="caption-desc">{baby.sceneDetail}</p>
+					</div>
+				</div>
+
+				<div class="bio">
+					<span class="lbl">名前</span>
+					<h2>{c.name}</h2>
+					<p class="story">
+						{formatYear(c.birthYear)}、{c.region.name}（{c.region.subName}）の{c.place}に、{c.socialClass.name}の{c.sex === 'M' ? '男の子' : '女の子'}として生まれました。{c.region.worldviewCommonSense}
+					</p>
+				</div>
+			</div>
+
 			<div class="fields">
 				<div><span class="lbl">時代</span><b>{c.era.name}</b></div>
 				<div><span class="lbl">地域</span><b>{c.region.name}</b></div>
@@ -52,7 +75,7 @@
 		scroll-margin-top: 0;
 	}
 	.cert {
-		width: min(720px, 100%);
+		width: min(780px, 100%);
 		background: var(--card);
 		border: 1px solid var(--rule);
 		border-radius: 4px;
@@ -80,6 +103,77 @@
 	.body {
 		padding: 22px;
 	}
+	.hero {
+		display: grid;
+		grid-template-columns: 260px 1fr;
+		gap: 22px;
+		align-items: start;
+		margin-bottom: 20px;
+	}
+	@media (max-width: 640px) {
+		.hero {
+			grid-template-columns: 1fr;
+			gap: 16px;
+		}
+	}
+	.portrait-card {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+	.frame {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		border-radius: 4px;
+		overflow: hidden;
+		background: var(--card2);
+		border: 1px solid var(--rule);
+		box-shadow: 0 2px 8px rgba(35, 28, 22, 0.08);
+	}
+	.frame img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: transform 0.4s ease;
+	}
+	.frame:hover img {
+		transform: scale(1.02);
+	}
+	.badge {
+		position: absolute;
+		bottom: 8px;
+		right: 8px;
+		background: rgba(35, 28, 22, 0.78);
+		color: #fff;
+		font-size: 11px;
+		padding: 2px 8px;
+		border-radius: 3px;
+		letter-spacing: 0.03em;
+		backdrop-filter: blur(4px);
+		pointer-events: none;
+	}
+	.caption {
+		font-size: 12px;
+		color: var(--ink3);
+		line-height: 1.5;
+		padding: 2px 4px;
+	}
+	.caption-title {
+		display: block;
+		font-weight: 600;
+		color: var(--ink2);
+		margin-bottom: 2px;
+	}
+	.caption-desc {
+		margin: 0;
+	}
+	.bio {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+	}
 	h2 {
 		font-family: var(--f-display);
 		font-size: clamp(30px, 5vw, 44px);
@@ -87,16 +181,17 @@
 		line-height: 1.15;
 	}
 	.story {
-		margin: 12px 0 18px;
-		font-size: 16px;
+		margin: 12px 0 0;
+		font-size: 15.5px;
 		color: var(--ink2);
+		line-height: 1.7;
 	}
 	.fields {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 14px 18px;
 		border-top: 1px dashed var(--rule);
-		padding-top: 16px;
+		padding-top: 18px;
 	}
 	@media (max-width: 560px) {
 		.fields {
