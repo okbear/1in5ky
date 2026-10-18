@@ -60,9 +60,21 @@ src/
     │   └── Timeline.svelte   # 紀元前3000年〜2026年の墓標タイムライン
     ├── data/
     │   ├── eras.ts           # 6時代区分の定義・累計出生数推計
-    │   ├── regions.ts        # 22地域プロファイル・身分構成・死亡統計
-    │   ├── events-waves.ts   # 歴史の大波・戦争・徴兵イベント
-    │   ├── events-unfair.ts  # 当時の常識・医療・理不尽社会制度イベント
+    │   ├── regions.ts        # 全地域の再エクスポート・集約アグリゲーター
+    │   ├── regions/          # 時代別地域プロファイル分割モジュール
+    │   │   ├── common.ts     # 身分定義（CLASSES）とbaseRegionヘルパー
+    │   │   ├── ancient.ts    # 古代（メソポタミア・エジプト・中国・インダス）
+    │   │   ├── classical.ts  # 古典期（ローマ・漢・インド・ペルシア他）
+    │   │   ├── medieval.ts   # 中世（欧州・イスラム・中国・日本・他）
+    │   │   ├── early_modern.ts # 近世（江戸・清・欧州・大西洋世界）
+    │   │   ├── industrial.ts # 近代（欧米・日本・中国・印・他）
+    │   │   └── modern.ts     # 現代（日本・中国東ア・南アジア・中東アフリカ・欧米）
+    │   ├── events.ts         # 全イベント（ALL_EVENTS / WAVE / UNFAIR / LIFECYCLE）集約アグリゲーター
+    │   ├── events/           # 時代・テーマ別イベント分割モジュール
+    │   │   ├── ancient_classical.ts   # 古代・古典期の歴史大波・戦争・神判
+    │   │   ├── medieval_early_modern.ts # 中世・近世の歴史大波・疫病・宗教・悪税
+    │   │   ├── industrial_modern.ts   # 近代・現代の総力戦・空襲・公害・冷戦紛争
+    │   │   └── common_unfair.ts       # 複数時代共通の病気・破傷風・歯・悪税・身分制
     │   ├── events-lifecycle.ts # 進路・結婚・出産・老後の決断イベント
     │   └── timeline.ts       # 死後世界年表・世界の出来事クロニクル・初期墓標
     └── engine/

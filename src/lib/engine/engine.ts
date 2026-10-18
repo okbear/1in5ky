@@ -1,8 +1,6 @@
 import { ERAS, ERA_ORDER } from '../data/eras';
 import { regionsForEra } from '../data/regions';
-import { LIFECYCLE_EVENTS } from '../data/events-lifecycle';
-import { UNFAIR_EVENTS } from '../data/events-unfair';
-import { WAVE_EVENTS } from '../data/events-waves';
+import { ALL_EVENTS } from '../data/events';
 import { ERA_CHRONICLES, OVERTURNED_BELIEFS, WORLD_TIMELINE } from '../data/timeline';
 import type {
 	CharacterState,
@@ -30,7 +28,7 @@ import {
 } from './util';
 
 
-const EVENTS: DecisionEvent[] = [...WAVE_EVENTS, ...UNFAIR_EVENTS, ...LIFECYCLE_EVENTS];
+const EVENTS = ALL_EVENTS;
 // ---------------------------------------------------------------------------
 // 誕生ガチャ
 // ---------------------------------------------------------------------------

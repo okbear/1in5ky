@@ -1,7 +1,7 @@
-import type { DecisionEvent } from '../types';
+import type { DecisionEvent } from '../../types';
 
-/** 当時の医療・社会制度・身分・都市/農村環境による理不尽イベント */
-export const UNFAIR_EVENTS: DecisionEvent[] = [
+/** 複数時代にまたがる日常の病気・感染症・悪税・身分制・都市火災イベント */
+export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 	{
 		id: 'fever_premodern',
 		title: '高熱が三日続いている',
@@ -181,38 +181,6 @@ export const UNFAIR_EVENTS: DecisionEvent[] = [
 				deathCause: '持病の悪化',
 				effects: { health: 4 },
 				outcomeText: '高価な薬を買えないことを嘆いたが、霊薬を飲んだ裕福な隣人は翌月亡くなった。'
-			}
-		]
-	},
-	{
-		id: 'trial_by_ordeal',
-		title: '身に覚えのない盗みの疑いと「熱湯の神判」',
-		category: 'common_sense',
-		eraIds: ['ancient', 'classical', 'medieval'],
-		classIds: ['enslaved', 'peasant', 'artisan'],
-		minAge: 14,
-		maxAge: 65,
-		description:
-			'有力者の倉から穀物と銀が盗まれ、たまたま近くを通ったあなたに嫌疑がかかった。証拠はない。「神が真偽を裁く」として、煮えたぎる釜の底から素手で石を掴み出す「神判」を命じられた。',
-		factBox: '古代メソポタミアの川神判、日本の盟神探湯（くがたち）、中世ヨーロッパの熱湯・鉄火裁判など、前近代の裁判では火傷の治り具合で有罪・無罪が決められた。',
-		choices: [
-			{
-				id: 'endure_ordeal',
-				label: '神に祈り、煮えたぎる湯へ腕を突っ込む',
-				subLabel: '3日後に傷が化膿すれば「有罪」として処刑される',
-				survivalChance: 0.6,
-				deathCause: '神判による処刑・火傷の敗血症',
-				effects: { health: -18, happiness: -15, relations: -5 },
-				outcomeText: '腕にひどい火傷を負ったが、包帯が解かれたとき奇跡的に化膿しておらず、「神が無実を示した」と放免された。'
-			},
-			{
-				id: 'bribe_official',
-				label: '家の蓄えと家財をすべて差し出して見逃してもらう',
-				subLabel: '無実でも金で命を買うしかない',
-				survivalChance: 0.94,
-				deathCause: '獄中での衰弱',
-				effects: { wealthDelta: -55, happiness: -12 },
-				outcomeText: '蓄えはすべて消えたが、役人は「真犯人は別にいた」と帳面を書き換えた。'
 			}
 		]
 	},
@@ -407,99 +375,6 @@ export const UNFAIR_EVENTS: DecisionEvent[] = [
 				deathCause: '逃亡奴隷・逃散農民としての処刑',
 				effects: { wealthDelta: -40, relations: -15, occupationChange: '都市の雑役・日雇い', locationChange: 'urban' },
 				outcomeText: '猟犬の声を背後に聞きながら夜通し走り続け、城壁のある町へ紛れ込んだ。'
-			}
-		]
-	},
-	{
-		id: 'witch_scapegoat',
-		title: '村で疫病が続き、「呪いをかけた者」捜しが始まった',
-		category: 'common_sense',
-		eraIds: ['medieval', 'early_modern'],
-		minAge: 16,
-		maxAge: 75,
-		description:
-			'冷夏と家畜の病死が続いた村で、「誰かが悪魔や邪霊と通じて呪いをかけたに違いない」と噂が立ち、たまたま病人のそばにいたあなたに疑いの目が向けられた。',
-		factBox: '15〜17世紀の魔女狩りや各地の妖術裁判では、天候不順や疫病のたびに、孤立した人や薬草知識を持つ人がスケープゴートとして処刑された。',
-		choices: [
-			{
-				id: 'appease_church',
-				label: 'なけなしの蓄えを教会・寺社に寄進し、潔白を訴える',
-				subLabel: '財産を差し出して疑いを逸らす',
-				survivalChance: 0.88,
-				deathCause: '魔女・異端審問での拷問死',
-				effects: { wealthDelta: -35, relations: -10, happiness: -12 },
-				outcomeText: '蓄えを失ってようやく疑いは晴れたが、村人の冷たい視線は長く消えなかった。'
-			},
-			{
-				id: 'defend_reason',
-				label: '「病気や不作は呪いではない」と道理を説いて反論する',
-				subLabel: '群衆の恐怖の前では理屈は逆効果になる',
-				survivalChance: 0.45,
-				deathCause: '魔女・妖術裁判での処刑',
-				effects: { happiness: -20, relations: -20 },
-				outcomeText: '反論は「悪魔の言い逃れだ」と受け取られ、縛り上げられて審問の場へ引き出された。'
-			}
-		]
-	},
-	{
-		id: 'industrial_phossy_pollution',
-		title: '工場の白リン蒸気と石炭の黒い痰',
-		category: 'livelihood',
-		eraIds: ['industrial'],
-		classIds: ['peasant', 'artisan'],
-		minAge: 14,
-		maxAge: 60,
-		description:
-			'1日14時間働く工場では、換気のない部屋にマッチの白リン蒸気や石炭・綿花の粉塵が立ち込めている。隣の作業台の仲間は顎の骨が腐り始め、黒い痰を吐いて倒れた。労災補償など一銭もない。',
-		factBox: '19世紀の産業革命期、黄リンマッチ工場での「リン顎症（顎骨壊死）」や炭鉱・紡績工場の塵肺・結核が多発したが、規制されるまで何十年も放置された。',
-		choices: [
-			{
-				id: 'keep_factory_job',
-				label: '家族を養うため、毒の空気を吸いながら働き続ける',
-				subLabel: '賃金はいいが、体が確実に蝕まれる',
-				survivalChance: 0.72,
-				deathCause: '塵肺・リン中毒・工場労災',
-				effects: { wealthDelta: 20, health: -20, happiness: -8 },
-				outcomeText: '日々の賃金と引き換えに、激しい咳と歯の痛みを抱えながら機械の前に立ち続けた。'
-			},
-			{
-				id: 'quit_for_street',
-				label: '体を壊す前に工場を辞め、賃金の安い荷運び・雑役に変える',
-				subLabel: '収入は大きく下がる',
-				survivalChance: 0.92,
-				deathCause: 'スラムでの栄養失調',
-				effects: { wealthDelta: -25, health: 5, occupationChange: '荷運び・日雇い' },
-				outcomeText: '暮らしはさらに貧しくなったが、毒の煙から逃れて深く息ができるようになった。'
-			}
-		]
-	},
-	{
-		id: 'modern_structural_trap',
-		title: '物価の高騰と突然の医療費・教育費の壁',
-		category: 'livelihood',
-		eraIds: ['modern'],
-		classIds: ['peasant', 'artisan'],
-		minAge: 22,
-		maxAge: 65,
-		description:
-			'真面目に働いて少しずつ蓄えてきたが、急激な物価上昇と家族の医療・教育費が重なり、貯金が底をついた。親からの資産がない世帯では、一度の出費が生活を直撃する。',
-		factBox: '現代でも世界人口の約半数は1日6.85ドル未満で暮らしており、また年間約1億人が医療費の自己負担によって極度の貧困に陥っている（世界銀行・WHO）。',
-		choices: [
-			{
-				id: 'overwork_double',
-				label: '睡眠時間を削って仕事を掛け持ちし、不足分を稼ぐ',
-				subLabel: 'お金は回るが、心身をすり減らす',
-				survivalChance: 0.94,
-				deathCause: '過労による脳・心疾患',
-				effects: { wealthDelta: 15, health: -14, happiness: -10, relations: -5 },
-				outcomeText: '朝から深夜まで働き詰めの日々で危機はしのいだが、慢性的な疲労が残った。'
-			},
-			{
-				id: 'cut_living_costs',
-				label: '住居や生活水準を切り詰め、借金をせずに耐える',
-				subLabel: '暮らしは狭く厳しくなる',
-				effects: { wealthDelta: -20, happiness: -8, relations: 4 },
-				outcomeText: '狭い部屋へ移り、出費を徹底的に削ってなんとか嵐をやり過ごした。'
 			}
 		]
 	}
