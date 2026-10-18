@@ -126,6 +126,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 		title: '長雨でカビた穀物と「燃える手足」',
 		category: 'common_sense',
 		eraIds: ['classical', 'medieval', 'early_modern'],
+		regionIds: ['cls_rome', 'med_europe', 'em_europe', 'em_atlantic'],
 		classIds: ['enslaved', 'peasant', 'artisan'],
 		minAge: 8,
 		maxAge: 70,
