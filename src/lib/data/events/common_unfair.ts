@@ -396,6 +396,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 		title: '水資源の完全私有化と給水停止通知',
 		category: 'livelihood',
 		eraIds: ['modern'],
+		yearRange: [2028, 2120],
 		minAge: 18,
 		maxAge: 85,
 		description:
@@ -425,6 +426,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 		title: 'AI人事自律システムによる一括解雇と信用スコア凍結',
 		category: 'livelihood',
 		eraIds: ['modern'],
+		yearRange: [2028, 2120],
 		minAge: 20,
 		maxAge: 70,
 		description:
@@ -454,6 +456,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 		title: '配給用培養昆虫タンパクの異変とアレルギー急変',
 		category: 'common_sense',
 		eraIds: ['modern'],
+		yearRange: [2028, 2120],
 		minAge: 5,
 		maxAge: 80,
 		description:
