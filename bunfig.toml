@@ -4,5 +4,3 @@
 [install]
 # Always pin exact package versions without carets (^) when running `bun add`
 exact = true
-# Enforce frozen lockfile in CI environments
-frozenLockfile = true
