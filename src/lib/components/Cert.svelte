@@ -105,21 +105,29 @@
 	}
 	.hero {
 		display: grid;
-		grid-template-columns: 260px 1fr;
-		gap: 22px;
+		grid-template-columns: 180px 1fr;
+		gap: 20px;
 		align-items: start;
 		margin-bottom: 20px;
 	}
 	@media (max-width: 640px) {
 		.hero {
 			grid-template-columns: 1fr;
-			gap: 16px;
+			gap: 14px;
 		}
 	}
 	.portrait-card {
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
+		max-width: 180px;
+	}
+	@media (max-width: 640px) {
+		.portrait-card {
+			max-width: 160px;
+			margin: 0 auto;
+			text-align: center;
+		}
 	}
 	.frame {
 		position: relative;
