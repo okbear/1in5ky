@@ -6,7 +6,7 @@
 
 <section class="wrap intro">
 	<div class="hero">
-		<p class="kicker mono">プロトタイプ · 紀元前3000年〜2026年 · 6つの時代</p>
+		<p class="kicker mono">紀元前3000年〜2026年 · 人類史人生シミュレーション</p>
 		<h1>5000年分の<em>1</em></h1>
 		<p class="en">1 in 5,000 Years</p>
 		<p class="lede">
@@ -29,29 +29,26 @@
 	<div class="ctarow">
 		<button class="cta" onclick={() => game.roll()}>生まれる</button>
 	</div>
-	<p class="warn">
-		乳児の死、飢饉、戦争、疫病、奴隷制のような重い出来事も、その時代の統計にもとづいて起こります。場面は詳しく描きません。
-	</p>
 
 	<div class="panel memo">
 		<h3>
 			<span>5000年のメモリアル</span>
 			<span class="lbl">
-				{game.memorials.length > 0 ? `あなたの記録 ${game.memorials.length} 件 ＋ ` : ''}名もなき人々の墓標
+				{game.memorials.length > 0 ? `生きた記録 ${game.memorials.length} 件` : '名もなき人々の墓標'}
 			</span>
 		</h3>
 		<Timeline records={game.allMemorials} />
 		<ul>
 			{#each game.allMemorials.slice(0, 6) as r (r.id)}
 				<li>
-					<b>{r.name} {#if r.isPlayer}<em class="me-tag">あなた</em>{/if}</b>
+					<b>{r.name}</b>
 					<span class="mono">{r.eraName} · {r.deathAge}歳</span>
 					<small>{r.summaryLine} — {r.deathCause}</small>
 				</li>
 			{/each}
 		</ul>
 		{#if game.memorials.length > 0}
-			<button class="ghost" onclick={() => game.clearMemorials()}>あなたの記録を消す</button>
+			<button class="ghost" onclick={() => game.clearMemorials()}>記録を消す</button>
 		{/if}
 	</div>
 </section>
@@ -112,11 +109,6 @@
 		gap: 16px;
 		flex-wrap: wrap;
 	}
-	.warn {
-		font-size: 13px;
-		color: var(--ink3);
-		margin: 0;
-	}
 	.memo ul {
 		list-style: none;
 		margin: 0 0 12px;
@@ -134,12 +126,5 @@
 	}
 	.memo li small {
 		color: var(--ink2);
-	}
-	.me-tag {
-		font-style: normal;
-		font-size: 11px;
-		font-weight: 600;
-		color: var(--accent);
-		margin-left: 6px;
 	}
 </style>
