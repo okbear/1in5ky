@@ -16,7 +16,7 @@
 <section class="wrap dead">
 	<div class="dcert">
 		<div class="band mono">
-			<span>{c.ongoing ? '2026年の地平線' : '死亡証明'}</span>
+			<span>死亡証明</span>
 			<span>{c.era.periodLabel}</span>
 		</div>
 		<div class="body">
@@ -34,12 +34,8 @@
 
 				<div class="bio">
 					<h1>{c.name}</h1>
-					<div class="span mono">{formatYear(c.birthYear)} — {c.ongoing ? '現在' : formatYear(c.currentYear)} · {c.age}歳</div>
-					{#if c.ongoing}
-						<p class="cause">この人生は、いまも続いています。</p>
-					{:else}
-						<p class="cause">死因：<b>{c.deathCause}</b></p>
-					{/if}
+					<div class="span mono">{formatYear(c.birthYear)} — {formatYear(c.currentYear)} · {c.age}歳</div>
+					<p class="cause">死因：<b>{c.deathCause}</b></p>
 					<p class="ctx">{c.epitaph}</p>
 					{#if stars.length > 0}
 						<ul class="stars">

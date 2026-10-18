@@ -38,7 +38,12 @@ export const WORLD_TIMELINE: PostMortemEvent[] = [
 	{ year: 1980, yearsAfterDeath: 0, title: '天然痘の根絶宣言', description: '人類が根絶した、唯一のヒトの感染症となった。', category: 'science' },
 	{ year: 1991, yearsAfterDeath: 0, title: 'ソ連の崩壊', description: '冷戦が終わり、世界のつながり方が大きく変わった。', category: 'world' },
 	{ year: 2007, yearsAfterDeath: 0, title: 'スマートフォンの普及', description: '誰もが世界中の知識と人につながれるようになった。', category: 'science' },
-	{ year: 2020, yearsAfterDeath: 0, title: '新型コロナウイルスのパンデミック', description: '数年のうちに全世界で数百万〜数千万の命が失われた。', category: 'world' }
+	{ year: 2020, yearsAfterDeath: 0, title: '新型コロナウイルスのパンデミック', description: '数年のうちに全世界で数百万〜数千万の命が失われた。', category: 'world' },
+	{ year: 2033, yearsAfterDeath: 0, title: '世界同時湿球熱波クライシス', description: '北半球各地で湿球温度35度を突破。気候適応が人類最大の課題となった。', category: 'world' },
+	{ year: 2042, yearsAfterDeath: 0, title: '破局噴火と「火山の冬」', description: '成層圏に達した硫酸塩エアロゾルが太陽光を遮断し、地球規模の凶作が続いた。', category: 'world' },
+	{ year: 2056, yearsAfterDeath: 0, title: '超巨大太陽フレア直撃', description: '全地球的磁気嵐により電力網と衛星網が壊滅。情報文明の脆弱性が露呈した。', category: 'science' },
+	{ year: 2072, yearsAfterDeath: 0, title: '極氷床崩落とメガフロート新都市', description: '海水面上昇により旧沿岸都市が恒久水没。人類は洋上コロニーと内陸高地へ移住した。', category: 'region' },
+	{ year: 2095, yearsAfterDeath: 0, title: '小惑星衝突と地下生活圏の確立', description: '太平洋への天体衝突を経て、地熱と人工光に依存する地下都市網が完成した。', category: 'science' }
 ];
 
 /** 生きているあいだ右カラム「世界の出来事」に順次流れてくる時代別の世界史トピック */
@@ -109,7 +114,10 @@ export const ERA_CHRONICLES: Record<EraId, { regionTag: string; title: string; d
 		{ regionTag: '世界', title: '経口補水塩（ORS）の普及で乳幼児の脱水死が激減する', description: '水と塩と砂糖の簡単な処方が、毎年何百万人もの子どもの命を救うようになる。' },
 		{ regionTag: '世界', title: 'パーソナルコンピュータとインターネットの登場', description: '書類と通信がデジタル化され、国境を越えた情報のやり取りが日常になる。' },
 		{ regionTag: '世界', title: 'ヒトゲノム計画の完了と再生可能エネルギーの拡大', description: '生命の設計図が解読され、気候変動への対応が世界共通の課題となる。' },
-		{ regionTag: '世界', title: '世界の人口が80億人を突破し、平均寿命が73歳に達する', description: '人類史上初めて、生まれた子どもの95%以上が成人を迎えられる時代になった。' }
+		{ regionTag: '世界', title: '世界の人口が80億人を突破し、平均寿命が73歳に達する', description: '人類史上初めて、生まれた子どもの95%以上が成人を迎えられる時代になった。' },
+		{ regionTag: '世界', title: '気候変動の加速と異常気象の常態化', description: '毎年のように過去最高気温が更新され、極端豪雨と干ばつが農作物を直撃する。' },
+		{ regionTag: '世界', title: '自律AIとロボットが物理労働現場へ浸透する', description: '配送、建築、農業、介護などの現場で自動機械が人間と並んで稼働し始める。' },
+		{ regionTag: '世界', title: '大停電・通信遮断を想定したアナログ冗長化の試み', description: '電磁波災害に備え、紙の台帳や地下井戸、自立型マイクログリッドが見直される。' }
 	]
 };
 
@@ -118,7 +126,9 @@ export const OVERTURNED_BELIEFS: { until: number; belief: string; overturned: st
 	{ until: -500, belief: '病気は悪霊や神々の怒りが原因である', overturned: '紀元前5世紀、ヒポクラテス学派が病気の自然原因を説き始めた。' },
 	{ until: 1543, belief: '太陽や星は地球の周りを回っている', overturned: '1543年、コペルニクスが地動説を発表。受け入れられるのはその後100年以上かかった。' },
 	{ until: 1850, belief: '病気は悪い空気（瘴気）によって広がる', overturned: '1854年のコレラ調査と1880年代の細菌学が、病気の原因を微生物に求めた。' },
-	{ until: 1900, belief: '身分や血筋は生まれつき決まっている', overturned: '市民革命と普通選挙の広がりが、「生まれによる身分」の正当性を失わせていった。' }
+	{ until: 1900, belief: '身分や血筋は生まれつき決まっている', overturned: '市民革命と普通選挙の広がりが、「生まれによる身分」の正当性を失わせていった。' },
+	{ until: 2026, belief: '地球の気候と電力網はいつでも安定していて永遠に続く', overturned: '2030年代以降の極端気象と太陽フレア・破局噴火により、文明基盤の脆さが証明された。' },
+	{ until: 2050, belief: '人類はテクノロジーの進歩ですべての天変地異を完全に制御できる', overturned: '21世紀後半の天体接近や地球物理破局に直面し、人類は再び自然への謙虚さを取り戻した。' }
 ];
 
 /** 5000年のタイムラインに最初から刻まれている「名もなき人々」の墓標 */

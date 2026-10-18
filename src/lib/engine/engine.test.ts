@@ -5,7 +5,7 @@ import { ALL_EVENTS } from '../data/events';
 import { BABY_IMAGES } from '../data/babyImages';
 import { GRAVE_DATA } from '../data/graveData';
 import { rollBirth, stepYear, resolveChoice } from './engine';
-import { hazard, HORIZON_YEAR } from './util';
+import { hazard } from './util';
 import fs from 'fs';
 
 describe('Data Consistency', () => {
@@ -98,14 +98,29 @@ describe('Engine Invariants', () => {
 					const rChoice = resolveChoice(c, ch);
 					if (rChoice.died) break;
 				}
-
 				if (res.ended) {
-					if (c.ongoing) {
-						expect(c.currentYear).toBe(HORIZON_YEAR);
-					}
+					expect(c.alive).toBe(false);
+					expect(c.deathCause).toBeDefined();
 					break;
 				}
 			}
 		}
+	});
+
+	test('modern characters can live beyond 2026 into near-future天変地異', () => {
+		let reachedNearFuture = 0;
+		for (let i = 0; i < 500; i++) {
+			const c = rollBirth(Math.random, 'modern');
+			for (let g = 0; g < 130; g++) {
+				const res = stepYear(c);
+				if (res.decision) {
+					const ch = res.decision.choices[0];
+					if (resolveChoice(c, ch).died) break;
+				}
+				if (c.currentYear > 2026) reachedNearFuture++;
+				if (res.ended) break;
+			}
+		}
+		expect(reachedNearFuture).toBeGreaterThan(0);
 	});
 });

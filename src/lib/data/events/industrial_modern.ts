@@ -319,5 +319,178 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				outcomeText: '狭い部屋へ移り、出費を徹底的に削ってなんとか嵐をやり過ごした。'
 			}
 		]
+	},
+	// -------------------------------------------------------------------------
+	// 近未来・天変地異・エキストリーム破局（2028年〜2120年代）
+	// -------------------------------------------------------------------------
+	{
+		id: 'near_future_heat_crisis',
+		title: '50℃超えの極端猛暑と世界的大渇水',
+		isHistoricalWave: true,
+		yearRange: [2030, 2038],
+		historicalYearLabel: '2030年代',
+		minAge: 0,
+		maxAge: 110,
+		category: 'historical_wave',
+		eraIds: ['modern'],
+		description:
+			'地球沸騰化が限界を突破。夏には湿球温度35度（人体が放熱できない致死ライン）を超える猛暑が数週間続き、都市インフラが機能不全に陥った。冷房のない場所は文字通りのオーブンと化している。',
+		factBox: '気候モデルの予測では、湿球温度35℃を超えると健康な人間でも数時間で熱中症により死に至る。南アジアや中東、東アジアの平野部が危険水域に突入した。',
+		choices: [
+			{
+				id: 'stay_indoor_shelter',
+				label: '電気代を顧みず密閉シェルターや地下鉄駅へ避難する',
+				subLabel: '蓄えは吹き飛ぶが、熱波をやり過ごす',
+				survivalChance: 0.92,
+				deathCause: '致死性熱中症（湿球温度破局）',
+				effects: { wealthDelta: -30, health: -5, happiness: -8 },
+				outcomeText: '電気代と水代の高騰で蓄えは激減したが、命だけは守り抜いた。'
+			},
+			{
+				id: 'outdoor_water_ration',
+				label: '給水車の列に並び、わずかな配給水で冷やす',
+				subLabel: 'お金はかからないが、外気に晒される危険',
+				survivalChance: 0.72,
+				deathCause: '炎天下での脱水・熱射病',
+				effects: { health: -20, happiness: -15, relations: 6 },
+				outcomeText: '路面から立ち上る熱風のなか倒れる人々を見ながら、這うようにして生き延びた。'
+			}
+		]
+	},
+	{
+		id: 'near_future_caldera_eruption',
+		title: '巨大破局噴火と「数年間の火山の冬」',
+		isHistoricalWave: true,
+		yearRange: [2040, 2048],
+		historicalYearLabel: '2040年代',
+		minAge: 0,
+		maxAge: 110,
+		category: 'historical_wave',
+		eraIds: ['modern'],
+		description:
+			'環太平洋火山帯のカルデラ火山が超巨大破局噴火（VEI-7）。大気圏上層に巻き上げられた数千億トンの火山灰と二酸化硫黄が太陽光を遮断し、地球全体の気温が数年間で8℃低下。夏が消失し、世界的飢餓が始まった。',
+		factBox: '歴史上、1815年のタンボラ山噴火は「夏のない年」を引き起こした。破局噴火（VEI-7〜8）が現代の人口80億人体制で発生した場合、地球規模の食糧生産崩壊が予測されている。',
+		choices: [
+			{
+				id: 'hoard_greenhouse_food',
+				label: '人工光型水耕栽培の合成備蓄食料を高値で買い占める',
+				subLabel: '全財産を投じて生き延びる',
+				survivalChance: 0.88,
+				deathCause: '火山の冬による飢餓と灰吸入',
+				effects: { wealthDelta: -60, health: -10, happiness: -12 },
+				outcomeText: '灰色の空の下、味気ない合成ペーストをすすりながら暗黒の数年を耐え抜いた。'
+			},
+			{
+				id: 'community_survival_cell',
+				label: '地域の自給自足コミュニティで温室を共同防衛する',
+				subLabel: '連帯するが、略奪者や暴動との衝突リスク',
+				survivalChance: 0.74,
+				deathCause: '食糧暴動・略奪戦での負傷死',
+				effects: { relations: 16, health: -15, happiness: -5 },
+				outcomeText: '寒冷地獄のなか仲間と肩を寄せ合い、暴徒の襲撃を退けて春を待った。'
+			}
+		]
+	},
+	{
+		id: 'near_future_solar_superflare',
+		title: '超巨大太陽フレアによる地球全土ブラックアウト',
+		isHistoricalWave: true,
+		yearRange: [2052, 2060],
+		historicalYearLabel: '2050年代',
+		minAge: 0,
+		maxAge: 110,
+		category: 'historical_wave',
+		eraIds: ['modern'],
+		description:
+			'観測史上最大級のキャリントン・イベントを遥かに上回る超巨大太陽フレアが地球を直撃。全人工衛星が焼損し、世界中の高圧変電所が爆発炎上。インターネット、銀行、送電網、水道ポンプが同時に完全停止した。',
+		factBox: '巨大磁気嵐が直撃すると、地上変電所の大型変圧器が溶損し、復旧には数年から数十年かかると試算される。人類は数日で19世紀以前の生活を強いられる。',
+		choices: [
+			{
+				id: 'analog_rural_escape',
+				label: '電気が途絶えた都市を捨て、井戸と薪のある農村へ脱出する',
+				subLabel: '文明を捨て、前近代の知恵で生きる',
+				survivalChance: 0.82,
+				deathCause: '都市大火災と避難路での衰弱死',
+				effects: { wealthDelta: -40, relations: 8, knowledge: -5 },
+				outcomeText: '車も電車も動かない街道を歩き、かつての祖先と同じ農の暮らしへ戻っていった。'
+			},
+			{
+				id: 'urban_battery_fortress',
+				label: '非常用蓄電池と自家発電機を囲んで都市にとどまる',
+				subLabel: '都市機能の再起動を待つが、資源争奪戦の標的',
+				survivalChance: 0.68,
+				deathCause: '電力と医薬品枯渇による病死',
+				effects: { wealthDelta: -20, health: -18, happiness: -15 },
+				outcomeText: '闇に包まれた高層都市でわずかな電力を守り、文明の灯を消さずに生き延びた。'
+			}
+		]
+	},
+	{
+		id: 'near_future_ocean_rise',
+		title: '巨大氷床崩落と沿岸メガシティ水没',
+		isHistoricalWave: true,
+		yearRange: [2068, 2078],
+		historicalYearLabel: '2070年代',
+		minAge: 0,
+		maxAge: 110,
+		category: 'historical_wave',
+		eraIds: ['modern'],
+		description:
+			'南極スウェイツ氷河の急激な崩壊により、数十年で海水面が急上昇。東京、上海、ニューヨーク、ムンバイなどの沿岸大都市が堤防決壊とともに恒久的に水没した。数億人の気候難民が内陸高台へ押し寄せる。',
+		factBox: '「終末の氷河」と呼ばれる南極スウェイツ氷河が崩壊すると、連鎖的に海水面が数メートル上昇し、世界の主要都市の多くが居住不能になると予測されている。',
+		choices: [
+			{
+				id: 'inland_highland_pioneer',
+				label: '水没前に全資産を高台・内陸の内地へ移転して開拓する',
+				subLabel: '故郷は沈むが、安全な地盤を確保する',
+				survivalChance: 0.89,
+				deathCause: '大氾濫・高潮での水死',
+				effects: { wealthDelta: -35, relations: -5, happiness: -8 },
+				outcomeText: '水没したかつての繁華街の屋根を船から見下ろしながら、内陸の丘で新しい町を築いた。'
+			},
+			{
+				id: 'amphibious_floating_city',
+				label: '水没都市の上に浮かぶメガフロート海上コロニーに移住する',
+				subLabel: '海上で生きるが、巨大台風直撃のリスク',
+				survivalChance: 0.76,
+				deathCause: 'スーパー台風によるメガフロート難破',
+				effects: { wealthDelta: 10, health: -10, happiness: 5 },
+				outcomeText: '海の上に浮く新しい都市で波に揺られながら、海民としての生活に順応した。'
+			}
+		]
+	},
+	{
+		id: 'near_future_asteroid_nearmiss',
+		title: '小惑星衝突危機と地下都市移住令',
+		isHistoricalWave: true,
+		yearRange: [2090, 2105],
+		historicalYearLabel: '2090年代',
+		minAge: 0,
+		maxAge: 110,
+		category: 'historical_wave',
+		eraIds: ['modern'],
+		description:
+			'直径500m級の地球接近小惑星が太平洋に墜落。大津波と衝撃波、地殻変動が全地球を揺るがした。地上は有毒ガスと粉塵で覆われ、人類は地下シェルター網での生活を余儀なくされた。',
+		factBox: '数百メートル級の小惑星衝突は大陸規模の壊滅と数年間の寒冷化をもたらす。現代では宇宙望遠鏡と迎撃衛星による軌道偏向が研究されている。',
+		choices: [
+			{
+				id: 'enter_deep_bunker',
+				label: '地下数千メートルの岩盤シェルターへ移住し配給生活を送る',
+				subLabel: '青空を二度と見られないが、衝撃波から免れる',
+				survivalChance: 0.85,
+				deathCause: '衝撃波・津波によるシェルター圧壊',
+				effects: { health: -15, happiness: -20, relations: 5 },
+				outcomeText: '地響きと停電に震えながら地下深くで生き延び、地上の再生を待ち続けた。'
+			},
+			{
+				id: 'surface_dome_defender',
+				label: '地上の耐震ドームに残って空気ろ過施設を保守管理する',
+				subLabel: '技術者として地上の拠点を守るが、大気汚染リスク',
+				survivalChance: 0.70,
+				deathCause: '有毒粉塵吸入と放射線被曝',
+				effects: { knowledge: 15, wealthDelta: 20, health: -22 },
+				outcomeText: '防護服を脱げない灰色の地上で、人類の観測機器を守り抜いた。'
+			}
+		]
 	}
 ];

@@ -5,7 +5,8 @@
 	let { records, highlightId }: { records: MemorialRecord[]; highlightId?: string } = $props();
 
 	const START = -3000;
-	const END = 2026;
+	const maxDeath = $derived(records.reduce((m, r) => Math.max(m, r.deathYear), 2026));
+	const END = $derived(Math.max(2030, Math.ceil(maxDeath / 10) * 10));
 	const pos = (y: number) => ((y - START) / (END - START)) * 100;
 	const ticks = [-3000, -2000, -1000, 0, 1000, 2000];
 </script>

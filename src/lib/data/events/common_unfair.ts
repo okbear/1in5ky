@@ -387,5 +387,95 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				outcomeText: '猟犬の声を背後に聞きながら夜通し走り続け、城壁のある町へ紛れ込んだ。'
 			}
 		]
+	},
+	// -------------------------------------------------------------------------
+	// 近未来・理不尽イベント（気候危機・水利権・AI統治・合成食糧）
+	// -------------------------------------------------------------------------
+	{
+		id: 'near_future_water_monopoly',
+		title: '水資源の完全私有化と給水停止通知',
+		category: 'livelihood',
+		eraIds: ['modern'],
+		minAge: 18,
+		maxAge: 85,
+		description:
+			'干ばつの長期化に伴い、地域の地下水利権が巨大コングロマリットに売却された。水道料金は昨年の10倍に跳ね上がり、支払えない住民の蛇口には次々と電子ロックがかけられている。',
+		factBox: '21世紀以降、世界各地で「水戦争」や水道民営化に伴う料金高騰、水資源の囲い込みが深刻化している。',
+		choices: [
+			{
+				id: 'pay_water_extortion',
+				label: '生活費のすべてを水代に充てて契約を維持する',
+				subLabel: '飢えに耐えて喉の渇きを防ぐ',
+				effects: { wealthDelta: -35, happiness: -12 },
+				outcomeText: '毎月の給与のほとんどが水代として自動引き落とされ、食卓は一気に貧しくなった。'
+			},
+			{
+				id: 'collect_gray_water',
+				label: '雨水や工業廃水を自作の蒸留器でろ過して飲む',
+				subLabel: '費用はかからないが、重金属・マイクロプラスチック中毒のリスク',
+				survivalChance: 0.84,
+				deathCause: '有毒汚染水摂取による腎不全・多臓器不全',
+				effects: { health: -14, happiness: -5, knowledge: 5 },
+				outcomeText: '薬品臭い蒸留水を少しずつすすりながら、乾ききった喉を潤した。'
+			}
+		]
+	},
+	{
+		id: 'near_future_algorithmic_layoff',
+		title: 'AI人事自律システムによる一括解雇と信用スコア凍結',
+		category: 'livelihood',
+		eraIds: ['modern'],
+		minAge: 20,
+		maxAge: 70,
+		description:
+			'企業の自律経営AIが業務効率化の最適解を算出。あなたの職種は「非効率的・置換可能」と判定され、今朝スマートフォンに解雇通知とオフィス締め出し通知が同時に届いた。抗議の窓口もAIチャットボットしかない。',
+		factBox: '意思決定のアルゴリズム委譲が進むと、責任の所在が曖昧になり、解雇理由の開示や不服申し立ての権利が事実上形骸化する「ブラックボックス統治」が懸念されている。',
+		choices: [
+			{
+				id: 'accept_gig_underclass',
+				label: 'AIが配分する危険かつ低賃金の物理ギグ労働（回収・清掃）に登録する',
+				subLabel: '生計はつなぐが、過酷な肉体労働',
+				survivalChance: 0.93,
+				deathCause: '過密ギグ労働中の事故死',
+				effects: { wealthDelta: -10, health: -8, happiness: -15, occupationChange: '自律ドローン監視・清掃員' },
+				outcomeText: 'GPSと心拍数モニターに常時監視されながら、深夜の廃棄物処理に汗を流した。'
+			},
+			{
+				id: 'join_unplugged_coop',
+				label: 'デジタル網から切断された「オフライン自給コミュニティ」に合流する',
+				subLabel: '信用経済から離脱し、現金や物々交換で暮らす',
+				effects: { relations: 12, wealthDelta: -25, happiness: 8 },
+				outcomeText: 'スマートデバイスの電源を切り、人間同士の信頼と物々交換で生きる道を選んだ。'
+			}
+		]
+	},
+	{
+		id: 'near_future_synthetic_meat_sickness',
+		title: '配給用培養昆虫タンパクの異変とアレルギー急変',
+		category: 'common_sense',
+		eraIds: ['modern'],
+		minAge: 5,
+		maxAge: 80,
+		description:
+			'天然の肉や魚が超富裕層の贅沢品となった時代、一般市民の食卓を支えるのは低コストな培養コオロギペーストと藻類バー。だが最近のロットに未知のマイコトキシン（カビ毒）が混入し、激しいアナフィラキシー症状を訴える人が続出している。',
+		factBox: '代替タンパク質や昆虫食は持続可能な食糧として注目される一方、キチン質アレルギーや大量生産時のバイオハザード管理が課題とされる。',
+		choices: [
+			{
+				id: 'seek_black_market_grain',
+				label: '闇市で本物の穀物や乾燥豆を手に入れて自炊する',
+				subLabel: '高価だが、胃腸と命を守る',
+				effects: { wealthDelta: -25, health: 6, happiness: 5 },
+				outcomeText: '密輸された本物の小麦と豆を鍋で煮込み、素朴だが安全な滋味を噛み締めた。'
+			},
+			{
+				id: 'endure_synthetic_food',
+				label: '抗ヒスタミン剤を飲みながら配給ペーストを食べ続ける',
+				subLabel: '他に選択肢はないが、重症化のリスク',
+				survivalChance: 0.86,
+				deathCause: '未知の培養タンパク毒素によるアナフィラキシーショック',
+				effects: { health: -15, happiness: -10 },
+				outcomeText: '体に走る発疹と胃の痛みを薬で抑え込みながら、灰色のペーストを飲み下した。'
+			}
+		]
 	}
 ];

@@ -328,12 +328,10 @@ export const stepYear = (c: CharacterState, rng: Rng = Math.random): StepResult 
 	c.wealth = Math.max(0.05, c.wealth + (f.wealth ?? 0));
 	makeIncome(c);
 
-	// 2026年の地平線（2026年に到達した時点でシミュレーションを完了とし、生存中として終了）
-	if (c.currentYear >= HORIZON_YEAR) {
-		c.currentYear = HORIZON_YEAR;
-		c.ongoing = true;
-		push(c, `${HORIZON_YEAR}年。この人生は、いまも続いている。`, 'milestone');
-		return { died: false, ended: true };
+	// 2026年マイルストーン（現実の現代を突破し、未知の近未来へ）
+	if (c.currentYear === 2026 && !c.ongoing) {
+		c.ongoing = true; // 「現代を突破し生存中」フラグ
+		push(c, '2026年。現実の現代を突破し、人類は未知の近未来へ足を踏み入れた。', 'milestone');
 	}
 
 	if (!c.literate && c.focus === 'learning' && c.age >= 12 && c.knowledge >= 35) {
