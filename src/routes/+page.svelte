@@ -4,6 +4,13 @@
 	import Cert from '#lib/components/Cert.svelte';
 	import Life from '#lib/components/Life.svelte';
 	import Dead from '#lib/components/Dead.svelte';
+
+	$effect(() => {
+		game.phase;
+		if (typeof window !== 'undefined') {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		}
+	});
 </script>
 
 <svelte:head>

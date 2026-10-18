@@ -79,10 +79,11 @@
 
 <style>
 	.dead {
-		padding-block: 32px 64px;
+		padding-block: clamp(24px, 4vh, 48px) 64px;
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
+		scroll-margin-top: 0;
 	}
 	.dcert {
 		background: var(--card);

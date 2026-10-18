@@ -46,9 +46,10 @@
 
 <style>
 	.roll {
-		padding-block: 48px;
+		padding-block: clamp(24px, 5vh, 56px);
 		display: grid;
 		place-items: center;
+		scroll-margin-top: 0;
 	}
 	.cert {
 		width: min(720px, 100%);
