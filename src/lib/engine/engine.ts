@@ -328,8 +328,9 @@ export const stepYear = (c: CharacterState, rng: Rng = Math.random): StepResult 
 	c.wealth = Math.max(0.05, c.wealth + (f.wealth ?? 0));
 	makeIncome(c);
 
-	// 2026年の地平線
+	// 2026年の地平線（2026年に到達した時点でシミュレーションを完了とし、生存中として終了）
 	if (c.currentYear >= HORIZON_YEAR) {
+		c.currentYear = HORIZON_YEAR;
 		c.ongoing = true;
 		push(c, `${HORIZON_YEAR}年。この人生は、いまも続いている。`, 'milestone');
 		return { died: false, ended: true };

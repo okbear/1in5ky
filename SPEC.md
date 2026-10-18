@@ -18,8 +18,9 @@
    - 「生まれる」ボタンで即座に抽選開始。事前の選択肢や設定項目は排除（「生まれる時代も場所も選べない」原則）。
 2. **出生届 (`Cert.svelte`)**
    - 時代・年（B.C./A.D.）・地域・都市/農村・身分・名前・性別・主食・年収（当時の通貨＋現代体感日本円）・出生時平均寿命・識字率を決定。
+   - 時代・地域・人種・社会階層を考証した**赤ちゃんの出生時肖像画**（`babyImages.ts`、400×400px）を表示。
    - 「同じ時代・地域に生まれた人は約〇〇人、5歳までに〇〇%が死亡」の同世代統計を表示。
-   - 「人生を始める」でシミュレーション開始（「生まれ直す」も可能）。
+   - 「人生を始める」でシミュレーション開始（「生まれ直す」や左下の「最初に戻る」も可能）。
 3. **人生進行 (`Life.svelte`)**
    - **時間進行**: 1年 = 2.5秒（基準速度）。倍速（1×, 2×, 4×, 8×, 16×）、一時停止、「次の決断まで »」早送りが可能。
    - **画面構成**:
@@ -34,6 +35,7 @@
 4. **死亡証明 / リザルト (`Dead.svelte`)**
    - 死亡時（または2026年到達時）に遷移。
    - 享年、死因、エピタフ、子どもの数（うち何人亡くしたか）、最終ステータス。
+   - **時代別墓標アート**（`GraveScene.svelte` / `graveData.ts`）：文化圏・時代に応じた墓標のシルエットと追悼碑文を表示。
    - **あなたが亡くなったあと、世界は**: 没年以降に世界で起きた出来事と、その時代に信じられていた常識がのちにどう覆されたかのフィードバック。
    - **5000年のメモリアル年表**: 紀元前3000年〜2026年のタイムライン上に、歴代プレイ人生（赤）と初期配置の歴史的無名人（灰）の墓標が並ぶ。`localStorage`（`1in5ky.memorials`）に保存。
 
@@ -57,9 +59,12 @@ src/
     │   ├── Life.svelte       # メイン人生進行画面
     │   ├── Dead.svelte       # 死亡証明・死後の世界年表・リザルト
     │   ├── Scene.svelte      # 時代・地域に応じた建築シルエット風景SVG
+    │   ├── GraveScene.svelte # 時代・地域に応じた墓標アートSVG
     │   └── Timeline.svelte   # 紀元前3000年〜2026年の墓標タイムライン
     ├── data/
     │   ├── eras.ts           # 6時代区分の定義・累計出生数推計
+    │   ├── babyImages.ts     # 27地域ごとの出生時赤ちゃん肖像画マッピング
+    │   ├── graveData.ts      # 27地域ごとの時代別墓標アート定義
     │   ├── regions.ts        # 全地域の再エクスポート・集約アグリゲーター
     │   ├── regions/          # 時代別地域プロファイル分割モジュール
     │   │   ├── common.ts     # 身分定義（CLASSES）とbaseRegionヘルパー
@@ -187,22 +192,11 @@ bun run dev --port 5199
 # プロダクションビルド検証
 bun run build
 
-# シミュレーション数理・不変条件テスト（3,000人生モンテカルロ）
-bun -e '
-import { rollBirth, stepYear, resolveChoice } from "./src/lib/engine/engine";
-for (let i = 0; i < 3000; i++) {
-  const c = rollBirth();
-  for (let g = 0; g < 130; g++) {
-    const r = stepYear(c);
-    if (r.decision) {
-      const ch = r.decision.choices[0];
-      if (resolveChoice(c, ch).died) break;
-    }
-    if (r.ended) break;
-  }
-}
-console.log("3,000 lives simulated successfully without invariant errors.");
-'
+# 単体テスト & 不変条件テスト（データ整合性・3,000人生モンテカルロ）
+bun test
+
+# E2Eスモークテスト（Playwright: デスクトップ & モバイル）
+bun run test:e2e
 ```
 
 ---

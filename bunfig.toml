@@ -4,3 +4,6 @@
 [install]
 # Always pin exact package versions without carets (^) when running `bun add`
 exact = true
+
+[test]
+root = "src"
