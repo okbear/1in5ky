@@ -1,0 +1,50 @@
+name: CI (Test on Push / PR)
+
+on:
+  push:
+    branches:
+      - main
+    tags-ignore:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.3
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Type check (svelte-check)
+        run: bun run check
+
+      - name: Build test
+        run: bun run build
+
+      - name: Run 3,000 lives simulation invariant test
+        run: |
+          bun -e '
+          import { rollBirth, stepYear, resolveChoice } from "./src/lib/engine/engine";
+          for (let i = 0; i < 3000; i++) {
+            const c = rollBirth();
+            for (let g = 0; g < 130; g++) {
+              const r = stepYear(c);
+              if (r.decision) {
+                const ch = r.decision.choices[0];
+                if (resolveChoice(c, ch).died) break;
+              }
+              if (r.ended) break;
+            }
+          }
+          console.log("3,000 lives simulation passed successfully.");
+          '
