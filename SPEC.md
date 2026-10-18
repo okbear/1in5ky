@@ -209,14 +209,15 @@ console.log("3,000 lives simulated successfully without invariant errors.");
 
 ## 8. AI開発インフラ & MCP連携 (AI Development Infrastructure & MCP)
 
-プロジェクト直下の `.mcp.json` および `.cursor/mcp.json` に **Chrome DevTools MCP (`chrome-devtools-mcp`)** の設定を配置しています。
+プロジェクト直下の `.mcp.json`、`.cursor/mcp.json`、および `.vscode/mcp.json` に **Chrome DevTools MCP (`chrome-devtools-mcp`)** の設定を配置しています。
+グローバル環境や外部依存に頼らず他マシン・他ユーザーの環境でも100%同一バージョンで再現できるよう、`chrome-devtools-mcp` は `package.json`（`devDependencies`）に完全固定（Exact `1.11.0`）でインストールされ、`bun.lock` にロックされています。
 
 ```json
 {
   "mcpServers": {
     "chrome-devtools": {
       "command": "bunx",
-      "args": ["-y", "chrome-devtools-mcp@latest", "--no-usage-statistics"]
+      "args": ["chrome-devtools-mcp", "--no-usage-statistics"]
     }
   }
 }
@@ -230,7 +231,7 @@ console.log("3,000 lives simulated successfully without invariant errors.");
   - 画面スクリーンショットの取得と視覚的検証
 - **手動実行・検証**:
   ```bash
-  bunx -y chrome-devtools-mcp@latest --no-usage-statistics
+  bun run chrome-devtools-mcp --no-usage-statistics
   ```
 
 ---
