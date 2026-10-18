@@ -207,7 +207,35 @@ console.log("3,000 lives simulated successfully without invariant errors.");
 
 ---
 
-## 8. 次の拡張・未着手アイディア (Future Roadmap)
+## 8. AI開発インフラ & MCP連携 (AI Development Infrastructure & MCP)
+
+プロジェクト直下の `.mcp.json` および `.cursor/mcp.json` に **Chrome DevTools MCP (`chrome-devtools-mcp`)** の設定を配置しています。
+
+```json
+{
+  "mcpServers": {
+    "chrome-devtools": {
+      "command": "bunx",
+      "args": ["-y", "chrome-devtools-mcp@latest", "--no-usage-statistics"]
+    }
+  }
+}
+```
+
+- **対象ツール**: Claude Code, Cursor, Antigravity, Copilot などの MCP 対応コーディングエージェント
+- **機能**:
+  - 開発用ローカルブラウザ（Chrome）の自動起動とライブ操作（クリック、フォーム入力、ページ遷移）
+  - DOMインスペクション、コンソールエラー・警告のリアルタイム監視
+  - ネットワークリクエスト・レスポンスのトレース
+  - 画面スクリーンショットの取得と視覚的検証
+- **手動実行・検証**:
+  ```bash
+  bunx -y chrome-devtools-mcp@latest --no-usage-statistics
+  ```
+
+---
+
+## 9. 次の拡張・未着手アイディア (Future Roadmap)
 
 1. **サウンド・環境音**: 元ネタにあるような「穏やかなBGM（ハープ・民族楽器）」や時代ごとの環境音（川のせせらぎ、風、工場の汽笛など）。
 2. **多言語対応 (i18n)**: 英語（`1 in 5,000 Years`）および他言語への切り替え機構。
