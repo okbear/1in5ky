@@ -286,7 +286,16 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 		id: 'rural_lord_hunt',
 		title: '領主の狩猟隊が、収穫前の畑を馬で踏み荒らした',
 		category: 'livelihood',
-		eraIds: ['ancient', 'classical', 'medieval', 'early_modern'],
+		eraIds: ['classical', 'medieval', 'early_modern'],
+		regionIds: [
+			'med_europe',
+			'em_europe',
+			'med_japan',
+			'em_edo',
+			'cls_han',
+			'med_china',
+			'em_china_asia'
+		],
 		classIds: ['enslaved', 'peasant'],
 		isUrban: false,
 		minAge: 14,

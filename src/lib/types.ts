@@ -6,6 +6,34 @@ export type EraId =
 	| 'industrial'
 	| 'modern';
 
+export type RegionId =
+	| 'anc_mesopotamia'
+	| 'anc_egypt'
+	| 'anc_china'
+	| 'anc_indus_other'
+	| 'cls_rome'
+	| 'cls_han'
+	| 'cls_india'
+	| 'cls_other'
+	| 'med_europe'
+	| 'med_islam'
+	| 'med_china'
+	| 'med_japan'
+	| 'med_other'
+	| 'em_edo'
+	| 'em_china_asia'
+	| 'em_europe'
+	| 'em_atlantic'
+	| 'ind_europe_us'
+	| 'ind_japan'
+	| 'ind_china'
+	| 'ind_india'
+	| 'ind_other'
+	| 'mod_japan'
+	| 'mod_china_ea'
+	| 'mod_asia'
+	| 'mod_africa_me'
+	| 'mod_west';
 export type SocialClassId =
 	| 'enslaved'
 	| 'peasant'
@@ -26,7 +54,7 @@ export interface SocialClassSpec {
 }
 
 export interface RegionProfile {
-	id: string;
+	id: RegionId;
 	eraId: EraId;
 	name: string;
 	subName: string;
@@ -111,7 +139,7 @@ export interface DecisionEvent {
 	title: string;
 	category: 'historical_wave' | 'common_sense' | 'livelihood';
 	eraIds?: EraId[];
-	regionIds?: string[];
+	regionIds?: RegionId[];
 	classIds?: SocialClassId[];
 	sex?: 'M' | 'F';
 	requiresSpouse?: boolean;
