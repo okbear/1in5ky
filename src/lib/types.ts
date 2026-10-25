@@ -46,7 +46,6 @@ export interface SocialClassSpec {
 	id: SocialClassId;
 	name: string;
 	share: number; // 0-100 percentage in this era/region
-	description: string;
 	incomeMultiplier: number;
 	mortalityMultiplier: number;
 	literacyBonus: number;
@@ -78,7 +77,6 @@ export interface RegionProfile {
 	worldviewCommonSense: string;
 	maleNames: string[];
 	femaleNames: string[];
-	familyNames: string[];
 	classes: SocialClassSpec[];
 	commonDeathCauses: {
 		infant: string[];
@@ -131,7 +129,6 @@ export interface ChoiceOption {
 		killSpouseChance?: number;
 	};
 	outcomeText: string;
-	historicalNote?: string;
 }
 
 export interface DecisionEvent {
@@ -164,7 +161,6 @@ export interface FeedEntry {
 	text: string;
 	fact?: string;
 	type: 'normal' | 'historical' | 'decision' | 'milestone' | 'danger' | 'warm' | 'loss' | 'death';
-	starred?: boolean;
 }
 
 
@@ -216,8 +212,6 @@ export interface MemorialRecord {
 	deathCause: string;
 	epitaph: string;
 	summaryLine: string;
-	candles: number;
-	isPlayer: boolean;
 	createdAt: number;
 }
 
@@ -241,12 +235,10 @@ export interface CharacterState {
 	relations: number;
 	annualIncomeUnits: number;
 	wealth: number; // 1.0 = class baseline; changed by decisions
-	ongoing: boolean; // reached the 2026 horizon alive
 	modernFeelJpy: number;
 	focus: FocusOption['id'];
 	alive: boolean;
 	deathCause?: string;
-	deathContext?: string;
 	family: FamilyMember[];
 	feed: FeedEntry[];
 	chronicle: ChronicleEntry[];

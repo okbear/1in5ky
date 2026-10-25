@@ -11,10 +11,12 @@
 			window.scrollTo({ top: 0, behavior: 'smooth' });
 		}
 	});
+
+	$effect(() => () => game.stop());
 </script>
 
 <svelte:head>
-	<title>5000年分の1 · 1 in 5,000 Years</title>
+	<title>5000年分の1 · 1 in 5,000 Years · 人類史人生シミュレーション</title>
 </svelte:head>
 
 {#if game.phase === 'intro'}

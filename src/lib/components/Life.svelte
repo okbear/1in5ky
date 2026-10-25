@@ -26,15 +26,23 @@
 	const jobLabel = $derived(c.age < 6 ? `幼少（${c.socialClass.name}の子）` : c.age < 13 && c.era.id === 'modern' ? '就学・手伝い' : c.occupation);
 
 	let chronicleEl = $state<HTMLUListElement | null>(null);
+	let dialogEl = $state<HTMLDivElement | null>(null);
+
 	$effect(() => {
 		c.chronicle.length;
 		if (chronicleEl) {
 			chronicleEl.scrollTo({ top: chronicleEl.scrollHeight, behavior: 'smooth' });
 		}
 	});
+
+	$effect(() => {
+		if (game.decision && dialogEl) {
+			dialogEl.querySelector<HTMLButtonElement>('.choices button')?.focus();
+		}
+	});
 </script>
 
-<header class="topbar">
+<header class="topbar" inert={!!game.decision}>
 	<div class="wrap tbar">
 		<div class="brand">5000年分の<em>1</em></div>
 		<div class="agebox">
@@ -52,7 +60,7 @@
 	</div>
 </header>
 
-<div class="wrap life">
+<div class="wrap life" inert={!!game.decision}>
 	<div class="col">
 		<div class="panel idcard">
 			<div class="top mono"><span>{c.era.shortName} · {formatYear(c.birthYear)}生</span><span>{c.sex === 'M' ? '男' : '女'}</span></div>
@@ -84,10 +92,10 @@
 		<div class="panel">
 			<h3><span>家族</span></h3>
 			<div class="fam">
-				{#each living as f, i (i + f.name)}
+				{#each living as f (f.name)}
 					<div class="row"><span>{f.relation}</span><span>{f.name}</span></div>
 				{/each}
-				{#each gone as f, i (i + f.name)}
+				{#each gone as f (f.name)}
 					<div class="row gone"><span>{f.relation}</span><span>{f.name}（{f.deathPlayerAge}歳のとき没）</span></div>
 				{/each}
 			</div>
@@ -120,7 +128,7 @@
 	<div class="col">
 		<div class="panel">
 			<h3><span>世界の出来事</span><span class="lbl">古い順 · 下へ追加</span></h3>
-			<ul class="chronicle" bind:this={chronicleEl} aria-live="polite">
+			<ul class="chronicle" bind:this={chronicleEl}>
 				{#each c.chronicle as ev (ev.id)}
 					<li>
 						<span class="cy mono">{formatYear(ev.year)}<small>{ev.age}歳のとき</small></span>
@@ -151,7 +159,7 @@
 {#if game.decision}
 	{@const d = game.decision}
 	<div class="scrim">
-		<div class="dec" role="dialog" aria-modal="true" aria-label={d.title}>
+		<div class="dec" bind:this={dialogEl} role="dialog" aria-modal="true" aria-label={d.title}>
 			<div class="hd">{d.category === 'historical_wave' ? `歴史の大波 · ${d.historicalYearLabel ?? ''}` : '決断'} · {c.age}歳</div>
 			<div class="bd">
 				<h2>{d.title}</h2>

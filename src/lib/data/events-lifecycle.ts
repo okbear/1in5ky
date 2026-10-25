@@ -200,6 +200,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 		title: '新しい子どもを迎えるかどうかの決断',
 		category: 'livelihood',
 		eraIds: ['modern'],
+		sex: 'F',
 		requiresSpouse: true,
 		isLifecycle: true,
 		repeatable: true,
@@ -220,6 +221,37 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 			},
 			{
 				id: 'birth_modern_wait',
+				label: '経済的な余裕がないため、今は子どもを見送る',
+				subLabel: '現在の生活水準を維持する',
+				effects: { wealthDelta: 5, happiness: -2 },
+				outcomeText: '現在の家計と暮らしを考え、子どもは持たない（増やさない）選択をした。'
+			}
+		]
+	},
+	{
+		id: 'childbirth_father_modern',
+		title: 'パートナーとの間に新しい子どもを迎える決断',
+		category: 'livelihood',
+		eraIds: ['modern'],
+		sex: 'M',
+		requiresSpouse: true,
+		isLifecycle: true,
+		repeatable: true,
+		minAge: 20,
+		maxAge: 48,
+		description:
+			'妻との間に子どもを持つか、またどのように子育てと家計をやりくりするかを話し合っている。現代の医療は出産の危険を劇的に減らしたが、子育てと教育には大きな費用がかかる。',
+		factBox: '現代では妊産婦死亡率は前近代の100分の1以下に激減し、生まれた子どもの95%以上が成人する一方、養育費・教育費の負担から少子化が進んでいる。',
+		choices: [
+			{
+				id: 'birth_modern_father_hospital',
+				label: '医療設備の整った病院での出産を支え、子どもを育てる',
+				subLabel: '費用はかかるが母子ともに安心',
+				effects: { wealthDelta: -12, happiness: 12, relations: 10, addChild: true, killSpouseChance: 0.002 },
+				outcomeText: '清潔な病室で新しい命を迎えた。これからの暮らしが賑やかになる。'
+			},
+			{
+				id: 'birth_modern_father_wait',
 				label: '経済的な余裕がないため、今は子どもを見送る',
 				subLabel: '現在の生活水準を維持する',
 				effects: { wealthDelta: 5, happiness: -2 },

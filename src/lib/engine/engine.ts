@@ -15,7 +15,7 @@ import type {
 } from '../types';
 import {
 	ERA_GROWTH_RATIO,
-	HORIZON_YEAR,
+	MAX_AGE,
 	ageGroup,
 	clamp,
 	formatYear,
@@ -25,8 +25,6 @@ import {
 	type Rng
 } from './util';
 
-
-const EVENTS = ALL_EVENTS;
 // ---------------------------------------------------------------------------
 // 誕生ガチャ
 // ---------------------------------------------------------------------------
@@ -134,7 +132,7 @@ export const rollBirth = (
 	const usedNames = new Set<string>();
 	const playerName = pickUniqueName(sex === 'M' ? region.maleNames : region.femaleNames, usedNames, rng);
 	const c: CharacterState = {
-		id: Math.floor(rng() * 1e9).toString(36),
+		id: rng === Math.random && typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : Math.floor(rng() * 1e9).toString(36),
 		name: playerName,
 		sex,
 		era,
@@ -153,7 +151,6 @@ export const rollBirth = (
 		relations: 60,
 		annualIncomeUnits: 0,
 		wealth: 1,
-		ongoing: false,
 		modernFeelJpy: 0,
 		focus: 'survival',
 		alive: true,
@@ -180,22 +177,16 @@ export const rollBirth = (
 
 export interface StepResult {
 	died: boolean;
-	ended: boolean; // 死亡または2026年到達
+	ended: boolean;
 	decision?: DecisionEvent;
 }
 
-const deathContextFor = (c: CharacterState, rng: Rng): string => {
-	const g = ageGroup(c.age);
-	if (c.sex === 'F' && c.age >= 17 && c.age <= 38 && c.family.some((f) => f.relation === '夫' && f.alive) && rng() < 0.22) {
-		return '産褥熱・難産';
-	}
-	return pick(c.region.commonDeathCauses[g], rng);
-};
+const deathContextFor = (c: CharacterState, rng: Rng): string =>
+	pick(c.region.commonDeathCauses[ageGroup(c.age)], rng);
 
-export const die = (c: CharacterState, cause: string, context = ''): void => {
+export const die = (c: CharacterState, cause: string): void => {
 	c.alive = false;
 	c.deathCause = cause;
-	c.deathContext = context;
 	push(c, `${c.age}歳で亡くなった。死因：${cause}。`, 'death');
 	c.epitaph = buildEpitaph(c);
 };
@@ -310,9 +301,9 @@ const familyTick = (c: CharacterState, rng: Rng): void => {
 export const stepYear = (c: CharacterState, rng: Rng = Math.random): StepResult => {
 	if (!c.alive) return { died: true, ended: true };
 
-	// 当年の死亡判定（0歳の乳児死亡率を含む）
-	if (rng() < hazard(c.region, c.age, c.socialClass.mortalityMultiplier, c.health)) {
-		die(c, deathContextFor(c, rng));
+	// 当年の死亡判定（0歳の乳児死亡率を含む）および天寿上限
+	if (c.age >= MAX_AGE || rng() < hazard(c.region, c.age, c.socialClass.mortalityMultiplier, c.health)) {
+		die(c, c.age >= MAX_AGE ? '老衰' : deathContextFor(c, rng));
 		return { died: true, ended: true };
 	}
 
@@ -329,8 +320,7 @@ export const stepYear = (c: CharacterState, rng: Rng = Math.random): StepResult 
 	makeIncome(c);
 
 	// 2026年マイルストーン（現実の現代を突破し、未知の近未来へ）
-	if (c.currentYear === 2026 && !c.ongoing) {
-		c.ongoing = true; // 「現代を突破し生存中」フラグ
+	if (c.currentYear === 2026) {
 		push(c, '2026年。現実の現代を突破し、人類は未知の近未来へ足を踏み入れた。', 'milestone');
 	}
 
@@ -345,9 +335,8 @@ export const stepYear = (c: CharacterState, rng: Rng = Math.random): StepResult 
 	familyTick(c, rng);
 	chronicleTick(c, rng);
 
-	// 歴史の大波（確定年代イベントは高確率、時代共通イベントは適度な確率で発生）
 	// 1. 歴史の大波（確定年代イベントは高確率、時代共通イベントは適度な確率で発生）
-	const wave = EVENTS.find(
+	const wave = ALL_EVENTS.find(
 		(e) => e.isHistoricalWave && eligible(c, e) && (e.yearRange ? rng() < 0.8 : rng() < 0.14)
 	);
 	if (wave) {
@@ -357,7 +346,7 @@ export const stepYear = (c: CharacterState, rng: Rng = Math.random): StepResult 
 	}
 
 	// 2. ライフイベント（進路・結婚・出産：必ず決断を挟む）
-	const lifePool = EVENTS.filter((e) => e.isLifecycle && eligible(c, e));
+	const lifePool = ALL_EVENTS.filter((e) => e.isLifecycle && eligible(c, e));
 	if (lifePool.length > 0 && rng() < 0.36) {
 		const e = weighted(lifePool, (x) => (x.regionIds ? 4 : 1), rng);
 		c.triggeredEventIds.push(e.id, `${e.id}@${c.age}`);
@@ -366,7 +355,7 @@ export const stepYear = (c: CharacterState, rng: Rng = Math.random): StepResult 
 	}
 
 	// 3. 時代・地域・環境の理不尽イベント
-	const pool = EVENTS.filter((e) => !e.isHistoricalWave && !e.isLifecycle && eligible(c, e));
+	const pool = ALL_EVENTS.filter((e) => !e.isHistoricalWave && !e.isLifecycle && eligible(c, e));
 	if (pool.length > 0 && rng() < 0.38) {
 		const e = weighted(pool, (x) => (x.regionIds ? 3.5 : x.isUrban !== undefined ? 2.5 : x.classIds ? 1.8 : 1), rng);
 		c.triggeredEventIds.push(e.id, `${e.id}@${c.age}`);
@@ -399,8 +388,9 @@ export const resolveChoice = (
 	if (fx.wealthDelta) c.wealth = Math.max(0.05, c.wealth * (1 + fx.wealthDelta / 100));
 	if (fx.occupationChange) c.occupation = fx.occupationChange;
 	if (fx.locationChange) {
-		c.place = fx.locationChange === 'urban' ? pick(c.region.cities, rng) : fx.locationChange;
-		c.isUrban = true;
+		const toUrban = fx.locationChange === 'urban';
+		c.place = toUrban ? pick(c.region.cities, rng) : fx.locationChange;
+		c.isUrban = toUrban || c.region.cities.includes(c.place);
 	}
 	if (fx.literate) c.literate = true;
 	makeIncome(c);
@@ -409,7 +399,7 @@ export const resolveChoice = (
 		const p = clamp(choice.survivalChance + (c.health - 50) / 500, 0.02, 0.99);
 		if (rng() >= p) {
 			push(c, `▸ 「${choice.label}」を選んだ。${choice.outcomeText}`, 'danger');
-			die(c, choice.deathCause ?? '不慮の死', choice.outcomeText);
+			die(c, choice.deathCause ?? '不慮の死');
 			return { died: true, text: choice.outcomeText };
 		}
 	}
@@ -459,6 +449,6 @@ export const postMortem = (c: CharacterState): PostMortem => {
 	const events = [...near, ...science]
 		.sort((a, b) => a.year - b.year)
 		.map((e) => ({ ...e, yearsAfterDeath: e.year - c.currentYear }));
-	const b = OVERTURNED_BELIEFS.find((x) => c.currentYear < x.until);
+	const b = OVERTURNED_BELIEFS.find((x) => c.currentYear <= x.until);
 	return { events, belief: b ? { belief: b.belief, overturned: b.overturned } : undefined };
 };

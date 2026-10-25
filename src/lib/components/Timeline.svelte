@@ -5,10 +5,12 @@
 	let { records, highlightId }: { records: MemorialRecord[]; highlightId?: string } = $props();
 
 	const START = -3000;
-	const maxDeath = $derived(records.reduce((m, r) => Math.max(m, r.deathYear), 2026));
-	const END = $derived(Math.max(2030, Math.ceil(maxDeath / 10) * 10));
-	const pos = (y: number) => ((y - START) / (END - START)) * 100;
-	const ticks = [-3000, -2000, -1000, 0, 1000, 2000];
+	const maxDeath = $derived(
+		records.reduce((m, r) => (Number.isFinite(r.deathYear) ? Math.max(m, r.deathYear) : m), 2026)
+	);
+	const END = $derived(Math.min(2200, Math.max(2030, Math.ceil(maxDeath / 10) * 10)));
+	const pos = (y: number) => Math.min(100, Math.max(0, ((y - START) / (END - START)) * 100));
+	const ticks = $derived([-3000, -2000, -1000, 0, 1000, 2000, ...(END >= 2100 ? [2100] : [])]);
 </script>
 
 <div class="tl" role="img" aria-label="人類5000年の年表。あなたが生きた時代に墓標が並びます。">

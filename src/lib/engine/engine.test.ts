@@ -4,8 +4,9 @@ import { REGIONS, regionsForEra } from '../data/regions';
 import { ALL_EVENTS } from '../data/events';
 import { BABY_IMAGES } from '../data/babyImages';
 import { GRAVE_DATA } from '../data/graveData';
-import { rollBirth, stepYear, resolveChoice } from './engine';
-import { hazard } from './util';
+import { postMortem, resolveChoice, rollBirth, stepYear } from './engine';
+import { parseMemorials, toMemorialRecord } from './memorials';
+import { MAX_AGE, hazard } from './util';
 import fs from 'fs';
 
 describe('Data Consistency', () => {
@@ -68,6 +69,7 @@ describe('Engine Invariants', () => {
 	});
 
 	test('simulated lives maintain all domain invariants over 3,000 lives', () => {
+		let choiceCursor = 0;
 		for (let i = 0; i < 3000; i++) {
 			const c = rollBirth();
 			expect(c.birthYear).toBeGreaterThanOrEqual(c.era.yearStart);
@@ -94,13 +96,18 @@ describe('Engine Invariants', () => {
 				expect(c.relations).toBeLessThanOrEqual(100);
 
 				if (res.decision) {
-					const ch = res.decision.choices[0];
+					const ch = res.decision.choices[choiceCursor++ % res.decision.choices.length];
 					const rChoice = resolveChoice(c, ch);
 					if (rChoice.died) break;
 				}
 				if (res.ended) {
 					expect(c.alive).toBe(false);
+					expect(c.age).toBeLessThanOrEqual(MAX_AGE);
 					expect(c.deathCause).toBeDefined();
+					if (c.sex === 'M') {
+						expect(c.deathCause).not.toBe('出産時の合併症');
+						expect(c.deathCause).not.toBe('産褥熱・難産');
+					}
 					break;
 				}
 			}
@@ -122,5 +129,66 @@ describe('Engine Invariants', () => {
 			}
 		}
 		expect(reachedNearFuture).toBeGreaterThan(0);
+	});
+
+	test('post-2026 deaths record real deathCause in memorial and post-2095 deaths receive post-mortem events', () => {
+		const c = rollBirth(() => 0.42, 'modern');
+		c.currentYear = 2105;
+		c.age = 85;
+		c.alive = false;
+		c.deathCause = '老衰';
+		c.epitaph = 'テスト墓碑銘';
+		const rec = toMemorialRecord(c, 1000);
+		expect(rec.deathCause).toBe('老衰');
+		expect(rec.deathYear).toBe(2105);
+		const pm = postMortem(c);
+		expect(pm.events.length).toBeGreaterThan(0);
+		expect(pm.belief).toBeDefined();
+	});
+});
+
+describe('Memorial Storage Security & Schema Validation', () => {
+	test('rejects corrupt, non-array, oversized, NaN, seed-colliding, and prototype-polluting inputs', () => {
+		expect(parseMemorials(null)).toEqual([]);
+		expect(parseMemorials('')).toEqual([]);
+		expect(parseMemorials('not-json')).toEqual([]);
+		expect(parseMemorials('null')).toEqual([]);
+		expect(parseMemorials('{}')).toEqual([]);
+		expect(parseMemorials('"abc"')).toEqual([]);
+		expect(parseMemorials('x'.repeat(300_000))).toEqual([]);
+
+		const valid = {
+			id: 'rec-1',
+			name: 'アキラ',
+			sex: 'M',
+			eraId: 'modern',
+			eraName: '現代',
+			regionName: '日本',
+			place: '東京',
+			birthYear: 1995,
+			deathYear: 2078,
+			deathAge: 83,
+			socialClass: '会社員・専門職',
+			occupation: '技術者',
+			deathCause: '老衰',
+			epitaph: '穏やかな晩年だった。',
+			summaryLine: '日本の会社員・専門職、83歳',
+			createdAt: 1700000000000
+		};
+		const payload = JSON.stringify([
+			valid,
+			{ ...valid, id: 'rec-1' }, // duplicate ID
+			{ ...valid, id: 'seed-1' }, // collides with SEED_MEMORIALS
+			{ ...valid, id: 'bad-year', deathYear: 99999 }, // out-of-range year
+			{ ...valid, id: 'bad-era', eraId: 'future_mars' }, // invalid EraId
+			{ ...valid, id: 'bad-obj', name: { toString: null } }, // object coercion DoS
+			JSON.parse('{"__proto__":{"polluted":true},"id":"proto-ok","name":"ハナ","sex":"F","eraId":"modern","eraName":"現代","regionName":"日本","place":"大阪","birthYear":2000,"deathYear":2080,"deathAge":80,"socialClass":"会社員","occupation":"教員","deathCause":"老衰","epitaph":"テスト","summaryLine":"テスト","createdAt":1}')
+		]);
+		const parsed = parseMemorials(payload);
+		expect(parsed.length).toBe(2);
+		expect(parsed[0].id).toBe('rec-1');
+		expect(parsed[1].id).toBe('proto-ok');
+		expect(({} as Record<string, unknown>).polluted).toBeUndefined();
+		expect(Object.prototype.hasOwnProperty.call(parsed[1], '__proto__')).toBe(false);
 	});
 });

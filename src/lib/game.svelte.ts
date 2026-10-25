@@ -2,28 +2,18 @@ const browser = typeof window !== 'undefined';
 
 import { SEED_MEMORIALS } from './data/timeline';
 import { postMortem, resolveChoice, rollBirth, stepYear, type PostMortem } from './engine/engine';
-import { formatYear } from './engine/util';
+import { MAX_MEMORIALS, MEMORIAL_KEY, parseMemorials, toMemorialRecord } from './engine/memorials';
 import type {
 	CharacterState,
 	ChoiceOption,
 	DecisionEvent,
+	EraId,
 	MemorialRecord
 } from './types';
 
 export type Phase = 'intro' | 'cert' | 'life' | 'dead';
 
-const MEMORIAL_KEY = '1in5ky.memorials';
 const MS_PER_YEAR = 2500;
-
-const loadMemorials = (): MemorialRecord[] => {
-	if (!browser) return [];
-	try {
-		const raw = localStorage.getItem(MEMORIAL_KEY);
-		return raw ? (JSON.parse(raw) as MemorialRecord[]) : [];
-	} catch {
-		return [];
-	}
-};
 
 class Game {
 	phase = $state<Phase>('intro');
@@ -32,10 +22,20 @@ class Game {
 	char = $state<CharacterState | null>(null);
 	decision = $state<DecisionEvent | null>(null);
 	pm = $state<PostMortem | null>(null);
-	memorials = $state<MemorialRecord[]>(loadMemorials());
+	memorials = $state<MemorialRecord[]>([]);
 
 	#timer: number | undefined;
+	#hydrated = false;
 
+	hydrate(): void {
+		if (!browser || this.#hydrated) return;
+		this.#hydrated = true;
+		try {
+			this.memorials = parseMemorials(localStorage.getItem(MEMORIAL_KEY));
+		} catch {
+			this.memorials = [];
+		}
+	}
 	get blocked(): boolean {
 		return this.paused || this.decision !== null;
 	}
@@ -44,9 +44,9 @@ class Game {
 		return [...this.memorials, ...SEED_MEMORIALS];
 	}
 
-	roll(): void {
+	roll(forceEra?: EraId): void {
 		this.stop();
-		this.char = rollBirth();
+		this.char = rollBirth(Math.random, forceEra);
 		this.decision = null;
 		this.pm = null;
 		this.speed = 1;
@@ -61,6 +61,7 @@ class Game {
 
 	quit(): void {
 		this.stop();
+		this.decision = null;
 		this.phase = 'intro';
 		this.char = null;
 	}
@@ -110,7 +111,7 @@ class Game {
 
 	fastForward(): void {
 		const c = this.char;
-		if (!c || this.phase !== 'life') return;
+		if (!c || this.phase !== 'life' || this.decision) return;
 		this.paused = false;
 		this.stop();
 		for (let i = 0; i < 120; i++) {
@@ -121,10 +122,12 @@ class Game {
 				return;
 			}
 		}
+		if (!this.blocked && this.phase === 'life') this.schedule();
 	}
 
 	finish(): void {
 		this.stop();
+		this.decision = null;
 		const c = this.char;
 		if (!c) return;
 		this.pm = postMortem(c);
@@ -133,33 +136,25 @@ class Game {
 	}
 
 	saveMemorial(c: CharacterState): void {
-		const rec: MemorialRecord = {
-			id: c.id,
-			name: c.name,
-			sex: c.sex,
-			eraId: c.era.id,
-			eraName: c.era.name,
-			regionName: c.region.name,
-			place: c.place,
-			birthYear: c.birthYear,
-			deathYear: c.currentYear,
-			deathAge: c.age,
-			socialClass: c.socialClass.name,
-			occupation: c.occupation,
-			deathCause: c.ongoing ? '（まだ生きている）' : (c.deathCause ?? ''),
-			epitaph: c.epitaph || `${c.name}の人生は、${formatYear(c.currentYear)}も続いている。`,
-			summaryLine: `${c.region.name}の${c.socialClass.name}、${c.age}歳`,
-			candles: 0,
-			isPlayer: true,
-			createdAt: Date.now()
-		};
-		this.memorials = [rec, ...this.memorials].slice(0, 200);
-		if (browser) localStorage.setItem(MEMORIAL_KEY, JSON.stringify(this.memorials));
+		this.memorials = [toMemorialRecord(c), ...this.memorials].slice(0, MAX_MEMORIALS);
+		if (browser) {
+			try {
+				localStorage.setItem(MEMORIAL_KEY, JSON.stringify(this.memorials));
+			} catch {
+				// Ignore storage quota or privacy-mode restrictions
+			}
+		}
 	}
 
 	clearMemorials(): void {
 		this.memorials = [];
-		if (browser) localStorage.removeItem(MEMORIAL_KEY);
+		if (browser) {
+			try {
+				localStorage.removeItem(MEMORIAL_KEY);
+			} catch {
+				// Ignore storage restrictions
+			}
+		}
 	}
 }
 

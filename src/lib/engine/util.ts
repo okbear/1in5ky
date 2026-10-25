@@ -1,7 +1,5 @@
 import type { EraId, RegionProfile } from '../types';
 
-export const HORIZON_YEAR = 2026;
-
 export const formatYear = (y: number): string => (y < 0 ? `紀元前${-y}年` : `${y}年`);
 
 export const formatYen = (n: number): string => {
@@ -40,7 +38,7 @@ export const ERA_GROWTH_RATIO: Record<EraId, number> = {
 // 年別の死亡ハザード（生命表）
 // ---------------------------------------------------------------------------
 
-const MAX_AGE = 110;
+export const MAX_AGE = 110;
 
 /** 1〜4歳の年間死亡確率: 0〜4歳累積死亡率が under5Mortality になるよう逆算 */
 const q1to4 = (r: RegionProfile): number => {

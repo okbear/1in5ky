@@ -4,26 +4,34 @@ on:
   push:
     branches:
       - main
-    tags-ignore:
-      - 'v*'
   pull_request:
     branches:
       - main
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Install Bun
-        uses: oven-sh/setup-bun@v2
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
           bun-version: 1.4.3
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
+
+      - name: Security audit (dependencies)
+        run: bun audit --audit-level=high
 
       - name: Type check (svelte-check)
         run: bun run check

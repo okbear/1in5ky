@@ -1,8 +1,15 @@
 {
 	"mcpServers": {
 		"chrome-devtools": {
-			"command": "bunx",
-			"args": ["chrome-devtools-mcp", "--no-usage-statistics"]
+			"command": "./node_modules/.bin/chrome-devtools-mcp",
+			"args": [
+				"--no-usage-statistics",
+				"--no-performance-crux",
+				"--redact-network-headers"
+			],
+			"env": {
+				"CHROME_DEVTOOLS_MCP_NO_UPDATE_CHECKS": "1"
+			}
 		}
 	}
 }

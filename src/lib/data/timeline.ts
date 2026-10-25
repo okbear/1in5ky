@@ -43,7 +43,10 @@ export const WORLD_TIMELINE: PostMortemEvent[] = [
 	{ year: 2042, yearsAfterDeath: 0, title: '破局噴火と「火山の冬」', description: '成層圏に達した硫酸塩エアロゾルが太陽光を遮断し、地球規模の凶作が続いた。', category: 'world' },
 	{ year: 2056, yearsAfterDeath: 0, title: '超巨大太陽フレア直撃', description: '全地球的磁気嵐により電力網と衛星網が壊滅。情報文明の脆弱性が露呈した。', category: 'science' },
 	{ year: 2072, yearsAfterDeath: 0, title: '極氷床崩落とメガフロート新都市', description: '海水面上昇により旧沿岸都市が恒久水没。人類は洋上コロニーと内陸高地へ移住した。', category: 'region' },
-	{ year: 2095, yearsAfterDeath: 0, title: '小惑星衝突と地下生活圏の確立', description: '太平洋への天体衝突を経て、地熱と人工光に依存する地下都市網が完成した。', category: 'science' }
+	{ year: 2095, yearsAfterDeath: 0, title: '小惑星衝突と地下生活圏の確立', description: '太平洋への天体衝突を経て、地熱と人工光に依存する地下都市網が完成した。', category: 'science' },
+	{ year: 2118, yearsAfterDeath: 0, title: '成層圏エアロゾル制御と地上農地の再生', description: '大気浄化プラントの稼働により粉塵が晴れ、数十年ぶりに青空と地上の麦畑が戻った。', category: 'science' },
+	{ year: 2145, yearsAfterDeath: 0, title: '月面・軌道エレベーター建設と地球外資源輸送', description: '希少金属の採掘が地球外へ移り、傷ついた地球の生態系を保護区へ戻す合意が結ばれた。', category: 'world' },
+	{ year: 2180, yearsAfterDeath: 0, title: '恒星間無人探査船の太陽系外縁旅立ち', description: '幾多の疫病と天変地異を生き延びた人類の記録を載せ、探査船が隣の恒星系へ向かった。', category: 'science' }
 ];
 
 /** 生きているあいだ右カラム「世界の出来事」に順次流れてくる時代別の世界史トピック */
@@ -128,7 +131,8 @@ export const OVERTURNED_BELIEFS: { until: number; belief: string; overturned: st
 	{ until: 1850, belief: '病気は悪い空気（瘴気）によって広がる', overturned: '1854年のコレラ調査と1880年代の細菌学が、病気の原因を微生物に求めた。' },
 	{ until: 1900, belief: '身分や血筋は生まれつき決まっている', overturned: '市民革命と普通選挙の広がりが、「生まれによる身分」の正当性を失わせていった。' },
 	{ until: 2026, belief: '地球の気候と電力網はいつでも安定していて永遠に続く', overturned: '2030年代以降の極端気象と太陽フレア・破局噴火により、文明基盤の脆さが証明された。' },
-	{ until: 2050, belief: '人類はテクノロジーの進歩ですべての天変地異を完全に制御できる', overturned: '21世紀後半の天体接近や地球物理破局に直面し、人類は再び自然への謙虚さを取り戻した。' }
+	{ until: 2050, belief: '人類はテクノロジーの進歩ですべての天変地異を完全に制御できる', overturned: '21世紀後半の天体接近や地球物理破局に直面し、人類は再び自然への謙虚さを取り戻した。' },
+	{ until: 2200, belief: '人類の歴史と生活圏は地球の表面だけで完結する', overturned: '22世紀以降、地下都市・洋上都市・地球軌道へと生活圏が分岐し、「地上に住む」こと自体がひとつの選択になった。' }
 ];
 
 /** 5000年のタイムラインに最初から刻まれている「名もなき人々」の墓標 */
@@ -149,8 +153,6 @@ export const SEED_MEMORIALS: MemorialRecord[] = [
 		deathCause: '熱病・感染症',
 		epitaph: 'メソポタミアの農民、イルム。紀元前2740年生まれ、29歳で没。大麦の運河を掘り続け、名もなき日々を生きた。',
 		summaryLine: 'メソポタミアの農民、29歳',
-		candles: 14,
-		isPlayer: false,
 		createdAt: 0
 	},
 	{
@@ -169,8 +171,6 @@ export const SEED_MEMORIALS: MemorialRecord[] = [
 		deathCause: '建設労役での圧死・過労',
 		epitaph: 'エジプトの農民、ケム。紀元前2572年生まれ、28歳で没。ピラミッドの巨石を運び、腰痛と熱病のなかで世を去った。',
 		summaryLine: 'エジプトの農民、28歳',
-		candles: 23,
-		isPlayer: false,
 		createdAt: 0
 	},
 	{
@@ -189,8 +189,6 @@ export const SEED_MEMORIALS: MemorialRecord[] = [
 		deathCause: '帝国の疫病',
 		epitaph: 'ローマ帝国の職人・商人、コルネリア。142年生まれ、25歳で没。東方から届いた疫病の波に飲まれた。',
 		summaryLine: 'ローマ帝国の職人・商人、25歳',
-		candles: 9,
-		isPlayer: false,
 		createdAt: 0
 	},
 	{
@@ -209,8 +207,6 @@ export const SEED_MEMORIALS: MemorialRecord[] = [
 		deathCause: '黒死病（ペスト）',
 		epitaph: '封建ヨーロッパの職人・商人、ジャン。1329年生まれ、19歳で没。黒死病が町を覆った夏に世を去った。',
 		summaryLine: '封建ヨーロッパの職人・商人、19歳',
-		candles: 31,
-		isPlayer: false,
 		createdAt: 0
 	},
 	{
@@ -229,8 +225,6 @@ export const SEED_MEMORIALS: MemorialRecord[] = [
 		deathCause: '老衰',
 		epitaph: '江戸時代の日本の農民、おはる。1738年生まれ、61歳で没。天明の飢饉を生き抜き、孫の顔を見て世を去った。',
 		summaryLine: '江戸時代の日本の農民、61歳',
-		candles: 18,
-		isPlayer: false,
 		createdAt: 0
 	},
 	{
@@ -249,8 +243,6 @@ export const SEED_MEMORIALS: MemorialRecord[] = [
 		deathCause: '赤痢・疫痢',
 		epitaph: '欧米の工業地帯の工場労働者の子、エマ。1832年生まれ、2歳で没。名を呼ばれる前に、世を去った。',
 		summaryLine: '欧米の工業地帯の工場労働者、2歳',
-		candles: 27,
-		isPlayer: false,
 		createdAt: 0
 	}
 ];

@@ -7,13 +7,11 @@ export const cls = (
 	income: number,
 	mort: number,
 	lit: number,
-	occupations: string[],
-	description = ''
+	occupations: string[]
 ): SocialClassSpec => ({
 	id,
 	name,
 	share,
-	description,
 	incomeMultiplier: income,
 	mortalityMultiplier: mort,
 	literacyBonus: lit,
@@ -99,7 +97,6 @@ export const baseRegion = (
 	eraId,
 	gini: 0.45,
 	annualBaseIncomeUnit: 100,
-	familyNames: [],
 	classes: CLASSES[eraId],
 	commonDeathCauses: {
 		infant: ['下痢・脱水', '新生児破傷風・感染症', '栄養失調'],

@@ -12,9 +12,7 @@
 	--accent-soft: #f0dfe2;
 	--stamp: #0f6e68;
 	--stamp-soft: #dcebe8;
-	--gold: #9c7020;
 	--bad: #a8352b;
-	--good: #2b7a4e;
 	--loss: #2c2a30;
 	--shadow: 0 1px 0 rgba(35, 28, 22, 0.04), 0 8px 24px -12px rgba(35, 28, 22, 0.22);
 	--f-display: 'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP', serif;
@@ -37,9 +35,7 @@
 		--accent-soft: #3a1c26;
 		--stamp: #4cc0af;
 		--stamp-soft: #12302d;
-		--gold: #d9af59;
 		--bad: #f07b6b;
-		--good: #5cc38b;
 		--loss: #c9c4d0;
 		color-scheme: dark;
 	}

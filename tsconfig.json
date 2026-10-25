@@ -4,7 +4,6 @@
 		"strict": true,
 		"types": ["$app/types", "@types/bun"],
 		"paths": {
-			"#lib": ["./src/lib/index.ts"],
 			"#lib/*": ["./src/lib/*"]
 		}
 	},
