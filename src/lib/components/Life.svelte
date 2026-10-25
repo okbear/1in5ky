@@ -3,6 +3,7 @@
 	import { expectedLifespan, formatYear, formatYen } from '#lib/engine/util';
 	import type { FocusOption } from '#lib/types';
 	import Scene from './Scene.svelte';
+	import { getEventImage } from '#lib/data/eventImages';
 
 	const focuses: FocusOption[] = [
 		{ id: 'survival', label: '生き延びる', sub: '体を守る' },
@@ -289,6 +290,7 @@
 
 {#if game.decision && !game.decisionHidden}
 	{@const d = game.decision}
+	{@const evImg = getEventImage(d.id)}
 	<div class="scrim" onclick={onScrimClick} role="presentation">
 		<div class="dec" bind:this={dialogEl} role="dialog" aria-modal="true" aria-label={d.title}>
 			<div class="hd">
@@ -303,8 +305,22 @@
 				</button>
 			</div>
 			<div class="bd">
-				<h2>{d.title}</h2>
-				<p>{d.description}</p>
+				<div class="dec-lead" class:has-visual={!!evImg}>
+					{#if evImg}
+						<div class="dec-visual">
+							<div class="dec-frame">
+								<img src={evImg.src} alt={evImg.alt} loading="eager" />
+								{#if evImg.caption}
+									<span class="dec-badge">{evImg.caption}</span>
+								{/if}
+							</div>
+						</div>
+					{/if}
+					<div class="dec-text">
+						<h2>{d.title}</h2>
+						<p>{d.description}</p>
+					</div>
+				</div>
 				<div class="fact">{d.factBox}</div>
 				<div class="choices">
 					{#each d.choices as ch (ch.id)}
@@ -937,5 +953,61 @@
 	}
 	.ctrl-ff:hover {
 		filter: brightness(1.07);
+	}
+
+	/* 決断モーダル内の挿絵カード */
+	.dec-lead.has-visual {
+		display: grid;
+		grid-template-columns: 140px 1fr;
+		gap: 16px;
+		align-items: start;
+		margin-bottom: 12px;
+	}
+	@media (max-width: 520px) {
+		.dec-lead.has-visual {
+			grid-template-columns: 1fr;
+			gap: 12px;
+		}
+	}
+	.dec-visual {
+		max-width: 140px;
+	}
+	@media (max-width: 520px) {
+		.dec-visual {
+			max-width: 160px;
+			margin: 0 auto;
+		}
+	}
+	.dec-frame {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		border-radius: 4px;
+		overflow: hidden;
+		background: #14110e;
+		border: 1px solid var(--rule);
+		box-shadow: 0 2px 8px rgba(35, 28, 22, 0.12);
+	}
+	.dec-frame img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+	.dec-badge {
+		position: absolute;
+		bottom: 6px;
+		right: 6px;
+		background: rgba(20, 17, 14, 0.85);
+		color: #f4eee2;
+		font-size: 10px;
+		padding: 2px 6px;
+		border-radius: 2px;
+		letter-spacing: 0.03em;
+		backdrop-filter: blur(4px);
+		pointer-events: none;
+	}
+	.dec-text {
+		min-width: 0;
 	}
 </style>
