@@ -150,11 +150,31 @@ button:focus-visible {
 	overflow: hidden;
 }
 .dec .hd {
-	padding: 10px 18px;
+	padding: 8px 14px 8px 18px;
 	border-bottom: 1px solid var(--rule);
 	font-family: var(--f-mono);
 	font-size: 12px;
 	color: var(--accent);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+.dec-close-btn {
+	border: 1px solid var(--rule);
+	background: transparent;
+	color: var(--ink2);
+	border-radius: 4px;
+	padding: 3px 10px;
+	font-size: 12px;
+	font-family: var(--f-body);
+	line-height: 1.4;
+	cursor: pointer;
+	transition: border-color 0.15s, color 0.15s;
+}
+.dec-close-btn:hover {
+	border-color: var(--ink3);
+	color: var(--ink);
 }
 .dec .bd {
 	padding: 18px;

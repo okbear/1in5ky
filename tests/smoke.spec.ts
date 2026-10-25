@@ -70,4 +70,72 @@ test.describe('1in5ky E2E smoke tests', () => {
 		// Ensure 0 unhandled console/page errors occurred
 		expect(pageErrors).toEqual([]);
 	});
+
+	test('decision modal: can close modal, view background, and reopen via "決断に戻る"', async ({ page }) => {
+		const pageErrors: Error[] = [];
+		page.on('pageerror', (err) => pageErrors.push(err));
+
+		await page.goto('/', { waitUntil: 'networkidle' });
+
+		// Roll a life and begin
+		await page.locator('button.cta').first().click();
+		const cert = page.locator('.cert');
+		await expect(cert).toBeVisible();
+		await cert.locator('button.cta').click();
+
+		const life = page.locator('.life');
+		await expect(life).toBeVisible();
+
+		// Advance until a decision modal appears
+		let foundDecision = false;
+		for (let i = 0; i < 40; i++) {
+			if (await page.locator('.scrim .choices button').first().isVisible()) {
+				foundDecision = true;
+				break;
+			}
+			if (await page.locator('.dead').isVisible()) {
+				// Character died before a decision; re-roll by restarting
+				break;
+			}
+			const ffBtn = page.locator('.bottombar button').filter({ hasText: '»' }).first();
+			if (await ffBtn.isVisible()) {
+				await ffBtn.click();
+			}
+			await page.waitForTimeout(100);
+		}
+
+		if (foundDecision) {
+			const scrim = page.locator('.scrim');
+			await expect(scrim).toBeVisible();
+
+			// 1. Click close button on modal
+			const closeBtn = page.locator('.dec-close-btn');
+			await expect(closeBtn).toBeVisible();
+			await expect(closeBtn).toHaveText('閉じる');
+			await closeBtn.click();
+
+			// 2. Modal is now hidden, background is interactive
+			await expect(scrim).not.toBeVisible();
+			const lifeShell = page.locator('.life-shell');
+			await expect(lifeShell).not.toHaveAttribute('inert');
+
+			// 3. Bottom bar has "決断に戻る" button instead of "次の決断まで »"
+			const returnBtn = page.locator('.bottombar button').filter({ hasText: '決断に戻る' }).first();
+			await expect(returnBtn).toBeVisible();
+
+			// 4. Click "決断に戻る" to reopen modal
+			await returnBtn.click();
+			await expect(scrim).toBeVisible();
+
+			// 5. Select a choice to resolve decision
+			const choiceBtn = page.locator('.scrim .choices button').first();
+			await expect(choiceBtn).toBeVisible();
+			await choiceBtn.click();
+
+			// Modal closes after choice selection
+			await expect(scrim).not.toBeVisible();
+		}
+
+		expect(pageErrors).toEqual([]);
+	});
 });

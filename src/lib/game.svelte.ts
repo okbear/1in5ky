@@ -21,6 +21,7 @@ class Game {
 	paused = $state(false);
 	char = $state<CharacterState | null>(null);
 	decision = $state<DecisionEvent | null>(null);
+	decisionHidden = $state(false);
 	pm = $state<PostMortem | null>(null);
 	memorials = $state<MemorialRecord[]>([]);
 
@@ -48,6 +49,7 @@ class Game {
 		this.stop();
 		this.char = rollBirth(Math.random, forceEra);
 		this.decision = null;
+		this.decisionHidden = false;
 		this.pm = null;
 		this.speed = 1;
 		this.paused = false;
@@ -62,6 +64,7 @@ class Game {
 	quit(): void {
 		this.stop();
 		this.decision = null;
+		this.decisionHidden = false;
 		this.phase = 'intro';
 		this.char = null;
 	}
@@ -84,6 +87,7 @@ class Game {
 		if (r.ended) return this.finish();
 		if (r.decision) {
 			this.decision = r.decision;
+			this.decisionHidden = false;
 			return;
 		}
 		this.schedule();
@@ -94,9 +98,22 @@ class Game {
 		if (!c) return;
 		const res = resolveChoice(c, choice);
 		this.decision = null;
+		this.decisionHidden = false;
 		if (res.died) return this.finish();
 		this.schedule();
 	}
+	dismissDecision(): void {
+		if (this.decision) {
+			this.decisionHidden = true;
+		}
+	}
+
+	restoreDecision(): void {
+		if (this.decision) {
+			this.decisionHidden = false;
+		}
+	}
+
 
 	togglePause(): void {
 		this.paused = !this.paused;
@@ -119,6 +136,7 @@ class Game {
 			if (r.ended) return this.finish();
 			if (r.decision) {
 				this.decision = r.decision;
+				this.decisionHidden = false;
 				return;
 			}
 		}
@@ -128,6 +146,7 @@ class Game {
 	finish(): void {
 		this.stop();
 		this.decision = null;
+		this.decisionHidden = false;
 		const c = this.char;
 		if (!c) return;
 		this.pm = postMortem(c);

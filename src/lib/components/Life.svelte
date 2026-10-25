@@ -35,6 +35,20 @@
 	let dialogEl = $state<HTMLDivElement | null>(null);
 	let speedPickerEl = $state<HTMLDivElement | null>(null);
 	let speedOpen = $state(false);
+	let returnBtnEl = $state<HTMLButtonElement | null>(null);
+
+	const dismissDecisionAndFocus = (): void => {
+		game.dismissDecision();
+		setTimeout(() => {
+			returnBtnEl?.focus();
+		}, 0);
+	};
+
+	const onScrimClick = (e: MouseEvent): void => {
+		if (e.target === e.currentTarget) {
+			dismissDecisionAndFocus();
+		}
+	};
 
 	$effect(() => {
 		c.chronicle.length;
@@ -44,7 +58,7 @@
 	});
 
 	$effect(() => {
-		if (game.decision) {
+		if (game.decision && !game.decisionHidden) {
 			speedOpen = false;
 			dialogEl?.querySelector<HTMLButtonElement>('.choices button')?.focus();
 		}
@@ -59,13 +73,17 @@
 	const onWindowKeydown = (e: KeyboardEvent): void => {
 		if (speedOpen && e.key === 'Escape') {
 			speedOpen = false;
+			return;
+		}
+		if (game.decision && !game.decisionHidden && e.key === 'Escape') {
+			dismissDecisionAndFocus();
 		}
 	};
 </script>
 
 <svelte:window onclick={onWindowClick} onkeydown={onWindowKeydown} />
 
-<div class="life-shell" inert={!!game.decision}>
+<div class="life-shell" inert={!!game.decision && !game.decisionHidden}>
 	<header class="topbar">
 		<div class="header-watermark" aria-hidden="true">
 			<Scene region={c.region} />
@@ -252,18 +270,38 @@
 				{/if}
 			</div>
 
-			<button class="ctrl-ff" onclick={() => game.fastForward()}>
-				次の決断まで »
-			</button>
+			{#if game.decision}
+				<button
+					bind:this={returnBtnEl}
+					class="ctrl-ff"
+					onclick={() => game.restoreDecision()}
+				>
+					決断に戻る
+				</button>
+			{:else}
+				<button class="ctrl-ff" onclick={() => game.fastForward()}>
+					次の決断まで »
+				</button>
+			{/if}
 		</div>
 	</footer>
 </div>
 
-{#if game.decision}
+{#if game.decision && !game.decisionHidden}
 	{@const d = game.decision}
-	<div class="scrim">
+	<div class="scrim" onclick={onScrimClick} role="presentation">
 		<div class="dec" bind:this={dialogEl} role="dialog" aria-modal="true" aria-label={d.title}>
-			<div class="hd">{d.category === 'historical_wave' ? `歴史の大波 · ${d.historicalYearLabel ?? ''}` : '決断'} · {c.age}歳</div>
+			<div class="hd">
+				<span>{d.category === 'historical_wave' ? `歴史の大波 · ${d.historicalYearLabel ?? ''}` : '決断'} · {c.age}歳</span>
+				<button
+					type="button"
+					class="dec-close-btn"
+					aria-label="閉じる"
+					onclick={() => dismissDecisionAndFocus()}
+				>
+					閉じる
+				</button>
+			</div>
 			<div class="bd">
 				<h2>{d.title}</h2>
 				<p>{d.description}</p>
