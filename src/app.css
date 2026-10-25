@@ -100,8 +100,8 @@ button:focus-visible {
 	color: var(--accent-ink);
 	border: 0;
 	border-radius: 4px;
-	padding: 14px 32px;
-	font-size: 18px;
+	padding: 10px 22px;
+	font-size: 15px;
 	font-weight: 600;
 	box-shadow: var(--shadow);
 }
@@ -112,7 +112,7 @@ button:focus-visible {
 	background: transparent;
 	border: 1px solid var(--rule);
 	border-radius: 4px;
-	padding: 10px 16px;
+	padding: 9px 16px;
 	font-size: 14px;
 }
 .ghost:hover {

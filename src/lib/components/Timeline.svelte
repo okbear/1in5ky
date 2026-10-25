@@ -10,13 +10,14 @@
 	);
 	const END = $derived(Math.min(2200, Math.max(2030, Math.ceil(maxDeath / 10) * 10)));
 	const pos = (y: number) => Math.min(100, Math.max(0, ((y - START) / (END - START)) * 100));
-	const ticks = $derived([-3000, -2000, -1000, 0, 1000, 2000, ...(END >= 2100 ? [2100] : [])]);
+	const ticks = [-3000, -2000, -1000, 0, 1000, 2000];
+	const formatTick = (y: number): string => (y < 0 ? `BC${-y}` : `${y}`);
 </script>
 
 <div class="tl" role="img" aria-label="人類5000年の年表。あなたが生きた時代に墓標が並びます。">
 	<div class="axis">
 		{#each ticks as t (t)}
-			<span class="tick" style="left:{pos(t)}%"><i></i><small>{formatYear(t)}</small></span>
+			<span class="tick" style="left:{pos(t)}%"><i></i><small>{formatTick(t)}</small></span>
 		{/each}
 		{#each records as r (r.id)}
 			<span
@@ -31,7 +32,12 @@
 
 <style>
 	.tl {
-		padding: 10px 48px 28px;
+		padding: 10px 20px 28px;
+	}
+	@media (max-width: 560px) {
+		.tl {
+			padding: 8px 14px 26px;
+		}
 	}
 	.axis {
 		position: relative;
