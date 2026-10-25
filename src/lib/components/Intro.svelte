@@ -51,6 +51,14 @@
 			<button class="ghost" onclick={() => game.clearMemorials()}>記録を消す</button>
 		{/if}
 	</div>
+
+	<footer class="credit">
+		<p>
+			この作品は
+			<a href="https://1in8b.life/ja/" target="_blank" rel="noopener noreferrer">80億分の1（1 in 8 Billion）</a>
+			に着想を得て制作された歴史シミュレーションです。
+		</p>
+	</footer>
 </section>
 
 <style>
@@ -127,5 +135,22 @@
 	}
 	.memo li small {
 		color: var(--ink2);
+	}
+	.credit {
+		padding-top: 12px;
+		border-top: 1px solid var(--rule2);
+		font-size: 12.5px;
+		color: var(--ink3);
+	}
+	.credit p {
+		margin: 0;
+	}
+	.credit a {
+		color: var(--ink2);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.credit a:hover {
+		color: var(--accent);
 	}
 </style>

@@ -33,6 +33,8 @@
 
 	let chronicleEl = $state<HTMLUListElement | null>(null);
 	let dialogEl = $state<HTMLDivElement | null>(null);
+	let speedPickerEl = $state<HTMLDivElement | null>(null);
+	let speedOpen = $state(false);
 
 	$effect(() => {
 		c.chronicle.length;
@@ -42,14 +44,32 @@
 	});
 
 	$effect(() => {
-		if (game.decision && dialogEl) {
-			dialogEl.querySelector<HTMLButtonElement>('.choices button')?.focus();
+		if (game.decision) {
+			speedOpen = false;
+			dialogEl?.querySelector<HTMLButtonElement>('.choices button')?.focus();
 		}
 	});
+
+	const onWindowClick = (e: MouseEvent): void => {
+		if (speedOpen && speedPickerEl && !speedPickerEl.contains(e.target as Node)) {
+			speedOpen = false;
+		}
+	};
+
+	const onWindowKeydown = (e: KeyboardEvent): void => {
+		if (speedOpen && e.key === 'Escape') {
+			speedOpen = false;
+		}
+	};
 </script>
+
+<svelte:window onclick={onWindowClick} onkeydown={onWindowKeydown} />
 
 <div class="life-shell" inert={!!game.decision}>
 	<header class="topbar">
+		<div class="header-watermark" aria-hidden="true">
+			<Scene region={c.region} />
+		</div>
 		<div class="wrap tbar">
 			<div class="brand">5000年分の<em>1</em></div>
 			<div class="agebox">
@@ -171,21 +191,18 @@
 					</div>
 				</section>
 
-				<section class="panel region-card" aria-label="この時代・この地域">
-					<div class="scene"><Scene region={c.region} /></div>
-					<div class="region-body">
-						<h3><span>この時代・この地域</span></h3>
-						<dl class="stats">
-							<dt>乳児死亡率</dt><dd>{c.region.infantMortality}‰</dd>
-							<dt>平均寿命（出生時）</dt><dd>約{e0}歳</dd>
-							<dt>15歳時点の平均寿命</dt><dd>約{c.region.lifeExpectancyAt15}歳</dd>
-							<dt>5歳未満死亡率</dt><dd>{Math.round(c.region.under5Mortality / 10)}%</dd>
-							<dt>識字率</dt><dd>{c.region.literacyRate}%</dd>
-							<dt>都市人口率</dt><dd>{c.region.urbanizationRate}%</dd>
-							<dt>主食</dt><dd>{c.region.dietStaple}</dd>
-						</dl>
-						<p class="src">{c.region.medicalCommonSense}</p>
-					</div>
+				<section class="panel" aria-label="この時代・この地域">
+					<h3><span>この時代・この地域</span></h3>
+					<dl class="stats">
+						<dt>乳児死亡率</dt><dd>{c.region.infantMortality}‰</dd>
+						<dt>平均寿命（出生時）</dt><dd>約{e0}歳</dd>
+						<dt>15歳時点の平均寿命</dt><dd>約{c.region.lifeExpectancyAt15}歳</dd>
+						<dt>5歳未満死亡率</dt><dd>{Math.round(c.region.under5Mortality / 10)}%</dd>
+						<dt>識字率</dt><dd>{c.region.literacyRate}%</dd>
+						<dt>都市人口率</dt><dd>{c.region.urbanizationRate}%</dd>
+						<dt>主食</dt><dd>{c.region.dietStaple}</dd>
+					</dl>
+					<p class="src">{c.region.medicalCommonSense}</p>
 				</section>
 			</div>
 		</div>
@@ -201,16 +218,39 @@
 				{game.paused ? '▶ 再開' : '❚❚ 一時停止'}
 			</button>
 
-			<select
-				class="spd-select mono"
-				aria-label="進行速度"
-				value={game.speed}
-				onchange={(e) => game.setSpeed(Number(e.currentTarget.value))}
-			>
-				{#each speeds as s (s)}
-					<option value={s}>速度 {s}×</option>
-				{/each}
-			</select>
+			<div class="spd-picker" bind:this={speedPickerEl}>
+				<button
+					type="button"
+					class="spd-btn"
+					aria-label="進行速度"
+					aria-haspopup="listbox"
+					aria-expanded={speedOpen}
+					onclick={() => (speedOpen = !speedOpen)}
+				>
+					<span class="spd-lbl">速度</span>
+					<b class="mono">{game.speed}×</b>
+					<span class="chev" aria-hidden="true">{speedOpen ? '▴' : '▾'}</span>
+				</button>
+				{#if speedOpen}
+					<ul class="spd-menu mono" role="listbox" aria-label="進行速度を選択">
+						{#each speeds as s (s)}
+							<li role="option" aria-selected={game.speed === s}>
+								<button
+									type="button"
+									class:active={game.speed === s}
+									onclick={() => {
+										game.setSpeed(s);
+										speedOpen = false;
+									}}
+								>
+									<span>{s}×</span>
+									{#if game.speed === s}<i aria-hidden="true">✓</i>{/if}
+								</button>
+							</li>
+						{/each}
+					</ul>
+				{/if}
+			</div>
 
 			<button class="ctrl-ff" onclick={() => game.fastForward()}>
 				次の決断まで »
@@ -250,8 +290,22 @@
 		z-index: 20;
 		background: var(--paper);
 		border-bottom: 1px solid var(--rule);
+		overflow: hidden;
+	}
+	.header-watermark {
+		position: absolute;
+		inset: 0;
+		left: auto;
+		right: max(0px, calc(50% - 490px));
+		width: min(62%, 380px);
+		opacity: 0.34;
+		pointer-events: none;
+		-webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 28%, #000 58%, rgba(0, 0, 0, 0.75) 86%, transparent 100%);
+		mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 28%, #000 58%, rgba(0, 0, 0, 0.75) 86%, transparent 100%);
 	}
 	.tbar {
+		position: relative;
+		z-index: 1;
 		max-width: 980px;
 		display: flex;
 		align-items: center;
@@ -633,16 +687,6 @@
 		color: var(--ink3);
 	}
 
-	.region-card {
-		padding: 0;
-		overflow: hidden;
-	}
-	.scene {
-		border-bottom: 1px solid var(--rule);
-	}
-	.region-body {
-		padding: 12px 14px;
-	}
 	.stats {
 		display: grid;
 		grid-template-columns: 1fr auto;
@@ -762,21 +806,83 @@
 		color: var(--paper);
 		border-color: var(--ink);
 	}
-	.spd-select {
-		font: inherit;
-		font-family: var(--f-mono);
-		color: var(--ink);
-		background-color: var(--card);
-		border: 1px solid var(--rule);
-		border-radius: 4px;
-		padding: 8px 10px;
-		min-height: 40px;
-		font-size: 13px;
-		cursor: pointer;
+	.spd-picker {
+		position: relative;
 	}
-	.spd-select:focus-visible {
-		outline: 2px solid var(--accent);
-		outline-offset: 2px;
+	.spd-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		border: 1px solid var(--rule);
+		background: var(--card);
+		color: var(--ink);
+		border-radius: 4px;
+		padding: 8px 12px;
+		min-height: 40px;
+		font-size: 13.5px;
+		white-space: nowrap;
+	}
+	.spd-btn:hover,
+	.spd-btn[aria-expanded='true'] {
+		border-color: var(--ink3);
+	}
+	.spd-lbl {
+		font-size: 12px;
+		color: var(--ink3);
+	}
+	.spd-btn b {
+		font-size: 13.5px;
+		font-weight: 700;
+		min-width: 2.1em;
+		text-align: right;
+	}
+	.chev {
+		font-size: 11px;
+		color: var(--ink3);
+		line-height: 1;
+	}
+	.spd-menu {
+		position: absolute;
+		bottom: calc(100% + 8px);
+		left: 0;
+		min-width: 100%;
+		margin: 0;
+		padding: 4px;
+		list-style: none;
+		background: var(--card);
+		border: 1px solid var(--rule);
+		border-radius: 6px;
+		box-shadow: var(--shadow);
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		z-index: 30;
+	}
+	.spd-menu button {
+		width: 100%;
+		border: 0;
+		background: transparent;
+		color: var(--ink);
+		border-radius: 4px;
+		padding: 7px 10px;
+		font-size: 13px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		white-space: nowrap;
+	}
+	.spd-menu button:hover {
+		background: var(--card2);
+	}
+	.spd-menu button.active {
+		background: var(--accent-soft);
+		color: var(--accent);
+		font-weight: 700;
+	}
+	.spd-menu i {
+		font-style: normal;
+		font-size: 11px;
 	}
 	.ctrl-ff {
 		margin-left: auto;
