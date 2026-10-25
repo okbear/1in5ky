@@ -167,7 +167,7 @@ export const rollBirth = (
 	push(
 		c,
 		`${formatYear(birthYear)}、${region.name}の${place}に、${socialClass.name}の子として生まれた。`,
-		'normal',
+		'milestone',
 		`この時代の乳児死亡率は出生1,000人あたり約${region.infantMortality}人。5歳までに${Math.round(region.under5Mortality / 10)}%が亡くなる。`
 	);
 	chronicleTick(c, rng, true);
@@ -413,7 +413,7 @@ export const resolveChoice = (
 			return { died: true, text: choice.outcomeText };
 		}
 	}
-	push(c, `▸ 「${choice.label}」を選んだ。${choice.outcomeText}`, 'normal');
+	push(c, `▸ 「${choice.label}」を選んだ。${choice.outcomeText}`, 'decision');
 
 	if (fx.marry && !c.family.some((m) => (m.relation === '妻' || m.relation === '夫') && m.alive)) {
 		const spouseRel = c.sex === 'M' ? '妻' : '夫';

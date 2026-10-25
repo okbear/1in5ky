@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { game } from '#lib/game.svelte';
-	import { formatYear } from '#lib/engine/util';
+	import { ageGroup, formatYear } from '#lib/engine/util';
+	import type { FeedEntry } from '#lib/types';
 	import Timeline from './Timeline.svelte';
 	import GraveScene from './GraveScene.svelte';
 	import { getGraveInfo } from '#lib/data/graveData';
@@ -9,7 +10,70 @@
 	const pm = $derived(game.pm);
 	const lostKids = $derived(c.family.filter((f) => f.relation === '子' && !f.alive).length);
 	const kids = $derived(c.family.filter((f) => f.relation === '子').length);
-	const stars = $derived(c.feed.filter((f) => f.type === 'historical' || f.type === 'danger').reverse());
+	const STAGE_LABEL = {
+		infant: '誕生・乳児期',
+		child: '子ども時代',
+		youth: '青年期',
+		adult: '壮年期',
+		elder: '晩年'
+	} as const;
+
+	type Row = {
+		kind: 'life' | 'world';
+		key: string;
+		year: number;
+		age: number;
+		type: FeedEntry['type'] | 'world';
+		text: string;
+		sub?: string;
+		tag?: string;
+		major: boolean;
+	};
+	type Item = Row | { kind: 'stage'; key: string; label: string };
+
+	let showAll = $state(false);
+
+	// feed は新しい順・chronicle は古い順。年代順にそろえ、同じ年は世界の出来事を先に置く。
+	const rows = $derived.by<Row[]>(() => {
+		const life = [...c.feed].reverse().map<Row>((f) => ({
+			kind: 'life',
+			key: `l-${f.id}`,
+			year: f.year,
+			age: f.age,
+			type: f.type,
+			text: f.text,
+			sub: f.fact ? `資料 ${f.fact}` : undefined,
+			major: f.type !== 'normal'
+		}));
+		const world = c.chronicle.map<Row>((ev) => ({
+			kind: 'world',
+			key: `w-${ev.id}`,
+			year: ev.year,
+			age: ev.age,
+			type: 'world',
+			text: ev.title,
+			sub: ev.description,
+			tag: ev.regionTag,
+			major: true
+		}));
+		return [...world, ...life].sort((a, b) =>
+			a.year !== b.year ? a.year - b.year : a.kind === b.kind ? 0 : a.kind === 'world' ? -1 : 1
+		);
+	});
+	const visible = $derived.by<Item[]>(() => {
+		const out: Item[] = [];
+		let stage: ReturnType<typeof ageGroup> | null = null;
+		for (const r of rows) {
+			if (!showAll && !r.major) continue;
+			const g = ageGroup(r.age);
+			if (g !== stage) {
+				stage = g;
+				out.push({ kind: 'stage', key: `s-${g}`, label: STAGE_LABEL[g] });
+			}
+			out.push(r);
+		}
+		return out;
+	});
 	const grave = $derived(getGraveInfo(c.region.id));
 </script>
 
@@ -37,13 +101,6 @@
 					<div class="span mono">{formatYear(c.birthYear)} — {formatYear(c.currentYear)} · {c.age}歳</div>
 					<p class="cause">死因：<b>{c.deathCause}</b></p>
 					<p class="ctx">{c.epitaph}</p>
-					{#if stars.length > 0}
-						<ul class="stars">
-							{#each stars as s (s.id)}
-								<li><span class="mono">{s.age}歳</span> {s.text}</li>
-							{/each}
-						</ul>
-					{/if}
 				</div>
 			</div>
 
@@ -56,6 +113,37 @@
 				<div><small>この時代の平均像</small><b>5歳までに{Math.round(c.region.under5Mortality / 10)}%が亡くなった</b></div>
 			</div>
 		</div>
+	</div>
+
+	<div class="panel ltl-panel">
+		<h3>
+			<span>あなたの人生の年表</span>
+			<span class="lbl">{formatYear(c.birthYear)} → {formatYear(c.currentYear)}</span>
+		</h3>
+		<div class="seg" role="group" aria-label="年表の表示範囲">
+			<button type="button" class:on={!showAll} aria-pressed={!showAll} onclick={() => (showAll = false)}>
+				おもな出来事
+			</button>
+			<button type="button" class:on={showAll} aria-pressed={showAll} onclick={() => (showAll = true)}>
+				すべての年
+			</button>
+		</div>
+		<ol class="ltl">
+			{#each visible as it (it.key)}
+				{#if it.kind === 'stage'}
+					<li class="stage"><span>{it.label}</span></li>
+				{:else}
+					<li class="ev {it.type}">
+						<span class="when mono">{it.age}歳<small>{formatYear(it.year)}</small></span>
+						<span class="what">
+							{#if it.tag}<em class="tag">{it.tag}</em>{/if}
+							<b>{it.text}</b>
+							{#if it.sub}<small>{it.sub}</small>{/if}
+						</span>
+					</li>
+				{/if}
+			{/each}
+		</ol>
 	</div>
 
 	{#if pm && (pm.events.length > 0 || pm.belief)}
@@ -207,15 +295,135 @@
 		color: var(--ink2);
 		font-size: 14.5px;
 	}
-	.stars {
-		list-style: none;
-		margin: 14px 0 0;
-		padding: 0;
-		font-size: 14px;
+	.seg {
+		display: inline-flex;
+		border: 1px solid var(--rule);
+		border-radius: 4px;
+		overflow: hidden;
+		margin-bottom: 14px;
+	}
+	.seg button {
+		background: transparent;
+		border: 0;
+		padding: 8px 14px;
+		font-size: 13px;
 		color: var(--ink2);
 	}
-	.stars li {
-		padding: 4px 0;
+	.seg button + button {
+		border-left: 1px solid var(--rule);
+	}
+	.seg button.on {
+		background: var(--accent);
+		color: var(--accent-ink);
+		font-weight: 600;
+	}
+	.ltl {
+		list-style: none;
+		margin: 0;
+		padding: 0 0 0 14px;
+		border-left: 2px solid var(--rule);
+	}
+	.ltl li {
+		position: relative;
+	}
+	.ltl .stage {
+		padding: 14px 0 4px 14px;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		color: var(--ink3);
+	}
+	.ltl .ev {
+		display: grid;
+		grid-template-columns: 4.6em minmax(0, 1fr);
+		gap: 10px;
+		padding: 8px 0 8px 14px;
+		font-size: 14.5px;
+	}
+	.ltl .ev::before {
+		content: '';
+		position: absolute;
+		left: -21px;
+		top: 15px;
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: var(--card);
+		border: 2px solid var(--ink3);
+	}
+	.ltl .when {
+		font-size: 12px;
+		color: var(--ink3);
+		padding-top: 2px;
+		line-height: 1.35;
+	}
+	.ltl .when small {
+		display: block;
+		font-size: 11px;
+	}
+	.ltl .what {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		min-width: 0;
+		overflow-wrap: anywhere;
+	}
+	.ltl .what b {
+		font-weight: 500;
+	}
+	.ltl .what small {
+		font-size: 12px;
+		color: var(--ink3);
+		line-height: 1.45;
+	}
+	.ltl .tag {
+		font-style: normal;
+		font-size: 11px;
+		color: var(--stamp);
+	}
+	.ltl .ev.world .what b {
+		color: var(--ink2);
+	}
+	.ltl .ev.historical::before,
+	.ltl .ev.milestone::before {
+		background: var(--accent);
+		border-color: var(--accent);
+	}
+	.ltl .ev.historical .what b {
+		color: var(--accent);
+		font-weight: 600;
+	}
+	.ltl .ev.decision::before {
+		border-color: var(--ink);
+	}
+	.ltl .ev.danger::before,
+	.ltl .ev.loss::before {
+		background: var(--bad);
+		border-color: var(--bad);
+	}
+	.ltl .ev.danger .what b,
+	.ltl .ev.loss .what b {
+		color: var(--bad);
+	}
+	.ltl .ev.warm::before {
+		background: var(--stamp);
+		border-color: var(--stamp);
+	}
+	.ltl .ev.world::before {
+		border-style: dashed;
+	}
+	.ltl .ev.death::before {
+		background: var(--loss);
+		border-color: var(--loss);
+		width: 14px;
+		height: 14px;
+		left: -23px;
+		top: 13px;
+	}
+	.ltl .ev.death .what b {
+		font-family: var(--f-display);
+		font-size: 18px;
+		font-weight: 700;
 	}
 	.summary {
 		display: grid;
