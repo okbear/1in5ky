@@ -31,6 +31,7 @@
 				? '就学・手伝い'
 				: c.occupation
 	);
+	const chronicles = $derived([...c.chronicle].reverse());
 
 	let chronicleEl = $state<HTMLUListElement | null>(null);
 	let dialogEl = $state<HTMLDivElement | null>(null);
@@ -54,7 +55,7 @@
 	$effect(() => {
 		c.chronicle.length;
 		if (chronicleEl) {
-			chronicleEl.scrollTo({ top: chronicleEl.scrollHeight, behavior: 'smooth' });
+			chronicleEl.scrollTo({ top: 0, behavior: 'smooth' });
 		}
 	});
 
@@ -183,9 +184,9 @@
 
 		<div class="sub-grid">
 			<section class="panel" aria-label="世界の出来事">
-				<h3><span>世界の出来事</span><span class="lbl">古い順 · 下へ追加</span></h3>
+				<h3><span>世界の出来事</span><span class="lbl">新しい順 · {c.chronicle.length}件</span></h3>
 				<ul class="chronicle" bind:this={chronicleEl}>
-					{#each c.chronicle as ev (ev.id)}
+					{#each chronicles as ev (ev.id)}
 						<li>
 							<span class="cy mono">{formatYear(ev.year)}<small>{ev.age}歳のとき</small></span>
 							<span class="cx">

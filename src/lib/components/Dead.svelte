@@ -97,6 +97,8 @@
 	});
 </script>
 
+<div class="death-veil" aria-hidden="true"></div>
+
 <section class="wrap dead">
 	<div class="dcert">
 		<div class="band mono">
@@ -218,12 +220,81 @@
 </section>
 
 <style>
+	.death-veil {
+		position: fixed;
+		inset: 0;
+		z-index: 9999;
+		pointer-events: none;
+		background: radial-gradient(
+			ellipse 85% 65% at 50% 36%,
+			rgba(255, 253, 248, 0.98) 0%,
+			rgba(244, 239, 230, 0.94) 45%,
+			rgba(224, 214, 195, 0.82) 100%
+		);
+		animation: deathVeilFade 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+	}
+	@media (prefers-color-scheme: dark) {
+		.death-veil {
+			background: radial-gradient(
+				ellipse 85% 65% at 50% 36%,
+				rgba(42, 35, 46, 0.98) 0%,
+				rgba(22, 18, 16, 0.95) 50%,
+				rgba(12, 10, 8, 0.98) 100%
+			);
+		}
+	}
+	@keyframes deathVeilFade {
+		0% {
+			opacity: 1;
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+		}
+		25% {
+			opacity: 0.95;
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
+		}
+		100% {
+			opacity: 0;
+			backdrop-filter: blur(0px);
+			-webkit-backdrop-filter: blur(0px);
+			visibility: hidden;
+		}
+	}
+
 	.dead {
 		padding-block: clamp(24px, 4vh, 48px) 64px;
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
 		scroll-margin-top: 0;
+		animation: deadAppear 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+	}
+
+	@keyframes deadAppear {
+		0% {
+			opacity: 0;
+			transform: translateY(22px) scale(0.982);
+			filter: blur(10px);
+		}
+		40% {
+			opacity: 0.85;
+			filter: blur(3px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+			filter: blur(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.death-veil {
+			display: none;
+		}
+		.dead {
+			animation: none;
+		}
 	}
 	.dcert {
 		background: var(--card);
