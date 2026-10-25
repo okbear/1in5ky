@@ -22,7 +22,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.85,
 				deathCause: 'コレラ',
 				effects: { knowledge: 3 },
-				outcomeText: '燃料代はかさんだが、家族は誰も倒れなかった。'
+				outcomeText: '燃料代はかさんだが、家族は誰も倒れなかった。',
+				deathText: 'コレラにより、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'miasma',
@@ -31,7 +32,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.5,
 				deathCause: 'コレラ',
 				effects: { health: -5 },
-				outcomeText: '悪い空気を避けたが、同じ井戸の水を飲み続けた。'
+				outcomeText: '悪い空気を避けたが、同じ井戸の水を飲み続けた。',
+				deathText: 'コレラにより、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -56,7 +58,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.6,
 				deathCause: '第一次世界大戦での戦死',
 				effects: { happiness: -15, health: -15 },
-				outcomeText: '泥と鉄条網の中で、数年を過ごした。'
+				outcomeText: '泥と鉄条網の中で、数年を過ごした。',
+				deathText: '第一次世界大戦での戦死により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'factory',
@@ -65,7 +68,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.9,
 				deathCause: '工場事故・スペイン風邪',
 				effects: { wealthDelta: 20, health: -5 },
-				outcomeText: '賃金は上がったが、工場の空気は重かった。'
+				outcomeText: '賃金は上がったが、工場の空気は重かった。',
+				deathText: '工場事故・スペイン風邪により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -89,7 +93,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.8,
 				deathCause: 'スペイン風邪',
 				effects: { relations: -5 },
-				outcomeText: '息苦しい数か月だったが、家族は全員生き延びた。'
+				outcomeText: '息苦しい数か月だったが、家族は全員生き延びた。',
+				deathText: 'スペイン風邪により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'carry_on',
@@ -98,7 +103,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.6,
 				deathCause: 'スペイン風邪',
 				effects: { health: -10 },
-				outcomeText: '仕事は休めなかった。'
+				outcomeText: '仕事は休めなかった。',
+				deathText: 'スペイン風邪により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -123,7 +129,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.88,
 				deathCause: '戦時下の栄養失調・疫病',
 				effects: { wealthDelta: -40, happiness: -12, health: -8 },
-				outcomeText: '見知らぬ土地で雑草や芋の蔓まで食べて飢えをしのぎ、なんとか終戦の日まで生き延びた。'
+				outcomeText: '見知らぬ土地で雑草や芋の蔓まで食べて飢えをしのぎ、なんとか終戦の日まで生き延びた。',
+				deathText: '戦時下の栄養失調・疫病により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'stay_shelter',
@@ -132,7 +139,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.62,
 				deathCause: '空襲・戦火による焼死',
 				effects: { health: -15, happiness: -15, wealthDelta: -30 },
-				outcomeText: '夜空が真っ赤に染まるなか、熱風と煙に追われて必死に逃げ惑った。'
+				outcomeText: '夜空が真っ赤に染まるなか、熱風と煙に追われて必死に逃げ惑った。',
+				deathText: '空襲・戦火による焼死により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -155,7 +163,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.65,
 				deathCause: '近代戦での戦死・戦病死',
 				effects: { health: -16, happiness: -12, relations: 5 },
-				outcomeText: '泥まみれの塹壕と行軍を生き抜き、除隊して故郷の駅へ降り立った。'
+				outcomeText: '泥まみれの塹壕と行軍を生き抜き、除隊して故郷の駅へ降り立った。',
+				deathText: '近代戦での戦死・戦病死により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'seek_logistics_role',
@@ -164,7 +173,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.84,
 				deathCause: '輸送途上の攻撃・戦病死',
 				effects: { knowledge: 6, health: -8, happiness: -8 },
-				outcomeText: '後方での補給と通信任務に従事し、生きて家族のもとへ帰還した。'
+				outcomeText: '後方での補給と通信任務に従事し、生きて家族のもとへ帰還した。',
+				deathText: '輸送途上の攻撃・戦病死により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -187,7 +197,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.72,
 				deathCause: '塵肺・リン中毒・工場労災',
 				effects: { wealthDelta: 20, health: -20, happiness: -8 },
-				outcomeText: '日々の賃金と引き換えに、激しい咳と歯の痛みを抱えながら機械の前に立ち続けた。'
+				outcomeText: '日々の賃金と引き換えに、激しい咳と歯の痛みを抱えながら機械の前に立ち続けた。',
+				deathText: '塵肺・リン中毒・工場労災により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'quit_for_street',
@@ -196,7 +207,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.92,
 				deathCause: 'スラムでの栄養失調',
 				effects: { wealthDelta: -25, health: 5, occupationChange: '荷運び・日雇い' },
-				outcomeText: '暮らしはさらに貧しくなったが、毒の煙から逃れて深く息ができるようになった。'
+				outcomeText: '暮らしはさらに貧しくなったが、毒の煙から逃れて深く息ができるようになった。',
+				deathText: 'スラムでの栄養失調により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -219,7 +231,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.9,
 				deathCause: '避難途上での襲撃・感染症',
 				effects: { wealthDelta: -45, happiness: -12, relations: -8, locationChange: 'urban' },
-				outcomeText: '検問所をいくつも越えて安全な地域へたどり着き、ゼロから暮らしを立て直した。'
+				outcomeText: '検問所をいくつも越えて安全な地域へたどり着き、ゼロから暮らしを立て直した。',
+				deathText: '避難途上での襲撃・感染症により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'stay_or_drafted',
@@ -228,7 +241,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.72,
 				deathCause: '内戦・局地紛争での戦死・砲撃',
 				effects: { health: -18, happiness: -15, wealthDelta: -20 },
-				outcomeText: '停戦合意が結ばれるまで、銃声と停電が続く街で生き延びた。'
+				outcomeText: '停戦合意が結ばれるまで、銃声と停電が続く街で生き延びた。',
+				deathText: '内戦・局地紛争での戦死・砲撃により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -309,7 +323,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.94,
 				deathCause: '過労による脳・心疾患',
 				effects: { wealthDelta: 15, health: -14, happiness: -10, relations: -5 },
-				outcomeText: '朝から深夜まで働き詰めの日々で危機はしのいだが、慢性的な疲労が残った。'
+				outcomeText: '朝から深夜まで働き詰めの日々で危機はしのいだが、慢性的な疲労が残った。',
+				deathText: '過労による脳・心疾患により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'cut_living_costs',
@@ -344,7 +359,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.92,
 				deathCause: '致死性熱中症（湿球温度破局）',
 				effects: { wealthDelta: -30, health: -5, happiness: -8 },
-				outcomeText: '電気代と水代の高騰で蓄えは激減したが、命だけは守り抜いた。'
+				outcomeText: '電気代と水代の高騰で蓄えは激減したが、命だけは守り抜いた。',
+				deathText: '致死性熱中症（湿球温度破局）により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'outdoor_water_ration',
@@ -353,7 +369,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.72,
 				deathCause: '炎天下での脱水・熱射病',
 				effects: { health: -20, happiness: -15, relations: 6 },
-				outcomeText: '路面から立ち上る熱風のなか倒れる人々を見ながら、這うようにして生き延びた。'
+				outcomeText: '路面から立ち上る熱風のなか倒れる人々を見ながら、這うようにして生き延びた。',
+				deathText: '炎天下での脱水・熱射病により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -378,7 +395,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.88,
 				deathCause: '火山の冬による飢餓と灰吸入',
 				effects: { wealthDelta: -60, health: -10, happiness: -12 },
-				outcomeText: '灰色の空の下、味気ない合成ペーストをすすりながら暗黒の数年を耐え抜いた。'
+				outcomeText: '灰色の空の下、味気ない合成ペーストをすすりながら暗黒の数年を耐え抜いた。',
+				deathText: '火山の冬による飢餓と灰吸入により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'community_survival_cell',
@@ -387,7 +405,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.74,
 				deathCause: '食糧暴動・略奪戦での負傷死',
 				effects: { relations: 16, health: -15, happiness: -5 },
-				outcomeText: '寒冷地獄のなか仲間と肩を寄せ合い、暴徒の襲撃を退けて春を待った。'
+				outcomeText: '寒冷地獄のなか仲間と肩を寄せ合い、暴徒の襲撃を退けて春を待った。',
+				deathText: '食糧暴動・略奪戦での負傷死により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -412,7 +431,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.82,
 				deathCause: '都市大火災と避難路での衰弱死',
 				effects: { wealthDelta: -40, relations: 8, knowledge: -5 },
-				outcomeText: '車も電車も動かない街道を歩き、かつての祖先と同じ農の暮らしへ戻っていった。'
+				outcomeText: '車も電車も動かない街道を歩き、かつての祖先と同じ農の暮らしへ戻っていった。',
+				deathText: '都市大火災と避難路での衰弱死により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'urban_battery_fortress',
@@ -421,7 +441,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.68,
 				deathCause: '電力と医薬品枯渇による病死',
 				effects: { wealthDelta: -20, health: -18, happiness: -15 },
-				outcomeText: '闇に包まれた高層都市でわずかな電力を守り、文明の灯を消さずに生き延びた。'
+				outcomeText: '闇に包まれた高層都市でわずかな電力を守り、文明の灯を消さずに生き延びた。',
+				deathText: '電力と医薬品枯渇による病死により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -446,7 +467,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.89,
 				deathCause: '大氾濫・高潮での水死',
 				effects: { wealthDelta: -35, relations: -5, happiness: -8 },
-				outcomeText: '水没したかつての繁華街の屋根を船から見下ろしながら、内陸の丘で新しい町を築いた。'
+				outcomeText: '水没したかつての繁華街の屋根を船から見下ろしながら、内陸の丘で新しい町を築いた。',
+				deathText: '大氾濫・高潮での水死により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'amphibious_floating_city',
@@ -455,7 +477,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.76,
 				deathCause: 'スーパー台風によるメガフロート難破',
 				effects: { wealthDelta: 10, health: -10, happiness: 5 },
-				outcomeText: '海の上に浮く新しい都市で波に揺られながら、海民としての生活に順応した。'
+				outcomeText: '海の上に浮く新しい都市で波に揺られながら、海民としての生活に順応した。',
+				deathText: 'スーパー台風によるメガフロート難破により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -480,7 +503,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.85,
 				deathCause: '衝撃波・津波によるシェルター圧壊',
 				effects: { health: -15, happiness: -20, relations: 5 },
-				outcomeText: '地響きと停電に震えながら地下深くで生き延び、地上の再生を待ち続けた。'
+				outcomeText: '地響きと停電に震えながら地下深くで生き延び、地上の再生を待ち続けた。',
+				deathText: '衝撃波・津波によるシェルター圧壊により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'surface_dome_defender',
@@ -489,7 +513,8 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.70,
 				deathCause: '有毒粉塵吸入と放射線被曝',
 				effects: { knowledge: 15, wealthDelta: 20, health: -22 },
-				outcomeText: '防護服を脱げない灰色の地上で、人類の観測機器を守り抜いた。'
+				outcomeText: '防護服を脱げない灰色の地上で、人類の観測機器を守り抜いた。',
+				deathText: '有毒粉塵吸入と放射線被曝により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	}

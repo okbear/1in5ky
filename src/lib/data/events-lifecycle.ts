@@ -34,7 +34,8 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.92,
 				deathCause: '都市での貧困・疫病',
 				effects: { wealthDelta: 20, relations: -15, knowledge: 4, occupationChange: '都市の日雇い労働者', locationChange: 'urban' },
-				outcomeText: '町は広く、頼れる知り合いは誰もいなかった。'
+				outcomeText: '町は広く、頼れる知り合いは誰もいなかった。',
+				deathText: '人混みの裏手の長屋で寝起きするうち、咳と熱が抜けなくなった。身寄りのない町では、看病してくれる者も見つからなかった。'
 			}
 		]
 	},
@@ -151,7 +152,8 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.91,
 				deathCause: '産褥熱・難産による出血',
 				effects: { wealthDelta: -10, relations: 10, happiness: 12, addChild: true },
-				outcomeText: '長い苦しみの果てに、産声が響いた。母子ともに命をつないだ。'
+				outcomeText: '長い苦しみの果てに、産声が響いた。母子ともに命をつないだ。',
+				deathText: '長い苦しみの果てに赤子は産まれたが、出血が止まらなかった。産婆の湯も間に合わず、母は赤子の声を聞きながら力尽きた。'
 			},
 			{
 				id: 'charm',
@@ -160,7 +162,8 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.83,
 				deathCause: '産褥熱・難産',
 				effects: { relations: 6, happiness: 8, addChild: true },
-				outcomeText: '薄暗い部屋で祈りの声が響くなか、命がけで赤子を産み落とした。'
+				outcomeText: '薄暗い部屋で祈りの声が響くなか、赤子を産み落とした。母子ともに、どうにか生き延びた。',
+				deathText: '薄暗い部屋で祈りの声が続くなか、赤子はなかなか出てこなかった。数日後、産後の熱が引かないまま母は息を引き取った。'
 			}
 		]
 	},
@@ -217,7 +220,8 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.996,
 				deathCause: '出産時の合併症',
 				effects: { wealthDelta: -12, happiness: 12, relations: 10, addChild: true },
-				outcomeText: '清潔な病室で新しい命を迎えた。これからの暮らしが賑やかになる。'
+				outcomeText: '清潔な病室で新しい命を迎えた。これからの暮らしが賑やかになる。',
+				deathText: '分娩の途中で容体が急変し、医師たちが駆け寄った。懸命な処置もむなしく、新しい命を抱くことなく帰らぬ人となった。'
 			},
 			{
 				id: 'birth_modern_wait',
@@ -285,7 +289,8 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.9,
 				deathCause: '脱税の罰による処刑・投獄',
 				effects: { wealthDelta: -10, happiness: -3 },
-				outcomeText: '息を殺して査察をやり過ごした。'
+				outcomeText: '息を殺して査察をやり過ごした。',
+				deathText: '査察役は隠した穀物を見つけ出した。役人に引き立てられ、申し開きも聞かれぬまま、刑場に引き出された。'
 			}
 		]
 	},
@@ -298,7 +303,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 		minAge: 8,
 		maxAge: 13,
 		description: '賃金はほんのわずかな小銭だが、学校に通わせる余裕などこの家にはない。',
-		factBox: '19世紀の英国では紡績工場の労働者の半数近くが子どもであり、明治期の日本の製糸・紡績工場や炭鉱でも多くの年少者が長時間労働に従事した。',
+		factBox: '19世紀の英国では紡績工場の労働者の相当な割合を子どもや年少者が占めており、明治期の日本の製糸・紡績工場や炭鉱でも多くの年少者が長時間労働に従事した。',
 		choices: [
 			{
 				id: 'work',
@@ -307,7 +312,8 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.93,
 				deathCause: '工場事故・肺疾患',
 				effects: { wealthDelta: 15, health: -15, knowledge: -3 },
-				outcomeText: '朝5時の汽笛とともに、十数時間の労働が始まった。'
+				outcomeText: '朝5時の汽笛とともに、十数時間の労働が始まった。',
+				deathText: '回り続ける機械の下に屑綿を拾いに入った瞬間、腕が巻き込まれた。悲鳴を聞いて職工が駆けつけたが、出血は止まらなかった。'
 			},
 			{
 				id: 'school',
@@ -342,7 +348,8 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.97,
 				deathCause: '予防可能だった感染症',
 				effects: { health: -3 },
-				outcomeText: '何も起こらなかった。ただし周囲の高い接種率のおかげかもしれない。'
+				outcomeText: '何も起こらなかった。ただし周囲の高い接種率のおかげかもしれない。',
+				deathText: '数週間後、高い熱と発疹が出て寝込んだ。感染は肺に広がり、予防できたはずの病は回復を待たずに命を奪った。'
 			}
 		]
 	},
@@ -403,7 +410,8 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.88,
 				deathCause: '過労と衰弱',
 				effects: { wealthDelta: 15, health: -12 },
-				outcomeText: '痛む腰をさすりながら仕事場に出続けた。'
+				outcomeText: '痛む腰をさすりながら仕事場に出続けた。',
+				deathText: '痛む腰をさすりながら仕事場に出続けたある日、足がもつれて倒れ込んだ。そのまま起き上がれず、衰えた体は力尽きた。'
 			}
 		]
 	}

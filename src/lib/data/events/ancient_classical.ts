@@ -22,7 +22,8 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.86,
 				deathCause: '建設労役での圧死・過労',
 				effects: { health: -12, wealthDelta: 10, relations: 5 },
-				outcomeText: '照りつける太陽の下で石や土を運び続けた。腰と膝は軋んだが、配給の穀物で家族は飢えずに済んだ。'
+				outcomeText: '照りつける太陽の下で石や土を運び続けた。腰と膝は軋んだが、配給の穀物で家族は飢えずに済んだ。',
+				deathText: '傾いた石材の下敷きになり、砂埃の中で肋が砕ける音を聞いた。仲間が駆け寄ったときには、もう息がなかった。'
 			},
 			{
 				id: 'evade_corvee',
@@ -31,7 +32,8 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.78,
 				deathCause: '逃亡先での熱病・処罰',
 				effects: { happiness: -10, relations: -15, wealthDelta: -25 },
-				outcomeText: '葦の茂みに身を潜めて役人が去るのを待った。村に戻ると、残された家族が代わりに責めを負っていた。'
+				outcomeText: '葦の茂みに身を潜めて役人が去るのを待った。村に戻ると、残された家族が代わりに責めを負っていた。',
+				deathText: '湿った葦の中で数日を過ごすうち、蚊に刺された体が熱を持ち、震えが止まらなくなった。水際で意識が遠のき、そのまま起き上がれなかった。'
 			}
 		]
 	},
@@ -53,7 +55,8 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.66,
 				deathCause: '都市国家間の戦での戦死・傷の化膿',
 				effects: { wealthDelta: 15, health: -15, happiness: -10 },
-				outcomeText: '砂塵と怒号のなかで青銅の槍がぶつかり合った。傷を負いながらも生きて村の土を踏んだ。'
+				outcomeText: '砂塵と怒号のなかで青銅の槍がぶつかり合った。傷を負いながらも生きて村の土を踏んだ。',
+				deathText: '砂塵と怒号のなかで青銅の槍がぶつかり合い、脇腹に穂先を受けた。盾を取り落とし、踏み荒らされた麦畑に倒れた。'
 			},
 			{
 				id: 'carry_supplies_anc',
@@ -62,7 +65,8 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.8,
 				deathCause: '陣中での赤痢・敗走時の混乱',
 				effects: { health: -10, wealthDelta: -10 },
-				outcomeText: '重い麦袋を背負って軍勢の後ろを歩き続け、泥水と乾いたパンで戦役を生き延びた。'
+				outcomeText: '重い麦袋を背負って軍勢の後ろを歩き続け、泥水と乾いたパンで戦役を生き延びた。',
+				deathText: '泥水を飲み続けた腹が下り、荷を背負う足がもつれた。陣の外れに寝かされたまま、軍勢は先へ進んでいった。'
 			}
 		]
 	},
@@ -85,7 +89,8 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.82,
 				deathCause: '帝国の疫病',
 				effects: { wealthDelta: -30, happiness: -8 },
-				outcomeText: '街道から離れた村で嵐が過ぎるのを待った。暮らしは貧しくなったが、命はつないだ。'
+				outcomeText: '街道から離れた村で嵐が過ぎるのを待った。暮らしは貧しくなったが、命はつないだ。',
+				deathText: '街道から離れた村にも、旅人の荷とともに病は届いていた。熱と咳に倒れ、粗末な寝床で数日のうちに息を引き取った。'
 			},
 			{
 				id: 'join_legion',
@@ -94,7 +99,8 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.65,
 				deathCause: '陣中での疫病・辺境での戦死',
 				effects: { wealthDelta: 25, health: -15 },
-				outcomeText: '軍営の密集した幕舎は病の温床だったが、生き残った者には銀貨が支払われた。'
+				outcomeText: '軍営の密集した幕舎は病の温床だったが、生き残った者には銀貨が支払われた。',
+				deathText: '密集した幕舎で隣の者が次々に高熱で倒れ、やがて自分も床に伏した。銀貨を受け取ることなく、仲間の手で陣の外に運び出された。'
 			}
 		]
 	},
@@ -117,7 +123,8 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.68,
 				deathCause: '辺境での凍死・過労・騎馬民族との戦闘',
 				effects: { health: -18, happiness: -15, relations: -8 },
-				outcomeText: '凍てつく風が吹く土塁の上で見張りに立ち続け、ボロボロになって故郷へ生還した。'
+				outcomeText: '凍てつく風が吹く土塁の上で見張りに立ち続け、ボロボロになって故郷へ生還した。',
+				deathText: '凍てつく風が吹く土塁の上で見張りに立ち続け、指も足も感覚を失った。ある朝、望楼の根元で冷たくなっているのを同じ隊の者が見つけた。'
 			},
 			{
 				id: 'pay_substitute_han',
@@ -126,7 +133,8 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.95,
 				deathCause: '困窮による衰弱',
 				effects: { wealthDelta: -55, happiness: -10, occupationChange: '小作人' },
-				outcomeText: '先祖伝来の畑を手放して銭を工面し、辺境送りを免れた。'
+				outcomeText: '先祖伝来の畑を手放して銭を工面し、辺境送りを免れた。',
+				deathText: '畑を手放して辺境送りは免れたが、小作の稼ぎでは家族の口を養えなかった。痩せ細った体は冬の寒さに耐えられなかった。'
 			}
 		]
 	},
@@ -149,7 +157,8 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.78,
 				deathCause: '徴発兵による暴行・処刑',
 				effects: { wealthDelta: -15, happiness: -8 },
-				outcomeText: '軍勢が通り過ぎたあと村へ戻ると、家は荒らされていたが、森に隠した麦のおかげで冬を越せた。'
+				outcomeText: '軍勢が通り過ぎたあと村へ戻ると、家は荒らされていたが、森に隠した麦のおかげで冬を越せた。',
+				deathText: '穴の蓋を探し当てた兵に引きずり出され、槍の柄で殴り倒された。見せしめに村の者の前で斬られた。'
 			},
 			{
 				id: 'surrender_provisions',
@@ -158,7 +167,8 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.75,
 				deathCause: '軍の徴発後の飢餓',
 				effects: { wealthDelta: -50, health: -15, happiness: -15 },
-				outcomeText: '兵士たちは笑いながら荷車に麦を積んで去り、空っぽの倉だけが残された。'
+				outcomeText: '兵士たちは笑いながら荷車に麦を積んで去り、空っぽの倉だけが残された。',
+				deathText: '兵士たちは荷車に麦を積んで去り、空っぽの倉だけが残された。冬のあいだ草の根を煮て食いつないだが、衰えた体は春を待たずに動かなくなった。'
 			}
 		]
 	},
@@ -181,7 +191,8 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.6,
 				deathCause: '神判による処刑・火傷の敗血症',
 				effects: { health: -18, happiness: -15, relations: -5 },
-				outcomeText: '腕にひどい火傷を負ったが、包帯が解かれたとき奇跡的に化膿しておらず、「神が無実を示した」と放免された。'
+				outcomeText: '腕にひどい火傷を負ったが、包帯が解かれたとき奇跡的に化膿しておらず、「神が無実を示した」と放免された。',
+				deathText: '腕にひどい火傷を負い、三日後に包帯が解かれると傷は黄色く膿んでいた。「神が有罪を示した」と告げられ、そのまま刑場へ引かれていった。'
 			},
 			{
 				id: 'bribe_official',
@@ -190,7 +201,8 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.94,
 				deathCause: '獄中での衰弱',
 				effects: { wealthDelta: -55, happiness: -12 },
-				outcomeText: '蓄えはすべて消えたが、役人は「真犯人は別にいた」と帳面を書き換えた。'
+				outcomeText: '蓄えはすべて消えたが、役人は「真犯人は別にいた」と帳面を書き換えた。',
+				deathText: '蓄えはすべて取り上げられたが、役人は約束を守らず、そのまま牢に繋がれた。湿った床で熱を出し、誰にも看取られずに息絶えた。'
 			}
 		]
 	}

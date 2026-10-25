@@ -4,6 +4,7 @@ import { REGIONS, regionsForEra } from '../data/regions';
 import { ALL_EVENTS } from '../data/events';
 import { BABY_IMAGES } from '../data/babyImages';
 import { GRAVE_DATA } from '../data/graveData';
+import { ERA_CHRONICLES, OVERTURNED_BELIEFS, SEED_MEMORIALS, WORLD_TIMELINE } from '../data/timeline';
 import { postMortem, resolveChoice, rollBirth, stepYear } from './engine';
 import { parseMemorials, toMemorialRecord } from './memorials';
 import { MAX_AGE, hazard, survivalRateAtAge } from './util';
@@ -199,5 +200,147 @@ describe('Memorial Storage Security & Schema Validation', () => {
 		expect(parsed[1].id).toBe('proto-ok');
 		expect(({} as Record<string, unknown>).polluted).toBeUndefined();
 		expect(Object.prototype.hasOwnProperty.call(parsed[1], '__proto__')).toBe(false);
+	});
+});
+
+describe('Content Integrity', () => {
+	const FUTURE_END = 2120; // 近未来シナリオ（2028〜）まで含めた modern 時代の実効終端
+	const eraSpan = (id: keyof typeof ERAS): [number, number] => [ERAS[id].yearStart, id === 'modern' ? FUTURE_END : ERAS[id].yearEnd];
+
+	test('event ids are unique and choice ids are unique within each event', () => {
+		const seen = new Set<string>();
+		for (const e of ALL_EVENTS) {
+			expect(seen.has(e.id), `duplicate event id ${e.id}`).toBe(false);
+			seen.add(e.id);
+			const cids = e.choices.map((c) => c.id);
+			expect(new Set(cids).size, `duplicate choice id in ${e.id}`).toBe(cids.length);
+		}
+	});
+
+	test('event targeting is coherent (ages, years, regions, probabilities, effect magnitudes)', () => {
+		for (const e of ALL_EVENTS) {
+			const ctx = `event ${e.id}`;
+			expect(e.minAge, ctx).toBeLessThanOrEqual(e.maxAge);
+			expect(e.minAge, ctx).toBeGreaterThanOrEqual(0);
+			expect(e.title.length, ctx).toBeGreaterThan(0);
+			expect(e.description.length, ctx).toBeGreaterThan(20);
+			expect(e.factBox.length, ctx).toBeGreaterThan(20);
+			for (const rid of e.regionIds ?? []) {
+				const r = REGIONS.find((x) => x.id === rid);
+				expect(r, `${ctx}: unknown region ${rid}`).toBeDefined();
+				if (e.eraIds) expect(e.eraIds, `${ctx}: region ${rid} outside eraIds`).toContain(r!.eraId);
+			}
+			if (e.yearRange) {
+				const [a, b] = e.yearRange;
+				expect(a, ctx).toBeLessThanOrEqual(b);
+				const eras = e.eraIds ?? ERA_ORDER;
+				const overlaps = eras.some((id) => {
+					const [s, t] = eraSpan(id);
+					return a <= t && b >= s;
+				});
+				expect(overlaps, `${ctx}: yearRange outside its eras`).toBe(true);
+				expect(b, ctx).toBeLessThanOrEqual(FUTURE_END);
+			}
+			for (const c of e.choices) {
+				const cctx = `${ctx}/${c.id}`;
+				if (c.survivalChance !== undefined) {
+					expect(c.survivalChance, cctx).toBeGreaterThan(0);
+					expect(c.survivalChance, cctx).toBeLessThan(1);
+					expect(c.deathCause?.length ?? 0, `${cctx}: deathCause missing`).toBeGreaterThan(0);
+					expect(c.deathText?.length ?? 0, `${cctx}: deathText missing (outcomeText describes survival)`).toBeGreaterThan(10);
+				}
+				const fx = c.effects;
+				for (const k of ['health', 'happiness', 'knowledge', 'relations'] as const) {
+					expect(Math.abs(fx[k] ?? 0), `${cctx}.${k}`).toBeLessThanOrEqual(40);
+				}
+				expect(fx.wealthDelta ?? 0, cctx).toBeGreaterThanOrEqual(-90);
+				expect(fx.wealthDelta ?? 0, cctx).toBeLessThanOrEqual(150);
+				if (fx.marry || fx.addChild) {
+					expect(e.isLifecycle, `${cctx}: marriage/childbirth must go through an isLifecycle decision`).toBe(true);
+				}
+				if (fx.marry) expect(e.requiresUnmarried, `${cctx}: marry needs requiresUnmarried`).toBe(true);
+				if (fx.addChild) {
+					expect(e.id.startsWith('childbirth_'), `${cctx}: addChild events need the childbirth_ id prefix (child cap + cooldown)`).toBe(true);
+					expect(e.requiresSpouse, `${cctx}: addChild needs requiresSpouse`).toBe(true);
+				}
+			}
+		}
+	});
+
+	test('region name lists are large, unique, and gender-disjoint', () => {
+		for (const r of REGIONS) {
+			expect(r.maleNames.length, r.id).toBeGreaterThanOrEqual(24);
+			expect(r.femaleNames.length, r.id).toBeGreaterThanOrEqual(24);
+			expect(new Set(r.maleNames).size, `${r.id} male dup`).toBe(r.maleNames.length);
+			expect(new Set(r.femaleNames).size, `${r.id} female dup`).toBe(r.femaleNames.length);
+			for (const n of r.maleNames) expect(r.femaleNames.includes(n), `${r.id}: ${n} in both`).toBe(false);
+		}
+	});
+
+	test('every region has a healthy pool of region-specific events', () => {
+		for (const r of REGIONS) {
+			const n = ALL_EVENTS.filter((e) => e.regionIds?.includes(r.id) && !e.isLifecycle).length;
+			expect(n, `${r.id} region-specific events`).toBeGreaterThanOrEqual(5);
+		}
+	});
+
+	test('chronicle topics are unique, in-range, and cover every period of their era', () => {
+		for (const id of ERA_ORDER) {
+			const topics = ERA_CHRONICLES[id];
+			const titles = topics.map((t) => t.title);
+			expect(new Set(titles).size, `${id} duplicate chronicle titles`).toBe(titles.length);
+			expect(topics.length, id).toBeGreaterThanOrEqual(30);
+			const [s, t] = eraSpan(id);
+			for (const x of topics) {
+				expect(x.regionTag.length, `${id}:${x.title}`).toBeGreaterThan(0);
+				expect(x.description.length, `${id}:${x.title}`).toBeGreaterThan(10);
+				if (x.yearRange) {
+					expect(x.yearRange[0], x.title).toBeLessThanOrEqual(x.yearRange[1]);
+					expect(x.yearRange[0] <= t && x.yearRange[1] >= s, `${x.title} outside era`).toBe(true);
+				}
+			}
+			const step = Math.max(5, Math.round((Math.min(t, 2026) - s) / 100));
+			for (let y = s; y <= Math.min(t, 2026); y += step) {
+				const live = topics.filter((x) => !x.yearRange || (y >= x.yearRange[0] && y <= x.yearRange[1]));
+				expect(live.length, `${id}: only ${live.length} chronicle topics in year ${y}`).toBeGreaterThanOrEqual(3);
+			}
+		}
+	});
+
+	test('seed memorials are internally consistent and loadable', () => {
+		const ids = new Set<string>();
+		for (const m of SEED_MEMORIALS) {
+			expect(ids.has(m.id), `dup seed ${m.id}`).toBe(false);
+			ids.add(m.id);
+			expect(m.deathYear - m.birthYear, m.id).toBe(m.deathAge);
+			expect(m.deathAge, m.id).toBeGreaterThanOrEqual(0);
+			expect(m.deathAge, m.id).toBeLessThanOrEqual(MAX_AGE);
+			expect(m.birthYear >= ERAS[m.eraId].yearStart && m.birthYear <= ERAS[m.eraId].yearEnd, `${m.id} birth outside era`).toBe(true);
+			expect(m.eraName, m.id).toBe(ERAS[m.eraId].name);
+			expect(REGIONS.some((r) => r.eraId === m.eraId && r.name === m.regionName), `${m.id}: regionName "${m.regionName}"`).toBe(true);
+			expect(m.name.length, m.id).toBeLessThanOrEqual(64);
+			expect(m.place.length, m.id).toBeLessThanOrEqual(64);
+			expect(m.deathCause.length, m.id).toBeLessThanOrEqual(120);
+			expect(m.epitaph.length, m.id).toBeLessThanOrEqual(300);
+			expect(m.summaryLine.length, m.id).toBeLessThanOrEqual(120);
+			expect(m.epitaph.includes(m.name), `${m.id}: epitaph lacks name`).toBe(true);
+			if (m.sex === 'M') expect(m.deathCause, m.id).not.toMatch(/出産|産褥/);
+		}
+		for (const id of ERA_ORDER) {
+			expect(SEED_MEMORIALS.filter((m) => m.eraId === id).length, `${id} seeds`).toBeGreaterThanOrEqual(14);
+		}
+		expect(parseMemorials(JSON.stringify(SEED_MEMORIALS))).toEqual([]);
+	});
+
+	test('world timeline and overturned beliefs are well-formed', () => {
+		const titles = WORLD_TIMELINE.map((e) => e.title);
+		expect(new Set(titles).size).toBe(titles.length);
+		const years = WORLD_TIMELINE.map((e) => e.year);
+		expect(new Set(years).size, 'one world-timeline entry per year (chronicleTick shows one per year)').toBe(years.length);
+		expect(WORLD_TIMELINE.length).toBeGreaterThanOrEqual(120);
+		for (const e of WORLD_TIMELINE) expect(Number.isInteger(e.year) && e.description.length > 10).toBe(true);
+		const untils = OVERTURNED_BELIEFS.map((b) => b.until);
+		expect(untils).toEqual([...untils].sort((a, b) => a - b));
+		expect(new Set(untils).size).toBe(untils.length);
 	});
 });

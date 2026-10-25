@@ -19,7 +19,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.55,
 				deathCause: '熱病（荒療治による衰弱）',
 				effects: { health: -15 },
-				outcomeText: '無理やり血や体液を抜かれ、かえって体力を奪われて意識が遠のいた。'
+				outcomeText: '無理やり血や体液を抜かれ、かえって体力を奪われて意識が遠のいた。',
+				deathText: '熱病（荒療治による衰弱）により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'pray_priest',
@@ -28,7 +29,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.65,
 				deathCause: '熱病',
 				effects: { happiness: 5, relations: 5 },
-				outcomeText: '祈りの言葉が低く響いた。熱が下がったのは偶然か、神意か。'
+				outcomeText: '祈りの言葉が低く響いた。熱が下がったのは偶然か、神意か。',
+				deathText: '熱病により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'herbs',
@@ -37,7 +39,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.6,
 				deathCause: '熱病・薬草の中毒',
 				effects: { health: -5, knowledge: 1 },
-				outcomeText: '苦くて青臭い汁を飲み干した。'
+				outcomeText: '苦くて青臭い汁を飲み干した。',
+				deathText: '熱病・薬草の中毒により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'rest',
@@ -46,7 +49,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.72,
 				deathCause: '熱病',
 				effects: { health: -3 },
-				outcomeText: '周囲は「何もしないのか」と責めたが、結局これが一番マシだった。'
+				outcomeText: '周囲は「何もしないのか」と責めたが、結局これが一番マシだった。',
+				deathText: '熱病により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -68,7 +72,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.68,
 				deathCause: '破傷風・火傷のショック',
 				effects: { health: -18, happiness: -10 },
-				outcomeText: '意識が飛ぶほどの激痛のあと、深い火傷の痕が残ったが、命だけは取り留めた。'
+				outcomeText: '意識が飛ぶほどの激痛のあと、深い火傷の痕が残ったが、命だけは取り留めた。',
+				deathText: '破傷風・火傷のショックにより、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'cobweb_dung_poultice',
@@ -77,7 +82,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.42,
 				deathCause: '破傷風・敗血症',
 				effects: { health: -20 },
-				outcomeText: '良かれと思って塗った泥と汚物が、傷口の奥へさらに破傷風菌を送り込んだ。'
+				outcomeText: '良かれと思って塗った泥と汚物が、傷口の奥へさらに破傷風菌を送り込んだ。',
+				deathText: '破傷風・敗血症により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'wash_alcohol',
@@ -86,7 +92,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.84,
 				deathCause: '敗血症',
 				effects: { health: -8 },
-				outcomeText: '何日も高熱にうなされた末、腫れが少しずつ引いていった。'
+				outcomeText: '何日も高熱にうなされた末、腫れが少しずつ引いていった。',
+				deathText: '敗血症により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -108,7 +115,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.8,
 				deathCause: '抜歯後の大量出血・敗血症',
 				effects: { health: -10, happiness: -8, wealthDelta: -5 },
-				outcomeText: '二人がかりで押さえつけられ、顎の骨が砕けるような音とともに歯が抜かれた。数日後、腫れは引いた。'
+				outcomeText: '二人がかりで押さえつけられ、顎の骨が砕けるような音とともに歯が抜かれた。数日後、腫れは引いた。',
+				deathText: '抜歯後の大量出血・敗血症により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'tooth_worm_fumigate',
@@ -117,7 +125,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.52,
 				deathCause: '歯性感染症・敗血症',
 				effects: { health: -15 },
-				outcomeText: '煙を当てても膿は引かず、高熱が全身に回っていった。'
+				outcomeText: '煙を当てても膿は引かず、高熱が全身に回っていった。',
+				deathText: '歯性感染症・敗血症により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -141,7 +150,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.82,
 				deathCause: '冬の飢えと衰弱',
 				effects: { wealthDelta: -30, health: -10, happiness: -8 },
-				outcomeText: '腹を空かせながら木の根をかじって冬を越したが、手足が腐る奇病からは逃れられた。'
+				outcomeText: '腹を空かせながら木の根をかじって冬を越したが、手足が腐る奇病からは逃れられた。',
+				deathText: '冬の飢えと衰弱により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'eat_ergot_bread',
@@ -150,7 +160,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.54,
 				deathCause: '麦角中毒（聖アントニウスの火）',
 				effects: { health: -22, happiness: -12 },
-				outcomeText: '指先が黒く冷たくなり、恐ろしい幻覚に何日も苛まれた。'
+				outcomeText: '指先が黒く冷たくなり、恐ろしい幻覚に何日も苛まれた。',
+				deathText: '麦角中毒（聖アントニウスの火）により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -172,7 +183,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.62,
 				deathCause: '水銀・重金属中毒',
 				effects: { wealthDelta: -20, health: -18 },
-				outcomeText: '激しい下痢と手の震えに襲われ、歯茎が黒ずんだ。当時の医者は「毒が出ている好転反応だ」と言った。'
+				outcomeText: '激しい下痢と手の震えに襲われ、歯茎が黒ずんだ。当時の医者は「毒が出ている好転反応だ」と言った。',
+				deathText: '水銀・重金属中毒により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'refuse_mercury',
@@ -181,7 +193,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.88,
 				deathCause: '持病の悪化',
 				effects: { health: 4 },
-				outcomeText: '高価な薬を買えないことを嘆いたが、霊薬を飲んだ裕福な隣人は翌月亡くなった。'
+				outcomeText: '高価な薬を買えないことを嘆いたが、霊薬を飲んだ裕福な隣人は翌月亡くなった。',
+				deathText: '持病の悪化により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -204,7 +217,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.86,
 				deathCause: '過労と栄養失調',
 				effects: { wealthDelta: -35, health: -10, happiness: -12 },
-				outcomeText: '自分の家に何の落ち度もないのに、倍の年貢を納めるため夜遅くまで働き詰めの年になった。'
+				outcomeText: '自分の家に何の落ち度もないのに、倍の年貢を納めるため夜遅くまで働き詰めの年になった。',
+				deathText: '過労と栄養失調により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'abscond_too',
@@ -213,7 +227,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.72,
 				deathCause: '逃亡生活での飢え・行き倒れ',
 				effects: { wealthDelta: -45, relations: -20, occupationChange: '流民・日雇い', locationChange: 'urban' },
-				outcomeText: '先祖代々の土地を捨て、役人の目を逃れて見知らぬ町へ流れ着いた。'
+				outcomeText: '先祖代々の土地を捨て、役人の目を逃れて見知らぬ町へ流れ着いた。',
+				deathText: '逃亡生活での飢え・行き倒れにより、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -236,7 +251,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.84,
 				deathCause: '肺結核・呼吸器疾患',
 				effects: { health: -14, happiness: -10 },
-				outcomeText: '昼でも真っ暗なジメジメした部屋で暮らすようになり、家族の咳が止まらなくなった。'
+				outcomeText: '昼でも真っ暗なジメジメした部屋で暮らすようになり、家族の咳が止まらなくなった。',
+				deathText: '肺結核・呼吸器疾患により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'smuggle_salt',
@@ -245,7 +261,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.76,
 				deathCause: '塩税違反による投獄・ガレー船労役',
 				effects: { wealthDelta: -5, happiness: -5 },
-				outcomeText: '塩役人の家宅捜索に怯えながら、床下に隠した塩で食べ物を漬けた。'
+				outcomeText: '塩役人の家宅捜索に怯えながら、床下に隠した塩で食べ物を漬けた。',
+				deathText: '塩税違反による投獄・ガレー船労役により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -269,7 +286,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.68,
 				deathCause: '壊血病・戦地での疫病',
 				effects: { health: -18, happiness: -15, relations: -12, occupationChange: '徴募兵・水夫' },
-				outcomeText: '家族に知らせることもできないまま数年が過ぎ、歯茎から血を流しながら見知らぬ海と戦場を生き延びた。'
+				outcomeText: '家族に知らせることもできないまま数年が過ぎ、歯茎から血を流しながら見知らぬ海と戦場を生き延びた。',
+				deathText: '壊血病・戦地での疫病により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'jump_ship',
@@ -278,7 +296,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.56,
 				deathCause: '脱走未遂による処刑・溺死',
 				effects: { health: -10, wealthDelta: -25 },
-				outcomeText: '冷たい闇の中を必死で逃げ切り、名前を変えて別の土地へ潜伏した。'
+				outcomeText: '冷たい闇の中を必死で逃げ切り、名前を変えて別の土地へ潜伏した。',
+				deathText: '脱走未遂による処刑・溺死により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -311,7 +330,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.88,
 				deathCause: '不作による冬の栄養失調',
 				effects: { wealthDelta: -35, happiness: -15, health: -8 },
-				outcomeText: '泥にまみれた穂をひと粒ずつ拾い集め、悔しさを飲み込んで冬を迎えた。'
+				outcomeText: '泥にまみれた穂をひと粒ずつ拾い集め、悔しさを飲み込んで冬を迎えた。',
+				deathText: '不作による冬の栄養失調により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'plead_compensation',
@@ -320,7 +340,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.58,
 				deathCause: '領主の従者による鞭打ち・暴行',
 				effects: { health: -20, happiness: -10, wealthDelta: -15 },
-				outcomeText: '従者の鞭で背中を打たれて突き飛ばされた。年貢は一粒もまけてもらえなかった。'
+				outcomeText: '従者の鞭で背中を打たれて突き飛ばされた。年貢は一粒もまけてもらえなかった。',
+				deathText: '領主の従者による鞭打ち・暴行により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -343,7 +364,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.92,
 				deathCause: '大火での煙中毒',
 				effects: { wealthDelta: -50, happiness: -12 },
-				outcomeText: '夜空を焦がす炎を川辺から見つめた。翌朝、暮らしのすべてが黒い灰になっていた。'
+				outcomeText: '夜空を焦がす炎を川辺から見つめた。翌朝、暮らしのすべてが黒い灰になっていた。',
+				deathText: '大火での煙中毒により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'save_tools',
@@ -352,7 +374,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.58,
 				deathCause: '大火での焼死・崩落',
 				effects: { health: -15, wealthDelta: -10 },
-				outcomeText: '黒煙にむせながら道具箱を抱えて飛び出した直後、屋根が焼け落ちた。'
+				outcomeText: '黒煙にむせながら道具箱を抱えて飛び出した直後、屋根が焼け落ちた。',
+				deathText: '大火での焼死・崩落により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -375,7 +398,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.75,
 				deathCause: '鉱山・農園での過労死',
 				effects: { health: -15, happiness: -18, relations: -15, wealthDelta: -30 },
-				outcomeText: '慣れ親しんだ土地と引き離され、日の当たらない場所で働き続けることになった。'
+				outcomeText: '慣れ親しんだ土地と引き離され、日の当たらない場所で働き続けることになった。',
+				deathText: '鉱山・農園での過労死により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'flee_master',
@@ -384,7 +408,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.62,
 				deathCause: '逃亡奴隷・逃散農民としての処刑',
 				effects: { wealthDelta: -40, relations: -15, occupationChange: '都市の雑役・日雇い', locationChange: 'urban' },
-				outcomeText: '猟犬の声を背後に聞きながら夜通し走り続け、城壁のある町へ紛れ込んだ。'
+				outcomeText: '猟犬の声を背後に聞きながら夜通し走り続け、城壁のある町へ紛れ込んだ。',
+				deathText: '逃亡奴隷・逃散農民としての処刑により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -417,7 +442,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.84,
 				deathCause: '有毒汚染水摂取による腎不全・多臓器不全',
 				effects: { health: -14, happiness: -5, knowledge: 5 },
-				outcomeText: '薬品臭い蒸留水を少しずつすすりながら、乾ききった喉を潤した。'
+				outcomeText: '薬品臭い蒸留水を少しずつすすりながら、乾ききった喉を潤した。',
+				deathText: '有毒汚染水摂取による腎不全・多臓器不全により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -440,7 +466,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.93,
 				deathCause: '過密ギグ労働中の事故死',
 				effects: { wealthDelta: -10, health: -8, happiness: -15, occupationChange: '自律ドローン監視・清掃員' },
-				outcomeText: 'GPSと心拍数モニターに常時監視されながら、深夜の廃棄物処理に汗を流した。'
+				outcomeText: 'GPSと心拍数モニターに常時監視されながら、深夜の廃棄物処理に汗を流した。',
+				deathText: '過密ギグ労働中の事故死により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'join_unplugged_coop',
@@ -477,7 +504,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.86,
 				deathCause: '未知の培養タンパク毒素によるアナフィラキシーショック',
 				effects: { health: -15, happiness: -10 },
-				outcomeText: '体に走る発疹と胃の痛みを薬で抑え込みながら、灰色のペーストを飲み下した。'
+				outcomeText: '体に走る発疹と胃の痛みを薬で抑え込みながら、灰色のペーストを飲み下した。',
+				deathText: '未知の培養タンパク毒素によるアナフィラキシーショックにより、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	}

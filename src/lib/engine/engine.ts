@@ -5,6 +5,7 @@ import { ERA_CHRONICLES, OVERTURNED_BELIEFS, WORLD_TIMELINE } from '../data/time
 import type {
 	CharacterState,
 	ChoiceOption,
+	ChronicleTopic,
 	DecisionEvent,
 	EraId,
 	FamilyMember,
@@ -104,7 +105,8 @@ const chronicleTick = (c: CharacterState, rng: Rng, force = false): void => {
 		return;
 	}
 	if (!force && rng() >= 0.3) return;
-	const pool = ERA_CHRONICLES[c.era.id].filter((x) => !usedTitles.has(x.title));
+	const inRange = (x: ChronicleTopic): boolean => !x.yearRange || (c.currentYear >= x.yearRange[0] && c.currentYear <= x.yearRange[1]);
+	const pool = ERA_CHRONICLES[c.era.id].filter((x) => !usedTitles.has(x.title) && inRange(x));
 	if (pool.length === 0) return;
 	const item = pick(pool, rng);
 	c.chronicle.push({
@@ -398,9 +400,10 @@ export const resolveChoice = (
 	if (choice.survivalChance !== undefined) {
 		const p = clamp(choice.survivalChance + (c.health - 50) / 500, 0.02, 0.99);
 		if (rng() >= p) {
-			push(c, `▸ 「${choice.label}」を選んだ。${choice.outcomeText}`, 'danger');
+			const deathText = choice.deathText ?? choice.outcomeText;
+			push(c, `▸ 「${choice.label}」を選んだ。${deathText}`, 'danger');
 			die(c, choice.deathCause ?? '不慮の死');
-			return { died: true, text: choice.outcomeText };
+			return { died: true, text: deathText };
 		}
 	}
 	push(c, `▸ 「${choice.label}」を選んだ。${choice.outcomeText}`, 'decision');

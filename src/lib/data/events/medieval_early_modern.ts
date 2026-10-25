@@ -21,7 +21,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.82,
 				deathCause: '飢饉と流行り病',
 				effects: { wealthDelta: -20, happiness: -5, relations: 5 },
-				outcomeText: '境内に並ぶ長い列に混じり、薄い粥で飢えをしのいだ。'
+				outcomeText: '境内に並ぶ長い列に混じり、薄い粥で飢えをしのいだ。',
+				deathText: '飢饉と流行り病により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'forage_woods',
@@ -30,7 +31,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.75,
 				deathCause: '飢饉・密猟の処罰',
 				effects: { health: -8, happiness: -8 },
-				outcomeText: '木の実や根を掘って冬を越した。隣家の者は森番に捕らえられ、戻ってこなかった。'
+				outcomeText: '木の実や根を掘って冬を越した。隣家の者は森番に捕らえられ、戻ってこなかった。',
+				deathText: '飢饉・密猟の処罰により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -55,7 +57,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.55,
 				deathCause: '黒死病（ペスト）',
 				effects: { happiness: -10, relations: -10, wealthDelta: -40 },
-				outcomeText: '荷車に家財を積んで町を出た。逃げた先でも病は追ってきたが、人の少ない山では広がりが遅かった。'
+				outcomeText: '荷車に家財を積んで町を出た。逃げた先でも病は追ってきたが、人の少ない山では広がりが遅かった。',
+				deathText: '黒死病（ペスト）により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'pray',
@@ -64,7 +67,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.35,
 				deathCause: '黒死病（ペスト）',
 				effects: { happiness: 5, relations: 5 },
-				outcomeText: '人々は聖堂に集まって夜通し祈った。祈りの場は、病が最も効率よく広がる場所でもあった。'
+				outcomeText: '人々は聖堂に集まって夜通し祈った。祈りの場は、病が最も効率よく広がる場所でもあった。',
+				deathText: '黒死病（ペスト）により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'stay_home',
@@ -73,7 +77,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.5,
 				deathCause: '黒死病（ペスト）',
 				effects: { happiness: -15, relations: -15 },
-				outcomeText: 'ネズミとノミが家の中までついてくることは、誰も知らなかった。'
+				outcomeText: 'ネズミとノミが家の中までついてくることは、誰も知らなかった。',
+				deathText: '黒死病（ペスト）により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -97,7 +102,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.8,
 				deathCause: 'モンゴル軍の侵攻',
 				effects: { wealthDelta: -60, happiness: -15 },
-				outcomeText: '貢納と引き換えに町は焼かれずに済んだ。支配者の名前だけが変わった。'
+				outcomeText: '貢納と引き換えに町は焼かれずに済んだ。支配者の名前だけが変わった。',
+				deathText: 'モンゴル軍の侵攻により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'resist',
@@ -106,7 +112,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.15,
 				deathCause: 'モンゴル軍の侵攻',
 				effects: { happiness: -5 },
-				outcomeText: '包囲は数週間続いた。'
+				outcomeText: '包囲は数週間続いた。',
+				deathText: 'モンゴル軍の侵攻により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'flee_west',
@@ -115,7 +122,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.55,
 				deathCause: '逃避行での飢えと病',
 				effects: { wealthDelta: -80, relations: -10 },
-				outcomeText: '着の身着のまま、季節をいくつも越えて逃げた。'
+				outcomeText: '着の身着のまま、季節をいくつも越えて逃げた。',
+				deathText: '逃避行での飢えと病により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -138,7 +146,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.68,
 				deathCause: '合戦での討ち死に・落ち武者狩り',
 				effects: { wealthDelta: 20, health: -14, happiness: -8 },
-				outcomeText: '矢が飛び交う戦場を駆け回り、泥と血にまみれて生きて村へ帰った。'
+				outcomeText: '矢が飛び交う戦場を駆け回り、泥と血にまみれて生きて村へ帰った。',
+				deathText: '合戦での討ち死に・落ち武者狩りにより、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'flee_mountain_shiro',
@@ -147,7 +156,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.84,
 				deathCause: '落人狩り・山中での凍餓',
 				effects: { wealthDelta: -35, relations: 8, happiness: -10 },
-				outcomeText: '煙が上がる麓の村を山の上から見下ろし、息を潜めて軍勢が去るのを待った。'
+				outcomeText: '煙が上がる麓の村を山の上から見下ろし、息を潜めて軍勢が去るのを待った。',
+				deathText: '落人狩り・山中での凍餓により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -170,7 +180,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.66,
 				deathCause: '籠城戦での餓死・陣中疫病',
 				effects: { health: -20, wealthDelta: -30, happiness: -15 },
-				outcomeText: '骨と皮ばかりになりながら数か月を耐え抜き、ついに講和が結ばれて城門が開いた。'
+				outcomeText: '骨と皮ばかりになりながら数か月を耐え抜き、ついに講和が結ばれて城門が開いた。',
+				deathText: '籠城戦での餓死・陣中疫病により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'slip_out_night',
@@ -179,7 +190,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.62,
 				deathCause: '包囲軍による処刑',
 				effects: { wealthDelta: -45, health: -8 },
-				outcomeText: '濠の泥水を潜り抜けて包囲網の外へ脱出し、戦火の届かない村まで落ち延びた。'
+				outcomeText: '濠の泥水を潜り抜けて包囲網の外へ脱出し、戦火の届かない村まで落ち延びた。',
+				deathText: '包囲軍による処刑により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -202,7 +214,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.88,
 				deathCause: '飢饉による衰弱',
 				effects: { knowledge: 5, wealthDelta: 10 },
-				outcomeText: 'やせた土地でも育つ新しい作物が、家族の命をつないだ。'
+				outcomeText: 'やせた土地でも育つ新しい作物が、家族の命をつないだ。',
+				deathText: '飢饉による衰弱により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'endure_tradition',
@@ -211,7 +224,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.72,
 				deathCause: '飢饉と発疹チフス',
 				effects: { health: -12, wealthDelta: -30 },
-				outcomeText: '長い冬が明けたとき、村のあちこちに空き家が増えていた。'
+				outcomeText: '長い冬が明けたとき、村のあちこちに空き家が増えていた。',
+				deathText: '飢饉と発疹チフスにより、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -235,7 +249,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.45,
 				deathCause: '天然痘',
 				effects: { relations: -20, happiness: -20 },
-				outcomeText: '村は半分になった。残った者たちは言葉少なに畑に戻った。'
+				outcomeText: '村は半分になった。残った者たちは言葉少なに畑に戻った。',
+				deathText: '天然痘により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'shaman',
@@ -244,7 +259,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.3,
 				deathCause: '天然痘',
 				effects: { relations: 5, happiness: -10 },
-				outcomeText: '儀式は夜通し続いた。病は儀式に集まった人々の間に広がった。'
+				outcomeText: '儀式は夜通し続いた。病は儀式に集まった人々の間に広がった。',
+				deathText: '天然痘により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -268,7 +284,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.65,
 				deathCause: '飢饉による餓死',
 				effects: { wealthDelta: -50, relations: -10, occupationChange: '日雇い人足', locationChange: '江戸' },
-				outcomeText: '江戸の町には、同じように村を捨てた者たちが溢れていた。'
+				outcomeText: '江戸の町には、同じように村を捨てた者たちが溢れていた。',
+				deathText: '飢饉による餓死により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'eat_grass',
@@ -277,7 +294,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.4,
 				deathCause: '飢饉による餓死',
 				effects: { health: -25, happiness: -15 },
-				outcomeText: '山の草を根こそぎ食べ尽くし、それでも春は遠かった。'
+				outcomeText: '山の草を根こそぎ食べ尽くし、それでも春は遠かった。',
+				deathText: '飢饉による餓死により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'riot',
@@ -286,7 +304,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.55,
 				deathCause: '一揆・打ちこわしでの処刑',
 				effects: { relations: 5, happiness: -5 },
-				outcomeText: '蔵は破られ、米は村に分けられた。首謀者は後日、牢に入った。'
+				outcomeText: '蔵は破られ、米は村に分けられた。首謀者は後日、牢に入った。',
+				deathText: '一揆・打ちこわしでの処刑により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -309,7 +328,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.72,
 				deathCause: '戦場での銃創・発疹チフス',
 				effects: { health: -14, happiness: -15, relations: -20, occupationChange: '従軍雑役・傭兵' },
-				outcomeText: '焼かれた故郷を背に、軍勢の後ろについて泥濘の街道を歩き続けた。'
+				outcomeText: '焼かれた故郷を背に、軍勢の後ろについて泥濘の街道を歩き続けた。',
+				deathText: '戦場での銃創・発疹チフスにより、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'hide_in_cellar',
@@ -318,7 +338,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.74,
 				deathCause: '略奪兵による殺害・冬の凍餓',
 				effects: { wealthDelta: -45, happiness: -12 },
-				outcomeText: '頭上で響く銃声と怒号に震えながら丸二日息を殺し、廃墟となった村で生き延びた。'
+				outcomeText: '頭上で響く銃声と怒号に震えながら丸二日息を殺し、廃墟となった村で生き延びた。',
+				deathText: '略奪兵による殺害・冬の凍餓により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -340,7 +361,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.88,
 				deathCause: '魔女・異端審問での拷問死',
 				effects: { wealthDelta: -35, relations: -10, happiness: -12 },
-				outcomeText: '蓄えを失ってようやく疑いは晴れたが、村人の冷たい視線は長く消えなかった。'
+				outcomeText: '蓄えを失ってようやく疑いは晴れたが、村人の冷たい視線は長く消えなかった。',
+				deathText: '魔女・異端審問での拷問死により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'defend_reason',
@@ -349,7 +371,8 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 				survivalChance: 0.45,
 				deathCause: '魔女・妖術裁判での処刑',
 				effects: { happiness: -20, relations: -20 },
-				outcomeText: '反論は「悪魔の言い逃れだ」と受け取られ、縛り上げられて審問の場へ引き出された。'
+				outcomeText: '反論は「悪魔の言い逃れだ」と受け取られ、縛り上げられて審問の場へ引き出された。',
+				deathText: '魔女・妖術裁判での処刑により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	}

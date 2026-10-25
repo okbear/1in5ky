@@ -128,7 +128,8 @@ export interface ChoiceOption {
 		marry?: boolean;
 		killSpouseChance?: number;
 	};
-	outcomeText: string;
+	outcomeText: string; // 生き延びたときに記録される結果
+	deathText?: string; // survivalChance の判定に敗れたときに記録される結果（survivalChance があれば必須）
 }
 
 export interface DecisionEvent {
@@ -194,6 +195,14 @@ export interface ChronicleEntry {
 	regionTag: string;
 	title: string;
 	description: string;
+}
+
+/** 右カラム「世界の出来事」に流れる世界史トピック。yearRange 内の年にのみ出現する（省略時は時代全体） */
+export interface ChronicleTopic {
+	regionTag: string;
+	title: string;
+	description: string;
+	yearRange?: [number, number];
 }
 
 export interface MemorialRecord {
