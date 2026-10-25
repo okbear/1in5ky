@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { game } from '#lib/game.svelte';
-	import { ageGroup, formatYear } from '#lib/engine/util';
+	import { ageGroup, expectedLifespan, formatYear, survivalRateAtAge } from '#lib/engine/util';
 	import type { FeedEntry } from '#lib/types';
 	import Timeline from './Timeline.svelte';
 	import GraveScene from './GraveScene.svelte';
@@ -10,6 +10,11 @@
 	const pm = $derived(game.pm);
 	const lostKids = $derived(c.family.filter((f) => f.relation === '子' && !f.alive).length);
 	const kids = $derived(c.family.filter((f) => f.relation === '子').length);
+	const e0 = $derived(Math.round(expectedLifespan(c.region, c.socialClass.mortalityMultiplier)));
+	const survPct = $derived(survivalRateAtAge(c.region, c.age) * 100);
+	const survLabel = $derived(
+		survPct >= 10 ? `${Math.round(survPct)}%` : `${Math.max(0.1, survPct).toFixed(1)}%`
+	);
 	const STAGE_LABEL = {
 		infant: '誕生・乳児期',
 		child: '子ども時代',
@@ -110,7 +115,16 @@
 				<div><small>仕事</small><b>{c.age < 6 ? `幼少（${c.socialClass.name}の子）` : c.occupation}</b></div>
 				<div><small>子ども</small><b>{kids}人{lostKids > 0 ? `（うち${lostKids}人を亡くした）` : ''}</b></div>
 				<div><small>最終的な状態</small><b>健康{Math.round(c.health)} · 幸福{Math.round(c.happiness)} · 知識{Math.round(c.knowledge)} · 関係{Math.round(c.relations)}</b></div>
-				<div><small>この時代の平均像</small><b>5歳までに{Math.round(c.region.under5Mortality / 10)}%が亡くなった</b></div>
+				<div>
+					<small>同世代の生存統計</small>
+					<b>
+						{#if c.age === 0}
+							同じ地域に生まれた子の{Math.round(c.region.infantMortality / 10)}%が1歳未満で亡くなった（平均寿命 約{e0}歳）
+						{:else}
+							{c.age}歳まで生きられたのは同世代の約{survLabel}（平均寿命 約{e0}歳）
+						{/if}
+					</b>
+				</div>
 			</div>
 		</div>
 	</div>

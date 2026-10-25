@@ -6,7 +6,7 @@ import { BABY_IMAGES } from '../data/babyImages';
 import { GRAVE_DATA } from '../data/graveData';
 import { postMortem, resolveChoice, rollBirth, stepYear } from './engine';
 import { parseMemorials, toMemorialRecord } from './memorials';
-import { MAX_AGE, hazard } from './util';
+import { MAX_AGE, hazard, survivalRateAtAge } from './util';
 import fs from 'fs';
 
 describe('Data Consistency', () => {
@@ -65,6 +65,15 @@ describe('Engine Invariants', () => {
 			expect(Math.abs(q0 - r.infantMortality / 1000)).toBeLessThan(0.0001);
 			// At health=50, healthMult=1.125
 			expect(hazard(r, 0, 1.0, 50)).toBeCloseTo((r.infantMortality / 1000) * 1.125, 4);
+		}
+	});
+
+	test('survivalRateAtAge matches exact regional infant and under-5 mortality tables', () => {
+		for (const r of REGIONS) {
+			expect(survivalRateAtAge(r, 0)).toBe(1);
+			expect(survivalRateAtAge(r, 1)).toBeCloseTo(1 - r.infantMortality / 1000, 6);
+			expect(survivalRateAtAge(r, 5)).toBeCloseTo(1 - r.under5Mortality / 1000, 6);
+			expect(survivalRateAtAge(r, 60)).toBeLessThan(survivalRateAtAge(r, 15));
 		}
 	});
 

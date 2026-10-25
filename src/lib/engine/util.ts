@@ -119,3 +119,13 @@ export const expectedLifespan = (r: RegionProfile, classMortalityMultiplier = 1)
 	}
 	return sum;
 };
+
+/** 同じ時代・地域に生まれた人のうち、年齢 age 歳まで生存する割合（0〜1、生命表 l_x） */
+export const survivalRateAtAge = (r: RegionProfile, age: number): number => {
+	let s = 1;
+	const end = clamp(Math.floor(age), 0, MAX_AGE);
+	for (let a = 0; a < end; a++) {
+		s *= 1 - baseHazard(r, a);
+	}
+	return s;
+};
