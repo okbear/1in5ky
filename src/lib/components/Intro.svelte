@@ -10,7 +10,7 @@
 		<h1>5000年分の<em>1</em></h1>
 		<p class="en">1 in 5,000 Years</p>
 		<p class="lede">
-			紀元前3000年から今日までに、地球には約{TOTAL_CUMULATIVE_BIRTHS_OKU}億人が生まれてきました。あなたはそのひとりになって、たった一度の人生を生きます。いつ、どこで、誰の子として生まれるかは選べません。あなたがそうだったように。
+			文字が生まれた紀元前3000年から今日までに、地球上で生を受けた人は約{TOTAL_CUMULATIVE_BIRTHS_OKU}億人にのぼります。古代の大河のほとりか、疫病が迫る中世の町か、それとも現代の都市か——時代も身分もくじ引きのまま、名もなきひとりの生涯をたどります。
 		</p>
 	</div>
 
@@ -56,7 +56,10 @@
 		<p>
 			この作品は
 			<a href="https://1in8b.life/ja/" target="_blank" rel="noopener noreferrer">80億分の1（1 in 8 Billion）</a>
-			に着想を得て制作された歴史シミュレーションです。
+			に着想を得て個人で制作した非公式の歴史シミュレーションです（元サイトの運営者とは無関係です）。
+		</p>
+		<p class="note">
+			歴史人口学・公開統計の推計値をもとにしたフィクションです。プレイ記録はお使いの端末内にのみ保存されます（匿名のアクセス統計に Vercel Analytics を使用しています）。
 		</p>
 	</footer>
 </section>
@@ -144,6 +147,12 @@
 	}
 	.credit p {
 		margin: 0;
+		line-height: 1.6;
+	}
+	.credit .note {
+		margin-top: 4px;
+		font-size: 11.5px;
+		opacity: 0.85;
 	}
 	.credit a {
 		color: var(--ink2);

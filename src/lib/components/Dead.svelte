@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import { game } from '#lib/game.svelte';
 	import { ageGroup, expectedLifespan, formatYear, survivalRateAtAge } from '#lib/engine/util';
 	import type { FeedEntry } from '#lib/types';
@@ -80,6 +81,20 @@
 		return out;
 	});
 	const grave = $derived(getGraveInfo(c.region.id));
+	const shareUrl = $derived(
+		page.url.hostname === 'localhost' || page.url.hostname === '127.0.0.1'
+			? 'https://1in5ky.vercel.app/'
+			: `${page.url.origin}/`
+	);
+	const shareHref = $derived.by(() => {
+		const survNote =
+			c.age === 0
+				? `同世代の${Math.round(c.region.infantMortality / 10)}%が1歳未満で没`
+				: `${c.age}歳まで生きられたのは同世代の約${survLabel}`;
+		const role = c.age === 0 ? `${c.socialClass.name}の子` : c.socialClass.name;
+		const text = `【5000年分の1】${formatYear(c.birthYear)}、${c.region.name}に${role}（${c.name}）として生まれ、${c.age}歳（死因：${c.deathCause}）で世を去りました（${survNote}）。\n#5000年分の1`;
+		return `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
+	});
 </script>
 
 <section class="wrap dead">
@@ -106,6 +121,12 @@
 					<div class="span mono">{formatYear(c.birthYear)} — {formatYear(c.currentYear)} · {c.age}歳</div>
 					<p class="cause">死因：<b>{c.deathCause}</b></p>
 					<p class="ctx">{c.epitaph}</p>
+					<div class="bio-share">
+						<a class="x-btn" href={shareHref} target="_blank" rel="noopener noreferrer">
+							<span class="x-mark" aria-hidden="true">𝕏</span>
+							<span>この人生をポスト</span>
+						</a>
+					</div>
 				</div>
 			</div>
 
@@ -188,6 +209,10 @@
 
 	<div class="endbtns">
 		<button class="cta" onclick={() => game.roll()}>もう一度生まれる</button>
+		<a class="x-btn" href={shareHref} target="_blank" rel="noopener noreferrer">
+			<span class="x-mark" aria-hidden="true">𝕏</span>
+			<span>この人生をポスト</span>
+		</a>
 		<button class="ghost" onclick={() => game.quit()}>最初に戻る</button>
 	</div>
 </section>
@@ -488,8 +513,32 @@
 		background: var(--accent-soft);
 		font-family: var(--f-display);
 	}
+	.bio-share {
+		margin-top: 14px;
+	}
+	.x-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		background: var(--ink);
+		color: var(--paper);
+		text-decoration: none;
+		border-radius: 4px;
+		padding: 9px 16px;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.3;
+	}
+	.x-btn:hover {
+		opacity: 0.88;
+	}
+	.x-mark {
+		font-size: 15px;
+		line-height: 1;
+	}
 	.endbtns {
 		display: flex;
+		align-items: center;
 		gap: 12px;
 		flex-wrap: wrap;
 	}
