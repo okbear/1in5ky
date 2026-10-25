@@ -42,8 +42,8 @@ test.describe('1in5ky E2E smoke tests', () => {
 				continue;
 			}
 
-			// Otherwise click "次の決断まで »" if visible
-			const ffBtn = page.locator('.topbar button').filter({ hasText: '»' }).first();
+			// Otherwise click "次の決断まで »" in the sticky bottom bar if visible
+			const ffBtn = page.locator('.bottombar button').filter({ hasText: '»' }).first();
 			if (await ffBtn.isVisible()) {
 				await ffBtn.click();
 				await page.waitForTimeout(100);

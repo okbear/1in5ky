@@ -53,7 +53,7 @@
 				<div><span class="lbl">地域</span><b>{c.region.name}</b></div>
 				<div><span class="lbl">身分</span><b>{c.socialClass.name}</b></div>
 				<div><span class="lbl">主食</span><b>{c.region.dietStaple}</b></div>
-				<div><span class="lbl">家の暮らし向き</span><b>年 {c.annualIncomeUnits.toLocaleString('ja-JP')} {c.region.currencyUnit}（体感 約{formatYen(c.modernFeelJpy)}）</b></div>
+				<div><span class="lbl">家の暮らし向き</span><b>年 {c.annualIncomeUnits.toLocaleString('ja-JP')} {c.region.currencyUnit}（現代換算 約{formatYen(c.modernFeelJpy)}）</b></div>
 				<div><span class="lbl">平均寿命・識字率</span><b>約{e0}歳 · 識字率 {c.region.literacyRate}%</b></div>
 			</div>
 			<div class="odds">
