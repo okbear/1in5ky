@@ -148,10 +148,25 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		caption: '現代アフリカ・中東のクリニック',
 		sceneDetail: '明るい日差しと柔らかな幾何学柄おくるみ。'
 	},
-	mod_west: {
+	mod_europe: {
 		src: '/images/babies/mod_west.jpg',
-		caption: '現代欧米のバーススイート',
+		caption: '現代欧州のバースクリニック',
+		sceneDetail: '清潔な産科クリニックのコットと柔らかな綿のおくるみ。'
+	},
+	mod_north_america: {
+		src: '/images/babies/mod_west.jpg',
+		caption: '現代北米のバーススイート',
 		sceneDetail: '病院定番のストライプおくるみとニット帽。'
+	},
+	mod_latin_america: {
+		src: '/images/babies/mod_west.jpg',
+		caption: '現代ラテンアメリカの産院',
+		sceneDetail: '家族総出で駆けつけた公立病院の病室。'
+	},
+	mod_russia_cis: {
+		src: '/images/babies/mod_west.jpg',
+		caption: '現代ロシア・東欧の産科病院',
+		sceneDetail: '厳重に保温された厚手のキルティング毛布とおくるみ。'
 	}
 };
 

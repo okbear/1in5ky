@@ -121,9 +121,21 @@ export const GRAVE_DATA: Record<RegionId, GraveInfo> = {
 		title: '砂漠の現代墓地',
 		desc: '静寂が支配する夕暮れの砂丘、簡素な白い石碑。'
 	},
-	mod_west: {
-		title: '芝生墓地の記念銘板',
+	mod_europe: {
+		title: '歴史ある共同墓地の石碑',
+		desc: '手入れされた菩提樹の並木と、彫刻が施された石の墓碑。'
+	},
+	mod_north_america: {
+		title: 'メモリアルパークの芝生銘板',
 		desc: '青々とした芝生に埋め込まれたブロンズの板、手向けられた花束。'
+	},
+	mod_latin_america: {
+		title: '色鮮やかなカトリック墓地の廟',
+		desc: '白壁やパステルカラーの納骨堂、マリア像と色とりどりの造花。'
+	},
+	mod_russia_cis: {
+		title: 'ロシア正教の十字架と花崗岩碑',
+		desc: '故人の肖像が刻まれた黒い花崗岩、鉄柵で囲まれた白樺林の墓所。'
 	}
 };
 

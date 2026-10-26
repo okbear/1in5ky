@@ -843,15 +843,189 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     ]
   },
   {
-    "id": "mod_west_rustbelt_factory_closure",
+    "id": "mod_eur_berlin_wall_fall",
+    "title": "ベルリンの壁崩壊と東欧激変の熱狂",
+    "category": "historical_wave",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_europe"],
+    "minAge": 15,
+    "maxAge": 70,
+    "description": "1989年11月、東西を隔てていたベルリンの壁が群衆の手によって打ち倒された。国境ゲートが開放され、歓喜に沸く人々が検問所に押し寄せる。",
+    "factBox": "冷戦の象徴であったベルリンの壁の崩壊は、東欧革命を加速させ、翌年のドイツ再統一とソ連解体へとつながった。",
+    "choices": [
+      {
+        "id": "rush_to_checkpoint_celebrate",
+        "label": "壁の検問所へ駆けつけ、東西の市民たちと抱き合って自由を祝う",
+        "subLabel": "歴史の転換点に立ち会う高揚感",
+        "effects": {
+          "happiness": 25,
+          "relations": 20,
+          "knowledge": 15
+        },
+        "outcomeText": "見知らぬ人々とシャンパンを酌み交わし、壁の破片を記念に持ち帰って新たな時代の幕開けを実感した。"
+      },
+      {
+        "id": "prepare_for_economic_shock",
+        "label": "熱狂から一歩引き、東西統合による通貨統合や雇用の激変に備える",
+        "subLabel": "急速な資本主義化への警戒と準備",
+        "effects": {
+          "wealthDelta": 20,
+          "knowledge": 20
+        },
+        "outcomeText": "統合後の激しい物価変動や民営化の波を冷静に見極め、安定した経済基盤を守り抜いた。"
+      }
+    ]
+  },
+  {
+    "id": "mod_eur_heatwave_stone_apartment",
+    "title": "欧州大熱波とエアコンのない石造りアパート",
+    "category": "historical_wave",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_europe"],
+    "minAge": 10,
+    "maxAge": 85,
+    "description": "連日40度を超える観測史上最悪の熱波が西欧を襲った。石造りのアパートメントは熱を蓄え続け、エアコンのない室内は深夜になってもサウナのように蒸し風呂と化す。",
+    "factBox": "2003年夏の欧州熱波では、エアコン普及率の低さと高齢者の独居が重なり、フランスを中心に欧州全体で約7万人が死亡した。",
+    "choices": [
+      {
+        "id": "evacuate_to_fountain_cathedral",
+        "label": "濡れタオルを巻いて分厚い石壁の教会や地下鉄駅へ避難する",
+        "subLabel": "天然の涼しい避難所を求めて体温を下げる",
+        "effects": {
+          "health": 15,
+          "knowledge": 10,
+          "happiness": 5
+        },
+        "outcomeText": "荘厳な大聖堂の冷たい石畳の上で近隣の老人たちと身を寄せ合い、酷暑のピークを無事に乗り切った。"
+      },
+      {
+        "id": "endure_inside_darkened_room",
+        "label": "鎧戸（シャッター）を閉め切って薄暗い室内で安静にして耐える",
+        "subLabel": "直射日光を防ぐが熱がこもる密室の危険",
+        "survivalChance": 0.83,
+        "deathCause": "石造アパート内の重症熱中症・脱水症死",
+        "effects": {
+          "health": -20,
+          "happiness": -10
+        },
+        "outcomeText": "近隣のボランティアが配ってくれた氷水で首筋を冷やし、脱水症状で朦朧としながらも辛うじて生還した。",
+        "deathText": "夜間も30度を下回らない部屋で脱水症状に陥り、意識を失ったまま静かに心停止に至った。"
+      }
+    ]
+  },
+  {
+    "id": "mod_eur_schengen_migrant_crisis",
+    "title": "欧州難民危機と駅前広場の受け入れ支援",
+    "category": "historical_wave",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_europe"],
+    "minAge": 16,
+    "maxAge": 70,
+    "description": "中東や北アフリカの紛争地からバルカン半島を経て数百万人の難民・移民が押し寄せ、主要駅のプラットフォームは支援物資と混乱で溢れ返った。",
+    "factBox": "2015年の難民危機では、人道主義に基づく受け入れと各国内の治安懸念・右派台頭が激しく衝突し、欧州統合の根幹が揺らいだ。",
+    "choices": [
+      {
+        "id": "volunteer_food_medical_support",
+        "label": "市民ボランティアとして駅前で温かいスープと毛布を配る",
+        "subLabel": "人道的危機に対して草の根の支援を行う",
+        "effects": {
+          "relations": 20,
+          "happiness": 10,
+          "wealthDelta": -5
+        },
+        "outcomeText": "幼子を抱えた家族から涙ながらに感謝され、国境を越えた人間の絆を深く胸に刻んだ。"
+      },
+      {
+        "id": "distance_from_station_unrest",
+        "label": "治安の悪化を警戒して夜間の駅周辺を避け、自宅での生活を守る",
+        "subLabel": "混乱に巻き込まれず生活の安全を優先する",
+        "effects": {
+          "health": 5,
+          "happiness": -5
+        },
+        "outcomeText": "駅前での小競り合いや警察の規制に巻き込まれることなく、家族の平穏な日常を維持した。"
+      }
+    ]
+  },
+  {
+    "id": "mod_eur_yellow_vests_fuel_tax",
+    "title": "燃料税引き上げへの「黄色いベスト運動」と都市封鎖",
+    "category": "livelihood",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_europe"],
+    "minAge": 18,
+    "maxAge": 65,
+    "description": "環境対策を名目とした燃料税引き上げに怒った地方在住者たちが、蛍光色の黄色い安全ベストを着てラウンドアバウト（円形交差点）や大通りを封鎖した。",
+    "factBox": "2018年にフランスで始まったジレ・ジョーヌ（黄色いベスト）運動は、大都市エリートと車が不可欠な地方住民の経済格差への怒りを浮き彫りにした。",
+    "choices": [
+      {
+        "id": "join_roundabout_protest_rally",
+        "label": "黄色いベストを着て交差点の封鎖デモに参加し、生活苦を訴える",
+        "subLabel": "庶民の切実な怒りを掲げて連帯する",
+        "survivalChance": 0.9,
+        "deathCause": "デモ鎮圧の催涙ガス・ゴム弾弾圧による頭部外傷死",
+        "effects": {
+          "relations": 20,
+          "happiness": 15,
+          "wealthDelta": -10
+        },
+        "outcomeText": "仲間たちと焚き火を囲んで歌い、政府に燃料税引き上げの凍結を勝ち取る原動力となった。",
+        "deathText": "機動隊の催涙弾と放水銃の直撃を受けて転倒し、混乱する群衆に踏み倒されて息絶えた。"
+      },
+      {
+        "id": "carpool_to_commute_work",
+        "label": "デモを避けて同僚と相乗り通勤を行い、燃料費の高騰を耐え忍ぶ",
+        "subLabel": "衝突を避けて現実的な節約策で生活を維持する",
+        "effects": {
+          "wealthDelta": -5,
+          "relations": 10,
+          "knowledge": 10
+        },
+        "outcomeText": "封鎖道路を迂回しながら通勤を続け、職場の同僚との助け合いで物価高の波をしのいだ。"
+      }
+    ]
+  },
+  {
+    "id": "mod_eur_pension_reform_general_strike",
+    "title": "年金改革法案と公共交通の無期限ゼネスト",
+    "category": "common_sense",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_europe"],
+    "minAge": 25,
+    "maxAge": 70,
+    "description": "少子高齢化を理由とする年金支給開始年齢の2年引き上げに対し、主要労働組合が一斉に無期限ストライキに突入。鉄道も地下鉄も完全に麻痺した。",
+    "factBox": "欧州では手厚い福祉国家モデルを維持するための財政再建と、生活の質や早期引退の権利を守ろうとする市民運動の間で激しい衝突が繰り返されている。",
+    "choices": [
+      {
+        "id": "march_in_union_strike_parade",
+        "label": "労働組合のデモ行進に加わり、労働者の権利と生活防衛を叫ぶ",
+        "subLabel": "生活防衛のためにストライキで徹底抗戦する",
+        "effects": {
+          "relations": 15,
+          "happiness": 10,
+          "wealthDelta": -10
+        },
+        "outcomeText": "数十万人の大行進のなかで連帯の力を実感し、不当な社会保障削減に対する強い歯止めをかけた。"
+      },
+      {
+        "id": "switch_to_bicycle_remote_work",
+        "label": "自転車通勤と在宅勤務に切り替え、業務の遅延を最小限に抑える",
+        "subLabel": "都市機能停止のなかで柔軟に自分の仕事をやり抜く",
+        "effects": {
+          "health": 15,
+          "wealthDelta": 10,
+          "knowledge": 10
+        },
+        "outcomeText": "スト期間中も健康的に移動手段を確保し、取引先からの信頼を高めて昇進の足がかりとした。"
+      }
+    ]
+  },
+  {
+    "id": "mod_na_rustbelt_factory_closure",
     "title": "ラストベルトの自動車工場閉鎖と医療保険の喪失",
     "category": "historical_wave",
-    "eraIds": [
-      "modern"
-    ],
-    "regionIds": [
-      "mod_west"
-    ],
+    "eraIds": ["modern"],
+    "regionIds": ["mod_north_america"],
     "minAge": 25,
     "maxAge": 60,
     "description": "米国中西部の工業都市で、親の代から勤めてきた自動車部品工場が海外移転のため突然閉鎖された。組合の年金と医療保険を同時に失い、住宅ローンの督促状が届く。",
@@ -882,15 +1056,11 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     ]
   },
   {
-    "id": "mod_west_opioid_painkiller_habit",
+    "id": "mod_na_opioid_painkiller_habit",
     "title": "処方鎮痛薬オピオイドの過剰処方と依存症",
     "category": "common_sense",
-    "eraIds": [
-      "modern"
-    ],
-    "regionIds": [
-      "mod_west"
-    ],
+    "eraIds": ["modern"],
+    "regionIds": ["mod_north_america"],
     "minAge": 18,
     "maxAge": 65,
     "description": "工場での作業で痛めた慢性腰痛に対し、クリニックの医師から「中毒性のない安全な新薬」としてオキシコドン（オピオイド）が処方された。薬が切れると激しい不安と痛みに襲われる。",
@@ -924,15 +1094,127 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     ]
   },
   {
-    "id": "mod_west_favela_police_raid",
+    "id": "mod_na_california_wildfire_smoke",
+    "title": "カリフォルニア山火事の火の手と緊急避難",
+    "category": "historical_wave",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_north_america"],
+    "minAge": 12,
+    "maxAge": 70,
+    "description": "乾燥した強風（サンタアナ風）に煽られた巨大山火事（メガファイア）が丘を越えて住宅街へ迫ってきた。空はオレンジ色に染まり、携帯電話に即時避難命令のアラートが鳴り響く。",
+    "factBox": "地球温暖化と熱波によりカリフォルニアやオーストラリアで森林火災が極大化し、数万ヘクタールが一夜にして焼失する災害が多発している。",
+    "choices": [
+      {
+        "id": "pack_go_bag_drive_highway",
+        "label": "非常持ち出し袋とペットを車に乗せ、渋滞するハイウェイを脱出する",
+        "subLabel": "家財を捨てて火災旋風から車で逃げ切る",
+        "survivalChance": 0.84,
+        "deathCause": "山火事の火砕流・炎の壁に囲まれた車内焼死",
+        "effects": {
+          "wealthDelta": -40,
+          "health": 5,
+          "happiness": 5
+        },
+        "outcomeText": "煙に巻かれながらもハイウェイを走り抜け、海沿いの避難所に無事に辿り着いた。",
+        "deathText": "道路の両側が炎に塞がれて車列が立ち往生し、猛烈な熱風と火炎に呑み込まれて落命した。"
+      },
+      {
+        "id": "spray_roof_with_garden_hose",
+        "label": "ホースで自宅の屋根に水を撒き、飛び火による延焼を防ごうとする",
+        "subLabel": "我が家を守ろうとするが避難が遅れる極めて危険な賭け",
+        "survivalChance": 0.7,
+        "deathCause": "屋根への飛び火消火中の煙吸入・熱傷死",
+        "effects": {
+          "wealthDelta": 30,
+          "health": -20
+        },
+        "outcomeText": "奇跡的に風向きが変わり、水浸しの我が家だけが焼け残って家屋を守り抜いた。",
+        "deathText": "急速に迫った火災旋風の熱波に呼吸器を焼かれ、屋根から転落して炎のなかに倒れた。"
+      }
+    ]
+  },
+  {
+    "id": "mod_na_subprime_mortgage_foreclosure",
+    "title": "サブプライムローン破綻と住宅差し押さえ通告",
+    "category": "livelihood",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_north_america"],
+    "minAge": 22,
+    "maxAge": 65,
+    "description": "頭金ゼロの変動金利住宅ローンで念願のマイホームを購入したが、住宅バブルの崩壊で金利が急騰。住宅価値がローン残高を下回り、銀行から立ち退き勧告が届いた。",
+    "factBox": "2007〜2008年のサブプライム住宅ローン危機は、リーマン・ショックの引き金となり、米国で数百万人の中間層が住まいを失った。",
+    "choices": [
+      {
+        "id": "hand_over_keys_rent_apartment",
+        "label": "家を手放して鍵を銀行に郵送し、安価な賃貸アパートへ身軽に移住する",
+        "subLabel": "信用スコアの低下を受け入れ債務の泥沼を脱出する",
+        "effects": {
+          "wealthDelta": -20,
+          "happiness": 10,
+          "knowledge": 15
+        },
+        "outcomeText": "多額の借金から解放され、質素ながら家族との平穏な暮らしを一から再構築した。"
+      },
+      {
+        "id": "fight_foreclosure_with_predatory_loan",
+        "label": "家を守るため、高利の短期借入を重ねてローンの返済を続けようとする",
+        "subLabel": "執念でマイホームにしがみつくが多重債務のリスク",
+        "effects": {
+          "wealthDelta": -50,
+          "health": -15,
+          "happiness": -20
+        },
+        "outcomeText": "昼夜兼行の掛け持ち労働で辛うじて競売を遅らせたが、心身ともに極度の疲労に追い込まれた。"
+      }
+    ]
+  },
+  {
+    "id": "mod_na_hurricane_katrina_levee",
+    "title": "巨大ハリケーン・カトリーナと堤防決壊の水没",
+    "category": "historical_wave",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_north_america"],
+    "minAge": 8,
+    "maxAge": 75,
+    "description": "カテゴリー5の巨大ハリケーンが湾岸都市を直撃し、運河の防潮堤が決壊。海抜ゼロメートルの市街地に濁流が一気に押し寄せ、街の8割が水没した。",
+    "factBox": "2005年のハリケーン・カトリーナでは、老朽化した堤防の決壊と救助の遅れにより、ニューオーリンズを中心に1,800人以上が犠牲となった。",
+    "choices": [
+      {
+        "id": "chop_through_roof_to_attic",
+        "label": "屋根裏へ逃げ込み、手斧で屋根に穴を開けて救援ヘリを待つ",
+        "subLabel": "天井に閉じ込められる水死リスクを回避して脱出路を作る",
+        "survivalChance": 0.85,
+        "deathCause": "屋根裏への浸水による溺水窒息死",
+        "effects": {
+          "health": 10,
+          "relations": 15,
+          "wealthDelta": -35
+        },
+        "outcomeText": "照りつける太陽のもと屋根の上でSOSの布を掲げ、沿岸警備隊のヘリに吊り上げられて救助された。",
+        "deathText": "水面上昇のスピードに追いつけず屋根裏に閉じ込められ、濁流のなかで逃げ場を失って溺死した。"
+      },
+      {
+        "id": "wade_through_flood_to_superdome",
+        "label": "胸まで浸かる汚水の中を歩き、避難所に指定された巨大スタジアムへ向かう",
+        "subLabel": "感染症と略奪の危険があるなか避難所を目指す",
+        "survivalChance": 0.78,
+        "deathCause": "洪水汚水の細菌感染症（レプトスピラ症）による敗血症死",
+        "effects": {
+          "health": -20,
+          "happiness": -15,
+          "wealthDelta": -20
+        },
+        "outcomeText": "停電と水不足で地獄のような環境のスタジアムで数日間耐え抜き、州外への移送バスに乗車できた。",
+        "deathText": "汚水に混ざった有毒物質と病原菌で足の切り傷から激しい敗血症を発症し、治療を受けられず絶命した。"
+      }
+    ]
+  },
+  {
+    "id": "mod_lat_favela_police_raid",
     "title": "リオデジャネイロのファヴェーラ（貧民街）銃撃戦",
     "category": "historical_wave",
-    "eraIds": [
-      "modern"
-    ],
-    "regionIds": [
-      "mod_west"
-    ],
+    "eraIds": ["modern"],
+    "regionIds": ["mod_latin_america"],
     "minAge": 10,
     "maxAge": 60,
     "description": "丘の上に広がるファヴェーラで、重武装した軍警察の装甲車（カヴェイラォン）と麻薬密売組織の銃撃戦が始まった。自動小銃の銃弾が薄いトタン屋根を貫通して降り注ぐ。",
@@ -969,87 +1251,340 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     ]
   },
   {
-    "id": "mod_west_california_wildfire_smoke",
-    "title": "カリフォルニア山火事の火の手と緊急避難",
-    "category": "historical_wave",
-    "eraIds": [
-      "modern"
-    ],
-    "regionIds": [
-      "mod_west"
-    ],
-    "minAge": 12,
+    "id": "mod_lat_hyperinflation_currency",
+    "title": "ハイパーインフレと日銭の物資買い出し競争",
+    "category": "common_sense",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_latin_america"],
+    "minAge": 15,
     "maxAge": 70,
-    "description": "乾燥した強風（サンタアナ風）に煽られた巨大山火事（メガファイア）が丘を越えて住宅街へ迫ってきた。空はオレンジ色に染まり、携帯電話に即時避難命令のアラートが鳴り響く。",
-    "factBox": "地球温暖化と熱波によりカリフォルニアやオーストラリアで森林火災が極大化し、数万ヘクタールが一夜にして焼失する災害が多発している。",
+    "description": "月間インフレ率が数百パーセントに達し、朝と夕方でスーパーの値札が倍に書き換えられる。給料を受け取った瞬間、紙屑になる前に食料品店へ全力疾走しなければならない。",
+    "factBox": "1980〜90年代のラテンアメリカ（ブラジル・アルゼンチン・ボリビアなど）では対外債務と財政赤字により天文学的ハイパーインフレが頻発した。",
     "choices": [
       {
-        "id": "pack_go_bag_drive_highway",
-        "label": "非常持ち出し袋とペットを車に乗せ、渋滞するハイウェイを脱出する",
-        "subLabel": "家財を捨てて火災旋風から車で逃げ切る",
-        "survivalChance": 0.84,
-        "deathCause": "山火事の火砕流・炎の壁に囲まれた車内焼死",
+        "id": "convert_salary_to_canned_food_instantly",
+        "label": "給料袋を抱えて市場へ走り、豆や米、缶詰など保存食を即座に買い占める",
+        "subLabel": "現金を即座に現物資産へ転換して価値を守る",
         "effects": {
-          "wealthDelta": -40,
-          "health": 5,
-          "happiness": 5
+          "wealthDelta": 15,
+          "health": 10,
+          "knowledge": 15
         },
-        "outcomeText": "煙に巻かれながらもハイウェイを走り抜け、海沿いの避難所に無事に辿り着いた。",
-        "deathText": "道路の両側が炎に塞がれて車列が立ち往生し、猛烈な熱風と火炎に呑み込まれて落命した。"
+        "outcomeText": "値上げスタンプが押される前に数か月分の主食を確保し、一家の飢えを完全に防いだ。"
       },
       {
-        "id": "spray_roof_with_garden_hose",
-        "label": "ホースで自宅の屋根に水を撒き、飛び火による延焼を防ごうとする",
-        "subLabel": "我が家を守ろうとするが避難が遅れる極めて危険な賭け",
-        "survivalChance": 0.7,
-        "deathCause": "屋根への飛び火消火中の煙吸入・熱傷死",
+        "id": "exchange_black_market_dollars",
+        "label": "裏通りの両替商で違法な闇レートの米ドル紙幣へ換金する",
+        "subLabel": "警察の手入れリスクを冒して米ドルで資産を保全する",
         "effects": {
           "wealthDelta": 30,
-          "health": -20
+          "happiness": 10,
+          "relations": -10
         },
-        "outcomeText": "奇跡的に風向きが変わり、水浸しの我が家だけが焼け残って家屋を守り抜いた。",
-        "deathText": "急速に迫った火災旋風の熱波に呼吸器を焼かれ、屋根から転落して炎のなかに倒れた。"
+        "outcomeText": "警察の目を盗んで手に入れたドル札をマットレスの下に隠し、インフレ下で資産価値を何倍にも増やした。"
       }
     ]
   },
   {
-    "id": "mod_west_heatdome_powergrid",
-    "title": "48度熱波（ヒートドーム）と広域送電網の停止",
+    "id": "mod_lat_military_dictatorship_curfew",
+    "title": "軍事政権の戒厳令と「夜の連行」の影",
     "category": "historical_wave",
-    "eraIds": [
-      "modern"
-    ],
-    "regionIds": [
-      "mod_west"
-    ],
-    "minAge": 8,
-    "maxAge": 80,
-    "description": "停滞する高気圧（ヒートドーム）により気温が48度に達し、エアコンの一斉使用で送電網が過負荷となり大停電が発生した。室内の温度が急上昇し、エアコンが動かない密室の危機に陥る。",
-    "factBox": "気候変動により熱波の強度と頻度が増大し、電力網の崩壊と熱中症による大量死（気候ショック）が新たな脅威となっている。",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_latin_america"],
+    "minAge": 16,
+    "maxAge": 65,
+    "description": "クーデターで実権を握った軍事政権が夜間外出禁止令を発令。反体制派とみなされた学生や労働者がナンバープレートのない乗用車（ファルコン）に拉致され行方不明になっている。",
+    "factBox": "1970年代の南米諸国（アルゼンチン、チリ、ウルグアイ等）では軍事政権による「汚い戦争」やコンドル作戦により数万人の市民が非合法に殺害・失踪させられた。",
     "choices": [
       {
-        "id": "seek_cool_underground_shelter",
-        "label": "冷たい地下室に避難し、濡れタオルを首に巻いて扇風機代わりに団扇を使う",
-        "subLabel": "地下の地熱の低さを利用して体温上昇を防ぐ",
+        "id": "hide_banned_books_stay_silent",
+        "label": "社会主義の書物やレコードを庭に埋めて焼き、一切の政治活動から身を引く",
+        "subLabel": "当局のブラックリスト掲載を徹底的に避けて生き延びる",
         "effects": {
-          "health": 15,
-          "knowledge": 15,
-          "happiness": 5
+          "health": 10,
+          "happiness": -15,
+          "knowledge": 10
         },
-        "outcomeText": "地下室のひんやりした床で安静を保ち、夕暮れに送電が復旧するまで無事に乗り切った。"
+        "outcomeText": "疑わしい私物をすべて処分して沈黙を貫き、秘密警察の夜間家宅捜索を平穏にやり過ごした。"
       },
       {
-        "id": "endure_second_floor_bedroom",
-        "label": "電気が戻ると信じて2階の寝室で横たわり、耐え忍ぶ",
-        "subLabel": "屋根からの輻射熱で室温が50度近くまで上昇する危険",
-        "survivalChance": 0.79,
-        "deathCause": "ヒートドーム停電下の室内熱中症・多臓器不全死",
+        "id": "shelter_dissident_student_relative",
+        "label": "追われている親戚の医学生を床下の物置に匿い、国外脱出を手引きする",
+        "subLabel": "血縁の命を救おうとするが連座拷問の極大リスク",
+        "survivalChance": 0.72,
+        "deathCause": "軍事政権秘密警察による連行・拷問死（強制失踪）",
         "effects": {
-          "health": -25,
+          "relations": 30,
+          "happiness": 20,
+          "wealthDelta": -20
+        },
+        "outcomeText": "司祭の協力で親戚を外国大使館へ滑り込ませることに成功し、奇跡的に一家の身の安全も保たれた。",
+        "deathText": "密告により未明に武装部隊が突入し、目隠しをされて秘密収容所へ連行され二度と戻らなかった。"
+      }
+    ]
+  },
+  {
+    "id": "mod_lat_amazon_deforestation_conflict",
+    "title": "アマゾン熱帯雨林開発と先住民・開拓民の衝突",
+    "category": "livelihood",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_latin_america"],
+    "minAge": 15,
+    "maxAge": 60,
+    "description": "大豆農園と大牧場を広げる巨大アグリビジネスのブルドーザーが森林を焼き払い、伝統的なゴム採取民や先住民のコミュニティに不法侵入してきた。",
+    "factBox": "アマゾン熱帯雨林の開発を巡っては、森林保護を訴えるゴム採取民指導者シコ・メンデスが暗殺されるなど、暴力的な土地争奪が続いている。",
+    "choices": [
+      {
+        "id": "form_human_chain_empate",
+        "label": "仲間とともにチェーンソーの前に立ちはだかり、非暴力で伐採を阻止する",
+        "subLabel": "伝統的森林防衛（エンパテ運動）で森林を守る",
+        "survivalChance": 0.82,
+        "deathCause": "土地開発業者の雇った殺し屋（ピストレイロ）による銃殺",
+        "effects": {
+          "relations": 25,
+          "knowledge": 15,
+          "happiness": 15
+        },
+        "outcomeText": "国際メディアの注目を集めて開発業者を撤退させ、持続可能な保護区の設立を勝ち取った。",
+        "deathText": "抗議集会からの帰り道、森林の茂みから放たれた雇われガンマンの凶弾に倒れた。"
+      },
+      {
+        "id": "relocate_to_urban_cooperative",
+        "label": "森林での争いを避け、近隣都市のアマゾン特産品加工組合へ転職する",
+        "subLabel": "命の危険を避けて安全な都市型アグロフォレストリーに関わる",
+        "effects": {
+          "wealthDelta": 15,
+          "health": 10,
+          "happiness": 5
+        },
+        "outcomeText": "アサイーやガラナの加工流通に従事し、森林を守りながら安定した現金収入を確立した。"
+      }
+    ]
+  },
+  {
+    "id": "mod_lat_mexico_cartel_checkpoint",
+    "title": "麻薬カルテルの私設検問所と夜間高速道路",
+    "category": "common_sense",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_latin_america"],
+    "minAge": 14,
+    "maxAge": 65,
+    "description": "長距離バスで州境を越える途中、自動小銃とタクティカルベストで完全武装したカルテルの私設検問所に遭遇。車内に不気味な静寂が広がる。",
+    "factBox": "2000年代以降のメキシコ麻薬戦争では、カルテル同士の縄張り争いと治安部隊との交戦により数十万人以上の民間人が犠牲となった。",
+    "choices": [
+      {
+        "id": "lower_eyes_hand_over_wallet",
+        "label": "目を合わせず、財布の中の現金をすべて差し出して恭順の意を示す",
+        "subLabel": "プライドを捨てて要求に従い通過を見逃してもらう",
+        "survivalChance": 0.88,
+        "deathCause": "カルテル検問所での無差別射殺・拉致殺害",
+        "effects": {
+          "wealthDelta": -20,
+          "health": 5,
+          "happiness": -10
+        },
+        "outcomeText": "現金と時計を奪われたものの、危害を加えられることなくバスの再出発を許された。",
+        "deathText": "対立組織の密通者と誤認され、バスから引きずり降ろされて路肩で銃殺された。"
+      },
+      {
+        "id": "show_local_artisan_id_speak_dialect",
+        "label": "地元の職人身分証を落ち着いて提示し、この土地の住人であることを示す",
+        "subLabel": "地縁と落ち着いた態度で敵意がないことを証明する",
+        "survivalChance": 0.85,
+        "deathCause": "カルテル私設検問所での強盗銃撃死",
+        "effects": {
+          "knowledge": 15,
+          "relations": 10,
+          "wealthDelta": -5
+        },
+        "outcomeText": "顔役の名前を出して冷静に対応し、所持品も奪われることなく無事に通過できた。",
+        "deathText": "検問のリーダーがドラッグで錯乱しており、身分証を出そうとした手を合図と誤解され乱射された。"
+      }
+    ]
+  },
+  {
+    "id": "mod_rus_chernobyl_fallout",
+    "title": "チェルノブイリ原発事故と放射性雲の飛来",
+    "category": "historical_wave",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_russia_cis"],
+    "minAge": 5,
+    "maxAge": 70,
+    "description": "1986年4月末、数百キロ離れた原子力発電所で大爆発が発生した。当局は事故を隠蔽しているが、空に金属の味が広がり、ガイガーカウンターが異常な数値を刻んでいる。",
+    "factBox": "チェルノブイリ原発4号機の炉心溶融爆発事故では、大量の放射性物質が欧州広域に拡散し、ソ連の情報公開（グラスノスチ）への決定打となった。",
+    "choices": [
+      {
+        "id": "take_iodine_evacuate_south",
+        "label": "噂を信じて薬局でヨウ素剤を確保し、子供を連れて南方の親戚宅へ脱出する",
+        "subLabel": "甲状腺被ばくを防ぎ放射能プルームから逃れる",
+        "effects": {
+          "health": 20,
+          "knowledge": 20,
+          "wealthDelta": -15
+        },
+        "outcomeText": "当局の公式発表より早く汚染地域を脱出し、子供たちの健康被害を完全に防ぐことができた。"
+      },
+      {
+        "id": "trust_official_may_day_parade",
+        "label": "当局の「安全宣言」を信じ、予定通りメーデーの祝賀パレードに参加する",
+        "subLabel": "公式発表を信じるが降下放射性降下物を直浴びするリスク",
+        "survivalChance": 0.8,
+        "deathCause": "高線量放射線被曝による急性放射線障害・急性白血病死",
+        "effects": {
+          "health": -35,
+          "happiness": -20
+        },
+        "outcomeText": "甲状腺の異常を抱え長期の定期検診を余儀なくされたが、適切な治療で成人まで生き抜いた。",
+        "deathText": "大量の放射性降下物を浴びて骨髄機能不全に陥り、数年後に急性の白血病を発症して若くして命を落とした。"
+      }
+    ]
+  },
+  {
+    "id": "mod_rus_ussr_collapse_voucher",
+    "title": "ソ連崩壊と国有財産バウチャーの投げ売り",
+    "category": "historical_wave",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_russia_cis"],
+    "minAge": 18,
+    "maxAge": 70,
+    "description": "1991年末に赤旗がクレムリンから降ろされ、ソ連が消滅した。急進的な民営化政策（ショック療法）により、国民一人ひとりに国有企業の民営化小切手（バウチャー）が配られたが、日々のパンにも事欠く。",
+    "factBox": "ソ連崩壊後のロシアではハイパーインフレと急激な資本主義化により、庶民のバウチャーを買い占めたオリガルヒ（新興財閥）が巨万の富を独占した。",
+    "choices": [
+      {
+        "id": "pool_vouchers_invest_gas_utility",
+        "label": "目先のウォッカ代にせず、親族のバウチャーを集めて天然ガス企業の株式に変える",
+        "subLabel": "新体制の基幹インフラ株に賭けて長期保有する",
+        "effects": {
+          "wealthDelta": 45,
+          "knowledge": 25,
+          "happiness": 20
+        },
+        "outcomeText": "保有したガス株が将来の巨大企業（ガスプロム）となり、巨額の配当金で一族の豊かな生活が約束された。"
+      },
+      {
+        "id": "sell_voucher_for_sausage_bread",
+        "label": "駅前広場の怪しいブローカーにバウチャーを売り払い、即座に肉とパンを買う",
+        "subLabel": "今日を生き抜くために食料を確保する現実的選択",
+        "effects": {
+          "wealthDelta": 5,
+          "health": 10,
+          "happiness": -10
+        },
+        "outcomeText": "その冬の飢えをしのぐことはできたが、後に莫大な価値を持った財産を失った喪失感を噛み締めた。"
+      }
+    ]
+  },
+  {
+    "id": "mod_rus_chechen_war_draft",
+    "title": "チェチェン紛争の徴兵令と母の会の救出運動",
+    "category": "historical_wave",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_russia_cis"],
+    "minAge": 17,
+    "maxAge": 55,
+    "description": "分離独立を巡るカフカス地方の内戦に、ろくな訓練も受けない徴兵兵士たちが最前線の市街戦（グロズヌイ突入）へ送り込まれ、おびただしい数の戦死者が出ている。",
+    "factBox": "1990年代の第一次・第二次チェチェン紛争では、装備も士気も不十分な若年兵が過酷な戦闘に巻き込まれ、「ロシア兵士の母の委員会」が反戦運動を展開した。",
+    "choices": [
+      {
+        "id": "bribe_military_doctor_deferment",
+        "label": "軍医に貯金を渡して健康診断で不適格の診断書を取り、徴兵を免除してもらう",
+        "subLabel": "腐敗を利用して命がけの前線送りから逃れる",
+        "effects": {
+          "wealthDelta": -30,
+          "health": 10,
+          "happiness": 15
+        },
+        "outcomeText": "徴兵猶予を勝ち取って大学へ復学し、最前線の悲劇を免れて平穏な人生を歩んだ。"
+      },
+      {
+        "id": "deploy_as_conscript_driver",
+        "label": "運命を受け入れて入隊し、後方の補給トラック部隊の運転手として任務に就く",
+        "subLabel": "前線での伏撃を警戒しながら任務を全うする",
+        "survivalChance": 0.74,
+        "deathCause": "山岳道路での対戦車地雷・狙撃による戦死",
+        "effects": {
+          "relations": 15,
+          "health": -15,
           "happiness": -15
         },
-        "outcomeText": "救急隊に発見されて氷風呂で冷やされ、重度の熱中症から辛うじて一命を取り留めた。",
-        "deathText": "体温調節機能が破綻して深部体温が42度を超え、ベッドの上で意識を失い多臓器不全で死亡した。"
+        "outcomeText": "地雷の恐怖に怯えながらも生きて除隊の日を迎え、故郷の家族の待つ家へ帰還した。",
+        "deathText": "山岳峡谷の道路で補給車列がロケット弾の奇襲を受け、炎上するトラックのなかで帰らぬ人となった。"
+      }
+    ]
+  },
+  {
+    "id": "mod_rus_siberian_blizzard_district_heating",
+    "title": "氷点下45度の大寒波と地域集中暖房パイプの破裂",
+    "category": "common_sense",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_russia_cis"],
+    "minAge": 8,
+    "maxAge": 80,
+    "description": "シベリアからの猛烈な寒波で気温が氷点下45度まで降下。老朽化した都市の地域集中暖房（ツェントラリノエ・オトプレニエ）の温水本管が破裂し、高層団地全棟の暖房が停止した。",
+    "factBox": "ロシアや旧ソ連諸国の都市では熱供給を一箇所の火力発電所から温水パイプで全戸へ送る仕組みが多く、本管が凍結破裂すると都市全体が凍死の危機に瀕する。",
+    "choices": [
+      {
+        "id": "build_potbelly_stove_brick_chimney",
+        "label": "自室にレンガと鉄板で即席の薪ストーブ（ブルジョイカ）を組み、家具を燃やす",
+        "subLabel": "室内に暖を取り煙突から排煙して凍死を防ぐ",
+        "survivalChance": 0.86,
+        "deathCause": "即席ストーブの不完全燃焼による一酸化炭素中毒死",
+        "effects": {
+          "health": 10,
+          "knowledge": 15,
+          "wealthDelta": -15
+        },
+        "outcomeText": "窓から煙突を出して火を焚き続け、団地じゅうが凍りつく一週間を家族全員で生き延びた。",
+        "deathText": "換気口が凍結で塞がれたことに気づかず、就寝中に充満した一酸化炭素で静かに永遠の眠りについた。"
+      },
+      {
+        "id": "evacuate_to_underground_metro_station",
+        "label": "防寒着を何重にも着込み、地熱と非常電源で温かい地下鉄駅へ避難する",
+        "subLabel": "寒風吹きすさぶ地上を脱出し地下インフラに身を寄せる",
+        "effects": {
+          "relations": 15,
+          "health": 5,
+          "happiness": 5
+        },
+        "outcomeText": "深い地下鉄駅のコンコースに市民たちと毛布を持ち寄り、温かい紅茶を分け合って寒波をやり過ごした。"
+      }
+    ]
+  },
+  {
+    "id": "mod_rus_90s_gangster_extortion",
+    "title": "90年代の無法地帯・ロシアンマフィアのみかじめ料要求",
+    "category": "livelihood",
+    "eraIds": ["modern"],
+    "regionIds": ["mod_russia_cis"],
+    "minAge": 20,
+    "maxAge": 60,
+    "description": "小さな自動車修理工場を開業した途端、革ジャンを着た屈強なロシアンマフィア（ブラトヴァ）がやって来て「屋根（クルィーシャ＝保護）」の代金を要求してきた。",
+    "factBox": "ソ連崩壊直後のロシアでは警察組織が機能不全に陥り、民間ビジネスのほぼ全土が組織犯罪グループによるみかじめ料徴収や武力抗争にさらされた。",
+    "choices": [
+      {
+        "id": "pay_fixed_krysha_protection_fee",
+        "label": "割り切って規定の保護料を支払い、地域の他ギャングからの盾として利用する",
+        "subLabel": "無法時代の「税金」として受け入れ商売の継続を優先する",
+        "effects": {
+          "wealthDelta": -20,
+          "relations": 15,
+          "knowledge": 10
+        },
+        "outcomeText": "約束通り他のチンピラから守ってもらい、安定して工場の操業を続けて地域で確固たる信用を得た。"
+      },
+      {
+        "id": "refuse_and_hire_former_kgb_security",
+        "label": "脅迫を毅然と拒絶し、解体されたKGB出身の警備会社と契約して対抗する",
+        "subLabel": "力にはプロの力で対抗する危険な駆け引き",
+        "survivalChance": 0.77,
+        "deathCause": "マフィアによる報復の自動車爆弾・銃撃暗殺",
+        "effects": {
+          "wealthDelta": -40,
+          "knowledge": 20,
+          "happiness": 10
+        },
+        "outcomeText": "元特殊部隊の警備員がマフィアを追い払い、相手組織も手出しを諦めて撤退していった。",
+        "deathText": "工場の通用門を出たところで待ち伏せていた黒塗り車からサブマシンガンで銃撃され命を落とした。"
       }
     ]
   }

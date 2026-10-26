@@ -33,7 +33,10 @@ export type RegionId =
 	| 'mod_china_ea'
 	| 'mod_asia'
 	| 'mod_africa_me'
-	| 'mod_west';
+	| 'mod_europe'
+	| 'mod_north_america'
+	| 'mod_latin_america'
+	| 'mod_russia_cis';
 export type SocialClassId =
 	| 'enslaved'
 	| 'peasant'
