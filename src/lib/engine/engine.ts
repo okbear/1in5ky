@@ -273,7 +273,67 @@ const spawnChild = (c: CharacterState, rng: Rng): void => {
 	push(c, `子の${child.name}が生まれた。`, 'warm');
 };
 
-const familyTick = (c: CharacterState, rng: Rng): void => {
+const makeFamilyDeathEvent = (c: CharacterState, f: FamilyMember, childAge?: number): DecisionEvent => {
+	const isChild = f.relation === '子';
+	const isParent = f.relation === '父' || f.relation === '母';
+	const isSpouse = f.relation === '妻' || f.relation === '夫';
+
+	let title = `${f.relation}の死（${f.name}）`;
+	let description = '';
+	let factBox = '';
+	let choiceLabel = '';
+	let choiceSubLabel = '';
+	let outcomeText = '';
+	if (isChild && childAge !== undefined) {
+		title = `我が子の死（${f.name}）`;
+		description = `${childAge}歳になった子の${f.name}が、急な熱病に冒されて小さな息を引き取った。家族とともに亡骸を抱きしめ、早すぎる別れを涙とともに見送った。`;
+		factBox = `この時代・地域（${c.region.name}）の5歳未満児死亡率は約${Math.round(c.region.under5Mortality / 10)}%。近代以前、生まれた子どもの3〜5割が成人を迎えられずに命を落としていた。`;
+		choiceLabel = '亡骸を埋葬し、静かに祈りを捧げる';
+		choiceSubLabel = '深い悲しみを抱えながらも前を向く';
+		outcomeText = `冷たくなった${f.name}を土に還し、名もなき小石を墓標として置いた。悲しみを抱えながらも残された家族のために立ち上がった。`;
+	} else if (isParent) {
+		description = `これまで家を支えてくれた${f.relation}の${f.name}が病に倒れ、息を引き取った。家族皆で枕元に集まり、長年の感謝と別れを告げた。`;
+		factBox = `この時代・地域（${c.region.name}）の15歳時平均余命は約${c.region.lifeExpectancyAt15}歳。抗生物質や近代公衆衛生のない時代、成人の死も日常的な悲劇であった。`;
+		choiceLabel = `${f.relation}の教えを胸に、弔いを執り行う`;
+		choiceSubLabel = '親の遺志を受け継ぎ、家の役目を引き継ぐ';
+		outcomeText = `${f.relation}の${f.name}を弔い、家族とともに別れを惜しんだ。自分自身が家を支える番になったことを強く自覚した。`;
+	} else if (isSpouse) {
+		description = `苦楽をともにしてきた${f.relation}の${f.name}が病に倒れ、帰らぬ人となった。一人残された部屋に深い静寂が広がる。`;
+		factBox = `過酷な労働環境や栄養状態、感染症により、人生の盛りの時期に配偶者に先立たれることは決して珍しくなかった。`;
+		choiceLabel = `${f.relation}との日々を胸に刻み、見送る`;
+		choiceSubLabel = '喪失の痛みに耐え、残された日々を生きる';
+		outcomeText = `${f.relation}の${f.name}を静かに見送った。ぽっかりと心に空いた穴を抱えながらも、残された日々を懸命に生きることを誓った。`;
+	} else {
+		description = `幼い頃からともに育ってきた${f.relation}の${f.name}が亡くなった。過酷な暮らしのなかで、またひとりの身内が世を去った。`;
+		factBox = `この時代、ひとつの家族から何人もの兄弟姉妹が成人前に命を落とすことはごくありふれた光景だった。`;
+		choiceLabel = '思い出を胸に、静かに手を合わせる';
+		choiceSubLabel = '生きていく厳しさを噛み締め、冥福を祈る';
+		outcomeText = `${f.relation}の${f.name}を埋葬し、静かに手を合わせた。幼き日の面影を胸に抱きながら、その冥福を祈った。`;
+	}
+
+	return {
+		id: `family_loss_${f.relation}_${f.name}_${c.age}`,
+		title,
+		category: 'livelihood',
+		isFamilyLoss: true,
+		minAge: 0,
+		maxAge: 99,
+		description,
+		factBox,
+		choices: [
+			{
+				id: 'mourn_and_continue',
+				label: choiceLabel,
+				subLabel: choiceSubLabel,
+				effects: {},
+				outcomeText
+			}
+		]
+	};
+};
+
+const familyTick = (c: CharacterState, rng: Rng): DecisionEvent | null => {
+	let firstLossEvent: DecisionEvent | null = null;
 	for (const f of c.family) {
 		if (!f.alive) continue;
 		if (f.relation === '子' && f.birthPlayerAge !== undefined) {
@@ -284,6 +344,9 @@ const familyTick = (c: CharacterState, rng: Rng): void => {
 				c.happiness = clamp(c.happiness - 18, 0, 100);
 				c.relations = clamp(c.relations - 8, 0, 100);
 				push(c, `子の${f.name}を、${childAge - 1}歳で亡くした。`, 'loss', `当時の5歳未満児死亡率は約${Math.round(c.region.under5Mortality / 10)}%。`);
+				if (!firstLossEvent) {
+					firstLossEvent = makeFamilyDeathEvent(c, f, childAge - 1);
+				}
 			}
 			continue;
 		}
@@ -295,9 +358,12 @@ const familyTick = (c: CharacterState, rng: Rng): void => {
 			c.relations = clamp(c.relations - 8, 0, 100);
 			c.happiness = clamp(c.happiness - 8, 0, 100);
 			push(c, `${f.relation}の${f.name}が亡くなった。`, 'loss');
+			if (!firstLossEvent) {
+				firstLossEvent = makeFamilyDeathEvent(c, f);
+			}
 		}
 	}
-
+	return firstLossEvent;
 };
 
 export const stepYear = (c: CharacterState, rng: Rng = Math.random): StepResult => {
@@ -334,7 +400,10 @@ export const stepYear = (c: CharacterState, rng: Rng = Math.random): StepResult 
 	const fl = flavor(c, rng);
 	if (fl) push(c, fl.text, 'normal', fl.fact);
 
-	familyTick(c, rng);
+	const familyDeath = familyTick(c, rng);
+	if (familyDeath) {
+		return { died: false, ended: false, decision: familyDeath };
+	}
 	chronicleTick(c, rng);
 
 	// 1. 歴史の大波（確定年代イベントは高確率、時代共通イベントは適度な確率で発生）
@@ -406,7 +475,11 @@ export const resolveChoice = (
 			return { died: true, text: deathText };
 		}
 	}
-	push(c, `▸ 「${choice.label}」を選んだ。${choice.outcomeText}`, 'decision');
+	if (choice.id === 'mourn_and_continue') {
+		push(c, `▸ ${choice.label}。${choice.outcomeText}`, 'loss');
+	} else {
+		push(c, `▸ 「${choice.label}」を選んだ。${choice.outcomeText}`, 'decision');
+	}
 
 	if (fx.marry && !c.family.some((m) => (m.relation === '妻' || m.relation === '夫') && m.alive)) {
 		const spouseRel = c.sex === 'M' ? '妻' : '夫';

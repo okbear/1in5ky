@@ -148,6 +148,7 @@ export interface DecisionEvent {
 	isUrban?: boolean;
 	repeatable?: boolean;
 	isLifecycle?: boolean;
+	isFamilyLoss?: boolean;
 	minAge: number;
 	maxAge: number;
 	yearRange?: [number, number]; // specific historical window

@@ -293,9 +293,9 @@
 	{@const d = game.decision}
 	{@const evImg = getEventImage(d.id)}
 	<div class="scrim" onclick={onScrimClick} role="presentation">
-		<div class="dec" bind:this={dialogEl} role="dialog" aria-modal="true" aria-label={d.title}>
-			<div class="hd">
-				<span>{d.category === 'historical_wave' ? `歴史の大波 · ${d.historicalYearLabel ?? ''}` : '決断'} · {c.age}歳</span>
+		<div class="dec" class:dec-loss={d.isFamilyLoss} bind:this={dialogEl} role="dialog" aria-modal="true" aria-label={d.title}>
+			<div class="hd" class:hd-loss={d.isFamilyLoss}>
+				<span>{d.isFamilyLoss ? '訃報' : d.isLifecycle ? '人生の転機' : d.category === 'historical_wave' ? `歴史の大波 · ${d.historicalYearLabel ?? ''}` : '決断'} · {c.age}歳</span>
 				<button
 					type="button"
 					class="dec-close-btn"
@@ -325,7 +325,12 @@
 				<div class="fact">{d.factBox}</div>
 				<div class="choices">
 					{#each d.choices as ch (ch.id)}
-						<button onclick={() => game.choose(ch)}><b>{ch.label}</b><small>{ch.subLabel}</small></button>
+						<button onclick={() => game.choose(ch)}>
+							<b>{ch.label}</b>
+							{#if ch.subLabel}
+								<small>{ch.subLabel}</small>
+							{/if}
+						</button>
 					{/each}
 				</div>
 			</div>
@@ -1010,5 +1015,19 @@
 	}
 	.dec-text {
 		min-width: 0;
+	}
+	:global(.dec.dec-loss) {
+		border-color: var(--bad);
+	}
+	:global(.dec .hd.hd-loss) {
+		background: rgba(168, 53, 43, 0.08);
+		color: var(--bad);
+		font-weight: 600;
+	}
+	:global(.dec.dec-loss .choices button) {
+		border-color: var(--bad);
+	}
+	:global(.dec.dec-loss .choices button:hover) {
+		background: rgba(168, 53, 43, 0.06);
 	}
 </style>
