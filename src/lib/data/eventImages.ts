@@ -152,6 +152,27 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/med_jpn_biwa_recite.jpg',
 		alt: '辻堂の油灯の揺れる光の下、平家物語を語り爪弾く盲目の琵琶法師と聴き入る村人たち',
 		caption: '琵琶法師の平家鎮魂'
+	},
+
+	// === 近世日本（江戸） ===
+	em_edo_machibikeshi_ladder: {
+		src: '/images/events/em_edo_machibikeshi.jpg',
+		alt: '冬の強風が吹き荒れる江戸神田の大火、立ち上る火の粉と猛煙の中、瓦屋根の棟に立ち纏を振る町火消の鳶職と引き倒しを行う仲間たち',
+		caption: '江戸町火消の破壊消火と纏'
+	},
+
+	// === 近世アジア（清代・広州十三行） ===
+	em_asia_canton_cohong_silver: {
+		src: '/images/events/em_asia_canton_silver.jpg',
+		alt: '18世紀広州十三行の商館で、弁髪に清朝の長袍をまとった商人と書記が天秤ばかりと試金石でスペイン銀貨や銀錠を検定する執務風景',
+		caption: '広州十三行の銀貨鑑定'
+	},
+
+	// === 近世ヨーロッパ（啓蒙思想の地下出版） ===
+	em_eur_underground_press: {
+		src: '/images/events/em_eur_underground_press.jpg',
+		alt: '18世紀パリの薄暗い地下室で、蝋燭の灯火のもと手動木製印刷機と活字ケースを前に禁書のパンフレットを密かに印刷・製本する職人たち',
+		caption: '啓蒙期パリの地下印刷所'
 	}
 };
 
