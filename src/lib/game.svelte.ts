@@ -1,7 +1,7 @@
 const browser = typeof window !== 'undefined';
 
 import { SEED_MEMORIALS } from './data/timeline';
-import { postMortem, resolveChoice, rollBirth, stepYear, type PostMortem } from './engine/engine';
+import { postMortem, resolveChoice, revive, rollBirth, stepYear, type PostMortem } from './engine/engine';
 import { MAX_MEMORIALS, MEMORIAL_KEY, parseMemorials, toMemorialRecord } from './engine/memorials';
 import type {
 	CharacterState,
@@ -154,8 +154,19 @@ class Game {
 		this.phase = 'dead';
 	}
 
+	revive(): void {
+		const c = this.char;
+		if (!c || this.phase !== 'dead' || !revive(c)) return;
+		this.pm = null;
+		this.decision = null;
+		this.decisionHidden = false;
+		this.paused = false;
+		this.phase = 'life';
+		this.schedule();
+	}
+
 	saveMemorial(c: CharacterState): void {
-		this.memorials = [toMemorialRecord(c), ...this.memorials].slice(0, MAX_MEMORIALS);
+		this.memorials = [toMemorialRecord(c), ...this.memorials.filter((m) => m.id !== c.id)].slice(0, MAX_MEMORIALS);
 		if (browser) {
 			try {
 				localStorage.setItem(MEMORIAL_KEY, JSON.stringify(this.memorials));

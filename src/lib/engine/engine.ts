@@ -17,6 +17,7 @@ import type {
 import {
 	ERA_GROWTH_RATIO,
 	MAX_AGE,
+	REVIVE_MAX_AGE,
 	ageGroup,
 	clamp,
 	formatYear,
@@ -191,6 +192,17 @@ export const die = (c: CharacterState, cause: string): void => {
 	c.deathCause = cause;
 	push(c, `${c.age}歳で亡くなった。死因：${cause}。`, 'death');
 	c.epitaph = buildEpitaph(c);
+};
+
+export const canRevive = (c: CharacterState): boolean => !c.alive && c.age < REVIVE_MAX_AGE;
+
+export const revive = (c: CharacterState): boolean => {
+	if (!canRevive(c)) return false;
+	c.alive = true;
+	c.deathCause = undefined;
+	c.epitaph = '';
+	push(c, `${c.age}歳。死の淵から息を吹き返した。`, 'milestone');
+	return true;
 };
 
 const buildEpitaph = (c: CharacterState): string =>

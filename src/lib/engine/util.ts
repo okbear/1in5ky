@@ -40,6 +40,9 @@ export const ERA_GROWTH_RATIO: Record<EraId, number> = {
 
 export const MAX_AGE = 110;
 
+/** この年齢未満で死んだときだけ「息を吹き返す」ことができる（60歳以上の死は確定） */
+export const REVIVE_MAX_AGE = 60;
+
 /** 1〜4歳の年間死亡確率: 0〜4歳累積死亡率が under5Mortality になるよう逆算 */
 const q1to4 = (r: RegionProfile): number => {
 	const imr = r.infantMortality / 1000;

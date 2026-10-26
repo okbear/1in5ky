@@ -5,7 +5,7 @@ import { ALL_EVENTS } from '../data/events';
 import { BABY_IMAGES } from '../data/babyImages';
 import { GRAVE_DATA } from '../data/graveData';
 import { ERA_CHRONICLES, OVERTURNED_BELIEFS, SEED_MEMORIALS, WORLD_TIMELINE } from '../data/timeline';
-import { postMortem, resolveChoice, rollBirth, stepYear } from './engine';
+import { canRevive, die, postMortem, resolveChoice, revive, rollBirth, stepYear } from './engine';
 import { parseMemorials, toMemorialRecord } from './memorials';
 import { MAX_AGE, hazard, survivalRateAtAge } from './util';
 import fs from 'fs';
@@ -154,6 +154,25 @@ describe('Engine Invariants', () => {
 		const pm = postMortem(c);
 		expect(pm.events.length).toBeGreaterThan(0);
 		expect(pm.belief).toBeDefined();
+	});
+
+	test('revive: allowed below 60, refused at 60+, character resumes stepping', () => {
+		for (const [age, ok] of [[0, true], [59, true], [60, false], [110, false]] as const) {
+			const c = rollBirth(() => 0.42, 'modern');
+			c.age = age;
+			die(c, 'テスト死因');
+			expect(canRevive(c)).toBe(ok);
+			expect(revive(c)).toBe(ok);
+			expect(c.alive).toBe(ok);
+			expect(c.deathCause === undefined).toBe(ok);
+		}
+		const c = rollBirth(() => 0.42, 'modern');
+		c.age = 30;
+		die(c, 'テスト死因');
+		revive(c);
+		expect(c.epitaph).toBe('');
+		expect(stepYear(c, () => 0.999).ended).toBe(false);
+		expect(c.age).toBe(31);
 	});
 });
 

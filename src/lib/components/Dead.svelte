@@ -2,6 +2,7 @@
 	import { page } from '$app/state';
 	import { game } from '#lib/game.svelte';
 	import { ageGroup, expectedLifespan, formatYear, survivalRateAtAge } from '#lib/engine/util';
+	import { canRevive } from '#lib/engine/engine';
 	import type { FeedEntry } from '#lib/types';
 	import Timeline from './Timeline.svelte';
 	import GraveScene from './GraveScene.svelte';
@@ -210,6 +211,9 @@
 	</div>
 
 	<div class="endbtns">
+		{#if canRevive(c)}
+			<button class="revive" onclick={() => game.revive()}>息を吹き返す</button>
+		{/if}
 		<button class="cta" onclick={() => game.roll()}>もう一度生まれる</button>
 		<a class="x-btn" href={shareHref} target="_blank" rel="noopener noreferrer">
 			<span class="x-mark" aria-hidden="true">𝕏</span>
@@ -603,5 +607,18 @@
 		align-items: center;
 		gap: 12px;
 		flex-wrap: wrap;
+	}
+	.revive {
+		background: transparent;
+		color: var(--stamp);
+		border: 1px solid var(--stamp);
+		border-radius: 4px;
+		padding: 10px 22px;
+		font-size: 15px;
+		font-weight: 600;
+	}
+	.revive:hover {
+		background: var(--stamp);
+		color: var(--paper);
 	}
 </style>
