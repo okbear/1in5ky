@@ -125,6 +125,9 @@
 					<p class="cause">死因：<b>{c.deathCause}</b></p>
 					<p class="ctx">{c.epitaph}</p>
 					<div class="bio-share">
+						{#if canRevive(c)}
+							<button class="revive" onclick={() => game.revive()}>息を吹き返す</button>
+						{/if}
 						<a class="x-btn" href={shareHref} target="_blank" rel="noopener noreferrer">
 							<span class="x-mark" aria-hidden="true">𝕏</span>
 							<span>この人生をポスト</span>
@@ -211,9 +214,6 @@
 	</div>
 
 	<div class="endbtns">
-		{#if canRevive(c)}
-			<button class="revive" onclick={() => game.revive()}>息を吹き返す</button>
-		{/if}
 		<button class="cta" onclick={() => game.roll()}>もう一度生まれる</button>
 		<a class="x-btn" href={shareHref} target="_blank" rel="noopener noreferrer">
 			<span class="x-mark" aria-hidden="true">𝕏</span>
@@ -581,6 +581,10 @@
 	}
 	.bio-share {
 		margin-top: 14px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex-wrap: wrap;
 	}
 	.x-btn {
 		display: inline-flex;
@@ -613,9 +617,10 @@
 		color: var(--stamp);
 		border: 1px solid var(--stamp);
 		border-radius: 4px;
-		padding: 10px 22px;
-		font-size: 15px;
+		padding: 8px 16px;
+		font-size: 14px;
 		font-weight: 600;
+		line-height: 1.3;
 	}
 	.revive:hover {
 		background: var(--stamp);
