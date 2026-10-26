@@ -238,15 +238,13 @@
 		);
 		animation: deathVeilFade 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 	}
-	@media (prefers-color-scheme: dark) {
-		.death-veil {
-			background: radial-gradient(
-				ellipse 85% 65% at 50% 36%,
-				rgba(42, 35, 46, 0.98) 0%,
-				rgba(22, 18, 16, 0.95) 50%,
-				rgba(12, 10, 8, 0.98) 100%
-			);
-		}
+	:global(:root[data-theme='dark']) .death-veil {
+		background: radial-gradient(
+			ellipse 85% 65% at 50% 36%,
+			rgba(42, 35, 46, 0.98) 0%,
+			rgba(22, 18, 16, 0.95) 50%,
+			rgba(12, 10, 8, 0.98) 100%
+		);
 	}
 	@keyframes deathVeilFade {
 		0% {

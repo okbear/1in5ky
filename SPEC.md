@@ -57,6 +57,7 @@ src/
 └── lib/
     ├── types.ts              # 全型定義（Era, Region, Event, State, Memorial 等）
     ├── game.svelte.ts        # グローバル進行ステート管理（Svelte 5 runes: Game クラス）
+    ├── theme.svelte.ts       # ライト/ダーク切替ストア（localStorage `1in5ky.theme`、未設定時はOS設定に追従。`<html data-theme>` で app.css の変数を切替。初期値は app.html のnonce付きインラインスクリプトで解決）
     ├── components/
     │   ├── Intro.svelte      # タイトル・確率一覧・過去メモリアル一覧
     │   ├── Cert.svelte       # 出生届（誕生演出）
@@ -64,7 +65,8 @@ src/
     │   ├── Dead.svelte       # 死亡証明・死後の世界年表・リザルト
     │   ├── Scene.svelte      # 時代・地域に応じた建築シルエット風景SVG
     │   ├── GraveScene.svelte # 時代・地域に応じた墓標アートSVG
-    │   └── Timeline.svelte   # 紀元前3000年〜2026年の墓標タイムライン
+    │   ├── Timeline.svelte   # 紀元前3000年〜2026年の墓標タイムライン
+    │   └── ThemeToggle.svelte # ライト/ダーク切替ボタン（Intro・Life のヘッダーに配置）
     ├── data/
     │   ├── eras.ts           # 6時代区分の定義・累計出生数推計
     │   ├── babyImages.ts     # 30地域ごとの出生時赤ちゃん肖像画マッピング

@@ -20,25 +20,26 @@
 	--f-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--paper: #14110e;
-		--card: #1c1814;
-		--card2: #231e19;
-		--ink: #ece4d6;
-		--ink2: #b5a998;
-		--ink3: #968a7a;
-		--rule: #3a322a;
-		--rule2: #2a241e;
-		--accent: #e07a90;
-		--accent-ink: #1b0910;
-		--accent-soft: #3a1c26;
-		--stamp: #4cc0af;
-		--stamp-soft: #12302d;
-		--bad: #f07b6b;
-		--loss: #c9c4d0;
-		color-scheme: dark;
-	}
+:root[data-theme='dark'] {
+	--paper: #14110e;
+	--card: #1c1814;
+	--card2: #231e19;
+	--ink: #ece4d6;
+	--ink2: #b5a998;
+	--ink3: #968a7a;
+	--rule: #3a322a;
+	--rule2: #2a241e;
+	--accent: #e07a90;
+	--accent-ink: #1b0910;
+	--accent-soft: #3a1c26;
+	--stamp: #4cc0af;
+	--stamp-soft: #12302d;
+	--bad: #f07b6b;
+	--loss: #c9c4d0;
+	color-scheme: dark;
+}
+:root[data-theme='light'] {
+	color-scheme: light;
 }
 
 * {

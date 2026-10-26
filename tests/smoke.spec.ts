@@ -138,4 +138,24 @@ test.describe('1in5ky E2E smoke tests', () => {
 
 		expect(pageErrors).toEqual([]);
 	});
+
+	test('theme toggle: overrides OS scheme and persists across reload', async ({ browser }) => {
+		const ctx = await browser.newContext({ colorScheme: 'dark' });
+		const page = await ctx.newPage();
+		const html = page.locator('html');
+
+		await page.goto('/', { waitUntil: 'networkidle' });
+		await expect(html).toHaveAttribute('data-theme', 'dark');
+
+		const toggle = page.locator('.theme-toggle');
+		await toggle.click();
+		await expect(html).toHaveAttribute('data-theme', 'light');
+		await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+
+		await page.reload({ waitUntil: 'networkidle' });
+		await expect(html).toHaveAttribute('data-theme', 'light');
+		await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+
+		await ctx.close();
+	});
 });

@@ -2,9 +2,11 @@
 	import { game } from '#lib/game.svelte';
 	import { ERAS, ERA_ORDER, TOTAL_CUMULATIVE_BIRTHS_OKU } from '#lib/data/eras';
 	import Timeline from './Timeline.svelte';
+	import ThemeToggle from './ThemeToggle.svelte';
 </script>
 
 <section class="wrap intro">
+	<div class="intro-tools"><ThemeToggle /></div>
 	<div class="hero">
 		<p class="kicker mono">紀元前3000年〜2026年 · 人類史人生シミュレーション</p>
 		<h1>5000年分の<em>1</em></h1>
@@ -70,6 +72,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 28px;
+	}
+	.intro-tools {
+		display: flex;
+		justify-content: flex-end;
+		margin-bottom: -20px;
 	}
 	.kicker {
 		font-size: 12px;

@@ -3,6 +3,7 @@
 	import { expectedLifespan, formatYear, formatYen } from '#lib/engine/util';
 	import type { FocusOption } from '#lib/types';
 	import Scene from './Scene.svelte';
+	import ThemeToggle from './ThemeToggle.svelte';
 	import { getEventImage } from '#lib/data/eventImages';
 
 	const focuses: FocusOption[] = [
@@ -96,6 +97,7 @@
 				<div class="age mono">{c.age}<small>歳</small></div>
 				<div class="yr">{formatYear(c.currentYear)} · {c.region.name}</div>
 			</div>
+			<ThemeToggle />
 			<button class="quit-btn" onclick={() => game.quit()}>中断</button>
 		</div>
 	</header>

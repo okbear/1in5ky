@@ -5,6 +5,21 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		<meta name="theme-color" content="#7B2334" />
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<script nonce="%sveltekit.nonce%">
+			(function () {
+				var t = null;
+				try {
+					t = localStorage.getItem('1in5ky.theme');
+				} catch (e) {}
+				if (t !== 'light' && t !== 'dark') {
+					t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				}
+				document.documentElement.dataset.theme = t;
+				if (t === 'dark') {
+					document.querySelector('meta[name="theme-color"]').setAttribute('content', '#14110E');
+				}
+			})();
+		</script>
 		<meta
 			name="description"
 			content="文字が生まれた紀元前3000年から今日までに地球上で生を受けた約650億人。時代も身分もくじ引きのまま、当時の生存率統計のなかで名もなきひとりの生涯をたどる歴史シミュレーションゲーム。"
