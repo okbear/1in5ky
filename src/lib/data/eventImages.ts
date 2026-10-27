@@ -76,12 +76,22 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		alt: '日干しレンガの神殿の部屋で、粘土板に葦のペンで楔形文字を刻む少年と書記',
 		caption: '神殿の書記学校'
 	},
+	anc_meso_canal_repair: {
+		src: '/images/events/anc_meso_canal_repair.jpg',
+		alt: '炎天下のメソポタミア、灌漑用水路の泥を木鍬や葦籠で掻き出し堤防を築く工夫たちと、粘土板に記録を刻む神殿の書記',
+		caption: 'メソポタミアの大麦運河浚渫普請'
+	},
 
 	// === 古代エジプト ===
 	anc_egypt_tomb_robbery: {
 		src: '/images/events/anc_egypt_tomb.jpg',
 		alt: '油灯の炎が揺れる王家の谷の墓道で、鮮やかな壁画を背に石を削る職人たち',
 		caption: '王家の谷の墓所'
+	},
+	anc_egypt_nile_flood_level: {
+		src: '/images/events/anc_egypt_nilometer.jpg',
+		alt: 'エレファンティネ島の石造ナイロメーター室内、刻まれた目盛りを指差し低増水の凶作を憂える神官とパピルスに記録する書記',
+		caption: 'エレファンティネのナイロメーター測定'
 	},
 
 	// === 古代中国・殷代 ===
@@ -103,6 +113,11 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/cls_rome_insula_fire.jpg',
 		alt: '夜のローマ市街、炎に包まれる木造高層アパート（インスラ）と逃げ惑う群衆、消火にあたる自警団',
 		caption: 'スブラ地区のインスラ大火'
+	},
+	cls_rome_gladiator_ticket: {
+		src: '/images/events/cls_rome_colosseum_beast.jpg',
+		alt: '満員の観衆が見下ろすローマのコロッセウム、砂埃舞う闘技場で猛獣の豹に槍を構えて対峙する闘獣士（ウェナトル）',
+		caption: 'コロッセウムの闘獣興行'
 	},
 
 	// === 漢帝国 ===
@@ -152,6 +167,18 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/med_jpn_biwa_recite.jpg',
 		alt: '辻堂の油灯の揺れる光の下、平家物語を語り爪弾く盲目の琵琶法師と聴き入る村人たち',
 		caption: '琵琶法師の平家鎮魂'
+	},
+
+	// === 中世〜近世共通・大厄災（黒死病・モンゴル襲来） ===
+	plague_1347: {
+		src: '/images/events/plague_1347.jpg',
+		alt: '1347年メッシーナ港、病み衰えた船員を乗せたジェノヴァ船の入港と、布で鼻口を覆い恐れおののく修道士や港の民',
+		caption: '黒死病の船とメッシーナ港'
+	},
+	mongol_1220: {
+		src: '/images/events/mongol_cavalry.jpg',
+		alt: '城壁の上から砂塵巻き起こる地平線を凝視する守備兵と、平原を埋め尽くして進軍するモンゴル軍の無数の騎馬隊',
+		caption: '地平線を埋めるモンゴル騎馬軍団'
 	},
 
 	// === 近世日本（江戸） ===
@@ -217,6 +244,23 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		caption: 'スエズ運河開削の人海戦術'
 	},
 
+	// === 産業革命〜近代共通（コレラ・世界大戦動員・スペインかぜ） ===
+	cholera_1850: {
+		src: '/images/events/cholera_london.jpg',
+		alt: '1854年ロンドンのブロード・ストリート、煤煙と冷雨の石畳で公共手押しポンプの水を汲む人々と、道端で倒れ込むコレラ患者',
+		caption: 'ロンドンのブロード・ストリート井戸とコレラ'
+	},
+	ww1_1914: {
+		src: '/images/events/ww1_mobilization.jpg',
+		alt: '1914年夏の薄暗い農家の食卓、総動員令の召集令状を沈痛な面持ちで見つめる青年と涙に暮れる家族、戸口を行進するフランス兵',
+		caption: '1914年総動員令と出征の報'
+	},
+	flu_1918: {
+		src: '/images/events/flu_1918.jpg',
+		alt: '1918年スペインかぜの臨時野戦病院、白い防護マスクを着けた医師と看護師がベッドで高熱に苦しむ若い兵士を手当てする病棟',
+		caption: '1918年スペインかぜの隔離病棟'
+	},
+
 	// === 現代日本（深夜残業と過労死） ===
 	mod_jpn_karoshi_midnight_train: {
 		src: '/images/events/mod_jpn_karoshi.jpg',
@@ -236,6 +280,34 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/mod_chn_backyard_furnace.jpg',
 		alt: '1958年大躍進期の中国農村、夜空を赤く焦がす無数の土法炉に鉄鍋や農具を投げ込み鞴を踏む人民公社の農民たち',
 		caption: '大躍進の土法炉と鍋釜供出'
+	},
+
+	// === 現代アジア（ダッカ縫製工場） ===
+	mod_asia_dhaka_sewing_collapse: {
+		src: '/images/events/mod_asia_dhaka_sweatshop.jpg',
+		alt: 'ダッカの巨大縫製工場、太いコンクリート柱に走る不気味な亀裂と、ミシンの前で不安げに見つめる女性工員と怒鳴り散らす監督官',
+		caption: 'ダッカ縫製工場の構造亀裂と工員'
+	},
+
+	// === 現代アフリカ（コンゴ手掘りコバルト） ===
+	mod_afr_cobalt_hand_dug_pit: {
+		src: '/images/events/mod_afr_cobalt_pit.jpg',
+		alt: 'コンゴ民主共和国の赤土が広がる露天採掘坑、手作りの梯子とツルハシで危険な縦穴からコバルト原石の麻袋を運び出す手掘り鉱夫たち',
+		caption: 'コンゴの手掘りコバルト採掘坑'
+	},
+
+	// === 現代北米（ラストベルト工場閉鎖） ===
+	mod_na_rustbelt_factory_closure: {
+		src: '/images/events/mod_na_rustbelt_closure.jpg',
+		alt: '錆びた鉄扉に操業停止の看板が掲げられたラストベルトの自動車工場前、私物を詰めた段ボール箱を抱えて立ち尽くす熟練労働者',
+		caption: 'ラストベルトの工場閉鎖と解雇'
+	},
+
+	// === 現代中南米（アマゾン熱帯雨林伐採） ===
+	mod_lat_amazon_deforestation_conflict: {
+		src: '/images/events/mod_lat_amazon_conflict.jpg',
+		alt: '煙と炎が立ち上るアマゾン熱帯雨林の伐採前線、鎖で木々を倒す大型重機を前に拳を掲げる先住民と鉈を手にした入植農民',
+		caption: 'アマゾン森林伐採と境界の対立'
 	}
 };
 
