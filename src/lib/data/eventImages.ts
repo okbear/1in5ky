@@ -215,6 +215,27 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/ind_oth_suez_canal.jpg',
 		alt: '1860年代のスエズ運河開削現場、灼熱の砂漠地峡でツルハシと籐籠を手に溝を掘り進めるエジプト人農民夫たちの過酷な人海戦術',
 		caption: 'スエズ運河開削の人海戦術'
+	},
+
+	// === 現代日本（深夜残業と過労死） ===
+	mod_jpn_karoshi_midnight_train: {
+		src: '/images/events/mod_jpn_karoshi.jpg',
+		alt: '昭和末期からバブル期の深夜の東京、ネオン揺れる終電後のプラットフォームのベンチで書類鞄を抱えて力尽き眠り込むビジネスマン',
+		caption: '深夜残業と過労死の影'
+	},
+
+	// === 現代ヨーロッパ（ベルリンの壁崩壊） ===
+	mod_eur_berlin_wall_fall: {
+		src: '/images/events/mod_eur_berlin_wall.jpg',
+		alt: '1989年11月の夜、投光器の光を浴びグラフィティに覆われたベルリンの壁の上によじ登りハンマーを振り下ろす若者たちと歓喜の群衆',
+		caption: 'ベルリンの壁崩壊の夜'
+	},
+
+	// === 現代中国（大躍進の裏庭製鉄） ===
+	mod_chn_backyard_steel_melt: {
+		src: '/images/events/mod_chn_backyard_furnace.jpg',
+		alt: '1958年大躍進期の中国農村、夜空を赤く焦がす無数の土法炉に鉄鍋や農具を投げ込み鞴を踏む人民公社の農民たち',
+		caption: '大躍進の土法炉と鍋釜供出'
 	}
 };
 
