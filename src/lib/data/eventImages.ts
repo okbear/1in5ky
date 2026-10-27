@@ -194,6 +194,27 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/ind_jpn_silk_reeling.jpg',
 		alt: '熱湯の湯気が立ち込める明治期の岡谷製糸工場、絣の着物に襷掛けで繭から生糸を繰り出す若き工女たち',
 		caption: '信州岡谷の器械製糸'
+	},
+
+	// === 近代中国（上海外灘の苦力） ===
+	ind_chn_bund_coolie_labor: {
+		src: '/images/events/ind_chn_bund_coolie.jpg',
+		alt: '19世紀末の上海外灘の黄浦江波止場、停泊する蒸気船から一本の天秤棒で重い綿花俵を担ぎ出す苦力たちと帳簿を手にした親方',
+		caption: '上海外灘波止場の苦力'
+	},
+
+	// === 近代インド（ベンガルの藍工場） ===
+	ind_ind_indigo_planter_coercion: {
+		src: '/images/events/ind_ind_indigo_planter.jpg',
+		alt: '19世紀半ばの英領インド・ベンガルの藍工場、巨大な石造りの浸出槽で深い藍色の液体を踏み揉む過酷な労働と英国人プランターの監視',
+		caption: 'ベンガル藍農園の強制労働'
+	},
+
+	// === 近代その他の地域（スエズ運河開削） ===
+	ind_oth_suez_canal_digging: {
+		src: '/images/events/ind_oth_suez_canal.jpg',
+		alt: '1860年代のスエズ運河開削現場、灼熱の砂漠地峡でツルハシと籐籠を手に溝を掘り進めるエジプト人農民夫たちの過酷な人海戦術',
+		caption: 'スエズ運河開削の人海戦術'
 	}
 };
 
