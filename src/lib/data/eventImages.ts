@@ -173,6 +173,27 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/em_eur_underground_press.jpg',
 		alt: '18世紀パリの薄暗い地下室で、蝋燭の灯火のもと手動木製印刷機と活字ケースを前に禁書のパンフレットを密かに印刷・製本する職人たち',
 		caption: '啓蒙期パリの地下印刷所'
+	},
+
+	// === 近世大西洋世界（カリブ海サトウキビ農園） ===
+	em_atl_sugar_cane_machete: {
+		src: '/images/events/em_atl_sugar_cane.jpg',
+		alt: '灼熱の太陽が照りつける18世紀カリブ海の農園、重い鉈でサトウキビを刈り倒すアフリカ人労働者たちと馬上から監視する監督官',
+		caption: 'カリブ海砂糖農園の収穫'
+	},
+
+	// === 産業革命期ヨーロッパ・アメリカ（マンチェスター木綿工場） ===
+	ind_eur_mill_loom_crush: {
+		src: '/images/events/ind_eur_mill_loom.jpg',
+		alt: '煤煙と綿埃が舞う19世紀マンチェスターの木綿紡績工場、高速回転する蒸気力織機と革ベルトの隙間で糸屑を取り除く少年労働者',
+		caption: 'マンチェスター力織機工場'
+	},
+
+	// === 近代日本（信州岡谷の製糸工場） ===
+	ind_jpn_spinning_girl_night: {
+		src: '/images/events/ind_jpn_silk_reeling.jpg',
+		alt: '熱湯の湯気が立ち込める明治期の岡谷製糸工場、絣の着物に襷掛けで繭から生糸を繰り出す若き工女たち',
+		caption: '信州岡谷の器械製糸'
 	}
 };
 
