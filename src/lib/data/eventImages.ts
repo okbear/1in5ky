@@ -81,6 +81,21 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		alt: '炎天下のメソポタミア、灌漑用水路の泥を木鍬や葦籠で掻き出し堤防を築く工夫たちと、粘土板に記録を刻む神殿の書記',
 		caption: 'メソポタミアの大麦運河浚渫普請'
 	},
+	anc_meso_beer_ration: {
+		src: '/images/events/anc_meso_beer_ration.jpg',
+		alt: '日干しレンガの神殿醸造所前で、配給の大麦ビールの枡目減りを巡り神殿監督官に抗議する工夫たち',
+		caption: '神殿の大麦ビール配給'
+	},
+	anc_meso_debt_slavery: {
+		src: '/images/events/anc_meso_debt_slavery.jpg',
+		alt: '塩害で白く結晶化した大麦畑で、天秤ばかりと銀貨を手にした商人・書記を前に頭を抱え絶望する農民一家',
+		caption: '大麦畑の塩害と債務奴隷'
+	},
+	anc_meso_sandstorm_fever: {
+		src: '/images/events/anc_meso_sandstorm_fever.jpg',
+		alt: '赤黒い熱風シムーンが吹き荒れる中、油灯の灯る土室でトラコーマに目を腫らし高熱の子を抱く母と扉を閉ざす男',
+		caption: '熱風シムーンとトラコーマ'
+	},
 
 	// === 古代エジプト ===
 	anc_egypt_tomb_robbery: {
