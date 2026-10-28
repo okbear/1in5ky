@@ -84,10 +84,15 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		caption: '江戸の長屋と障子の光',
 		sceneDetail: '藍染めの木綿産着と藁のえじこ。'
 	},
-	em_china_asia: {
+	em_china: {
 		src: '/images/babies/em_china_asia.jpg',
 		caption: '明清時代の伝統邸宅',
 		sceneDetail: '金糸刺繍の綿入り錦布と紫檀ベッド。'
+	},
+	em_mughal_india: {
+		src: '/images/babies/ind_india.jpg',
+		caption: 'ムガル帝国のハヴェーリー（中庭邸宅）',
+		sceneDetail: '精緻な綿織物のおくるみと銀の魔除け鈴。'
 	},
 	em_europe: {
 		src: '/images/babies/em_europe.jpg',

@@ -214,15 +214,11 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     ]
   },
   {
-    "id": "em_asia_manchu_queue_order",
+    "id": "em_chn_qing_queue_edict",
     "title": "清朝の「頭を留むる者は髪を留めず」薙髪令",
     "category": "historical_wave",
-    "eraIds": [
-      "early_modern"
-    ],
-    "regionIds": [
-      "em_china_asia"
-    ],
+    "eraIds": ["early_modern"],
+    "regionIds": ["em_china"],
     "minAge": 12,
     "maxAge": 65,
     "description": "満洲族の清軍が入関し、漢民族に対して頭の前半分を剃り上げて三つ編みにする「辮髪」の強制令（薙髪令）が出された。従わねば反逆者として首を刎ねられる。",
@@ -256,15 +252,11 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     ]
   },
   {
-    "id": "em_asia_canton_cohong_silver",
+    "id": "em_chn_canton_cohong_silver",
     "title": "広州十三行での茶・生糸貿易と西洋銀貨の鑑定",
     "category": "livelihood",
-    "eraIds": [
-      "early_modern"
-    ],
-    "regionIds": [
-      "em_china_asia"
-    ],
+    "eraIds": ["early_modern"],
+    "regionIds": ["em_china"],
     "minAge": 16,
     "maxAge": 55,
     "description": "外国貿易が広州一港に限定されるなか、特許商人「十三行（広東公行）」の商館で、イギリス東インド会社の船から運び込まれるスペイン銀貨（墨銀）の品位を銀秤で鑑定する仕事に就く。",
@@ -296,15 +288,125 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     ]
   },
   {
-    "id": "em_asia_mughal_mansab_cavalry",
+    "id": "em_chn_white_lotus_gathering",
+    "title": "白蓮教の無生老母信仰と秘密集会",
+    "category": "common_sense",
+    "eraIds": ["early_modern"],
+    "regionIds": ["em_china"],
+    "minAge": 16,
+    "maxAge": 60,
+    "description": "山東・河南の農村で、弥勒下生と苦難からの救済を説く「白蓮教」の秘密集会が夜毎開かれている。役人の苛政に苦しむ親戚から「集会に参加して経文を受け取ろう」と誘われる。",
+    "factBox": "白蓮教は明清代の民衆秘密結社で、弥勒信仰による終末論を掲げ、清代中期には大反乱（白蓮教徒の乱）を起こした。",
+    "choices": [
+      {
+        "id": "join_white_lotus_lodge",
+        "label": "線香を焚き、教徒の互助組織に加わって念仏を唱える",
+        "subLabel": "強固な相互扶助を得るが官憲に摘発されれば極刑",
+        "survivalChance": 0.78,
+        "deathCause": "邪教徒取締りによる投獄・拷問死",
+        "effects": {
+          "relations": 25,
+          "happiness": 15,
+          "wealthDelta": 10
+        },
+        "outcomeText": "仲間と助け合って凶作の飢えを分かち合い、心の拠り所となる強い紐帯を結んだ。",
+        "deathText": "密告により集会所が緑営兵に急襲され、捕らえられて過酷な拷問の末に獄死した。"
+      },
+      {
+        "id": "decline_secret_sect",
+        "label": "邪教として禁圧される危険を説き、誘いを断って仏堂に参る",
+        "subLabel": "体制に従い穏当な祖先祭祀と日常を守る",
+        "effects": {
+          "wealthDelta": 5,
+          "happiness": 5,
+          "relations": -10
+        },
+        "outcomeText": "秘密結社には関わらず地道に田を耕した。数年後の一斉摘発の難を逃れることができた。"
+      }
+    ]
+  },
+  {
+    "id": "em_chn_keju_examination_cubicle",
+    "title": "科挙郷試の貢院（狭小独房）とカンニングの誘惑",
+    "category": "common_sense",
+    "eraIds": ["early_modern"],
+    "regionIds": ["em_china"],
+    "minAge": 16,
+    "maxAge": 50,
+    "description": "官吏登用試験（科挙）の郷試を受験するため、幅わずか1メートルの独房（号舎）に閉じ込められ、三昼夜の論述試験が始まった。狭い房内で墨を磨りながら、懐に忍ばせた下着のカンニング布（微細文字）を使うか葛藤する。",
+    "factBox": "明清の科挙は世界最難関の官僚登用試験であり、合格すれば一族の栄華が約束されたため、過酷な独房監禁受験と巧妙な不正が横行した。",
+    "choices": [
+      {
+        "id": "write_keju_essay_fairly",
+        "label": "正々堂々と自らの学識のみで儒教経典の解釈を書き上げる",
+        "subLabel": "不合格のリスクを受け入れ徳と学識で勝負する",
+        "effects": {
+          "knowledge": 25,
+          "happiness": 10,
+          "relations": 15
+        },
+        "outcomeText": "端正な八股文を書き上げ、見事に挙人（郷試合格者）として合格掲示板に名が掲げられた。"
+      },
+      {
+        "id": "cheat_keju_microtext_cloth",
+        "label": "密かに下着の微細文字カンニングを写し取り、難問を乗り切る",
+        "subLabel": "発覚すれば首枷晒し刑と一族追放の極大リスク",
+        "survivalChance": 0.82,
+        "deathCause": "科挙不正発覚による首枷晒し刑・獄死",
+        "effects": {
+          "wealthDelta": 30,
+          "knowledge": 10,
+          "happiness": -10
+        },
+        "outcomeText": "試験官の目を盗んで見事に書き上げ、高得点で試験を突破して郷里へ錦を飾った。",
+        "deathText": "巡回官にカンニング下着を見咎められ、その場で捕縛されて重い首枷を嵌められ獄死した。"
+      }
+    ]
+  },
+  {
+    "id": "em_chn_literary_inquisition",
+    "title": "文字の獄（筆禍事件）と先祖の詩文の隠滅",
+    "category": "historical_wave",
+    "eraIds": ["early_modern"],
+    "regionIds": ["em_china"],
+    "minAge": 18,
+    "maxAge": 65,
+    "description": "清朝当局による反体制的な言論弾圧「文字の獄」が激化。先祖の日記や詩集に「胡」「虜」など北方異民族を蔑称する文字が含まれていると密告されれば、一族皆殺し（九族誅滅）となる。官憲の家宅捜索が迫る。",
+    "factBox": "康熙・雍正・乾隆年間には、漢民族知識人の反清思想を取り締まるため、詩文の一節をこじつけて一族を処刑する「文字の獄」が頻発した。",
+    "choices": [
+      {
+        "id": "burn_ancestral_writings_hearth",
+        "label": "庭の竈で先祖の詩文や書画をすべて灰になるまで焼き尽くす",
+        "subLabel": "一族の貴重な歴史を失うが命と家族を最優先する",
+        "effects": {
+          "relations": 15,
+          "happiness": -15,
+          "knowledge": -10
+        },
+        "outcomeText": "煙を上げて灰燼に帰した書物を確認し、駆けつけた役人の厳しい捜索を証拠なしで乗り切った。"
+      },
+      {
+        "id": "hide_manuscripts_in_old_well",
+        "label": "書物を油紙で厳重に包み、深夜に庭の古井戸の隙間に隠す",
+        "subLabel": "先祖の遺産を守ろうとするが発見されれば一族処刑",
+        "survivalChance": 0.75,
+        "deathCause": "文字の獄（大逆罪）による凌遅刑・一族連座死",
+        "effects": {
+          "knowledge": 25,
+          "wealthDelta": 20,
+          "relations": -10
+        },
+        "outcomeText": "役人は家宅捜索で何も見つけられず引き揚げ、貴重な先祖の文献を後世へ守り伝えた。",
+        "deathText": "井戸の隠し場所が暴かれ、大逆不道罪として捕縛されて処刑場で非業の最期を遂げた。"
+      }
+    ]
+  },
+  {
+    "id": "em_ind_mughal_mansab_cavalry",
     "title": "ムガル帝国の騎兵維持とジャーギール（知行地）査定",
     "category": "livelihood",
-    "eraIds": [
-      "early_modern"
-    ],
-    "regionIds": [
-      "em_china_asia"
-    ],
+    "eraIds": ["early_modern"],
+    "regionIds": ["em_mughal_india"],
     "minAge": 18,
     "maxAge": 50,
     "description": "ムガル皇帝アクバルが定めたマンサブダール制の下で、十頭の軍馬と甲冑兵を養う下級軍事貴族として仕えている。割り当てられた知行地（ジャーギール）からの徴税が遅れ、馬の飼料代にも事欠く。",
@@ -338,86 +440,148 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     ]
   },
   {
-    "id": "em_asia_banda_nutmeg_raid",
-    "title": "モルッカ諸島バンダ島でのナツメグ密貿易の詮議",
-    "category": "historical_wave",
-    "eraIds": [
-      "early_modern"
-    ],
-    "regionIds": [
-      "em_china_asia"
-    ],
+    "id": "em_ind_calico_cotton_weaving",
+    "title": "スーラト港のキャラコ（綿織物）工房と東インド会社",
+    "category": "livelihood",
+    "eraIds": ["early_modern"],
+    "regionIds": ["em_mughal_india"],
     "minAge": 14,
-    "maxAge": 50,
-    "description": "世界で唯一ナツメグが育つバンダ諸島で、オランダ東インド会社（VOC）が独占権を主張し、他国の船に香辛料を売った現地島民を容赦なく虐殺・追放している。会社軍の武装船が迫る。",
-    "factBox": "オランダ東インド会社はヤン・クーン総督のもとでバンダ諸島の住民を虐殺・奴隷化し、ナツメグの生産と流通を武力独占した。",
+    "maxAge": 55,
+    "description": "西海岸の貿易港スーラトで、世界中で大流行している極細の染色綿布（キャラコ）を織る機織り職人として働いている。ヨーロッパ東インド会社の商人が銀貨を積んで大量の注文を競い合っている。",
+    "factBox": "17〜18世紀のインド産綿織物はその高品質と安さでヨーロッパに「キャラコ熱」を巻き起こし、世界最大の製造業地域として繁栄した。",
     "choices": [
       {
-        "id": "submit_to_voc_monopoly",
-        "label": "ナツメグの実をすべてオランダの商館へ差し出し、会社の小作人となる",
-        "subLabel": "極度の安値で買い叩かれるが虐殺は免れる",
+        "id": "weave_chintz_natural_dye",
+        "label": "草木染めの茜と藍の技術を極め、最高級の更紗（更紗布）を仕上げる",
+        "subLabel": "熟練の技で外国商人に高値で売り込む",
         "effects": {
-          "wealthDelta": -30,
-          "happiness": -15,
-          "relations": 5
+          "wealthDelta": 35,
+          "knowledge": 20,
+          "relations": 15
         },
-        "outcomeText": "過酷な監視下で香辛料を納入し、細々とした米の配給を受け取ってかろうじて生き延びた。"
+        "outcomeText": "注文主のオランダ商人が息を呑む美しさの更紗を織り上げ、独立して自らの工房を構える頭領となった。"
       },
       {
-        "id": "flee_in_prahu_to_kei",
-        "label": "カヌー（プラフ）に家族とナツメグの苗木を乗せ、夜陰に乗じてケイ諸島へ脱出する",
-        "subLabel": "外洋の荒波とVOC巡視船の砲撃を突破する決死行",
-        "survivalChance": 0.74,
-        "deathCause": "オランダ巡視船の大砲による撃沈・水死",
+        "id": "sign_exclusive_eic_contract",
+        "label": "東インド会社の専属職人契約を結び、毎月決まった前渡金を受け取る",
+        "subLabel": "安定した収入を得るが会社の専属束縛を受ける",
         "effects": {
-          "wealthDelta": 40,
-          "knowledge": 20,
-          "happiness": 15
+          "wealthDelta": 15,
+          "happiness": 5,
+          "relations": 10
         },
-        "outcomeText": "包囲網をかいくぐって東方の島へ辿り着き、手つかずの密林で新たな香辛料の畑を開拓した。",
-        "deathText": "オランダ艦の探照灯に照らし出され、放たれた大砲の直撃を受けて小舟ごと粉砕された。"
+        "outcomeText": "商館から安定して銀貨を受け取り、凶作の年でも食いっぱぐれることなく一家を支え続けた。"
       }
     ]
   },
   {
-    "id": "em_asia_white_lotus_gathering",
-    "title": "白蓮教の無生老母信仰と秘密集会",
-    "category": "common_sense",
-    "eraIds": [
-      "early_modern"
-    ],
-    "regionIds": [
-      "em_china_asia"
-    ],
+    "id": "em_ind_taj_mahal_quarry_labor",
+    "title": "皇帝の白大理石廟（タージ・マハル）造営と採石運搬",
+    "category": "historical_wave",
+    "eraIds": ["early_modern"],
+    "regionIds": ["em_mughal_india"],
     "minAge": 16,
-    "maxAge": 60,
-    "description": "山東・河南の農村で、弥勒下生と苦難からの救済を説く「白蓮教」の秘密集会が夜毎開かれている。役人の苛政に苦しむ親戚から「集会に参加して経文を受け取ろう」と誘われる。",
-    "factBox": "白蓮教は明清代の民衆秘密結社で、弥勒信仰による終末論を掲げ、清代中期には大反乱（白蓮教徒の乱）を起こした。",
+    "maxAge": 50,
+    "description": "第5代皇帝シャー・ジャハーンが亡き愛妃のために巨大廟の建設を命じた。ラージャスターン州マクラーナの採石場から巨大な白大理石の塊を象と牛車でアーグラまで運ぶ過酷な賦役が課される。",
+    "factBox": "タージ・マハル建設には2万人以上の職人と1,000頭以上の象が動員され、20年以上の歳月と巨額の国家財政が投じられた。",
     "choices": [
       {
-        "id": "join_white_lotus_lodge",
-        "label": "線香を焚き、教徒の互助組織に加わって念仏を唱える",
-        "subLabel": "強固な相互扶助を得るが官憲に摘発されれば極刑",
-        "survivalChance": 0.78,
-        "deathCause": "邪教徒取締りによる投獄・拷問死",
+        "id": "apprentice_pietra_dura_inlay",
+        "label": "石工としての腕を磨き、大理石に貴石を嵌め込む象嵌職人に志願する",
+        "subLabel": "過酷な力仕事を脱し芸術的職人として出世を目指す",
         "effects": {
-          "relations": 25,
-          "happiness": 15,
-          "wealthDelta": 10
+          "knowledge": 25,
+          "wealthDelta": 25,
+          "happiness": 15
         },
-        "outcomeText": "仲間と助け合って凶作の飢えを分かち合い、心の拠り所となる強い紐帯を結んだ。",
-        "deathText": "密告により集会所が緑営兵に急襲され、捕らえられて過酷な拷問の末に獄死した。"
+        "outcomeText": "ペルシアから来た親方に才能を認められ、廟の主壁にラピスラズリの花模様を嵌め込む大役を果たした。"
       },
       {
-        "id": "decline_secret_sect",
-        "label": "邪教として禁圧される危険を説き、誘いを断って仏堂に参る",
-        "subLabel": "体制に従い穏当な祖先祭祀と日常を守る",
+        "id": "drive_elephant_transport_team",
+        "label": "象の誘導係として巨石の運搬列に従軍し、安全第一で搬送する",
+        "subLabel": "重量物に押し潰される事故を避けながら日当を稼ぐ",
+        "survivalChance": 0.81,
+        "deathCause": "巨石運搬中の荷崩れ下敷き事故死",
         "effects": {
-          "wealthDelta": 5,
-          "happiness": 5,
-          "relations": -10
+          "wealthDelta": 15,
+          "health": -10,
+          "relations": 10
         },
-        "outcomeText": "秘密結社には関わらず地道に田を耕した。数年後の一斉摘発の難を逃れることができた。"
+        "outcomeText": "仲間の象使いと協力して難所のヤムナー川を渡り切り、怪我なく無事に皇帝からの特別報奨金を手にした。",
+        "deathText": "泥濘に足を取られた運搬車が横転し、滑り落ちてきた巨大な大理石ブロックの下敷きとなって落命した。"
+      }
+    ]
+  },
+  {
+    "id": "em_ind_akbar_sulahkul_debate",
+    "title": "皇帝アクバルの宗教討論館と万民融和（スルフ・イ・クル）",
+    "category": "common_sense",
+    "eraIds": ["early_modern"],
+    "regionIds": ["em_mughal_india"],
+    "minAge": 18,
+    "maxAge": 65,
+    "description": "都ファテープル・シークリーの討論館（イバーダト・ハーナ）で、イスラム教・ヒンドゥー教・ジャイナ教・キリスト教の学者が一堂に会し、真理をめぐる白熱した論争が繰り広げられている。",
+    "factBox": "アクバル帝は非ムスリムへの人頭税（ジズヤ）を廃止し、諸宗教の平和共存（スルフ・イ・クル）を理念とする寛容政策を推進した。",
+    "choices": [
+      {
+        "id": "participate_interfaith_discourse",
+        "label": "諸宗教の共通善を説く宮廷の討論に加わり、融和の思想を広める",
+        "subLabel": "偏狭な対立を乗り越えて皇帝の側近たちと親交を結ぶ",
+        "effects": {
+          "knowledge": 25,
+          "relations": 20,
+          "happiness": 15
+        },
+        "outcomeText": "異教の友人と深く語り合い、宗派の壁を越えた人脈を築いて地域の争議を平和的に仲裁した。"
+      },
+      {
+        "id": "practice_traditional_devotion",
+        "label": "先祖伝来の信仰の儀礼を固く守り、過激な論争から距離を置く",
+        "subLabel": "自らの信仰共同体の中で平穏な日常を守る",
+        "effects": {
+          "happiness": 10,
+          "relations": 10,
+          "wealthDelta": 5
+        },
+        "outcomeText": "地域の寺院やモスクで伝統の祈りを捧げ、近隣住民との穏やかな連帯を保ち続けた。"
+      }
+    ]
+  },
+  {
+    "id": "em_ind_monsoon_famine_relief",
+    "title": "デカン大飢饉とモンスーン不作の施粥所",
+    "category": "historical_wave",
+    "eraIds": ["early_modern"],
+    "regionIds": ["em_mughal_india"],
+    "minAge": 8,
+    "maxAge": 70,
+    "description": "夏のモンスーン（雨季）が3年連続で途絶え、デカン高原全域が灼熱の干ばつに見舞われた。井戸は干上がり、農地はひび割れ、飢えた群衆が城砦都市の施粥所（ランガル）へ殺到する。",
+    "factBox": "1630〜1632年のデカン大飢饉では、旱魃と戦乱が重なり数百万人以上が餓死し、人肉食や村の全滅が記録された。",
+    "choices": [
+      {
+        "id": "seek_sufi_langar_soup",
+        "label": "家財を処分して都市のスーフィー修道所の施粥所に身を寄せる",
+        "subLabel": "聖者の喜捨に加わり家族の最低限の粥を確保する",
+        "effects": {
+          "relations": 20,
+          "health": 5,
+          "wealthDelta": -25
+        },
+        "outcomeText": "修道所の井戸水と温かい豆粥を家族で分け合い、最も過酷な干害のピークを生き延びた。"
+      },
+      {
+        "id": "migrate_to_bengal_delta",
+        "label": "わずかな蓄えを抱えて雨の残るベンガル沿岸部へ向けて大移動する",
+        "subLabel": "途中の野盗や感染症の蔓延を乗り越える難民行",
+        "survivalChance": 0.76,
+        "deathCause": "大飢饉下の脱水・コレラによる餓死",
+        "effects": {
+          "wealthDelta": -20,
+          "health": -15,
+          "happiness": -15
+        },
+        "outcomeText": "道中で多くの仲間が倒れるなか、緑豊かなデルタ地帯へ辿り着き、新たな小作地を得て再起した。",
+        "deathText": "乾涸びた街道の途中で汚水を飲んで激しいコレラを発症し、砂埃のなかで力尽き息を引き取った。"
       }
     ]
   },

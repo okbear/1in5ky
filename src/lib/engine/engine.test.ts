@@ -11,8 +11,8 @@ import { MAX_AGE, hazard, survivalRateAtAge } from './util';
 import fs from 'fs';
 
 describe('Data Consistency', () => {
-	test('all 30 regions exist and classes sum to 100%', () => {
-		expect(REGIONS.length).toBe(30);
+	test('all 31 regions exist and classes sum to 100%', () => {
+		expect(REGIONS.length).toBe(31);
 		for (const r of REGIONS) {
 			const classSum = r.classes.reduce((s, c) => s + c.share, 0);
 			expect(Math.abs(classSum - 1.0) < 0.01 || Math.abs(classSum - 100) < 0.01).toBe(true);

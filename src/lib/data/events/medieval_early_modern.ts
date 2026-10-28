@@ -314,7 +314,7 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 		title: '暴徒化した傭兵軍団が村になだれ込んできた',
 		category: 'livelihood',
 		eraIds: ['early_modern'],
-		regionIds: ['em_europe', 'em_china_asia', 'em_atlantic'],
+		regionIds: ['em_europe', 'em_china', 'em_mughal_india', 'em_atlantic'],
 		minAge: 14,
 		maxAge: 65,
 		description:

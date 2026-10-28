@@ -69,9 +69,13 @@ export const GRAVE_DATA: Record<RegionId, GraveInfo> = {
 		title: '無縁仏と笠卒塔婆',
 		desc: '里山のはずれ、名もなき野花が手向けられた墓石。'
 	},
-	em_china_asia: {
+	em_china: {
 		title: '明清代の郷里の墓苑',
 		desc: '石造りの台座と彫刻、一族の記憶とともに大地に眠る。'
+	},
+	em_mughal_india: {
+		title: 'ヤムナー川を望むドーム廟',
+		desc: '赤砂岩と白大理石の小廟、夕暮れの河畔に香を焚く。'
 	},
 	em_europe: {
 		title: '教会の墓地と糸杉',

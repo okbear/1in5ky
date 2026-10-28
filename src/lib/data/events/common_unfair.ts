@@ -202,7 +202,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 		id: 'collective_punishment',
 		title: '隣家の夜逃げと「連座制」の理不尽',
 		category: 'livelihood',
-		regionIds: ['cls_han', 'med_china', 'med_japan', 'em_edo', 'em_china_asia'],
+		regionIds: ['cls_han', 'med_china', 'med_japan', 'em_edo', 'em_china'],
 		classIds: ['peasant', 'artisan'],
 		minAge: 16,
 		maxAge: 65,
@@ -313,7 +313,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 			'em_edo',
 			'cls_han',
 			'med_china',
-			'em_china_asia'
+			'em_china'
 		],
 		classIds: ['enslaved', 'peasant'],
 		isUrban: false,

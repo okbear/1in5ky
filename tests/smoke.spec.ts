@@ -27,9 +27,9 @@ test.describe('1in5ky E2E smoke tests', () => {
 		const life = page.locator('.life');
 		await expect(life).toBeVisible();
 
-		// 6. Fast-forward through life by answering decisions and advancing years
-		// Maximum 50 iterations to avoid infinite loops, stops as soon as .dead appears
-		for (let i = 0; i < 50; i++) {
+		// 6. Fast-forward through life by answering decisions and advancing years until death
+		// Maximum 200 iterations (safe ceiling well beyond MAX_AGE 110 with all decisions answered)
+		for (let i = 0; i < 200; i++) {
 			if (await page.locator('.dead').isVisible()) {
 				break;
 			}
@@ -38,7 +38,7 @@ test.describe('1in5ky E2E smoke tests', () => {
 			const choiceBtn = page.locator('.scrim .choices button').first();
 			if (await choiceBtn.isVisible()) {
 				await choiceBtn.click();
-				await page.waitForTimeout(100);
+				await page.waitForTimeout(50);
 				continue;
 			}
 
@@ -46,12 +46,11 @@ test.describe('1in5ky E2E smoke tests', () => {
 			const ffBtn = page.locator('.bottombar button').filter({ hasText: '»' }).first();
 			if (await ffBtn.isVisible()) {
 				await ffBtn.click();
-				await page.waitForTimeout(100);
+				await page.waitForTimeout(50);
 			} else {
-				await page.waitForTimeout(200);
+				await page.waitForTimeout(100);
 			}
 		}
-
 		// 7. Verify we successfully reached Death/Results screen without JavaScript crashes
 		await expect(page.locator('.dead')).toBeVisible({ timeout: 10000 });
 
