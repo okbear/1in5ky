@@ -1,4 +1,4 @@
-import type { MemorialRecord } from '../../types';
+import type { MemorialRecord } from '#lib/types';
 
 /** 近世・大航海期：タイムラインに最初から刻まれている「名もなき人々」の墓標 */
 export const EARLY_MODERN_SEEDS: MemorialRecord[] = [
@@ -206,7 +206,7 @@ export const EARLY_MODERN_SEEDS: MemorialRecord[] = [
 		sex: 'M',
 		eraId: 'early_modern',
 		eraName: '近世・大航海期',
-		regionName: 'アフリカ・アメリカ大陸',
+		regionName: "近世西アフリカ",
 		place: 'ギニア湾岸の集落',
 		birthYear: 1720,
 		deathYear: 1742,
@@ -224,7 +224,7 @@ export const EARLY_MODERN_SEEDS: MemorialRecord[] = [
 		sex: 'F',
 		eraId: 'early_modern',
 		eraName: '近世・大航海期',
-		regionName: 'アフリカ・アメリカ大陸',
+		regionName: "近世アンデス植民地",
 		place: 'ポトシ銀山近郊の先住民集落',
 		birthYear: 1590,
 		deathYear: 1618,
@@ -242,7 +242,7 @@ export const EARLY_MODERN_SEEDS: MemorialRecord[] = [
 		sex: 'M',
 		eraId: 'early_modern',
 		eraName: '近世・大航海期',
-		regionName: 'アフリカ・アメリカ大陸',
+		regionName: "カリブ海・ブラジル農園地帯",
 		place: 'ブラジル・バイーアのサトウキビ農園',
 		birthYear: 1660,
 		deathYear: 1695,
@@ -260,7 +260,7 @@ export const EARLY_MODERN_SEEDS: MemorialRecord[] = [
 		sex: 'F',
 		eraId: 'early_modern',
 		eraName: '近世・大航海期',
-		regionName: 'アフリカ・アメリカ大陸',
+		regionName: "近世メソアメリカ植民地",
 		place: 'メキシコシティ郊外の混血集落',
 		birthYear: 1750,
 		deathYear: 1752,

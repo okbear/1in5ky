@@ -1,10 +1,11 @@
-import type { DecisionEvent } from '../../types';
+import type { DecisionEvent } from '#lib/types';
 
 /** 古代・古典期の歴史の大波・戦争・神判・悪税イベント */
 export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 	{
 		id: 'ancient_corvee',
 		title: '王と神殿の大工事への徴用',
+		regionIds: ['anc_mesopotamia', 'anc_egypt', 'anc_china'],
 		category: 'historical_wave',
 		eraIds: ['ancient'],
 		classIds: ['peasant', 'enslaved', 'artisan'],
@@ -40,6 +41,7 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 	{
 		id: 'ancient_chariot_war',
 		title: '隣国との水路をめぐる戦争と歩兵徴集',
+		regionIds: ['anc_mesopotamia', 'anc_egypt', 'anc_china', 'anc_aegean'],
 		category: 'livelihood',
 		eraIds: ['ancient'],
 		minAge: 15,
@@ -73,6 +75,7 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 	{
 		id: 'classical_plague_war',
 		title: '街道を伝って疫病と徴兵がやってきた',
+		regionIds: ['cls_rome', 'cls_han', 'cls_india', 'cls_persia'],
 		category: 'historical_wave',
 		eraIds: ['classical'],
 		minAge: 14,
@@ -143,7 +146,7 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 		title: '大軍勢の進軍と、村からの食料強制徴発',
 		category: 'livelihood',
 		eraIds: ['classical'],
-		regionIds: ['cls_rome', 'cls_india', 'cls_other'],
+		regionIds: ['cls_rome', 'cls_india', 'cls_persia'],
 		minAge: 14,
 		maxAge: 65,
 		description:
@@ -175,6 +178,7 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 	{
 		id: 'trial_by_ordeal',
 		title: '身に覚えのない盗みの疑いと「熱湯の神判」',
+		regionIds: ['med_europe', 'cls_india', 'med_india'],
 		category: 'common_sense',
 		eraIds: ['ancient', 'classical', 'medieval'],
 		classIds: ['enslaved', 'peasant', 'artisan'],

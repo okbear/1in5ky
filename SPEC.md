@@ -69,8 +69,8 @@ src/
     │   └── ThemeToggle.svelte # ライト/ダーク切替ボタン（Intro・Life のヘッダーに配置）
     ├── data/
     │   ├── eras.ts           # 6時代区分の定義・累計出生数推計
-    │   ├── babyImages.ts     # 31地域ごとの出生時赤ちゃん肖像画マッピング
-    │   ├── graveData.ts      # 31地域ごとの時代別墓標アート定義
+    │   ├── babyImages.ts     # 53地域ごとの出生時赤ちゃん肖像画マッピング
+    │   ├── graveData.ts      # 53地域ごとの時代別墓標アート定義
     │   ├── regions.ts        # 全地域の再エクスポート・集約アグリゲーター
     │   ├── regions/          # 時代別地域プロファイル分割モジュール
     │   │   ├── common.ts     # 身分定義（CLASSES）とbaseRegionヘルパー
@@ -112,7 +112,7 @@ src/
 | `modern` | 現代 | A.D.1945〜A.D.2026 | 110億人 | 16.9% | 抗生物質、人口爆発、公衆衛生、局地紛争、格差 |
 
 ### 4.2 地域プロファイル (`regions.ts`)
-全31地域（アジア各地域を文化圏・時代ごとに完全分離、近世は中国・ムガル帝国を分離、現代は欧州・北米・ラテンアメリカ・ロシア旧ソ連を細分化）。各地域ごとに以下の統計・設定を保持：
+全53地域。大陸をまたぐ混在プロファイルを分割し、イベントは地域指定または明示的な全地域共通指定を必須とする。分割一覧・暫定統計の扱い・残る細分化候補は [`docs/scenario-region-audit.md`](./docs/scenario-region-audit.md) を参照。各地域ごとに以下の統計・設定を保持：
 - `infantMortality`（出生1,000人あたりの乳児死亡数）
 - `under5Mortality`（5歳未満児累積死亡率 ‰）
 - `lifeExpectancyAt15`（15歳まで生き延びた者の平均寿命）
@@ -124,6 +124,9 @@ src/
 - `dietStaple` / `beliefSystem` / `medicalCommonSense` / `worldviewCommonSense`
 
 ### 4.3 イベント構造 (`events-*.ts`)
+- 適用範囲は `regionIds: [RegionId, ...RegionId[]]` と `allRegions: true` のいずれか必須。省略は不可。
+- 地域内の局所イベントは `places` で出生地の都市・農村に限定する。時代・地域・場所・年代は `engine/eventScope.ts` の共通判定を通す。
+- 対応する肖像画のない分割地域では中立的な仮画像を表示し、異文化の肖像画を流用しない。
 - `WAVE_EVENTS`: 歴史上の確定戦争・大疫病・大飢饉（ペスト、モンゴル侵攻、天明の飢饉、世界大戦、空襲、徴兵令など）。
 - `UNFAIR_EVENTS`: 当時の医療・迷信・悪税・身分制度（破傷風、歯の化膿、麦角中毒、神判、連座制、窓税、塩税、強制徴募、領主の狩猟など）。
 - `LIFECYCLE_EVENTS`: 人生の岐路。**結婚・出産はすべてこのイベントの選択肢を通してのみ発生**（自動発生なし）。

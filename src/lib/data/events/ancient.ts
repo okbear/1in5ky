@@ -1,4 +1,4 @@
-import type { DecisionEvent } from '../../types';
+import type { DecisionEvent } from '#lib/types';
 
 /** 古代文明期（メソポタミア・エジプト・黄河・インダス）の決断イベント */
 export const ANCIENT_EVENTS: DecisionEvent[] = [
@@ -636,7 +636,7 @@ export const ANCIENT_EVENTS: DecisionEvent[] = [
       "ancient"
     ],
     "regionIds": [
-      "anc_indus_other"
+      "anc_indus"
     ],
     "minAge": 14,
     "maxAge": 50,
@@ -678,7 +678,7 @@ export const ANCIENT_EVENTS: DecisionEvent[] = [
       "ancient"
     ],
     "regionIds": [
-      "anc_indus_other"
+      "anc_indus"
     ],
     "minAge": 15,
     "maxAge": 55,
@@ -720,7 +720,7 @@ export const ANCIENT_EVENTS: DecisionEvent[] = [
       "ancient"
     ],
     "regionIds": [
-      "anc_indus_other"
+      "anc_indus"
     ],
     "minAge": 8,
     "maxAge": 60,
@@ -762,7 +762,7 @@ export const ANCIENT_EVENTS: DecisionEvent[] = [
       "ancient"
     ],
     "regionIds": [
-      "anc_indus_other"
+      "anc_indus"
     ],
     "minAge": 12,
     "maxAge": 60,
@@ -807,7 +807,7 @@ export const ANCIENT_EVENTS: DecisionEvent[] = [
       "ancient"
     ],
     "regionIds": [
-      "anc_indus_other"
+      "anc_indus"
     ],
     "minAge": 16,
     "maxAge": 50,

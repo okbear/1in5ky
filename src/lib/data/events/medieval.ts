@@ -1,4 +1,4 @@
-import type { DecisionEvent } from '../../types';
+import type { DecisionEvent } from '#lib/types';
 
 /** 中世・封建期（ヨーロッパ・イスラム・中国・日本・その他の世界）の決断イベント */
 export const MEDIEVAL_EVENTS: DecisionEvent[] = [
@@ -842,7 +842,7 @@ export const MEDIEVAL_EVENTS: DecisionEvent[] = [
       "medieval"
     ],
     "regionIds": [
-      "med_other"
+      "med_west_africa"
     ],
     "minAge": 15,
     "maxAge": 50,
@@ -884,7 +884,7 @@ export const MEDIEVAL_EVENTS: DecisionEvent[] = [
       "medieval"
     ],
     "regionIds": [
-      "med_other"
+      "med_mesoamerica"
     ],
     "minAge": 12,
     "maxAge": 55,
@@ -913,6 +913,11 @@ export const MEDIEVAL_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "しっかりと根を張ったヤナギの柵がチナンパを守り、嵐の波にも耐える強固な農地を築いた。"
       }
+    ],
+    "places": [
+      "テノチティトラン",
+      "テスココ",
+      "メキシコ盆地の湖畔の村"
     ]
   },
   {
@@ -923,7 +928,7 @@ export const MEDIEVAL_EVENTS: DecisionEvent[] = [
       "medieval"
     ],
     "regionIds": [
-      "med_other"
+      "med_andes"
     ],
     "minAge": 14,
     "maxAge": 60,
@@ -962,7 +967,7 @@ export const MEDIEVAL_EVENTS: DecisionEvent[] = [
       "medieval"
     ],
     "regionIds": [
-      "med_other"
+      "med_southeast_asia"
     ],
     "minAge": 14,
     "maxAge": 55,
@@ -994,6 +999,11 @@ export const MEDIEVAL_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "冷静な判断で水門を操作し、最悪の破堤事故を回避することに成功した。"
       }
+    ],
+    "places": [
+      "アンコール",
+      "ヤショーダラプラ",
+      "メコン流域の稲作村"
     ]
   },
   {
@@ -1004,7 +1014,7 @@ export const MEDIEVAL_EVENTS: DecisionEvent[] = [
       "medieval"
     ],
     "regionIds": [
-      "med_other"
+      "med_east_africa"
     ],
     "minAge": 16,
     "maxAge": 50,

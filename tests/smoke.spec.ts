@@ -1,6 +1,26 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('1in5ky E2E smoke tests', () => {
+	test('split region: birth certificate shows a neutral portrait when regional artwork is unavailable', async ({ page }) => {
+		await page.goto('/', { waitUntil: 'networkidle' });
+		// Choose the modern era, then the new sub-Saharan profile through the normal birth roll.
+		await page.evaluate(() => {
+			let calls = 0;
+			Math.random = () => calls++ === 0 ? 0.99 : 0.65;
+		});
+		await page.locator('button.cta').first().click();
+		const cert = page.locator('.cert');
+		await expect(cert).toBeVisible();
+		await expect(cert.locator('.caption-title')).toHaveText('現代サハラ以南アフリカ');
+		const portrait = cert.getByRole('img', { name: '出生時の肖像画は準備中' });
+		await expect(portrait).toBeVisible();
+		await expect(cert.locator('.frame img')).toHaveCount(0);
+		const frameBox = await cert.locator('.frame').boundingBox();
+		const portraitBox = await portrait.boundingBox();
+		expect(portraitBox!.width).toBeLessThanOrEqual(frameBox!.width);
+		expect(portraitBox!.height).toBeLessThanOrEqual(frameBox!.height);
+	});
+
 	test('smoke: can complete full life cycle from birth to death certificate', async ({ page }) => {
 		// Capture any unhandled page errors or crashes
 		const pageErrors: Error[] = [];

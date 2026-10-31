@@ -1,10 +1,11 @@
-import type { DecisionEvent } from '../../types';
+import type { DecisionEvent } from '#lib/types';
 
 /** 複数時代にまたがる日常の病気・感染症・悪税・身分制・都市火災イベント */
 export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 	{
 		id: 'fever_premodern',
 		title: '高熱が三日続いている',
+		regionIds: ['anc_mesopotamia', 'anc_egypt', 'anc_indus', 'anc_aegean', 'cls_rome', 'cls_india', 'cls_persia', 'med_europe', 'med_islam', 'med_india', 'em_europe', 'em_mughal_india'],
 		category: 'common_sense',
 		eraIds: ['ancient', 'classical', 'medieval', 'early_modern'],
 		minAge: 10,
@@ -57,6 +58,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 	{
 		id: 'minor_scratch_tetanus',
 		title: '指先の小さな棘から、顎が動かなくなった',
+		allRegions: true,
 		category: 'common_sense',
 		eraIds: ['ancient', 'classical', 'medieval', 'early_modern', 'industrial'],
 		minAge: 12,
@@ -100,6 +102,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 	{
 		id: 'rotten_tooth_infection',
 		title: '奥歯の化膿で、首まで腫れ上がった',
+		allRegions: true,
 		category: 'common_sense',
 		eraIds: ['ancient', 'classical', 'medieval', 'early_modern'],
 		minAge: 14,
@@ -135,7 +138,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 		title: '長雨でカビた穀物と「燃える手足」',
 		category: 'common_sense',
 		eraIds: ['classical', 'medieval', 'early_modern'],
-		regionIds: ['cls_rome', 'med_europe', 'em_europe', 'em_atlantic'],
+		regionIds: ['cls_rome', 'med_europe', 'em_europe', 'em_north_america'],
 		classIds: ['enslaved', 'peasant', 'artisan'],
 		minAge: 8,
 		maxAge: 70,
@@ -168,6 +171,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 	{
 		id: 'mercury_lead_remedy',
 		title: '「秘伝の霊薬」として水銀と鉛の丸薬を勧められた',
+		regionIds: ['cls_han', 'med_china', 'em_china', 'cls_rome', 'med_europe', 'em_europe'],
 		category: 'common_sense',
 		eraIds: ['classical', 'medieval', 'early_modern'],
 		minAge: 18,
@@ -207,7 +211,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 		minAge: 16,
 		maxAge: 65,
 		description:
-			'朝起きると、隣の家が夜のうちに荷物をまとめて逃げ出していた。役人がやってきて「五人組・隣組の連帯責任（連座）だ。隣の分の年貢と労役もすべてお前たちが納めよ」と命じた。',
+			'朝起きると、隣の家が夜のうちに荷物をまとめて逃げ出していた。役人がやってきて「村の連帯責任だ。隣の分の年貢と労役もすべてお前たちが納めよ」と命じた。',
 		factBox: '秦・漢の什伍制や江戸時代の五人組など、東アジアの前近代社会では納税と治安維持のため、隣人の逃亡や犯罪の責任を周囲の家に連帯して負わせた。',
 		choices: [
 			{
@@ -235,8 +239,9 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 	{
 		id: 'window_salt_tax',
 		title: '「窓の数」と「生きるための塩」にかけられた悪税',
+		regionIds: ['em_europe'],
 		category: 'livelihood',
-		eraIds: ['classical', 'medieval', 'early_modern'],
+		eraIds: ['early_modern'],
 		classIds: ['peasant', 'artisan'],
 		minAge: 16,
 		maxAge: 65,
@@ -269,6 +274,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 	{
 		id: 'press_gang_conscription',
 		title: '夕暮れの道で「強制徴募隊」に棍棒で殴られた',
+		regionIds: ['em_europe', 'ind_europe'],
 		category: 'livelihood',
 		eraIds: ['classical', 'medieval', 'early_modern', 'industrial'],
 		classIds: ['peasant', 'artisan'],
@@ -306,15 +312,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 		title: '領主の狩猟隊が、収穫前の畑を馬で踏み荒らした',
 		category: 'livelihood',
 		eraIds: ['classical', 'medieval', 'early_modern'],
-		regionIds: [
-			'med_europe',
-			'em_europe',
-			'med_japan',
-			'em_edo',
-			'cls_han',
-			'med_china',
-			'em_china'
-		],
+		regionIds: ['med_europe', 'em_europe', 'med_japan', 'em_edo'],
 		classIds: ['enslaved', 'peasant'],
 		isUrban: false,
 		minAge: 14,
@@ -348,13 +346,14 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 	{
 		id: 'urban_filth_fire',
 		title: '汚物が流れる路地と、密集長屋の大火',
+		allRegions: true,
 		category: 'livelihood',
 		eraIds: ['classical', 'medieval', 'early_modern', 'industrial'],
 		isUrban: true,
 		minAge: 12,
 		maxAge: 75,
 		description:
-			'2階の窓から道へ汚物が捨てられる狭く薄暗い長屋街で、風のある夜に火事が出た。消火設備などなく、燃え広がる木組みの建物を壊して延焼を止めるしかない。',
+			'排水やごみの処理が追いつかない密集した住居の一角で、風のある夜に火事が出た。消火設備などなく、燃え広がる家々を壊して延焼を止めるしかない。',
 		factBox: '古代ローマのインスラ（集合住宅）、江戸の裏長屋、17世紀ロンドンなど、近代以前の都市は過密・不衛生と大火の繰り返しで、死亡率が農村より高かった（都市墓場効果）。',
 		choices: [
 			{
@@ -382,6 +381,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 	{
 		id: 'serf_master_whim',
 		title: '主人・領主の借金のカタに、暮らしを引き剥がされる',
+		regionIds: ['cls_rome', 'med_europe', 'em_europe', 'em_caribbean'],
 		category: 'livelihood',
 		eraIds: ['ancient', 'classical', 'medieval', 'early_modern'],
 		classIds: ['enslaved', 'peasant'],
@@ -419,6 +419,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 	{
 		id: 'near_future_water_monopoly',
 		title: '水資源の完全私有化と給水停止通知',
+		allRegions: true,
 		category: 'livelihood',
 		eraIds: ['modern'],
 		yearRange: [2028, 2120],
@@ -450,6 +451,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 	{
 		id: 'near_future_algorithmic_layoff',
 		title: 'AI人事自律システムによる一括解雇と信用スコア凍結',
+		allRegions: true,
 		category: 'livelihood',
 		eraIds: ['modern'],
 		yearRange: [2028, 2120],
@@ -481,6 +483,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 	{
 		id: 'near_future_synthetic_meat_sickness',
 		title: '配給用培養昆虫タンパクの異変とアレルギー急変',
+		allRegions: true,
 		category: 'common_sense',
 		eraIds: ['modern'],
 		yearRange: [2028, 2120],

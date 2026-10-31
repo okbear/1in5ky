@@ -9,10 +9,12 @@ import { canRevive, die, postMortem, resolveChoice, revive, rollBirth, stepYear 
 import { parseMemorials, toMemorialRecord } from './memorials';
 import { MAX_AGE, hazard, survivalRateAtAge } from './util';
 import fs from 'fs';
+import { matchesEventSetting } from '#lib/engine/eventScope';
+import type { DecisionEvent, RegionId } from '#lib/types';
 
 describe('Data Consistency', () => {
-	test('all 31 regions exist and classes sum to 100%', () => {
-		expect(REGIONS.length).toBe(31);
+	test('all 53 regions exist and classes sum to 100%', () => {
+		expect(REGIONS.length).toBe(53);
 		for (const r of REGIONS) {
 			const classSum = r.classes.reduce((s, c) => s + c.share, 0);
 			expect(Math.abs(classSum - 1.0) < 0.01 || Math.abs(classSum - 100) < 0.01).toBe(true);
@@ -32,6 +34,10 @@ describe('Data Consistency', () => {
 
 	test('all baby images exist in static/', () => {
 		for (const [id, info] of Object.entries(BABY_IMAGES)) {
+			if (info.src === null) {
+				expect(info.caption.length, id).toBeGreaterThan(0);
+				continue;
+			}
 			const path = 'static' + info.src;
 			expect(fs.existsSync(path)).toBe(true);
 		}
@@ -296,10 +302,14 @@ describe('Content Integrity', () => {
 		}
 	});
 
-	test('every region has a healthy pool of region-specific events', () => {
+	test('every region has a healthy pool of explicitly targeted or shared events', () => {
 		for (const r of REGIONS) {
-			const n = ALL_EVENTS.filter((e) => e.regionIds?.includes(r.id) && !e.isLifecycle).length;
-			expect(n, `${r.id} region-specific events`).toBeGreaterThanOrEqual(5);
+			// A split must not be padded with another culture's events to meet a quota.
+			const n = ALL_EVENTS.filter((e) =>
+				!e.isLifecycle && (!e.eraIds || e.eraIds.includes(r.eraId)) &&
+				(e.regionIds?.includes(r.id) || e.allRegions === true)
+			).length;
+			expect(n, `${r.id} playable event pool`).toBeGreaterThanOrEqual(5);
 		}
 	});
 
@@ -361,5 +371,94 @@ describe('Content Integrity', () => {
 		const untils = OVERTURNED_BELIEFS.map((b) => b.until);
 		expect(untils).toEqual([...untils].sort((a, b) => a - b));
 		expect(new Set(untils).size).toBe(untils.length);
+	});
+});
+
+describe('Geographic scenario isolation', () => {
+	const region = (id: RegionId) => REGIONS.find((r) => r.id === id)!;
+	const setting = (id: RegionId, place?: string, year?: number) => {
+		const r = region(id);
+		return { region: r, era: ERAS[r.eraId], place: place ?? r.cities[0], currentYear: year ?? ERAS[r.eraId].yearStart };
+	};
+	const event = (id: string) => ALL_EVENTS.find((e) => e.id === id)!;
+
+	test('every event explicitly chooses regional or shared scope, including at runtime', () => {
+		for (const e of ALL_EVENTS) {
+			expect(Boolean(e.regionIds?.length) !== (e.allRegions === true), e.id).toBe(true);
+			if (e.places) {
+				expect(e.places.length, e.id).toBeGreaterThan(0);
+				for (const place of e.places) {
+					expect(REGIONS.some((r) => e.regionIds?.includes(r.id) && [...r.cities, ...r.ruralAreas].includes(place)), `${e.id}: ${place}`).toBe(true);
+				}
+			}
+		}
+		const { allRegions: _, ...unscoped } = event('work_choice_youth');
+		expect(matchesEventSetting(setting('em_china'), unscoped as DecisionEvent)).toBe(false);
+	});
+
+	test('split scenarios preserve the original birth allocations and mortality tables', () => {
+		const groups: [RegionId[], number][] = [
+			[['anc_indus', 'anc_aegean'], 41],
+			[['cls_persia', 'cls_africa', 'cls_mesoamerica', 'cls_yayoi'], 24],
+			[['med_india', 'med_west_africa', 'med_east_africa', 'med_mesoamerica', 'med_andes', 'med_southeast_asia'], 35],
+			[['em_west_africa', 'em_caribbean', 'em_andes', 'em_mesoamerica', 'em_north_america'], 23],
+			[['ind_europe', 'ind_north_america'], 22],
+			[['ind_india', 'ind_southeast_asia'], 16],
+			[['ind_russia', 'ind_egypt', 'ind_congo', 'ind_latin_america'], 28],
+			[['mod_china', 'mod_korea', 'mod_taiwan'], 19],
+			[['mod_south_asia', 'mod_southeast_asia'], 32],
+			[['mod_subsaharan_africa', 'mod_mena'], 20]
+		];
+		for (const [ids, weight] of groups) {
+			const profiles = ids.map(region);
+			expect(profiles.reduce((sum, r) => sum + r.birthWeight, 0)).toBe(weight);
+			for (const r of profiles) {
+				expect(r.infantMortality).toBe(profiles[0].infantMortality);
+				expect(r.under5Mortality).toBe(profiles[0].under5Mortality);
+			}
+		}
+		expect(new Set(REGIONS.map((r) => r.id)).size).toBe(REGIONS.length);
+		expect(Object.keys(BABY_IMAGES).sort()).toEqual(REGIONS.map((r) => r.id).sort());
+		expect(Object.keys(GRAVE_DATA).sort()).toEqual(REGIONS.map((r) => r.id).sort());
+	});
+
+	test('regional historical events cannot cross the former composite boundaries', () => {
+		const cases: [string, RegionId, RegionId, number][] = [
+			['em_ind_taj_mahal_quarry_labor', 'em_mughal_india', 'em_china', 1640],
+			['em_chn_keju_examination_cubicle', 'em_china', 'em_mughal_india', 1700],
+			['cls_other_teotihuacan_obsidian', 'cls_mesoamerica', 'cls_persia', 200],
+			['cls_other_yayoi_bronze_bell', 'cls_yayoi', 'cls_mesoamerica', 200],
+			['med_other_andes_quipu_tribute', 'med_andes', 'med_west_africa', 1450],
+			['med_other_angkor_reservoir_breach', 'med_southeast_asia', 'med_india', 1200],
+			['em_atl_potosi_quicksilver', 'em_andes', 'em_west_africa', 1650],
+			['ind_oth_russian_mir_redemption', 'ind_russia', 'ind_congo', 1870],
+			['ind_ind_malaya_rubber_tapping', 'ind_southeast_asia', 'ind_india', 1900],
+			['mod_chn_backyard_steel_melt', 'mod_china', 'mod_korea', 1959],
+			['mod_asia_dhaka_sewing_collapse', 'mod_south_asia', 'mod_southeast_asia', 2013],
+			['mod_afr_cobalt_hand_dug_pit', 'mod_subsaharan_africa', 'mod_mena', 2010]
+		];
+		for (const [id, allowed, denied, year] of cases) {
+			const e = event(id);
+			expect(e, id).toBeDefined();
+			expect(matchesEventSetting(setting(allowed, e.places?.[0], year), e), `${id}: allowed`).toBe(true);
+			// Even an identical place string must not bypass the region restriction.
+			expect(matchesEventSetting(setting(denied, e.places?.[0], year), e), `${id}: denied`).toBe(false);
+		}
+	});
+
+	test('local events stay in their city or landscape within a broad region', () => {
+		const dhaka = event('mod_asia_dhaka_sewing_collapse');
+		expect(matchesEventSetting(setting('mod_south_asia', 'ダッカ', 2013), dhaka)).toBe(true);
+		expect(matchesEventSetting(setting('mod_south_asia', 'デリー', 2013), dhaka)).toBe(false);
+		const tsunami = event('mod_asia_indian_ocean_tsunami');
+		expect(matchesEventSetting(setting('mod_southeast_asia', 'アチェ州の沿岸村', 2004), tsunami)).toBe(true);
+		expect(matchesEventSetting(setting('mod_south_asia', 'デリー', 2004), tsunami)).toBe(false);
+		const redPaper = event('industrial_conscription_order');
+		expect(matchesEventSetting(setting('ind_japan', undefined, 1940), redPaper)).toBe(true);
+		expect(matchesEventSetting(setting('ind_china', undefined, 1940), redPaper)).toBe(false);
+		for (const id of ['window_salt_tax', 'witch_scapegoat', 'early_modern_thirty_years_mercenary']) {
+			expect(matchesEventSetting(setting('em_china', undefined, 1630), event(id))).toBe(false);
+			expect(matchesEventSetting(setting('em_mughal_india', undefined, 1630), event(id))).toBe(false);
+		}
 	});
 });

@@ -25,12 +25,20 @@
 			<div class="hero">
 				<div class="portrait-card">
 					<div class="frame">
-						<img
-							src={baby.src}
-							alt="{c.name}の出生時の姿（{c.era.name}・{c.region.name}）"
-							loading="eager"
-							decoding="async"
-						/>
+						{#if baby.src}
+							<img
+								src={baby.src}
+								alt="{c.name}の出生時の姿（{c.era.name}・{c.region.name}）"
+								loading="eager"
+								decoding="async"
+							/>
+						{:else}
+							<svg viewBox="0 0 240 240" role="img" aria-label="出生時の肖像画は準備中">
+								<rect width="240" height="240" fill="var(--paper)" />
+								<ellipse cx="120" cy="155" rx="53" ry="62" fill="var(--rule)" />
+								<circle cx="120" cy="87" r="31" fill="var(--rule)" />
+							</svg>
+						{/if}
 						<span class="badge">出生時の姿</span>
 					</div>
 					<div class="caption">
@@ -142,7 +150,8 @@
 		border: 1px solid var(--rule);
 		box-shadow: 0 2px 8px rgba(35, 28, 22, 0.08);
 	}
-	.frame img {
+	.frame img,
+	.frame svg {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;

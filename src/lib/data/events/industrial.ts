@@ -1,4 +1,4 @@
-import type { DecisionEvent } from '../../types';
+import type { DecisionEvent } from '#lib/types';
 
 /** 近代・産業革命（欧米・日本・中国・インド・ロシア中東南米）の決断イベント */
 export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
@@ -10,7 +10,7 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
       "industrial"
     ],
     "regionIds": [
-      "ind_europe_us"
+      "ind_europe"
     ],
     "minAge": 9,
     "maxAge": 45,
@@ -42,6 +42,9 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "監督官に罵倒され半日分の賃金を引かれたが、五体満足で工場の門を出ることができた。"
       }
+    ],
+    "places": [
+      "マンチェスター"
     ]
   },
   {
@@ -52,7 +55,7 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
       "industrial"
     ],
     "regionIds": [
-      "ind_europe_us"
+      "ind_europe"
     ],
     "minAge": 8,
     "maxAge": 65,
@@ -83,6 +86,9 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
         "outcomeText": "激しい下痢と腹痛に襲われベッドの上で数日間苦しんだが、若い体力が勝って何とか生き延びた。",
         "deathText": "止まらぬ下痢と血圧低下により皮膚が青黒く変色し、半日のうちに脱水症状で冷たくなった。"
       }
+    ],
+    "places": [
+      "ロンドン"
     ]
   },
   {
@@ -93,7 +99,7 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
       "industrial"
     ],
     "regionIds": [
-      "ind_europe_us"
+      "ind_europe"
     ],
     "minAge": 12,
     "maxAge": 50,
@@ -125,6 +131,9 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "仲間と団結してサボタージュを行い、出来高単価の引き上げと日曜日休業を工場主に約束させた。"
       }
+    ],
+    "places": [
+      "ロンドン"
     ]
   },
   {
@@ -135,7 +144,7 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
       "industrial"
     ],
     "regionIds": [
-      "ind_europe_us"
+      "ind_europe"
     ],
     "minAge": 10,
     "maxAge": 55,
@@ -177,7 +186,7 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
       "industrial"
     ],
     "regionIds": [
-      "ind_europe_us"
+      "ind_europe"
     ],
     "minAge": 14,
     "maxAge": 50,
@@ -675,6 +684,10 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "隠し植えした米を夜間に収穫し、家族を飢えさせることなく苦難の年限を耐え抜いた。"
       }
+    ],
+    "places": [
+      "カルカッタ",
+      "ベンガルの農村"
     ]
   },
   {
@@ -759,6 +772,9 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
         "outcomeText": "トップクラスの生産量を記録して多額の給金を手にし、村の家族へ送金した。",
         "deathText": "肺が繊維の粉塵で固まり、乾いた咳が止まらなくなって数年後に窒息するように世を去った。"
       }
+    ],
+    "places": [
+      "カルカッタ"
     ]
   },
   {
@@ -812,8 +828,9 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
       "industrial"
     ],
     "regionIds": [
-      "ind_india"
+      "ind_southeast_asia"
     ],
+    "places": ["クアラルンプール", "ペナン", "マラッカ", "マレー半島のゴム農園"],
     "minAge": 15,
     "maxAge": 50,
     "description": "自動車のタイヤ需要で沸く英領マレーのゴム園へタミル系移民労働者として渡った。ゴムの樹液が最もよく出る夜明け前の暗闇のなか、額にランプをつけて幹に螺旋の切り込みを入れる。",
@@ -854,7 +871,7 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
       "industrial"
     ],
     "regionIds": [
-      "ind_other"
+      "ind_russia"
     ],
     "minAge": 18,
     "maxAge": 60,
@@ -896,7 +913,7 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
       "industrial"
     ],
     "regionIds": [
-      "ind_other"
+      "ind_egypt"
     ],
     "minAge": 15,
     "maxAge": 45,
@@ -928,6 +945,9 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "除隊許可証を手に入れて故郷の村へ生還し、懐かしいナイルの麦畑に平穏を取り戻した。"
       }
+    ],
+    "places": [
+      "スエズ"
     ]
   },
   {
@@ -938,7 +958,7 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
       "industrial"
     ],
     "regionIds": [
-      "ind_other"
+      "ind_congo"
     ],
     "minAge": 12,
     "maxAge": 50,
@@ -983,7 +1003,7 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
       "industrial"
     ],
     "regionIds": [
-      "ind_other"
+      "ind_latin_america"
     ],
     "minAge": 16,
     "maxAge": 55,
@@ -1015,6 +1035,10 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "鋭い棘を避けながらアガベを収穫し続け、戦乱の嵐が去るまで目立たずに家族を守った。"
       }
+    ],
+    "places": [
+      "メキシコシティ",
+      "メキシコの大農園"
     ]
   },
   {
@@ -1025,7 +1049,7 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
       "industrial"
     ],
     "regionIds": [
-      "ind_other"
+      "ind_russia"
     ],
     "minAge": 16,
     "maxAge": 45,
@@ -1057,6 +1081,10 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "温かいキャベツスープ（シチー）を工夫たちに配り、凍傷にかかることなく過酷な冬を乗り切った。"
       }
+    ],
+    "places": [
+      "イルクーツク",
+      "シベリアの集落"
     ]
   }
 ];

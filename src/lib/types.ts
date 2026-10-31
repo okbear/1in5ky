@@ -10,30 +10,52 @@ export type RegionId =
 	| 'anc_mesopotamia'
 	| 'anc_egypt'
 	| 'anc_china'
-	| 'anc_indus_other'
+	| 'anc_indus'
+	| 'anc_aegean'
 	| 'cls_rome'
 	| 'cls_han'
 	| 'cls_india'
-	| 'cls_other'
+	| 'cls_persia'
+	| 'cls_mesoamerica'
+	| 'cls_africa'
+	| 'cls_yayoi'
 	| 'med_europe'
 	| 'med_islam'
 	| 'med_china'
 	| 'med_japan'
-	| 'med_other'
+	| 'med_india'
+	| 'med_west_africa'
+	| 'med_east_africa'
+	| 'med_mesoamerica'
+	| 'med_andes'
+	| 'med_southeast_asia'
 	| 'em_edo'
 	| 'em_china'
 	| 'em_mughal_india'
 	| 'em_europe'
-	| 'em_atlantic'
-	| 'ind_europe_us'
+	| 'em_west_africa'
+	| 'em_caribbean'
+	| 'em_andes'
+	| 'em_mesoamerica'
+	| 'em_north_america'
+	| 'ind_europe'
+	| 'ind_north_america'
 	| 'ind_japan'
 	| 'ind_china'
 	| 'ind_india'
-	| 'ind_other'
+	| 'ind_southeast_asia'
+	| 'ind_russia'
+	| 'ind_egypt'
+	| 'ind_congo'
+	| 'ind_latin_america'
 	| 'mod_japan'
-	| 'mod_china_ea'
-	| 'mod_asia'
-	| 'mod_africa_me'
+	| 'mod_china'
+	| 'mod_taiwan'
+	| 'mod_korea'
+	| 'mod_south_asia'
+	| 'mod_southeast_asia'
+	| 'mod_subsaharan_africa'
+	| 'mod_mena'
 	| 'mod_europe'
 	| 'mod_north_america'
 	| 'mod_latin_america'
@@ -136,12 +158,13 @@ export interface ChoiceOption {
 	deathText?: string; // survivalChance の判定に敗れたときに記録される結果（survivalChance があれば必須）
 }
 
-export interface DecisionEvent {
+export interface DecisionEventSpec {
 	id: string;
 	title: string;
 	category: 'historical_wave' | 'common_sense' | 'livelihood';
 	eraIds?: EraId[];
-	regionIds?: RegionId[];
+	/** Optional exact place restriction within the allowed regions. */
+	places?: string[];
 	classIds?: SocialClassId[];
 	sex?: 'M' | 'F';
 	requiresSpouse?: boolean;
@@ -159,6 +182,12 @@ export interface DecisionEvent {
 	factBox: string;
 	choices: ChoiceOption[];
 }
+
+/** Explicitly opt into shared events; regional events must name at least one region. */
+export type DecisionEvent = DecisionEventSpec & (
+	| { regionIds: [RegionId, ...RegionId[]]; allRegions?: never }
+	| { allRegions: true; regionIds?: never }
+);
 
 export interface FeedEntry {
 	id: string;

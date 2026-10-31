@@ -1,4 +1,4 @@
-import type { DecisionEvent } from '../../types';
+import type { DecisionEvent } from '#lib/types';
 
 /** 現代〜近未来（日本・東アジア・南アジア・アフリカ中東・欧米）の決断イベント */
 export const MODERN_EVENTS: DecisionEvent[] = [
@@ -223,7 +223,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_china_ea"
+      "mod_china"
     ],
     "minAge": 14,
     "maxAge": 60,
@@ -265,7 +265,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_china_ea"
+      "mod_china"
     ],
     "minAge": 16,
     "maxAge": 35,
@@ -298,6 +298,9 @@ export const MODERN_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "技術検定に合格して製品設計部門のエンジニアへ昇格し、冷暖房の完備された研究室勤務を手に入れた。"
       }
+    ],
+    "places": [
+      "深圳"
     ]
   },
   {
@@ -308,7 +311,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_china_ea"
+      "mod_china"
     ],
     "minAge": 18,
     "maxAge": 50,
@@ -348,7 +351,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_china_ea"
+      "mod_china"
     ],
     "minAge": 8,
     "maxAge": 70,
@@ -390,7 +393,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_china_ea"
+      "mod_china"
     ],
     "minAge": 10,
     "maxAge": 75,
@@ -423,6 +426,9 @@ export const MODERN_EVENTS: DecisionEvent[] = [
         "outcomeText": "厳重な警告書に署名させられたものの、近隣の注目を集めて配給が少しだけ早まった。",
         "deathText": "遠方の集中隔離施設へ送られ、持病の心臓病の薬が届かず独房の中で心不全を起こして落命した。"
       }
+    ],
+    "places": [
+      "上海"
     ]
   },
   {
@@ -433,7 +439,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_asia"
+      "mod_south_asia"
     ],
     "minAge": 14,
     "maxAge": 45,
@@ -464,6 +470,9 @@ export const MODERN_EVENTS: DecisionEvent[] = [
         "outcomeText": "柱の崩壊直前に窓から隣の屋根へ飛び降りて奇跡的に脱出し、かすり傷だけで生還した。",
         "deathText": "コンクリートの床板がパンケーキ状に崩落し、重いミシンと瓦礫の下敷きになって息を引き取った。"
       }
+    ],
+    "places": [
+      "ダッカ"
     ]
   },
   {
@@ -474,7 +483,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_asia"
+      "mod_southeast_asia"
     ],
     "minAge": 10,
     "maxAge": 50,
@@ -506,6 +515,9 @@ export const MODERN_EVENTS: DecisionEvent[] = [
         "outcomeText": "大量の段ボールを確保して日当を増やしたが、足の裏の切り傷が疼き続けた。",
         "deathText": "錆びた釘を踏み抜いて破傷風菌に感染し、激しい全身痙攣を起こして適切な医療を受けられず落命した。"
       }
+    ],
+    "places": [
+      "マニラ"
     ]
   },
   {
@@ -516,7 +528,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_asia"
+      "mod_southeast_asia"
     ],
     "minAge": 14,
     "maxAge": 60,
@@ -548,6 +560,10 @@ export const MODERN_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "安全な避難所へ無事に辿り着き、水が引くまで家族で助け合って過ごした。"
       }
+    ],
+    "places": [
+      "バンコク",
+      "チャオプラヤー流域の村"
     ]
   },
   {
@@ -558,7 +574,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_asia"
+      "mod_southeast_asia"
     ],
     "minAge": 8,
     "maxAge": 65,
@@ -590,6 +606,9 @@ export const MODERN_EVENTS: DecisionEvent[] = [
         "outcomeText": "喉を潰して声が枯れ果てたが、何とか日々の米代を稼ぎ出すことができた。",
         "deathText": "泥炭の有害ガスにより重度の喘息重積発作を起こし、市場の露店裏で倒れて呼吸不全で死亡した。"
       }
+    ],
+    "places": [
+      "スマトラ島の農村"
     ]
   },
   {
@@ -600,7 +619,8 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_asia"
+      "mod_south_asia",
+      "mod_southeast_asia"
     ],
     "minAge": 6,
     "maxAge": 70,
@@ -634,6 +654,10 @@ export const MODERN_EVENTS: DecisionEvent[] = [
         "outcomeText": "迫る波の轟音に気づいて全速力で内陸へ走り、間一髪でモスクの2階へ駆け上がって助かった。",
         "deathText": "巨大な津波の黒い壁に直撃され、一瞬にして波の底へ叩きつけられて絶命した。"
       }
+    ],
+    "places": [
+      "アチェ州の沿岸村",
+      "インド南東岸の村"
     ]
   },
   {
@@ -644,7 +668,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_africa_me"
+      "mod_subsaharan_africa"
     ],
     "minAge": 12,
     "maxAge": 45,
@@ -676,6 +700,9 @@ export const MODERN_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "手足のかゆみに耐えながら川辺で鉱石を洗い続け、安全に日当を確保した。"
       }
+    ],
+    "places": [
+      "コンゴ南東部の鉱山集落"
     ]
   },
   {
@@ -686,7 +713,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_africa_me"
+      "mod_subsaharan_africa"
     ],
     "minAge": 10,
     "maxAge": 60,
@@ -715,6 +742,10 @@ export const MODERN_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "GPS座標を正確に伝えて精密散布を成功させ、地域全体の穀物危機を回避した。"
       }
+    ],
+    "places": [
+      "ナイロビ",
+      "東アフリカの農村"
     ]
   },
   {
@@ -725,7 +756,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_africa_me"
+      "mod_mena"
     ],
     "minAge": 16,
     "maxAge": 35,
@@ -757,6 +788,9 @@ export const MODERN_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "海岸を歩いて引き返し、地元のパン屋で住み込みの仕事を見つけて再起を期した。"
       }
+    ],
+    "places": [
+      "トリポリ"
     ]
   },
   {
@@ -767,7 +801,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_africa_me"
+      "mod_subsaharan_africa"
     ],
     "minAge": 12,
     "maxAge": 60,
@@ -798,6 +832,9 @@ export const MODERN_EVENTS: DecisionEvent[] = [
         "outcomeText": "幸運にも感染を免れ、奇跡的に抗体を獲得して村の生存者コミュニティを支えた。",
         "deathText": "数日後に高熱と激しい下痢・嘔吐を発症し、隔離テントのなかで多臓器不全により落命した。"
       }
+    ],
+    "places": [
+      "キンシャサ"
     ]
   },
   {
@@ -808,7 +845,7 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       "modern"
     ],
     "regionIds": [
-      "mod_africa_me"
+      "mod_subsaharan_africa"
     ],
     "minAge": 8,
     "maxAge": 65,
@@ -840,14 +877,21 @@ export const MODERN_EVENTS: DecisionEvent[] = [
         "outcomeText": "布で砂を濾して煮沸し、十分な水量を確保して家畜にも水を与えることができた。",
         "deathText": "煮沸が不十分だった泥水から腸チフスに感染し、高熱の譫妄状態のなかで息を引き取った。"
       }
+    ],
+    "places": [
+      "サヘルの村"
     ]
   },
   {
     "id": "mod_eur_berlin_wall_fall",
     "title": "ベルリンの壁崩壊と東欧激変の熱狂",
     "category": "historical_wave",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_europe"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_europe"
+    ],
     "minAge": 15,
     "maxAge": 70,
     "description": "1989年11月、東西を隔てていたベルリンの壁が群衆の手によって打ち倒された。国境ゲートが開放され、歓喜に沸く人々が検問所に押し寄せる。",
@@ -880,8 +924,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_eur_heatwave_stone_apartment",
     "title": "欧州大熱波とエアコンのない石造りアパート",
     "category": "historical_wave",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_europe"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_europe"
+    ],
     "minAge": 10,
     "maxAge": 85,
     "description": "連日40度を超える観測史上最悪の熱波が西欧を襲った。石造りのアパートメントは熱を蓄え続け、エアコンのない室内は深夜になってもサウナのように蒸し風呂と化す。",
@@ -917,8 +965,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_eur_schengen_migrant_crisis",
     "title": "欧州難民危機と駅前広場の受け入れ支援",
     "category": "historical_wave",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_europe"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_europe"
+    ],
     "minAge": 16,
     "maxAge": 70,
     "description": "中東や北アフリカの紛争地からバルカン半島を経て数百万人の難民・移民が押し寄せ、主要駅のプラットフォームは支援物資と混乱で溢れ返った。",
@@ -951,8 +1003,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_eur_yellow_vests_fuel_tax",
     "title": "燃料税引き上げへの「黄色いベスト運動」と都市封鎖",
     "category": "livelihood",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_europe"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_europe"
+    ],
     "minAge": 18,
     "maxAge": 65,
     "description": "環境対策を名目とした燃料税引き上げに怒った地方在住者たちが、蛍光色の黄色い安全ベストを着てラウンドアバウト（円形交差点）や大通りを封鎖した。",
@@ -989,8 +1045,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_eur_pension_reform_general_strike",
     "title": "年金改革法案と公共交通の無期限ゼネスト",
     "category": "common_sense",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_europe"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_europe"
+    ],
     "minAge": 25,
     "maxAge": 70,
     "description": "少子高齢化を理由とする年金支給開始年齢の2年引き上げに対し、主要労働組合が一斉に無期限ストライキに突入。鉄道も地下鉄も完全に麻痺した。",
@@ -1024,8 +1084,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_na_rustbelt_factory_closure",
     "title": "ラストベルトの自動車工場閉鎖と医療保険の喪失",
     "category": "historical_wave",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_north_america"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_north_america"
+    ],
     "minAge": 25,
     "maxAge": 60,
     "description": "米国中西部の工業都市で、親の代から勤めてきた自動車部品工場が海外移転のため突然閉鎖された。組合の年金と医療保険を同時に失い、住宅ローンの督促状が届く。",
@@ -1059,8 +1123,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_na_opioid_painkiller_habit",
     "title": "処方鎮痛薬オピオイドの過剰処方と依存症",
     "category": "common_sense",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_north_america"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_north_america"
+    ],
     "minAge": 18,
     "maxAge": 65,
     "description": "工場での作業で痛めた慢性腰痛に対し、クリニックの医師から「中毒性のない安全な新薬」としてオキシコドン（オピオイド）が処方された。薬が切れると激しい不安と痛みに襲われる。",
@@ -1097,8 +1165,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_na_california_wildfire_smoke",
     "title": "カリフォルニア山火事の火の手と緊急避難",
     "category": "historical_wave",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_north_america"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_north_america"
+    ],
     "minAge": 12,
     "maxAge": 70,
     "description": "乾燥した強風（サンタアナ風）に煽られた巨大山火事（メガファイア）が丘を越えて住宅街へ迫ってきた。空はオレンジ色に染まり、携帯電話に即時避難命令のアラートが鳴り響く。",
@@ -1137,8 +1209,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_na_subprime_mortgage_foreclosure",
     "title": "サブプライムローン破綻と住宅差し押さえ通告",
     "category": "livelihood",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_north_america"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_north_america"
+    ],
     "minAge": 22,
     "maxAge": 65,
     "description": "頭金ゼロの変動金利住宅ローンで念願のマイホームを購入したが、住宅バブルの崩壊で金利が急騰。住宅価値がローン残高を下回り、銀行から立ち退き勧告が届いた。",
@@ -1172,8 +1248,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_na_hurricane_katrina_levee",
     "title": "巨大ハリケーン・カトリーナと堤防決壊の水没",
     "category": "historical_wave",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_north_america"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_north_america"
+    ],
     "minAge": 8,
     "maxAge": 75,
     "description": "カテゴリー5の巨大ハリケーンが湾岸都市を直撃し、運河の防潮堤が決壊。海抜ゼロメートルの市街地に濁流が一気に押し寄せ、街の8割が水没した。",
@@ -1213,8 +1293,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_lat_favela_police_raid",
     "title": "リオデジャネイロのファヴェーラ（貧民街）銃撃戦",
     "category": "historical_wave",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_latin_america"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_latin_america"
+    ],
     "minAge": 10,
     "maxAge": 60,
     "description": "丘の上に広がるファヴェーラで、重武装した軍警察の装甲車（カヴェイラォン）と麻薬密売組織の銃撃戦が始まった。自動小銃の銃弾が薄いトタン屋根を貫通して降り注ぐ。",
@@ -1254,8 +1338,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_lat_hyperinflation_currency",
     "title": "ハイパーインフレと日銭の物資買い出し競争",
     "category": "common_sense",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_latin_america"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_latin_america"
+    ],
     "minAge": 15,
     "maxAge": 70,
     "description": "月間インフレ率が数百パーセントに達し、朝と夕方でスーパーの値札が倍に書き換えられる。給料を受け取った瞬間、紙屑になる前に食料品店へ全力疾走しなければならない。",
@@ -1289,8 +1377,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_lat_military_dictatorship_curfew",
     "title": "軍事政権の戒厳令と「夜の連行」の影",
     "category": "historical_wave",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_latin_america"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_latin_america"
+    ],
     "minAge": 16,
     "maxAge": 65,
     "description": "クーデターで実権を握った軍事政権が夜間外出禁止令を発令。反体制派とみなされた学生や労働者がナンバープレートのない乗用車（ファルコン）に拉致され行方不明になっている。",
@@ -1327,8 +1419,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_lat_amazon_deforestation_conflict",
     "title": "アマゾン熱帯雨林開発と先住民・開拓民の衝突",
     "category": "livelihood",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_latin_america"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_latin_america"
+    ],
     "minAge": 15,
     "maxAge": 60,
     "description": "大豆農園と大牧場を広げる巨大アグリビジネスのブルドーザーが森林を焼き払い、伝統的なゴム採取民や先住民のコミュニティに不法侵入してきた。",
@@ -1365,8 +1461,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_lat_mexico_cartel_checkpoint",
     "title": "麻薬カルテルの私設検問所と夜間高速道路",
     "category": "common_sense",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_latin_america"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_latin_america"
+    ],
     "minAge": 14,
     "maxAge": 65,
     "description": "長距離バスで州境を越える途中、自動小銃とタクティカルベストで完全武装したカルテルの私設検問所に遭遇。車内に不気味な静寂が広がる。",
@@ -1406,8 +1506,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_rus_chernobyl_fallout",
     "title": "チェルノブイリ原発事故と放射性雲の飛来",
     "category": "historical_wave",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_russia_cis"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_russia_cis"
+    ],
     "minAge": 5,
     "maxAge": 70,
     "description": "1986年4月末、数百キロ離れた原子力発電所で大爆発が発生した。当局は事故を隠蔽しているが、空に金属の味が広がり、ガイガーカウンターが異常な数値を刻んでいる。",
@@ -1443,8 +1547,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_rus_ussr_collapse_voucher",
     "title": "ソ連崩壊と国有財産バウチャーの投げ売り",
     "category": "historical_wave",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_russia_cis"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_russia_cis"
+    ],
     "minAge": 18,
     "maxAge": 70,
     "description": "1991年末に赤旗がクレムリンから降ろされ、ソ連が消滅した。急進的な民営化政策（ショック療法）により、国民一人ひとりに国有企業の民営化小切手（バウチャー）が配られたが、日々のパンにも事欠く。",
@@ -1478,8 +1586,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_rus_chechen_war_draft",
     "title": "チェチェン紛争の徴兵令と母の会の救出運動",
     "category": "historical_wave",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_russia_cis"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_russia_cis"
+    ],
     "minAge": 17,
     "maxAge": 55,
     "description": "分離独立を巡るカフカス地方の内戦に、ろくな訓練も受けない徴兵兵士たちが最前線の市街戦（グロズヌイ突入）へ送り込まれ、おびただしい数の戦死者が出ている。",
@@ -1516,8 +1628,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_rus_siberian_blizzard_district_heating",
     "title": "氷点下45度の大寒波と地域集中暖房パイプの破裂",
     "category": "common_sense",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_russia_cis"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_russia_cis"
+    ],
     "minAge": 8,
     "maxAge": 80,
     "description": "シベリアからの猛烈な寒波で気温が氷点下45度まで降下。老朽化した都市の地域集中暖房（ツェントラリノエ・オトプレニエ）の温水本管が破裂し、高層団地全棟の暖房が停止した。",
@@ -1554,8 +1670,12 @@ export const MODERN_EVENTS: DecisionEvent[] = [
     "id": "mod_rus_90s_gangster_extortion",
     "title": "90年代の無法地帯・ロシアンマフィアのみかじめ料要求",
     "category": "livelihood",
-    "eraIds": ["modern"],
-    "regionIds": ["mod_russia_cis"],
+    "eraIds": [
+      "modern"
+    ],
+    "regionIds": [
+      "mod_russia_cis"
+    ],
     "minAge": 20,
     "maxAge": 60,
     "description": "小さな自動車修理工場を開業した途端、革ジャンを着た屈強なロシアンマフィア（ブラトヴァ）がやって来て「屋根（クルィーシャ＝保護）」の代金を要求してきた。",

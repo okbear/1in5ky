@@ -1,4 +1,4 @@
-import type { MemorialRecord } from '../../types';
+import type { MemorialRecord } from '#lib/types';
 
 /** 古代文明期：タイムラインに最初から刻まれている「名もなき人々」の墓標 */
 export const ANCIENT_SEEDS: MemorialRecord[] = [
@@ -170,7 +170,7 @@ export const ANCIENT_SEEDS: MemorialRecord[] = [
 		sex: 'M',
 		eraId: 'ancient',
 		eraName: '古代文明期',
-		regionName: 'インダス・その他の地域',
+		regionName: 'インダス流域',
 		place: 'モヘンジョ・ダロ南街区',
 		birthYear: -2200,
 		deathYear: -2175,
@@ -242,7 +242,7 @@ export const ANCIENT_SEEDS: MemorialRecord[] = [
 		sex: 'F',
 		eraId: 'ancient',
 		eraName: '古代文明期',
-		regionName: 'インダス・その他の地域',
+		regionName: 'インダス流域',
 		place: 'カーリバンガンの農村',
 		birthYear: -2050,
 		deathYear: -2046,
@@ -260,7 +260,7 @@ export const ANCIENT_SEEDS: MemorialRecord[] = [
 		sex: 'F',
 		eraId: 'ancient',
 		eraName: '古代文明期',
-		regionName: 'インダス・その他の地域',
+		regionName: 'インダス流域',
 		place: 'ロータルの港湾集落',
 		birthYear: -1900,
 		deathYear: -1862,

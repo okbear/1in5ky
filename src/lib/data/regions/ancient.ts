@@ -1,4 +1,4 @@
-import type { RegionProfile } from '../../types';
+import type { RegionProfile } from '#lib/types';
 import { baseRegion } from './common';
 
 export const ANCIENT_REGIONS: RegionProfile[] = [
@@ -75,27 +75,51 @@ export const ANCIENT_REGIONS: RegionProfile[] = [
 		sceneTheme: { skyTop: '#D9C79B', skyBottom: '#EFE4C6', ground: '#A88B55', accent: '#8C283B', architecture: 'classical' }
 	}),
 	baseRegion('ancient', {
-		id: 'anc_indus_other',
-		name: 'インダス・その他の地域',
-		subName: 'ハラッパー〜ヴェーダ時代、各地',
-		polity: '都市・部族社会',
-		cities: ['モヘンジョ・ダロ', 'ハラッパー', 'ミケーネ'],
-		ruralAreas: ['インダス支流の村', '丘陵の牧畜集落'],
-		birthWeight: 41,
+		id: "anc_indus",
+		name: "インダス流域",
+		subName: "インダス流域",
+		polity: "インダス流域",
+		cities: ["モヘンジョ・ダロ", "ハラッパー"],
+		ruralAreas: ["インダス支流の村"],
+		birthWeight: 33,
 		infantMortality: 340,
 		under5Mortality: 490,
 		lifeExpectancyAt15: 42,
 		literacyRate: 1,
 		urbanizationRate: 5,
 		gdpPerCapitaPPP: 550,
-		currencyUnit: '穀物・家畜',
+		currencyUnit: "穀物・家畜",
 		modernFeelJpy: 380000,
-		dietStaple: '小麦・大麦、豆、乳製品',
-		beliefSystem: '自然神信仰と祖霊崇拝。',
-		medicalCommonSense: '病は精霊の仕業。祈祷と薬草。',
-		worldviewCommonSense: '季節の巡りが世界のすべて。共同体の外は危険。',
+		dietStaple: "小麦・大麦、豆、乳製品",
+		beliefSystem: "自然神信仰と祖霊崇拝。",
+		medicalCommonSense: "薬草や地域の伝承医療。",
+		worldviewCommonSense: "地域の共同体と交易のつながりの中で暮らす。",
 		maleNames: ['アルジュ', 'カナ', 'デーヴァ', 'ソーマ', 'インドラ・ダッタ', 'アグニ', 'ヴァルナ', 'ミトラ', 'スダーサ', 'バラタ', 'ダサ', 'シャンダ', 'マルート', 'ルドラ', 'ブリグ', 'アンギラス', 'アトリ', 'ガウタマ', 'カシュヤパ', 'ヴァシシュタ', 'ヴィシュヴァーミトラ', 'ジャマダグニ', 'ヤドゥ', 'トゥルヴァシャ', 'ドルヒユ', 'アヌ', 'プール', 'トラサダスユ', 'ディヴォーダーサ', 'プラティシュタ'],
 		femaleNames: ['ウシャ', 'ミラ', 'サラスヴァティー', 'アディティ', 'プリティヴィー', 'ガウリー', 'ラートリー', 'レーヴァティー', 'インドラーニー', 'ロパムドラー', 'ガルギー', 'マイトレーイー', 'ゴーシャー', 'ヴィシュパラー', 'アパーラー', 'シュラッダー', 'ダクシナ', 'スニーター', 'ローパームドラー', 'ヤミー', 'サラニュウ', 'ウシャス', 'ダヌ', 'ディティ', 'イラー', 'バーラティー', 'ヴァーチ', 'カドルー', 'ヴィナター'],
-		sceneTheme: { skyTop: '#E5C98F', skyBottom: '#F4E5BE', ground: '#B8935A', accent: '#9C6238', architecture: 'ziggurat' }
+		sceneTheme: { skyTop: '#E5C98F', skyBottom: '#F4E5BE', ground: '#B8935A', accent: '#9C6238', architecture: 'classical' }
+	}),
+	baseRegion('ancient', {
+		id: "anc_aegean",
+		name: "エーゲ海世界",
+		subName: "エーゲ海世界",
+		polity: "エーゲ海世界",
+		cities: ["ミケーネ", "クノッソス"],
+		ruralAreas: ["エーゲ海沿岸の村"],
+		birthWeight: 8,
+		infantMortality: 340,
+		under5Mortality: 490,
+		lifeExpectancyAt15: 42,
+		literacyRate: 1,
+		urbanizationRate: 5,
+		gdpPerCapitaPPP: 550,
+		currencyUnit: "穀物・家畜",
+		modernFeelJpy: 380000,
+		dietStaple: "大麦・小麦、オリーブ、魚",
+		beliefSystem: "地域の神々への祭祀。",
+		medicalCommonSense: "薬草や地域の伝承医療。",
+		worldviewCommonSense: "地域の共同体と交易のつながりの中で暮らす。",
+		maleNames: ["アキレウス", "ヘクトル", "ネストル", "メネラオス", "アガメムノン", "ディオメデス", "アイアス", "オデュッセウス", "パトロクロス", "イオラオス", "アトレウス", "ペロプス", "エウメロス", "テウクロス", "イアソン", "カストル", "ポリュデウケス", "アンティロコス", "ピロクテテス", "エウリュピュロス", "イオメネウス", "ドロン", "パンダロス", "サルペドン"],
+		femaleNames: ["ヘレネ", "ペネロペ", "アンドロマケ", "ヘカベ", "クリュタイムネストラ", "カッサンドラ", "エレクトラ", "イピゲネイア", "アリアドネ", "パイドラ", "ブリセイス", "クリュセイス", "ディオメデ", "メガラ", "アルクメネ", "ダナエ", "エウリュディケ", "アンティゴネ", "イスメネ", "イオカステ", "デイアネイラ", "ヒッポダメイア", "ラオダメイア", "エウアドネ"],
+		sceneTheme: { skyTop: '#E5C98F', skyBottom: '#F4E5BE', ground: '#B8935A', accent: '#9C6238', architecture: 'classical' }
 	})
 ];

@@ -19,9 +19,13 @@ export const GRAVE_DATA: Record<RegionId, GraveInfo> = {
 		title: '黄河流域の土坑墓',
 		desc: '黄土の丘の片隅、素朴な土器とともに大地に抱かれる。'
 	},
-	anc_indus_other: {
-		title: 'インダスのレンガ棺墓',
-		desc: '整然と敷かれた焼成レンガの傍ら、静寂の中に眠る。'
+	anc_indus: {
+		title: "インダス流域の追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	anc_aegean: {
+		title: "エーゲ海世界の追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
 	},
 
 	// === 古典期 (classical) ===
@@ -37,9 +41,21 @@ export const GRAVE_DATA: Record<RegionId, GraveInfo> = {
 		title: '聖なる河畔の川辺',
 		desc: '夕闇迫る川面を見つめ、輪廻の彼方へと祈りが捧げられる。'
 	},
-	cls_other: {
-		title: '荒野の積石塚（ケルン）',
-		desc: '吹きすさぶ風の中、旅人たちが積み上げた石の下に眠る。'
+	cls_persia: {
+		title: "ペルシア・中央アジアの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	cls_mesoamerica: {
+		title: "古典期メソアメリカの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	cls_africa: {
+		title: "アクスム・紅海沿岸の追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	cls_yayoi: {
+		title: "弥生時代の日本の追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
 	},
 
 	// === 中世 (medieval) ===
@@ -59,9 +75,29 @@ export const GRAVE_DATA: Record<RegionId, GraveInfo> = {
 		title: '野辺の五輪塔',
 		desc: '風雨にさらされ丸みを帯びた石塔と、秋風に揺れるススキ。'
 	},
-	med_other: {
-		title: 'ステップ草原の石人',
-		desc: '果てしない地平線を見つめ続ける、古代の石像の傍ら。'
+	med_india: {
+		title: "中世南アジアの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	med_west_africa: {
+		title: "中世西アフリカの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	med_east_africa: {
+		title: "スワヒリ海岸の追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	med_mesoamerica: {
+		title: "中世メソアメリカの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	med_andes: {
+		title: "中世アンデスの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	med_southeast_asia: {
+		title: "アンコール・大陸東南アジアの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
 	},
 
 	// === 近世 (early_modern) ===
@@ -81,15 +117,35 @@ export const GRAVE_DATA: Record<RegionId, GraveInfo> = {
 		title: '教会の墓地と糸杉',
 		desc: '古い教区教会の壁際、彫り込まれた家名と聖句。'
 	},
-	em_atlantic: {
-		title: '海を望む丘の木製十字架',
-		desc: '大西洋の潮風が吹き抜ける岬、素朴な木の杭。'
+	em_west_africa: {
+		title: "近世西アフリカの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	em_caribbean: {
+		title: "カリブ海・ブラジル農園地帯の追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	em_andes: {
+		title: "近世アンデス植民地の追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	em_mesoamerica: {
+		title: "近世メソアメリカ植民地の追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	em_north_america: {
+		title: "北米大西洋岸・ハドソン湾交易圏の追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
 	},
 
 	// === 近代 (industrial) ===
-	ind_europe_us: {
-		title: '霧と煤煙のビクトリア朝墓地',
-		desc: '鉄柵に囲まれた大理石のオベリスク、冷たい雨に濡れる。'
+	ind_europe: {
+		title: "近代ヨーロッパの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	ind_north_america: {
+		title: "近代北米の追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
 	},
 	ind_japan: {
 		title: '明治・近代の角柱墓石',
@@ -100,12 +156,28 @@ export const GRAVE_DATA: Record<RegionId, GraveInfo> = {
 		desc: '激動の時代を駆け抜け、故郷の斜面で静かに眠る。'
 	},
 	ind_india: {
-		title: '黄昏のガートと墓苑',
-		desc: '暮れなずむ空の下、供えられたマリーゴールドの花。'
+		title: "英領インドの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
 	},
-	ind_other: {
-		title: '開拓地・大平原の墓標',
-		desc: '見渡す限りの地平線、夕陽に向かって立つ素朴な木標。'
+	ind_southeast_asia: {
+		title: "近代東南アジアの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	ind_russia: {
+		title: "近代ロシアの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	ind_egypt: {
+		title: "近代エジプトの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	ind_congo: {
+		title: "近代コンゴの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	ind_latin_america: {
+		title: "近代ラテンアメリカの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
 	},
 
 	// === 現代 (modern) ===
@@ -113,17 +185,33 @@ export const GRAVE_DATA: Record<RegionId, GraveInfo> = {
 		title: '夕暮れの現代霊園',
 		desc: '整然と磨かれた御影石、静かに供えられた生花。'
 	},
-	mod_china_ea: {
-		title: '現代の公営墓園',
-		desc: '山並みを望む斜面に並ぶ銘板、静かな祈りの空間。'
+	mod_china: {
+		title: "現代中国の追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
 	},
-	mod_asia: {
-		title: '緑に囲まれた現代墓苑',
-		desc: '熱帯の夕暮れ、家族の手によって手入れされた墓所。'
+	mod_korea: {
+		title: "現代韓国の追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
 	},
-	mod_africa_me: {
-		title: '砂漠の現代墓地',
-		desc: '静寂が支配する夕暮れの砂丘、簡素な白い石碑。'
+	mod_taiwan: {
+		title: "現代台湾の追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	mod_south_asia: {
+		title: "現代南アジアの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	mod_southeast_asia: {
+		title: "現代東南アジアの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	mod_subsaharan_africa: {
+		title: "現代サハラ以南アフリカの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
+	},
+	mod_mena: {
+		title: "現代中東・北アフリカの追悼",
+		desc: '家族と共同体の記憶の中に、その人の生涯が残る。'
 	},
 	mod_europe: {
 		title: '歴史ある共同墓地の石碑',

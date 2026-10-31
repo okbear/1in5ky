@@ -5,6 +5,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 	{
 		id: 'work_choice_youth',
 		title: '一人前として働き始める歳になった',
+		allRegions: true,
 		category: 'livelihood',
 		classIds: ['peasant', 'artisan'],
 		isLifecycle: true,
@@ -73,6 +74,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 	{
 		id: 'marriage',
 		title: '縁談が持ち込まれた',
+		allRegions: true,
 		category: 'livelihood',
 		eraIds: ['ancient', 'classical', 'medieval', 'early_modern', 'industrial'],
 		requiresUnmarried: true,
@@ -103,6 +105,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 	{
 		id: 'marriage_modern',
 		title: '結婚・パートナーとのこれからの暮らし',
+		allRegions: true,
 		category: 'livelihood',
 		eraIds: ['modern'],
 		requiresUnmarried: true,
@@ -133,6 +136,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 	{
 		id: 'childbirth_old',
 		title: '子どもを授かり、出産のときが来た',
+		allRegions: true,
 		category: 'common_sense',
 		eraIds: ['ancient', 'classical', 'medieval', 'early_modern', 'industrial'],
 		sex: 'F',
@@ -170,6 +174,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 	{
 		id: 'childbirth_father_old',
 		title: '妻が産気づき、難産になっている',
+		allRegions: true,
 		category: 'common_sense',
 		eraIds: ['ancient', 'classical', 'medieval', 'early_modern', 'industrial'],
 		sex: 'M',
@@ -201,6 +206,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 	{
 		id: 'childbirth_modern',
 		title: '新しい子どもを迎えるかどうかの決断',
+		allRegions: true,
 		category: 'livelihood',
 		eraIds: ['modern'],
 		sex: 'F',
@@ -235,6 +241,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 	{
 		id: 'childbirth_father_modern',
 		title: 'パートナーとの間に新しい子どもを迎える決断',
+		allRegions: true,
 		category: 'livelihood',
 		eraIds: ['modern'],
 		sex: 'M',
@@ -266,6 +273,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 	{
 		id: 'tax_burden',
 		title: '徴税官がやってきた',
+		allRegions: true,
 		category: 'livelihood',
 		eraIds: ['ancient', 'classical', 'medieval', 'early_modern'],
 		classIds: ['peasant', 'artisan'],
@@ -297,6 +305,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 	{
 		id: 'child_labor',
 		title: '工場から働き手が足りないと言われた',
+		allRegions: true,
 		category: 'livelihood',
 		eraIds: ['industrial'],
 		classIds: ['peasant', 'artisan'],
@@ -327,6 +336,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 	{
 		id: 'vaccine_modern',
 		title: '新しいワクチンの案内が届いた',
+		allRegions: true,
 		category: 'common_sense',
 		eraIds: ['modern'],
 		minAge: 14,
@@ -356,6 +366,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 	{
 		id: 'midlife_crisis_30s',
 		title: '隣家が借財で土地を手放した',
+		allRegions: true,
 		category: 'livelihood',
 		minAge: 28,
 		maxAge: 46,
@@ -389,6 +400,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 	{
 		id: 'elder_passing_torch',
 		title: '体に衰えが見え始めた',
+		allRegions: true,
 		category: 'livelihood',
 		minAge: 48,
 		maxAge: 75,

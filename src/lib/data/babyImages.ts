@@ -1,7 +1,7 @@
 import type { RegionId } from '#lib/types';
 
 export interface BabyImageInfo {
-	src: string;
+	src: string | null;
 	caption: string;
 	sceneDetail: string;
 }
@@ -23,10 +23,15 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		caption: '古代黄河流域の土壁の家',
 		sceneDetail: '竹籠に藁を敷き、粗い麻布に包まれて。'
 	},
-	anc_indus_other: {
+	anc_indus: {
 		src: '/images/babies/anc_indus_other.jpg',
-		caption: 'インダス文明の都市住居',
+		caption: "インダス流域の出生風景",
 		sceneDetail: '木彫りの揺りかごと未漂白の木綿布。'
+	},
+	anc_aegean: {
+		src: null,
+		caption: "エーゲ海世界",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
 	},
 
 	// === 古典期 (classical) ===
@@ -45,10 +50,25 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		caption: '古代インドの砂岩の中庭',
 		sceneDetail: '薄手の木綿モスリンと木彫りベッド。'
 	},
-	cls_other: {
-		src: '/images/babies/cls_other.jpg',
-		caption: '北方ユーラシアの丸太小屋',
-		sceneDetail: '炉火のそば、羊毛と毛皮にくるまれて。'
+	cls_persia: {
+		src: null,
+		caption: "ペルシア・中央アジア",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	cls_mesoamerica: {
+		src: null,
+		caption: "古典期メソアメリカ",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	cls_africa: {
+		src: null,
+		caption: "アクスム・紅海沿岸",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	cls_yayoi: {
+		src: null,
+		caption: "弥生時代の日本",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
 	},
 
 	// === 中世 (medieval) ===
@@ -72,10 +92,35 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		caption: '中世日本の囲炉裏端',
 		sceneDetail: '麻の葉模様の産着と藁編みの籠（えじこ）。'
 	},
-	med_other: {
-		src: '/images/babies/med_other.jpg',
-		caption: '熱帯地域の土壁住居',
-		sceneDetail: '手織りの綿網ハンモックに揺られて。'
+	med_india: {
+		src: null,
+		caption: "中世南アジア",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	med_west_africa: {
+		src: null,
+		caption: "中世西アフリカ",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	med_east_africa: {
+		src: null,
+		caption: "スワヒリ海岸",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	med_mesoamerica: {
+		src: null,
+		caption: "中世メソアメリカ",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	med_andes: {
+		src: null,
+		caption: "中世アンデス",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	med_southeast_asia: {
+		src: null,
+		caption: "アンコール・大陸東南アジア",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
 	},
 
 	// === 近世 (early_modern) ===
@@ -99,17 +144,42 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		caption: '近世ヨーロッパの邸宅',
 		sceneDetail: 'レースのリネン産着と彫刻ベッド。'
 	},
-	em_atlantic: {
-		src: '/images/babies/em_atlantic.jpg',
-		caption: '大西洋世界の木造小屋',
-		sceneDetail: '手縫いパッチワークキルトに包まれて。'
+	em_west_africa: {
+		src: null,
+		caption: "近世西アフリカ",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	em_caribbean: {
+		src: null,
+		caption: "カリブ海・ブラジル農園地帯",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	em_andes: {
+		src: null,
+		caption: "近世アンデス植民地",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	em_mesoamerica: {
+		src: null,
+		caption: "近世メソアメリカ植民地",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	em_north_america: {
+		src: null,
+		caption: "北米大西洋岸・ハドソン湾交易圏",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
 	},
 
 	// === 近代 (industrial) ===
-	ind_europe_us: {
+	ind_europe: {
 		src: '/images/babies/ind_europe_us.jpg',
-		caption: 'ヴィクトリア朝の都市住宅',
+		caption: "近代ヨーロッパの出生風景",
 		sceneDetail: 'レースの洗礼ガウンと真鍮ベビーベッド。'
+	},
+	ind_north_america: {
+		src: null,
+		caption: "近代北米",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
 	},
 	ind_japan: {
 		src: '/images/babies/ind_japan.jpg',
@@ -123,13 +193,33 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 	},
 	ind_india: {
 		src: '/images/babies/ind_india.jpg',
-		caption: '英領インドのベランダ',
+		caption: "英領インドの出生風景",
 		sceneDetail: '純白のカーディー木綿と小さな寝台。'
 	},
-	ind_other: {
-		src: '/images/babies/ind_other.jpg',
-		caption: '東欧の木造ログハウス',
-		sceneDetail: '幾何学刺繍リネンと手編みウールショール。'
+	ind_southeast_asia: {
+		src: null,
+		caption: "近代東南アジア",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	ind_russia: {
+		src: null,
+		caption: "近代ロシア",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	ind_egypt: {
+		src: null,
+		caption: "近代エジプト",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	ind_congo: {
+		src: null,
+		caption: "近代コンゴ",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	ind_latin_america: {
+		src: null,
+		caption: "近代ラテンアメリカ",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
 	},
 
 	// === 現代 (modern) ===
@@ -138,20 +228,40 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		caption: '現代日本の産科クリニック',
 		sceneDetail: 'オーガニックコットン肌着と透明コット。'
 	},
-	mod_china_ea: {
+	mod_china: {
 		src: '/images/babies/mod_china_ea.jpg',
-		caption: '現代東アジアの総合病院',
+		caption: "現代中国の出生風景",
 		sceneDetail: '柔らかなパステルブランケットとベビーベッド。'
 	},
-	mod_asia: {
-		src: '/images/babies/mod_asia.jpg',
-		caption: '現代南アジアのマタニティ病棟',
-		sceneDetail: '清潔な綿製ベビーネストの中で。'
+	mod_korea: {
+		src: null,
+		caption: "現代韓国",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
 	},
-	mod_africa_me: {
-		src: '/images/babies/mod_africa_me.jpg',
-		caption: '現代アフリカ・中東のクリニック',
-		sceneDetail: '明るい日差しと柔らかな幾何学柄おくるみ。'
+	mod_taiwan: {
+		src: null,
+		caption: "現代台湾",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	mod_south_asia: {
+		src: null,
+		caption: "現代南アジア",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	mod_southeast_asia: {
+		src: null,
+		caption: "現代東南アジア",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	mod_subsaharan_africa: {
+		src: null,
+		caption: "現代サハラ以南アフリカ",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+	},
+	mod_mena: {
+		src: null,
+		caption: "現代中東・北アフリカ",
+		sceneDetail: 'この地域に対応する肖像画は準備中です。'
 	},
 	mod_europe: {
 		src: '/images/babies/mod_west.jpg',
@@ -178,7 +288,7 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 export function getBabyImage(regionId: RegionId): BabyImageInfo {
 	return (
 		BABY_IMAGES[regionId] ?? {
-			src: '/images/babies/med_japan.jpg',
+			src: null,
 			caption: '出生時の様子',
 			sceneDetail: '健やかに生まれた新しい命。'
 		}

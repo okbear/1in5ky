@@ -1,4 +1,4 @@
-import type { DecisionEvent } from '../../types';
+import type { DecisionEvent } from '#lib/types';
 
 /** 帝国・古典期（ローマ・漢・インド・その他の世界）の決断イベント */
 export const CLASSICAL_EVENTS: DecisionEvent[] = [
@@ -631,7 +631,7 @@ export const CLASSICAL_EVENTS: DecisionEvent[] = [
       "classical"
     ],
     "regionIds": [
-      "cls_other"
+      "cls_mesoamerica"
     ],
     "minAge": 14,
     "maxAge": 45,
@@ -663,6 +663,9 @@ export const CLASSICAL_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "地上に出てまもなく坑口が崩れ落ちた。間一髪で死を逃れた幸運に感謝して神殿に祈りを捧げた。"
       }
+    ],
+    "places": [
+      "ティオティワカン"
     ]
   },
   {
@@ -673,7 +676,7 @@ export const CLASSICAL_EVENTS: DecisionEvent[] = [
       "classical"
     ],
     "regionIds": [
-      "cls_other"
+      "cls_persia"
     ],
     "minAge": 16,
     "maxAge": 55,
@@ -712,7 +715,7 @@ export const CLASSICAL_EVENTS: DecisionEvent[] = [
       "classical"
     ],
     "regionIds": [
-      "cls_other"
+      "cls_persia"
     ],
     "minAge": 15,
     "maxAge": 45,
@@ -754,7 +757,7 @@ export const CLASSICAL_EVENTS: DecisionEvent[] = [
       "classical"
     ],
     "regionIds": [
-      "cls_other"
+      "cls_persia"
     ],
     "minAge": 14,
     "maxAge": 50,
@@ -796,7 +799,7 @@ export const CLASSICAL_EVENTS: DecisionEvent[] = [
       "classical"
     ],
     "regionIds": [
-      "cls_other"
+      "cls_yayoi"
     ],
     "minAge": 15,
     "maxAge": 60,

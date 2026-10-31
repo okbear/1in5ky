@@ -1,4 +1,4 @@
-import type { MemorialRecord } from '../../types';
+import type { MemorialRecord } from '#lib/types';
 
 /** 中世・封建期：タイムラインに最初から刻まれている「名もなき人々」の墓標 */
 export const MEDIEVAL_SEEDS: MemorialRecord[] = [
@@ -224,7 +224,7 @@ export const MEDIEVAL_SEEDS: MemorialRecord[] = [
 		sex: 'M',
 		eraId: 'medieval',
 		eraName: '中世・封建期',
-		regionName: '南アジア・アフリカ・アメリカ大陸',
+		regionName: "中世西アフリカ",
 		place: 'ニジェール川流域・トンブクトゥ郊外',
 		birthYear: 1300,
 		deathYear: 1335,
@@ -242,7 +242,7 @@ export const MEDIEVAL_SEEDS: MemorialRecord[] = [
 		sex: 'M',
 		eraId: 'medieval',
 		eraName: '中世・封建期',
-		regionName: '南アジア・アフリカ・アメリカ大陸',
+		regionName: "中世メソアメリカ",
 		place: 'ユカタン半島・チチェン＝イッツァ',
 		birthYear: 950,
 		deathYear: 978,
@@ -260,7 +260,7 @@ export const MEDIEVAL_SEEDS: MemorialRecord[] = [
 		sex: 'F',
 		eraId: 'medieval',
 		eraName: '中世・封建期',
-		regionName: '南アジア・アフリカ・アメリカ大陸',
+		regionName: "中世アンデス",
 		place: 'アンデス山脈・ウルバンバ渓谷',
 		birthYear: 1420,
 		deathYear: 1458,

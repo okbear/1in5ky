@@ -1,10 +1,11 @@
-import type { DecisionEvent } from '../../types';
+import type { DecisionEvent } from '#lib/types';
 
 /** 中世・近世の歴史的大波・戦争・悪税・理不尽社会制度イベント */
 export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 	{
 		id: 'medieval_feudal_war_famine',
 		title: '戦乱と長雨による凶作',
+		regionIds: ['med_europe', 'med_japan', 'med_china'],
 		category: 'historical_wave',
 		eraIds: ['medieval'],
 		minAge: 14,
@@ -166,7 +167,7 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 		title: '城塞都市の包囲戦と、尽きかけた水と食料',
 		category: 'livelihood',
 		eraIds: ['medieval'],
-		regionIds: ['med_europe', 'med_islam', 'med_other'],
+		regionIds: ['med_europe', 'med_islam'],
 		minAge: 12,
 		maxAge: 70,
 		description:
@@ -198,6 +199,7 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 	{
 		id: 'early_modern_little_ice_age',
 		title: '小氷期の凍える冬と疫病の流行',
+		regionIds: ['em_edo', 'em_china', 'em_europe', 'em_north_america'],
 		category: 'historical_wave',
 		eraIds: ['early_modern'],
 		minAge: 14,
@@ -233,7 +235,7 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 		id: 'smallpox_1520',
 		title: '見知らぬ病が村に来た',
 		category: 'historical_wave',
-		regionIds: ['em_atlantic'],
+		regionIds: ['em_caribbean', 'em_andes', 'em_mesoamerica'],
 		yearRange: [1519, 1560],
 		minAge: 10,
 		maxAge: 99,
@@ -314,12 +316,13 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 		title: '暴徒化した傭兵軍団が村になだれ込んできた',
 		category: 'livelihood',
 		eraIds: ['early_modern'],
-		regionIds: ['em_europe', 'em_china', 'em_mughal_india', 'em_atlantic'],
+		regionIds: ['em_europe'],
+		yearRange: [1618, 1648],
 		minAge: 14,
 		maxAge: 65,
 		description:
-			'給料の遅配で規律を失った傭兵部隊（または反乱軍・征服軍）が、火縄銃と長槍を手にして村へ押し寄せてきた。「金と食料を出せ、男は荷運びか兵になれ」と家々を打ち壊している。',
-		factBox: '17世紀ヨーロッパの三十年戦争や明末清初の戦乱では、略奪で食いつなぐ軍隊が農村を往復し、一部地域では人口の半分以上が失われた。',
+			'給料の遅配で規律を失ったヨーロッパの傭兵部隊が、火縄銃と長槍を手にして村へ押し寄せてきた。「金と食料を出せ、男は荷運びか兵になれ」と家々を打ち壊している。',
+		factBox: '17世紀ヨーロッパの三十年戦争では、略奪で食いつなぐ軍隊が農村を往復し、一部地域では人口の半分以上が失われた。',
 		choices: [
 			{
 				id: 'join_mercenary_train',
@@ -346,6 +349,7 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 	{
 		id: 'witch_scapegoat',
 		title: '村で疫病が続き、「呪いをかけた者」捜しが始まった',
+		regionIds: ['med_europe', 'em_europe'],
 		category: 'common_sense',
 		eraIds: ['medieval', 'early_modern'],
 		minAge: 16,

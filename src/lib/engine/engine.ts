@@ -1,3 +1,4 @@
+import { matchesEventSetting } from '#lib/engine/eventScope';
 import { ERAS, ERA_ORDER } from '../data/eras';
 import { regionsForEra } from '../data/regions';
 import { ALL_EVENTS } from '../data/events';
@@ -258,15 +259,13 @@ const eligible = (c: CharacterState, e: DecisionEvent): boolean => {
 		}
 	}
 	if (c.age < e.minAge || c.age > e.maxAge) return false;
-	if (e.eraIds && !e.eraIds.includes(c.era.id)) return false;
-	if (e.regionIds && !e.regionIds.includes(c.region.id)) return false;
+	if (!matchesEventSetting(c, e)) return false;
 	if (e.classIds && !e.classIds.includes(c.socialClass.id)) return false;
 	if (e.sex && e.sex !== c.sex) return false;
 	if (e.isUrban !== undefined && e.isUrban !== c.isUrban) return false;
 	if (e.requiresSpouse && !c.family.some((f) => (f.relation === '妻' || f.relation === '夫') && f.alive)) return false;
 	if (e.requiresUnmarried && c.family.some((f) => (f.relation === '妻' || f.relation === '夫') && f.alive)) return false;
 	if (e.id.startsWith('childbirth_') && c.family.filter((f) => f.relation === '子').length >= 6) return false;
-	if (e.yearRange && (c.currentYear < e.yearRange[0] || c.currentYear > e.yearRange[1])) return false;
 	return true;
 };
 
@@ -325,6 +324,7 @@ const makeFamilyDeathEvent = (c: CharacterState, f: FamilyMember, childAge?: num
 
 	return {
 		id: `family_loss_${f.relation}_${f.name}_${c.age}`,
+		allRegions: true,
 		title,
 		category: 'livelihood',
 		isFamilyLoss: true,

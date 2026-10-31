@@ -1,4 +1,4 @@
-import type { DecisionEvent } from '../../types';
+import type { DecisionEvent } from '#lib/types';
 
 /** 近代・現代の歴史的大波・戦争・公害・構造的格差イベント */
 export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
@@ -6,7 +6,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 		id: 'cholera_1850',
 		title: '井戸の水を飲んだ者が死ぬ',
 		category: 'historical_wave',
-		regionIds: ['ind_europe_us', 'ind_japan', 'ind_china', 'ind_india'],
+		regionIds: ['ind_europe', 'ind_north_america', 'ind_japan', 'ind_china', 'ind_india', 'ind_southeast_asia'],
 		yearRange: [1831, 1866],
 		minAge: 10,
 		maxAge: 99,
@@ -41,7 +41,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 		id: 'ww1_1914',
 		title: '召集令状が届いた',
 		category: 'historical_wave',
-		regionIds: ['ind_europe_us', 'ind_other'],
+		regionIds: ['ind_europe', 'ind_north_america', 'ind_russia'],
 		sex: 'M',
 		yearRange: [1914, 1918],
 		minAge: 18,
@@ -77,7 +77,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 		id: 'flu_1918',
 		title: '若者ばかりが倒れる熱病',
 		category: 'historical_wave',
-		regionIds: ['ind_europe_us', 'ind_japan', 'ind_china', 'ind_india', 'ind_other'],
+		regionIds: ['ind_europe', 'ind_north_america', 'ind_japan', 'ind_china', 'ind_india', 'ind_southeast_asia', 'ind_russia', 'ind_egypt', 'ind_congo', 'ind_latin_america'],
 		yearRange: [1918, 1920],
 		minAge: 10,
 		maxAge: 99,
@@ -111,6 +111,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 	{
 		id: 'industrial_total_war_air_raid',
 		title: '空襲警報のサイレンと、燃える夜の街',
+		regionIds: ['ind_europe', 'ind_japan', 'ind_china', 'ind_russia'],
 		category: 'historical_wave',
 		eraIds: ['industrial'],
 		yearRange: [1937, 1945],
@@ -147,6 +148,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 	{
 		id: 'industrial_conscription_order',
 		title: '徴兵検査「甲種合格」と赤紙の召集',
+		regionIds: ['ind_japan'],
 		category: 'livelihood',
 		eraIds: ['industrial'],
 		sex: 'M',
@@ -181,6 +183,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 	{
 		id: 'industrial_phossy_pollution',
 		title: '工場の白リン蒸気と石炭の黒い痰',
+		regionIds: ['ind_europe', 'ind_north_america', 'ind_japan', 'ind_china', 'ind_india'],
 		category: 'livelihood',
 		eraIds: ['industrial'],
 		classIds: ['peasant', 'artisan'],
@@ -217,7 +220,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 		title: '国境紛争・内戦の勃発と動員令',
 		category: 'livelihood',
 		eraIds: ['modern'],
-		regionIds: ['mod_asia', 'mod_africa_me'],
+		regionIds: ['mod_south_asia', 'mod_southeast_asia', 'mod_subsaharan_africa', 'mod_mena'],
 		minAge: 16,
 		maxAge: 55,
 		description:
@@ -249,6 +252,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 	{
 		id: 'modern_green_antibiotics',
 		title: '抗生物質と戦後の急激な変化',
+		allRegions: true,
 		category: 'historical_wave',
 		eraIds: ['modern'],
 		yearRange: [1945, 1989],
@@ -278,6 +282,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 	{
 		id: 'modern_digital_wave',
 		title: 'インターネットと世界をつなぐ画面',
+		allRegions: true,
 		category: 'historical_wave',
 		eraIds: ['modern'],
 		yearRange: [1995, 2026],
@@ -307,6 +312,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 	{
 		id: 'modern_structural_trap',
 		title: '物価の高騰と突然の医療費・教育費の壁',
+		allRegions: true,
 		category: 'livelihood',
 		eraIds: ['modern'],
 		classIds: ['peasant', 'artisan'],
@@ -346,6 +352,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 		historicalYearLabel: '2030年代',
 		minAge: 0,
 		maxAge: 110,
+		allRegions: true,
 		category: 'historical_wave',
 		eraIds: ['modern'],
 		description:
@@ -382,6 +389,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 		historicalYearLabel: '2040年代',
 		minAge: 0,
 		maxAge: 110,
+		allRegions: true,
 		category: 'historical_wave',
 		eraIds: ['modern'],
 		description:
@@ -418,6 +426,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 		historicalYearLabel: '2050年代',
 		minAge: 0,
 		maxAge: 110,
+		allRegions: true,
 		category: 'historical_wave',
 		eraIds: ['modern'],
 		description:
@@ -454,6 +463,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 		historicalYearLabel: '2070年代',
 		minAge: 0,
 		maxAge: 110,
+		allRegions: true,
 		category: 'historical_wave',
 		eraIds: ['modern'],
 		description:
@@ -490,6 +500,7 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 		historicalYearLabel: '2090年代',
 		minAge: 0,
 		maxAge: 110,
+		allRegions: true,
 		category: 'historical_wave',
 		eraIds: ['modern'],
 		description:

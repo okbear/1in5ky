@@ -1,4 +1,4 @@
-import type { MemorialRecord } from '../../types';
+import type { MemorialRecord } from '#lib/types';
 
 /** 帝国・古典期：タイムラインに最初から刻まれている「名もなき人々」の墓標 */
 export const CLASSICAL_SEEDS: MemorialRecord[] = [
@@ -224,7 +224,7 @@ export const CLASSICAL_SEEDS: MemorialRecord[] = [
 		sex: 'M',
 		eraId: 'classical',
 		eraName: '帝国・古典期',
-		regionName: 'その他の世界',
+		regionName: "古典期メソアメリカ",
 		place: 'テオティワカン中庭集落',
 		birthYear: 250,
 		deathYear: 282,
@@ -242,7 +242,7 @@ export const CLASSICAL_SEEDS: MemorialRecord[] = [
 		sex: 'F',
 		eraId: 'classical',
 		eraName: '帝国・古典期',
-		regionName: 'その他の世界',
+		regionName: "ペルシア・中央アジア",
 		place: 'ペトラ郊外のナバテア宿営地',
 		birthYear: -50,
 		deathYear: -8,
@@ -260,7 +260,7 @@ export const CLASSICAL_SEEDS: MemorialRecord[] = [
 		sex: 'M',
 		eraId: 'classical',
 		eraName: '帝国・古典期',
-		regionName: 'その他の世界',
+		regionName: "弥生時代の日本",
 		place: '弥生後期の九州北部沿岸',
 		birthYear: 200,
 		deathYear: 225,

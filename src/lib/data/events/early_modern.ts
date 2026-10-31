@@ -1,4 +1,4 @@
-import type { DecisionEvent } from '../../types';
+import type { DecisionEvent } from '#lib/types';
 
 /** 近世・大航海期（江戸・アジア・ヨーロッパ・大西洋）の決断イベント */
 export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
@@ -217,8 +217,12 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     "id": "em_chn_qing_queue_edict",
     "title": "清朝の「頭を留むる者は髪を留めず」薙髪令",
     "category": "historical_wave",
-    "eraIds": ["early_modern"],
-    "regionIds": ["em_china"],
+    "eraIds": [
+      "early_modern"
+    ],
+    "regionIds": [
+      "em_china"
+    ],
     "minAge": 12,
     "maxAge": 65,
     "description": "満洲族の清軍が入関し、漢民族に対して頭の前半分を剃り上げて三つ編みにする「辮髪」の強制令（薙髪令）が出された。従わねば反逆者として首を刎ねられる。",
@@ -255,8 +259,12 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     "id": "em_chn_canton_cohong_silver",
     "title": "広州十三行での茶・生糸貿易と西洋銀貨の鑑定",
     "category": "livelihood",
-    "eraIds": ["early_modern"],
-    "regionIds": ["em_china"],
+    "eraIds": [
+      "early_modern"
+    ],
+    "regionIds": [
+      "em_china"
+    ],
     "minAge": 16,
     "maxAge": 55,
     "description": "外国貿易が広州一港に限定されるなか、特許商人「十三行（広東公行）」の商館で、イギリス東インド会社の船から運び込まれるスペイン銀貨（墨銀）の品位を銀秤で鑑定する仕事に就く。",
@@ -291,8 +299,12 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     "id": "em_chn_white_lotus_gathering",
     "title": "白蓮教の無生老母信仰と秘密集会",
     "category": "common_sense",
-    "eraIds": ["early_modern"],
-    "regionIds": ["em_china"],
+    "eraIds": [
+      "early_modern"
+    ],
+    "regionIds": [
+      "em_china"
+    ],
     "minAge": 16,
     "maxAge": 60,
     "description": "山東・河南の農村で、弥勒下生と苦難からの救済を説く「白蓮教」の秘密集会が夜毎開かれている。役人の苛政に苦しむ親戚から「集会に参加して経文を受け取ろう」と誘われる。",
@@ -329,8 +341,12 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     "id": "em_chn_keju_examination_cubicle",
     "title": "科挙郷試の貢院（狭小独房）とカンニングの誘惑",
     "category": "common_sense",
-    "eraIds": ["early_modern"],
-    "regionIds": ["em_china"],
+    "eraIds": [
+      "early_modern"
+    ],
+    "regionIds": [
+      "em_china"
+    ],
     "minAge": 16,
     "maxAge": 50,
     "description": "官吏登用試験（科挙）の郷試を受験するため、幅わずか1メートルの独房（号舎）に閉じ込められ、三昼夜の論述試験が始まった。狭い房内で墨を磨りながら、懐に忍ばせた下着のカンニング布（微細文字）を使うか葛藤する。",
@@ -367,8 +383,12 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     "id": "em_chn_literary_inquisition",
     "title": "文字の獄（筆禍事件）と先祖の詩文の隠滅",
     "category": "historical_wave",
-    "eraIds": ["early_modern"],
-    "regionIds": ["em_china"],
+    "eraIds": [
+      "early_modern"
+    ],
+    "regionIds": [
+      "em_china"
+    ],
     "minAge": 18,
     "maxAge": 65,
     "description": "清朝当局による反体制的な言論弾圧「文字の獄」が激化。先祖の日記や詩集に「胡」「虜」など北方異民族を蔑称する文字が含まれていると密告されれば、一族皆殺し（九族誅滅）となる。官憲の家宅捜索が迫る。",
@@ -405,8 +425,12 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     "id": "em_ind_mughal_mansab_cavalry",
     "title": "ムガル帝国の騎兵維持とジャーギール（知行地）査定",
     "category": "livelihood",
-    "eraIds": ["early_modern"],
-    "regionIds": ["em_mughal_india"],
+    "eraIds": [
+      "early_modern"
+    ],
+    "regionIds": [
+      "em_mughal_india"
+    ],
     "minAge": 18,
     "maxAge": 50,
     "description": "ムガル皇帝アクバルが定めたマンサブダール制の下で、十頭の軍馬と甲冑兵を養う下級軍事貴族として仕えている。割り当てられた知行地（ジャーギール）からの徴税が遅れ、馬の飼料代にも事欠く。",
@@ -443,8 +467,12 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     "id": "em_ind_calico_cotton_weaving",
     "title": "スーラト港のキャラコ（綿織物）工房と東インド会社",
     "category": "livelihood",
-    "eraIds": ["early_modern"],
-    "regionIds": ["em_mughal_india"],
+    "eraIds": [
+      "early_modern"
+    ],
+    "regionIds": [
+      "em_mughal_india"
+    ],
     "minAge": 14,
     "maxAge": 55,
     "description": "西海岸の貿易港スーラトで、世界中で大流行している極細の染色綿布（キャラコ）を織る機織り職人として働いている。ヨーロッパ東インド会社の商人が銀貨を積んで大量の注文を競い合っている。",
@@ -478,8 +506,12 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     "id": "em_ind_taj_mahal_quarry_labor",
     "title": "皇帝の白大理石廟（タージ・マハル）造営と採石運搬",
     "category": "historical_wave",
-    "eraIds": ["early_modern"],
-    "regionIds": ["em_mughal_india"],
+    "eraIds": [
+      "early_modern"
+    ],
+    "regionIds": [
+      "em_mughal_india"
+    ],
     "minAge": 16,
     "maxAge": 50,
     "description": "第5代皇帝シャー・ジャハーンが亡き愛妃のために巨大廟の建設を命じた。ラージャスターン州マクラーナの採石場から巨大な白大理石の塊を象と牛車でアーグラまで運ぶ過酷な賦役が課される。",
@@ -516,8 +548,12 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     "id": "em_ind_akbar_sulahkul_debate",
     "title": "皇帝アクバルの宗教討論館と万民融和（スルフ・イ・クル）",
     "category": "common_sense",
-    "eraIds": ["early_modern"],
-    "regionIds": ["em_mughal_india"],
+    "eraIds": [
+      "early_modern"
+    ],
+    "regionIds": [
+      "em_mughal_india"
+    ],
     "minAge": 18,
     "maxAge": 65,
     "description": "都ファテープル・シークリーの討論館（イバーダト・ハーナ）で、イスラム教・ヒンドゥー教・ジャイナ教・キリスト教の学者が一堂に会し、真理をめぐる白熱した論争が繰り広げられている。",
@@ -551,8 +587,12 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
     "id": "em_ind_monsoon_famine_relief",
     "title": "デカン大飢饉とモンスーン不作の施粥所",
     "category": "historical_wave",
-    "eraIds": ["early_modern"],
-    "regionIds": ["em_mughal_india"],
+    "eraIds": [
+      "early_modern"
+    ],
+    "regionIds": [
+      "em_mughal_india"
+    ],
     "minAge": 8,
     "maxAge": 70,
     "description": "夏のモンスーン（雨季）が3年連続で途絶え、デカン高原全域が灼熱の干ばつに見舞われた。井戸は干上がり、農地はひび割れ、飢えた群衆が城砦都市の施粥所（ランガル）へ殺到する。",
@@ -807,7 +847,7 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
       "early_modern"
     ],
     "regionIds": [
-      "em_atlantic"
+      "em_caribbean"
     ],
     "minAge": 12,
     "maxAge": 50,
@@ -852,7 +892,7 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
       "early_modern"
     ],
     "regionIds": [
-      "em_atlantic"
+      "em_caribbean"
     ],
     "minAge": 15,
     "maxAge": 45,
@@ -897,7 +937,8 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
       "early_modern"
     ],
     "regionIds": [
-      "em_atlantic"
+      "em_west_africa",
+      "em_caribbean"
     ],
     "minAge": 10,
     "maxAge": 40,
@@ -942,7 +983,7 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
       "early_modern"
     ],
     "regionIds": [
-      "em_atlantic"
+      "em_andes"
     ],
     "minAge": 14,
     "maxAge": 50,
@@ -974,6 +1015,9 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "冷たい山風のなかでリャマを追って銀塊を港へ運ぶ仕事に移り、健康を保って任期を終えた。"
       }
+    ],
+    "places": [
+      "ポトシ"
     ]
   },
   {
@@ -984,7 +1028,7 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
       "early_modern"
     ],
     "regionIds": [
-      "em_atlantic"
+      "em_north_america"
     ],
     "minAge": 15,
     "maxAge": 50,
@@ -1016,6 +1060,9 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
         },
         "outcomeText": "先住民の集落に温かく迎え入れられ、互いに敬意を払う持続的な毛皮交易網を築き上げた。"
       }
+    ],
+    "places": [
+      "ハドソン湾岸の交易集落"
     ]
   }
 ];
