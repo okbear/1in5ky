@@ -323,6 +323,67 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/mod_lat_amazon_conflict.jpg',
 		alt: '煙と炎が立ち上るアマゾン熱帯雨林の伐採前線、鎖で木々を倒す大型重機を前に拳を掲げる先住民と鉈を手にした入植農民',
 		caption: 'アマゾン森林伐採と境界の対立'
+	},
+
+	// === 古代エジプト（ナイルの暮らしと手仕事） ===
+	anc_egypt_crocodile_crossing: {
+		src: '/images/events/anc_egypt_crocodile_crossing.jpg',
+		alt: '大麦とタマネギを積んだ葦舟で、ワニが浮かぶナイル川を渡る古代エジプトの人々',
+		caption: 'ナイルの渡し舟とワニ'
+	},
+	anc_egypt_linen_weave: {
+		src: '/images/events/anc_egypt_linen_weave.jpg',
+		alt: '古代エジプトの日干しレンガの工房で、床に張った織機で白い亜麻布を織り、糸を紡ぐ女性たち',
+		caption: '神殿へ納める白いリンネル'
+	},
+	anc_egypt_eye_kohl_remedy: {
+		src: '/images/events/anc_egypt_eye_kohl_remedy.jpg',
+		alt: '古代エジプトの家で、孔雀石の顔料や石の乳鉢を前に、娘の目の縁へコホルを塗る母親',
+		caption: '眼病とコホルの手当て'
+	},
+
+	// === 古代中国（黄河の治水と手仕事） ===
+	anc_china_yellow_river_flood: {
+		src: '/images/events/anc_china_yellow_river_flood.jpg',
+		alt: '黄褐色の濁流が迫る古代中国の村で、土を籠で運び木の突き棒で堤防を固める住民たち',
+		caption: '黄河の濁流と築堤'
+	},
+	anc_china_bronze_smelt_burn: {
+		src: '/images/events/anc_china_bronze_smelt_burn.jpg',
+		alt: '殷代の鋳造工房で、炉の火が燃えるなか土製の鋳型へ溶けた青銅を注ぐ職人たち',
+		caption: '殷の青銅器鋳造'
+	},
+	anc_china_sericulture_plague: {
+		src: '/images/events/anc_china_sericulture_plague.jpg',
+		alt: '古代中国の桑畑で害虫を手で取り除く女性と、籠の桑葉や棚の蚕を世話する家族',
+		caption: '桑の葉を守る養蚕農家'
+	},
+	anc_china_ancestral_millet: {
+		src: '/images/events/anc_china_ancestral_millet.jpg',
+		alt: '周代中国の宗族の集まりで、粟の供物と青銅の酒器を並べた卓を前に若者へ語りかける長老',
+		caption: '粟の収穫と祖先への供物'
+	},
+
+	// === インダス文明（都市の生産と水） ===
+	anc_indus_brick_kiln: {
+		src: '/images/events/anc_indus_brick_kiln.jpg',
+		alt: 'インダス文明の都市を背に、焼きレンガを積んだ窯場で薪をくべる職人と煙を避ける労働者',
+		caption: 'インダスの焼きレンガ窯'
+	},
+	anc_indus_bead_trade: {
+		src: '/images/events/anc_indus_bead_trade.jpg',
+		alt: 'インダス文明の焼きレンガの工房で、石の研磨具と弓錐を前に紅玉髄ビーズを磨き、首飾りを組む職人たち',
+		caption: '紅玉髄ビーズの研磨と交易'
+	},
+	anc_indus_great_bath_hygiene: {
+		src: '/images/events/anc_indus_great_bath_hygiene.jpg',
+		alt: 'モヘンジョ・ダロの焼きレンガの階段と壁に囲まれた大浴場で、緑がかった水面を見つめる人々',
+		caption: 'モヘンジョ・ダロの大浴場'
+	},
+	anc_indus_monsoon_failure: {
+		src: '/images/events/anc_indus_monsoon_failure.jpg',
+		alt: '干上がり始めた川を背に、焼きレンガの井戸のそばでわずかな水と土器を見つめるインダス文明末期の家族',
+		caption: '流路の変化と水源の枯渇'
 	}
 };
 
