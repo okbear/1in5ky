@@ -536,6 +536,67 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/med_eur_leper_crossing.jpg',
 		alt: '霧深き城壁外の街道で、鳴子と物乞いの木椀を手にした頭巾姿の癩病患者と、布で口元を覆い距離を置いて通り過ぎる旅人たち',
 		caption: '街道の鳴子と癩病隔離所'
+	},
+
+	// === 中世イスラム世界（市場・巡礼・病院・製紙） ===
+	med_islam_suq_muhtasib: {
+		src: '/images/events/med_islam_suq_muhtasib.jpg',
+		alt: '日差しが差し込むバグダードの屋根付き市場（スーク）で、香辛料や干し果物の店を前に天秤ばかりと分銅を厳しく検定する市場監督官（ムフタシブ）',
+		caption: 'スークの市場監督官と天秤検定'
+	},
+	med_islam_hajj_caravan_heat: {
+		src: '/images/events/med_islam_hajj_caravan_heat.jpg',
+		alt: '熱風サムーンが吹き荒れる灼熱の砂漠で、空になりかけた革の水袋を傾けながら聖地を目指す巡礼隊商とラクダ引き',
+		caption: '砂漠の熱風と巡礼隊商'
+	},
+	med_islam_bimaristan_care: {
+		src: '/images/events/med_islam_bimaristan_care.jpg',
+		alt: '石造りアーチと中庭の光が満ちる公立病院（ビマースターン）で、高熱の患者を診察するターバン姿の医師と薬壺を抱える助手',
+		caption: 'ビマースターンでの無償医療'
+	},
+	med_islam_papermill_gear: {
+		src: '/images/events/med_islam_papermill_gear.jpg',
+		alt: 'ダマスカスの水力製紙所で、水車の動力を伝える巨大歯車と麻布を叩き潰す木槌の激しい上下運動を見守る工匠たち',
+		caption: '水車製紙所の破砕機'
+	},
+
+	// === 中世中国・宋代（製鉄・紙幣・青磁・科挙） ===
+	med_china_song_iron_blast: {
+		src: '/images/events/med_china_song_iron_blast.jpg',
+		alt: '石炭の猛煙が立ち上る北宋の巨大製鉄溶鉱炉で、赤く輝く溶けた銑鉄を砂型へと流し込む屈強な工夫たち',
+		caption: '宋代の石炭製鉄溶鉱炉'
+	},
+	med_china_jiaozi_inflation: {
+		src: '/images/events/med_china_jiaozi_inflation.jpg',
+		alt: '成都の帳場で、価値の下落した紙幣「交子」を手に困惑する商人とおびただしい銅銭の束',
+		caption: '交子の減価と銅銭'
+	},
+	med_china_celadon_kiln_glaze: {
+		src: '/images/events/med_china_celadon_kiln_glaze.jpg',
+		alt: '山裾に連なる竜泉窯の登り窯の前で、薪をくべる炎の合間に翡翠のように透き通る青磁の仕上がりを確かめる陶工',
+		caption: '竜泉窯の登り窯と青磁'
+	},
+	med_china_jinshi_cram_exam: {
+		src: '/images/events/med_china_jinshi_cram_exam.jpg',
+		alt: '深夜の書斎で油灯の明かりのもと、四書五経の経典と答案の山に囲まれ頭を抱えて苦悩する若き科挙受験生',
+		caption: '科挙の重圧と深夜の独習'
+	},
+
+	// === 中世日本・鎌倉室町（荘園・警備・徳政一揆） ===
+	med_jpn_shoen_annual_tribute: {
+		src: '/images/events/med_jpn_shoen_annual_tribute.jpg',
+		alt: '秋の刈田が広がる荘園の畔で、年貢の割増しを冷徹に告げる荘園代官と泥に額づいて免除を乞う百姓夫婦',
+		caption: '荘園代官の検見と年貢'
+	},
+	med_jpn_kamakura_shugosho_night: {
+		src: '/images/events/med_jpn_kamakura_shugosho_night.jpg',
+		alt: '鎌倉街道の宿場で、燃え盛る篝火の光を浴びながら槍を構えて闇夜の悪党の襲撃に備える宿場警備の武士たち',
+		caption: '鎌倉街道のかがり火警備'
+	},
+	med_jpn_tokusei_ikki_pawn: {
+		src: '/images/events/med_jpn_tokusei_ikki_pawn.jpg',
+		alt: '燃え上がる松明と竹槍を掲げて土倉（質屋）に押し入り、借用証文を篝火に投じて気勢を上げる徳政一揆の群衆',
+		caption: '室町の徳政一揆と土倉焼き討ち'
 	}
 };
 
