@@ -116,7 +116,7 @@
 	}
 	.hero {
 		display: grid;
-		grid-template-columns: 180px 1fr;
+		grid-template-columns: 280px minmax(0, 1fr);
 		gap: 20px;
 		align-items: start;
 		margin-bottom: 20px;
@@ -131,11 +131,12 @@
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
-		max-width: 180px;
+		width: 100%;
+		max-width: 280px;
 	}
 	@media (max-width: 640px) {
 		.portrait-card {
-			max-width: 160px;
+			max-width: 320px;
 			margin: 0 auto;
 			text-align: center;
 		}

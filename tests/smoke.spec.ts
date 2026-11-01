@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('1in5ky E2E smoke tests', () => {
-	test('split region: birth certificate shows a neutral portrait when regional artwork is unavailable', async ({ page }) => {
+	test('split region: birth certificate loads its regional baby portrait', async ({ page }) => {
 		await page.goto('/', { waitUntil: 'networkidle' });
 		// Choose the modern era, then the new sub-Saharan profile through the normal birth roll.
 		await page.evaluate(() => {
@@ -13,9 +13,11 @@ test.describe('1in5ky E2E smoke tests', () => {
 		await expect(cert).toBeVisible();
 		await expect(cert.locator('.fields')).toContainText(/年 [\d,]+/);
 		await expect(cert.locator('.caption-title')).toHaveText('現代コンゴ民主共和国');
-		const portrait = cert.getByRole('img', { name: '出生時の肖像画は準備中' });
+		const portrait = cert.locator('.frame img');
 		await expect(portrait).toBeVisible();
-		await expect(cert.locator('.frame img')).toHaveCount(0);
+		await expect(portrait).toHaveAttribute('src', '/images/babies/mod_congo.webp');
+		await expect(portrait).toHaveJSProperty('complete', true);
+		await expect(portrait).toHaveJSProperty('naturalWidth', 400);
 		const frameBox = await cert.locator('.frame').boundingBox();
 		const portraitBox = await portrait.boundingBox();
 		expect(portraitBox!.width).toBeLessThanOrEqual(frameBox!.width);
@@ -137,15 +139,18 @@ test.describe('1in5ky E2E smoke tests', () => {
 		await expect(firstChoice).toBeFocused();
 		await expect(page.locator('body')).toHaveCSS('position', 'fixed');
 		await expect.poll(() => background.evaluate((el) => el.getBoundingClientRect().top)).toBe(topBefore);
-		await dialog.evaluate((el) => { el.style.minHeight = '200vh'; });
-		await page.mouse.move(20, 20);
+		await dialog.locator('.bd').evaluate((el) => { el.style.minHeight = '200vh'; });
+		const dialogBox = await dialog.boundingBox();
+		expect(dialogBox).not.toBeNull();
+		await page.mouse.move(dialogBox!.x + dialogBox!.width / 2, dialogBox!.y + dialogBox!.height / 2);
 		await page.mouse.wheel(0, 400);
-		await expect.poll(() => page.locator('.scrim').evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
+		await expect.poll(() => dialog.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
 		expect(await background.evaluate((el) => el.getBoundingClientRect().top)).toBe(topBefore);
 		await page.keyboard.press('Escape');
 		await expect(dialog).not.toBeVisible();
 		await expect(page.locator('body')).not.toHaveCSS('position', 'fixed');
 		await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(scrollBefore);
+		await page.mouse.move(2, 2);
 		await page.mouse.wheel(0, 200);
 		await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(scrollBefore);
 		await restore.click();

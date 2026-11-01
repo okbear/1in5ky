@@ -26,13 +26,13 @@
 	.theme-toggle {
 		display: inline-grid;
 		place-items: center;
-		width: 30px;
-		height: 30px;
+		width: 44px;
+		height: 44px;
 		padding: 0;
 		border: 1px solid var(--rule);
 		border-radius: 4px;
-		background: transparent;
-		color: var(--ink2);
+		background: var(--paper);
+		color: var(--ink);
 		flex: none;
 		transition:
 			border-color 0.15s,

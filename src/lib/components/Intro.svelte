@@ -9,7 +9,7 @@
 <section class="wrap intro">
 	<div class="intro-tools"><ThemeToggle /></div>
 	<div class="hero">
-		<p class="kicker mono">紀元前3000年〜2026年 · 人類史人生シミュレーション</p>
+		<p class="kicker mono"><span>紀元前3000年〜2026年</span><span>人類史人生シミュレーション</span></p>
 		<h1>5000年分の<em>1</em></h1>
 		<p class="en">1 in 5,000 Years</p>
 		<p class="lede">
@@ -79,20 +79,30 @@
 	.data-note summary { cursor: pointer; }
 	.data-note p { margin: 8px 0; }
 	.intro {
-		padding-block: 48px 80px;
+		position: relative;
+		padding-block: 20px 80px;
 		display: flex;
 		flex-direction: column;
 		gap: 28px;
 	}
 	.intro-tools {
-		display: flex;
-		justify-content: flex-end;
-		margin-bottom: -20px;
+		position: absolute;
+		top: 20px;
+		right: 20px;
 	}
 	.kicker {
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 12px;
+		align-items: center;
+		min-height: 44px;
+		padding-right: 60px;
 		font-size: 12px;
 		color: var(--stamp);
 		margin: 0;
+	}
+	.kicker span {
+		white-space: nowrap;
 	}
 	h1 {
 		font-family: var(--f-display);

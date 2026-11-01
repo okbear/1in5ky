@@ -46,7 +46,7 @@
 
 	$effect(() => {
 		d;
-		dialogEl?.querySelector<HTMLButtonElement>('.choices button')?.focus();
+		dialogEl?.querySelector<HTMLButtonElement>('.choices button')?.focus({ preventScroll: true });
 	});
 
 	const onBackdropClick = (event: MouseEvent): void => {
@@ -126,26 +126,39 @@
 		overscroll-behavior: contain;
 	}
 
+	.dec {
+		width: min(760px, 100%);
+		max-height: calc(100dvh - 32px);
+		overflow-y: auto;
+		overscroll-behavior: contain;
+	}
+	.dec .hd {
+		position: sticky;
+		top: 0;
+		z-index: 1;
+		background: var(--card);
+	}
 	/* 決断モーダル内の挿絵カード */
 	.dec-lead.has-visual {
 		display: grid;
-		grid-template-columns: 140px 1fr;
+		grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
 		gap: 16px;
 		align-items: start;
 		margin-bottom: 12px;
 	}
-	@media (max-width: 520px) {
+	@media (max-width: 640px) {
 		.dec-lead.has-visual {
 			grid-template-columns: 1fr;
 			gap: 12px;
 		}
 	}
 	.dec-visual {
-		max-width: 140px;
+		width: 100%;
+		max-width: 280px;
 	}
-	@media (max-width: 520px) {
+	@media (max-width: 640px) {
 		.dec-visual {
-			max-width: 160px;
+			max-width: 320px;
 			margin: 0 auto;
 		}
 	}
@@ -185,7 +198,7 @@
 		border-color: var(--bad);
 	}
 	.dec .hd.hd-loss {
-		background: rgba(168, 53, 43, 0.08);
+		background: color-mix(in srgb, var(--bad) 8%, var(--card));
 		color: var(--bad);
 		font-weight: 600;
 	}
