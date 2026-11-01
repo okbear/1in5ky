@@ -160,6 +160,32 @@ test.describe('1in5ky E2E smoke tests', () => {
 		await expect(page.locator('.cert')).toBeVisible();
 	});
 
+	test('rebirth: keeps the current certificate visible instead of flashing the title screen', async ({ page }) => {
+		await page.goto('/', { waitUntil: 'networkidle' });
+		await page.evaluate(() => { Math.random = () => 0.99; });
+		await page.getByRole('button', { name: '生まれる', exact: true }).click();
+		await expect(page.locator('.cert')).toBeVisible();
+		const previousName = await page.locator('.cert .bio h2').textContent();
+		let release = () => {};
+		const gate = new Promise<void>((resolve) => { release = resolve; });
+		let held = false;
+		await page.route('**/*', async (route) => {
+			if (!held && route.request().resourceType() === 'script') { held = true; await gate; }
+			await route.continue();
+		});
+		await page.evaluate(() => { Math.random = () => 0.01; });
+		const button = page.getByRole('button', { name: '生まれ直す', exact: true });
+		await button.click();
+		try {
+			await expect(button).toHaveAttribute('aria-busy', 'true');
+			await expect(button.locator('.spinner')).toBeVisible();
+			await expect(page.locator('.cert .bio h2')).toHaveText(previousName!);
+			await expect(page.locator('.intro')).toHaveCount(0);
+		} finally { release(); }
+		await expect(button).toHaveAttribute('aria-busy', 'false');
+		await expect(page.locator('.cert .bio h2')).not.toHaveText(previousName!);
+	});
+
 	test('birth data: handles a failed chunk and recovers after reloading', async ({ page }) => {
 		await page.goto('/', { waitUntil: 'networkidle' });
 		let failed = false;

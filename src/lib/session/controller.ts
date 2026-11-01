@@ -72,9 +72,6 @@ export class SessionController {
 		const generation = ++this.#loadGeneration;
 		this.stop();
 		this.clearDecision();
-		this.state.char = null;
-		this.state.pm = null;
-		this.state.phase = 'intro';
 		this.state.loading = true;
 		this.state.loadError = null;
 		try {
@@ -82,6 +79,7 @@ export class SessionController {
 			if (generation !== this.#loadGeneration) return;
 			this.#simulation = loaded.simulation;
 			this.state.char = loaded.character;
+			this.state.pm = null;
 			this.state.speed = 1;
 			this.state.paused = false;
 			this.state.phase = 'cert';
@@ -167,6 +165,7 @@ export class SessionController {
 	}
 
 	revive(): void {
+		if (this.loading) return;
 		const c = this.char;
 		if (!c || this.phase !== 'dead' || !this.#simulation?.revive(c)) return;
 		this.state.pm = null;

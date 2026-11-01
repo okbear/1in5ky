@@ -193,3 +193,32 @@ test('failed data loads clear the loading state and permit a new attempt', async
  await game.roll('modern');
  expect(game.phase).toBe('cert'); expect(game.loadError).toBeNull();
 });
+
+for (const phase of ['cert', 'dead'] as const) test(`rebirth preserves the ${phase} screen until the next birth is ready`, async () => {
+ let complete!: (loaded: LoadedBirth) => void;
+ let reject!: (error: Error) => void;
+ let calls = 0;
+ const { game, state, tasks } = setup(undefined, (rng, era) => {
+  if (calls++ === 0) return { character: simulation.rollBirth(rng, era), simulation };
+  return new Promise<LoadedBirth>((resolve, fail) => { complete = resolve; reject = fail; });
+ });
+ await game.roll('modern');
+ const previous = game.char;
+ state.phase = phase;
+ if (phase === 'dead') die(previous!, '外傷');
+ const pending = game.roll('ancient');
+ expect(game.phase).toBe(phase); expect(game.char).toBe(previous);
+ expect(game.loading).toBe(true); expect(tasks.size).toBe(0);
+ game.revive(); game.begin();
+ expect(game.phase).toBe(phase);
+ reject(new Error('network'));
+ await pending;
+ expect(game.phase).toBe(phase); expect(game.char).toBe(previous);
+ expect(game.loadError).toBeTruthy();
+ const retry = game.roll('ancient');
+ const next = simulation.rollBirth(() => 0.5, 'ancient');
+ complete({ character: next, simulation });
+ await retry;
+ expect(game.phase).toBe('cert'); expect(game.char).toBe(next);
+ expect(game.loading).toBe(false); expect(game.loadError).toBeNull();
+});
