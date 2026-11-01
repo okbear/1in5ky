@@ -1,3 +1,5 @@
+import { NATIONAL_VARIANTS } from '#lib/data/regions/national/industrial';
+import { expandRegion } from '#lib/data/regions/national';
 import type { RegionProfile } from '#lib/types';
 import { baseRegion } from './common';
 
@@ -94,8 +96,8 @@ export const INDUSTRIAL_REGIONS: RegionProfile[] = [
 		beliefSystem: '伝統的な宗族制度、儒教、民間信仰。',
 		medicalCommonSense: '中医学と西洋宣教師病院の混在。コレラ・ペストが流行。',
 		worldviewCommonSense: '列強の租界進出と動乱。宗族の助け合いで生き抜く。',
-		maleNames: ['王明', '李福', '張生', '陳阿大', '劉金', '趙徳', '呉順', '黄貴', '孫富', '楊宝', '阿發', '阿貴', '阿財', '阿勝', '阿興', '福生', '福成', '金生', '金成', '天佑', '天賜', '長生', '富貴', '徳成', '徳勝', '貴林', '成林', '有才', '有德', '有為'],
-		femaleNames: ['阿妹', '春桃', '秀芝', '鳳英', '秋菊', '金妹', '素珍', '巧雲', '招弟', '月英', '小妹', '盼弟', '帶弟', '迎弟', '秋香', '冬梅', '夏荷', '金鳳', '銀鳳', '玉蘭', '翠娥', '寶釵', '彩雲', '細妹', '金花', '銀花', '菊仙'],
+		maleNames: ["明", "福", "生", "阿大", "金", "徳", "順", "貴", "富", "宝", "阿發", "阿貴", "阿財", "阿勝", "阿興", "福生", "福成", "金生", "金成", "天佑", "天賜", "長生", "富貴", "徳成", "徳勝", "貴林", "成林", "有才", "有德", "有為"],
+		femaleNames: ["阿妹", "春桃", "秀芝", "鳳英", "秋菊", "金妹", "素珍", "巧雲", "招弟", "月英", "小妹", "盼弟", "帶弟", "迎弟", "秋香", "冬梅", "夏荷", "金鳳", "銀鳳", "玉蘭", "翠娥", "寶釵", "彩雲", "細妹", "金花", "銀花", "菊仙"],
 		sceneTheme: { skyTop: '#B8C5CE', skyBottom: '#DEE6EB', ground: '#8B8C70', accent: '#8C283B', architecture: 'classical' }
 	}),
 	baseRegion('industrial', {
@@ -242,4 +244,4 @@ export const INDUSTRIAL_REGIONS: RegionProfile[] = [
 		femaleNames: ["フアナ", "カルメン", "マルガリータ", "ロサ", "イサベル", "ドロレス", "テレサ", "ソフィア", "グアダルーペ", "ベアトリス", "マリア", "アナ", "エスペランサ", "カタリーナ", "イネス", "ルシア", "クララ", "エレナ", "レオノール", "フランシスカ", "アントニア", "ホセファ", "メルセデス", "コンセプシオン"],
 		sceneTheme: { skyTop: '#B6BDB0', skyBottom: '#E1E5DB', ground: '#7B7E5E', accent: '#4A3B63', architecture: 'industrial' }
 	})
-];
+].flatMap((region) => expandRegion(region, NATIONAL_VARIANTS));

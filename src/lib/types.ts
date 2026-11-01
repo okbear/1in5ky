@@ -59,7 +59,67 @@ export type RegionId =
 	| 'mod_europe'
 	| 'mod_north_america'
 	| 'mod_latin_america'
-	| 'mod_russia_cis';
+	| 'mod_russia_cis'
+	| 'med_britain'
+	| 'med_france'
+	| 'med_germany'
+	| 'med_italy'
+	| 'em_britain'
+	| 'em_france'
+	| 'em_germany'
+	| 'em_italy'
+	| 'ind_britain'
+	| 'ind_france'
+	| 'ind_germany'
+	| 'ind_italy'
+	| 'mod_britain'
+	| 'mod_france'
+	| 'mod_germany'
+	| 'mod_italy'
+	| 'ind_usa'
+	| 'ind_canada'
+	| 'mod_usa'
+	| 'mod_canada'
+	| 'ind_mexico'
+	| 'ind_brazil'
+	| 'ind_argentina'
+	| 'ind_peru'
+	| 'mod_brazil'
+	| 'mod_mexico'
+	| 'mod_argentina'
+	| 'mod_colombia'
+	| 'mod_india'
+	| 'mod_pakistan'
+	| 'mod_bangladesh'
+	| 'mod_indonesia'
+	| 'mod_philippines'
+	| 'mod_thailand'
+	| 'mod_vietnam'
+	| 'mod_malaysia'
+	| 'mod_nigeria'
+	| 'mod_ghana'
+	| 'mod_kenya'
+	| 'mod_congo'
+	| 'mod_senegal'
+	| 'mod_south_africa'
+	| 'mod_egypt'
+	| 'mod_iraq'
+	| 'mod_jordan'
+	| 'mod_tunisia'
+	| 'mod_libya'
+	| 'mod_russia'
+	| 'mod_ukraine'
+	| 'mod_belarus'
+	| 'mod_kazakhstan'
+	| 'ind_malaya'
+	| 'ind_java'
+	| 'em_netherlands'
+	| 'mod_syria'
+	| 'med_iraq'
+	| 'med_egypt'
+	| 'med_andalus'
+	| 'med_central_asia'
+;
 export type SocialClassId =
 	| 'enslaved'
 	| 'peasant'
@@ -78,9 +138,21 @@ export interface SocialClassSpec {
 	occupations: string[];
 }
 
+export type CountryId = 'netherlands' | 'syria' | 'spain' | 'argentina' | 'bangladesh' | 'belarus' | 'brazil' | 'britain' | 'canada' | 'china' | 'colombia' | 'congo' | 'egypt' | 'ethiopia' | 'france' | 'germany' | 'ghana' | 'india' | 'indonesia' | 'iraq' | 'italy' | 'japan' | 'jordan' | 'kazakhstan' | 'kenya' | 'korea' | 'libya' | 'malaysia' | 'mexico' | 'nigeria' | 'pakistan' | 'persia' | 'peru' | 'philippines' | 'russia' | 'senegal' | 'south_africa' | 'taiwan' | 'thailand' | 'tunisia' | 'ukraine' | 'usa' | 'vietnam';
+export type RegionStatistic = 'birthWeight' | 'infantMortality' | 'under5Mortality' | 'lifeExpectancyAt15' | 'literacyRate' | 'urbanizationRate' | 'gdpPerCapitaPPP' | 'gini' | 'annualBaseIncomeUnit' | 'modernFeelJpy';
+export interface StatisticProvenance {
+ status: 'estimated' | 'inherited' | 'sourced';
+ period: [number, number];
+ sourceIds: string[];
+ note: string;
+ inheritedFrom?: RegionId;
+}
+
 export interface RegionProfile {
 	id: RegionId;
 	eraId: EraId;
+	country: CountryId | null;
+	statistics: Record<RegionStatistic, StatisticProvenance>;
 	name: string;
 	subName: string;
 	polity: string;
@@ -89,7 +161,7 @@ export interface RegionProfile {
 	birthWeight: number; // Share within the era (sums to 100 per era)
 	infantMortality: number; // per 1,000 live births (age 0)
 	under5Mortality: number; // per 1,000 live births (ages 0-4 cumulative)
-	lifeExpectancyAt15: number; // if surviving childhood
+	lifeExpectancyAt15: number; // Expected age at death conditional on survival to 15, not remaining years
 	literacyRate: number; // 0-100%
 	urbanizationRate: number; // 0-100%
 	gdpPerCapitaPPP: number; // Maddison 2011 int$ approximation
@@ -155,6 +227,7 @@ export interface ChoiceOption {
 		killSpouseChance?: number;
 	};
 	outcomeText: string; // 生き延びたときに記録される結果
+	recordType?: 'decision' | 'loss';
 	deathText?: string; // survivalChance の判定に敗れたときに記録される結果（survivalChance があれば必須）
 }
 
@@ -172,6 +245,9 @@ export interface DecisionEventSpec {
 	isUrban?: boolean;
 	repeatable?: boolean;
 	isLifecycle?: boolean;
+	lifecycleKind?: 'childbirth' | 'marriage' | 'career' | 'retirement' | 'other';
+	cooldownYears?: number;
+	maxChildren?: number;
 	isFamilyLoss?: boolean;
 	minAge: number;
 	maxAge: number;
@@ -199,13 +275,23 @@ export interface FeedEntry {
 }
 
 
+/** Structured independently of the display string; unknown traditions remain name-only. */
+export interface PersonalName {
+	givenName: string;
+	familyName?: string;
+	birthFamilyName?: string;
+	convention: 'personal-only' | 'chinese' | 'japanese' | 'korean';
+}
+
+export type FamilyRelation = '父' | '母' | '兄弟' | '姉妹' | '妻' | '夫' | '子';
 export interface FamilyMember {
-	relation: string;
+	id: string;
+	relation: FamilyRelation;
 	name: string;
-	ageAtPlayerBirth?: number; // for parents/siblings
-	birthPlayerAge?: number; // for spouse/children
-	alive: boolean;
-	deathPlayerAge?: number;
+	nameParts?: PersonalName;
+	birthYear: number;
+	status: 'unborn' | 'alive' | 'dead';
+	deathYear?: number;
 }
 
 export interface FocusOption {
@@ -258,13 +344,26 @@ export interface MemorialRecord {
 	createdAt: number;
 }
 
+export interface Environment {
+	era: EraSpec;
+	region: RegionProfile;
+	socialClass: SocialClassSpec;
+	coverage: 'matched' | 'retained';
+}
+
 export interface CharacterState {
 	id: string;
 	name: string;
+	birthName: string;
+	nameParts: PersonalName;
 	sex: 'M' | 'F';
 	era: EraSpec;
 	region: RegionProfile;
 	birthYear: number;
+	birthPlace: string;
+	birthCountry: CountryId | null;
+	currentCountry: CountryId | null;
+	environment: Environment;
 	currentYear: number;
 	age: number;
 	place: string;

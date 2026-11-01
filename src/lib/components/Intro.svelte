@@ -29,7 +29,7 @@
 	</div>
 
 	<div class="ctarow">
-		<button class="cta" onclick={() => game.roll()}>生まれる</button>
+		<button class="cta" disabled={game.loading} onclick={() => game.roll()}>生まれる</button>
 	</div>
 
 	<div class="panel memo">

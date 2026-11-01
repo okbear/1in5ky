@@ -1,7 +1,8 @@
+import { expandEventScope } from '#lib/data/regionChildren';
 import type { DecisionEvent } from '#lib/types';
 
 /** 古代文明期（メソポタミア・エジプト・黄河・インダス）の決断イベント */
-export const ANCIENT_EVENTS: DecisionEvent[] = [
+export const ANCIENT_EVENTS: DecisionEvent[] = ([
   {
     "id": "anc_meso_canal_repair",
     "title": "大麦運河の浚渫普請と堤防補修",
@@ -841,4 +842,4 @@ export const ANCIENT_EVENTS: DecisionEvent[] = [
       }
     ]
   }
-];
+] satisfies DecisionEvent[]).map(expandEventScope);

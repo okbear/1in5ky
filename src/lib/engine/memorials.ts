@@ -1,6 +1,7 @@
-import { ERA_ORDER } from '../data/eras';
-import { SEED_MEMORIALS } from '../data/timeline';
-import type { CharacterState, EraId, MemorialRecord } from '../types';
+import { MAX_AGE } from '#lib/engine/util';
+import { ERA_ORDER } from '#lib/data/eras';
+import { SEED_MEMORIALS } from '#lib/data/seeds';
+import type { CharacterState, EraId, MemorialRecord } from '#lib/types';
 
 export const MEMORIAL_KEY = '1in5ky.memorials';
 export const MAX_MEMORIALS = 200;
@@ -76,7 +77,8 @@ export const parseMemorials = (raw: string | null): MemorialRecord[] => {
 				typeof r.deathAge !== 'number' ||
 				!Number.isInteger(r.deathAge) ||
 				r.deathAge < 0 ||
-				r.deathAge > 150 ||
+				r.deathAge > MAX_AGE ||
+				r.deathYear - r.birthYear !== r.deathAge ||
 				typeof r.createdAt !== 'number' ||
 				!Number.isFinite(r.createdAt)
 			) {

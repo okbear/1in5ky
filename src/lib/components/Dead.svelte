@@ -1,87 +1,26 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { game } from '#lib/game.svelte';
-	import { ageGroup, expectedLifespan, formatYear, survivalRateAtAge } from '#lib/engine/util';
-	import { canRevive } from '#lib/engine/engine';
-	import type { FeedEntry } from '#lib/types';
+	import { expectedLifespan, formatYear, survivalRateAtAge } from '#lib/engine/util';
+	import { canRevive } from '#lib/engine/mortality';
+	import { buildLifeTimelineRows, groupLifeTimeline } from '#lib/presentation/lifeTimeline';
 	import Timeline from './Timeline.svelte';
 	import GraveScene from './GraveScene.svelte';
 	import { getGraveInfo } from '#lib/data/graveData';
 
 	const c = $derived(game.char!);
 	const pm = $derived(game.pm);
-	const lostKids = $derived(c.family.filter((f) => f.relation === '子' && !f.alive).length);
+	const lostKids = $derived(c.family.filter((f) => f.relation === '子' && f.status === 'dead').length);
 	const kids = $derived(c.family.filter((f) => f.relation === '子').length);
 	const e0 = $derived(Math.round(expectedLifespan(c.region, c.socialClass.mortalityMultiplier)));
 	const survPct = $derived(survivalRateAtAge(c.region, c.age) * 100);
 	const survLabel = $derived(
 		survPct >= 10 ? `${Math.round(survPct)}%` : `${Math.max(0.1, survPct).toFixed(1)}%`
 	);
-	const STAGE_LABEL = {
-		infant: '誕生・乳児期',
-		child: '子ども時代',
-		youth: '青年期',
-		adult: '壮年期',
-		elder: '晩年'
-	} as const;
-
-	type Row = {
-		kind: 'life' | 'world';
-		key: string;
-		year: number;
-		age: number;
-		type: FeedEntry['type'] | 'world';
-		text: string;
-		sub?: string;
-		tag?: string;
-		major: boolean;
-	};
-	type Item = Row | { kind: 'stage'; key: string; label: string };
-
 	let showAll = $state(false);
-
-	// feed は新しい順・chronicle は古い順。年代順にそろえ、同じ年は世界の出来事を先に置く。
-	const rows = $derived.by<Row[]>(() => {
-		const life = [...c.feed].reverse().map<Row>((f) => ({
-			kind: 'life',
-			key: `l-${f.id}`,
-			year: f.year,
-			age: f.age,
-			type: f.type,
-			text: f.text,
-			sub: f.fact ? `資料 ${f.fact}` : undefined,
-			major: f.type !== 'normal'
-		}));
-		const world = c.chronicle.map<Row>((ev) => ({
-			kind: 'world',
-			key: `w-${ev.id}`,
-			year: ev.year,
-			age: ev.age,
-			type: 'world',
-			text: ev.title,
-			sub: ev.description,
-			tag: ev.regionTag,
-			major: true
-		}));
-		return [...world, ...life].sort((a, b) =>
-			a.year !== b.year ? a.year - b.year : a.kind === b.kind ? 0 : a.kind === 'world' ? -1 : 1
-		);
-	});
-	const visible = $derived.by<Item[]>(() => {
-		const out: Item[] = [];
-		let stage: ReturnType<typeof ageGroup> | null = null;
-		for (const r of rows) {
-			if (!showAll && !r.major) continue;
-			const g = ageGroup(r.age);
-			if (g !== stage) {
-				stage = g;
-				out.push({ kind: 'stage', key: `s-${g}`, label: STAGE_LABEL[g] });
-			}
-			out.push(r);
-		}
-		return out;
-	});
-	const grave = $derived(getGraveInfo(c.region.id));
+	const rows = $derived(buildLifeTimelineRows(c));
+	const visible = $derived(groupLifeTimeline(rows, showAll));
+	const grave = $derived(getGraveInfo(c.environment.region.id));
 	const shareUrl = $derived(
 		page.url.hostname === 'localhost' || page.url.hostname === '127.0.0.1'
 			? 'https://1in5ky.vercel.app/'
@@ -110,7 +49,7 @@
 			<div class="hero">
 				<div class="portrait-card">
 					<div class="frame">
-						<GraveScene region={c.region} />
+						<GraveScene region={c.environment.region} />
 						<span class="badge">永眠の地</span>
 					</div>
 					<div class="caption">
@@ -121,6 +60,7 @@
 
 				<div class="bio">
 					<h1>{c.name}</h1>
+					{#if c.name !== c.birthName}<p class="ctx">出生時の名前：{c.birthName}</p>{/if}
 					<div class="span mono">{formatYear(c.birthYear)} — {formatYear(c.currentYear)} · {c.age}歳</div>
 					<p class="cause">死因：<b>{c.deathCause}</b></p>
 					<p class="ctx">{c.epitaph}</p>
@@ -214,7 +154,7 @@
 	</div>
 
 	<div class="endbtns">
-		<button class="cta" onclick={() => game.roll()}>もう一度生まれる</button>
+		<button class="cta" disabled={game.loading} onclick={() => game.roll()}>もう一度生まれる</button>
 		<a class="x-btn" href={shareHref} target="_blank" rel="noopener noreferrer">
 			<span class="x-mark" aria-hidden="true">𝕏</span>
 			<span>この人生をポスト</span>

@@ -56,12 +56,18 @@ src/
 │   └── +page.svelte          # フェーズ（intro | cert | life | dead）に応じた画面切り替え
 └── lib/
     ├── types.ts              # 全型定義（Era, Region, Event, State, Memorial 等）
-    ├── game.svelte.ts        # グローバル進行ステート管理（Svelte 5 runes: Game クラス）
+    ├── game.svelte.ts        # Svelte状態とブラウザ機能への接続（SessionControllerを継承）
+    ├── session/
+    │   ├── loadSimulation.ts # 出生時代・次時代のデータを非同期で先読み
+    │   └── controller.ts     # 画面遷移・タイマー・決断・保存（ブラウザ非依存）
+    ├── presentation/
+    │   └── lifeTimeline.ts   # 結果画面の年表変換（純粋関数）
     ├── theme.svelte.ts       # ライト/ダーク切替ストア（localStorage `1in5ky.theme`、未設定時はOS設定に追従。`<html data-theme>` で app.css の変数を切替。初期値は app.html のnonce付きインラインスクリプトで解決）
     ├── components/
     │   ├── Intro.svelte      # タイトル・確率一覧・過去メモリアル一覧
     │   ├── Cert.svelte       # 出生届（誕生演出）
     │   ├── Life.svelte       # メイン人生進行画面
+    │   ├── DecisionDialog.svelte # 決断表示・Escape・フォーカス管理
     │   ├── Dead.svelte       # 死亡証明・死後の世界年表・リザルト
     │   ├── Scene.svelte      # 時代・地域に応じた建築シルエット風景SVG
     │   ├── GraveScene.svelte # 時代・地域に応じた墓標アートSVG
@@ -69,8 +75,8 @@ src/
     │   └── ThemeToggle.svelte # ライト/ダーク切替ボタン（Intro・Life のヘッダーに配置）
     ├── data/
     │   ├── eras.ts           # 6時代区分の定義・累計出生数推計
-    │   ├── babyImages.ts     # 53地域ごとの出生時赤ちゃん肖像画マッピング
-    │   ├── graveData.ts      # 53地域ごとの時代別墓標アート定義
+    │   ├── babyImages.ts     # 97地域ごとの出生時赤ちゃん肖像画マッピング
+    │   ├── graveData.ts      # 97地域ごとの時代別墓標アート定義
     │   ├── regions.ts        # 全地域の再エクスポート・集約アグリゲーター
     │   ├── regions/          # 時代別地域プロファイル分割モジュール
     │   │   ├── common.ts     # 身分定義（CLASSES）とbaseRegionヘルパー
@@ -87,11 +93,22 @@ src/
     │   │   ├── industrial_modern.ts   # 近代・現代の総力戦・空襲・公害・冷戦紛争
     │   │   └── common_unfair.ts       # 複数時代共通の病気・破傷風・歯・悪税・身分制
     │   ├── events-lifecycle.ts # 進路・結婚・出産・老後の決断イベント
-    │   └── timeline.ts       # 死後世界年表・世界の出来事クロニクル・初期墓標
+    │   ├── seeds.ts          # 初期墓標の集約（timeline.tsからも再エクスポート）
+    │   └── timeline.ts       # 死後世界年表・世界の出来事クロニクル
     └── engine/
         ├── util.ts           # 生命表ハザード計算、Gompertz較正、乱数ユーティリティ
         ├── memorials.ts      # localStorageメモリアルの厳格スキーマ検証・変換
-        ├── engine.ts         # 誕生抽選、stepYear進行、決断解決、家族/クロニクル進行
+        ├── engine.ts         # テスト・データ検査用の全件カタログ互換API
+        ├── core.ts           # データ注入された年次進行・決断・死亡
+        ├── environment.ts    # 出生記録と現在の環境・年次死亡率の分離
+        ├── simulation.ts     # 時代別データを束縛した同期シミュレーション
+        ├── world.ts          # データカタログとシミュレーションの型
+        ├── mortality.ts      # 復活の適格性と適用
+        ├── character.ts      # 出生抽選・名前・収入・個人記録
+        ├── family.ts         # 出産の適用・家族の年次処理
+        ├── history.ts        # クロニクル進行・死後の出来事
+        ├── events.ts         # 適格性・優先度・イベント抽選
+        ├── eventScope.ts     # 時代・地域・場所・年代の照合
         └── engine.test.ts    # データ整合性・数理不変条件・ストレージ検証テスト
 ```
 
@@ -112,7 +129,7 @@ src/
 | `modern` | 現代 | A.D.1945〜A.D.2026 | 110億人 | 16.9% | 抗生物質、人口爆発、公衆衛生、局地紛争、格差 |
 
 ### 4.2 地域プロファイル (`regions.ts`)
-全53地域。大陸をまたぐ混在プロファイルを分割し、イベントは地域指定または明示的な全地域共通指定を必須とする。分割一覧・暫定統計の扱い・残る細分化候補は [`docs/scenario-region-audit.md`](./docs/scenario-region-audit.md) を参照。各地域ごとに以下の統計・設定を保持：
+全97地域。大陸をまたぐ混在プロファイルを分割し、イベントは地域指定または明示的な全地域共通指定を必須とする。最新の仕様・出典・国別分割一覧は [`docs/model-v2.md`](./docs/model-v2.md)、前段階の分割一覧・暫定統計の扱いは [`docs/scenario-region-audit.md`](./docs/scenario-region-audit.md) を参照。各地域ごとに以下の統計・設定を保持：
 - `infantMortality`（出生1,000人あたりの乳児死亡数）
 - `under5Mortality`（5歳未満児累積死亡率 ‰）
 - `lifeExpectancyAt15`（15歳まで生き延びた者の平均寿命）
@@ -123,12 +140,19 @@ src/
 - `maleNames` / `femaleNames`（文化圏に応じた人名リスト各10件以上）
 - `dietStaple` / `beliefSystem` / `medicalCommonSense` / `worldviewCommonSense`
 
-### 4.3 イベント構造 (`events-*.ts`)
+### 4.3 現在年と統計の出典
+- 出生時の `era` / `region` / `socialClass` / `birthPlace` / `birthCountry` は記録として維持する。
+- `environment` を現在年と同じ国の対応プロファイルから更新し、イベント・生命表・医療・収入・表示に使う。対応資料がない場合は他国へ切り替えず出生時推定値を継続する。
+- `statistics` は各数値の推定・継承・出典確認済み、参照期間、出典ID、注記を保持する。
+- 現代の乳児・5歳未満死亡率にはWorld Bank / UN IGMEの41か国・2,576か国年（1960〜2024年の利用可能分）を同梱する。資料以前へ遡及せず、未来は最終年の据え置きという仮定を明示する。成人余命などは既存推定値を継続する。
+
+### 4.4 イベント構造 (`events-*.ts`)
 - 適用範囲は `regionIds: [RegionId, ...RegionId[]]` と `allRegions: true` のいずれか必須。省略は不可。
 - 地域内の局所イベントは `places` で出生地の都市・農村に限定する。時代・地域・場所・年代は `engine/eventScope.ts` の共通判定を通す。
 - 対応する肖像画のない分割地域では中立的な仮画像を表示し、異文化の肖像画を流用しない。
 - `WAVE_EVENTS`: 歴史上の確定戦争・大疫病・大飢饉（ペスト、モンゴル侵攻、天明の飢饉、世界大戦、空襲、徴兵令など）。
 - `UNFAIR_EVENTS`: 当時の医療・迷信・悪税・身分制度（破傷風、歯の化膿、麦角中毒、神判、連座制、窓税、塩税、強制徴募、領主の狩猟など）。
+- 待機期間・出生上限は `lifecycleKind` / `cooldownYears` / `maxChildren`、訃報記録は選択肢の `recordType` で指定する。IDの命名規則から推測しない。
 - `LIFECYCLE_EVENTS`: 人生の岐路。**結婚・出産はすべてこのイベントの選択肢を通してのみ発生**（自動発生なし）。
   - 結婚税、家同士の縁談、現代の結婚
   - 女性の命がけの出産（産褥熱リスク）、夫側の難産対処（妻の死亡リスク `killSpouseChance`）、現代の病院出産
@@ -149,19 +173,25 @@ src/
   $$\text{hazard} = q(a) \times \text{classMortalityMultiplier} \times (1.5 - 0.0075 \times \text{health})$$
   （健康ステータス 0 で 1.5倍、100 で 0.75倍）
 
-### 5.2 誕生ガチャロジック (`engine.ts`)
+### 5.2 誕生ガチャロジック (`engine/character.ts`、`engine.ts`からも公開)
 - 時代抽選: 6時代の推計累計出生数比率による加重抽選。
 - 生誕年抽選: 時代内の人口増加を反映するため、指数成長逆CDF関数を用いて時代の後半に生まれやすいよう重み付け。
 - 地域・身分抽選: 時代内の地域出生比率・各地域内の身分比率による加重抽選。
-- 命名: 家族・親族内で名前が重複しないよう `pickUniqueName`（`Set` による排他制御）を使用。
+- 命名: `engine/names.ts` で個人名と姓を分離する。中国・台湾・韓国の対象プロファイルでは父系の姓を継承し、配偶者は生家の姓を保持する。日本は年代・身分によって公称名字と婚姻後の氏を扱う。未対応の文化へ同じ姓制度を適用しない。個人名は `pickUniqueName` で家族内の重複を避ける。適用範囲と簡略化は [家族の命名モデル](./docs/family-names.md) を参照。
 
-### 5.3 1年進行処理 (`stepYear`)
+### 5.3 家族
+- `FamilyRelation`、出生年、`unborn / alive / dead`、死亡年を保持する。未出生の弟妹を家族欄に表示しない。
+- 配偶者は同年齢という簡略モデル。子どもも成人後まで年齢別の死亡判定を続ける。初年度は乳児ハザードを適用する。
+- 結婚と本人の子の出生は必ずライフサイクル決断を通す。
+- 現在名と出生時の名前を別に保持する。婚姻改姓で出生家族・既存の子・故人の名前を書き換えない。
+
+### 5.4 1年進行処理 (`stepYear`)
 毎ティック、以下の順序で厳密に処理：
-1. **死亡判定**: 当該年齢のハザードおよび天寿上限（`MAX_AGE = 110`）に基づき判定（0歳乳児死亡含む）。死亡時は即座にリザルト確定。
-2. **年齢・西暦加算**: 生存した場合のみ $a \leftarrow a + 1$, $y \leftarrow y + 1$。
+1. **環境更新・死亡判定**: 現在年の対応地域・年次死亡率を更新したうえで、 当該年齢のハザードおよび天寿上限（`MAX_AGE = 110`）に基づき判定（0歳乳児死亡含む）。死亡時は即座にリザルト確定。
+2. **年齢・西暦・環境更新**: 生存した場合のみ $a \leftarrow a + 1$, $y \leftarrow y + 1$。
 3. **ステータス自然変化**: 選択中の「重点」（生存/労働/家族/学習/信仰）および加齢（40歳以降の自然衰退）を反映。
 4. **2026年マイルストーン**: 西暦が2026年に達した場合、現代突破のマイルストーンを記録し、そのまま2028年以降の近未来・天変地異フェーズへ継続。
-5. **家族進行 (`familyTick`)**: 親・兄弟・配偶者・子どもの死亡判定（子どもは15歳まで幼児死亡率で個別に死亡判定）。
+5. **家族進行 (`familyTick`)**: 親・兄弟・配偶者・子どもの死亡判定（全続柄に出生年に基づく年齢別死亡判定、将来の弟妹は出生年に登場）。
 6. **世界の出来事記録 (`chronicleTick`)**: 実在の世界史事件または同時代の世界動向を右カラムクロニクルに追加。
 7. **イベント発火**:
    - 優先度1: 歴史の大波（確定年代イベント、発生率高）
@@ -189,6 +219,9 @@ src/
 ---
 
 ## 7. 開発コマンド・検証方法 (Development & Verification)
+
+現在年・家族・出典・非同期読み込みの仕様は [`docs/model-v2.md`](./docs/model-v2.md)。構造整理時点のレビュー結果は [`docs/architecture-review.md`](./docs/architecture-review.md) を参照。通常進行と早送りは共通の遷移を使い、決断の適用は保留中の選択肢に限定する。
+
 
 ```bash
 # 依存関係インストール

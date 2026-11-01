@@ -1,4 +1,5 @@
-import type { EraId, RegionProfile, SocialClassSpec } from '../../types';
+import { estimatedStatistics } from '#lib/data/statisticSources';
+import type { EraId, RegionProfile, SocialClassSpec } from '#lib/types';
 
 export const cls = (
 	id: SocialClassSpec['id'],
@@ -65,6 +66,37 @@ export const CLASSES: Record<EraId, SocialClassSpec[]> = {
 	]
 };
 
+const COUNTRY: Partial<Record<import('#lib/types').RegionId, import('#lib/types').CountryId>> = {
+  "cls_yayoi": "japan",
+  "med_japan": "japan",
+  "em_edo": "japan",
+  "ind_japan": "japan",
+  "mod_japan": "japan",
+  "anc_china": "china",
+  "cls_han": "china",
+  "med_china": "china",
+  "em_china": "china",
+  "ind_china": "china",
+  "mod_china": "china",
+  "anc_egypt": "egypt",
+  "ind_egypt": "egypt",
+
+  "cls_india": "india",
+  "med_india": "india",
+  "ind_india": "india",
+  "cls_mesoamerica": "mexico",
+  "med_mesoamerica": "mexico",
+  "em_mesoamerica": "mexico",
+  "med_andes": "peru",
+  "em_andes": "peru",
+  "ind_russia": "russia",
+  "ind_congo": "congo",
+  "mod_taiwan": "taiwan",
+  "mod_korea": "korea",
+  "cls_africa": "ethiopia",
+  "cls_persia": "persia"
+};
+
 export const baseRegion = (
 	eraId: EraId,
 	o: Partial<RegionProfile> &
@@ -95,6 +127,8 @@ export const baseRegion = (
 		>
 ): RegionProfile => ({
 	eraId,
+	country: COUNTRY[o.id] ?? null,
+	statistics: estimatedStatistics(o.id, eraId),
 	gini: 0.45,
 	annualBaseIncomeUnit: 100,
 	classes: CLASSES[eraId],

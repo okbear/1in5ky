@@ -1,7 +1,8 @@
+import { expandEventScope } from '#lib/data/regionChildren';
 import type { DecisionEvent } from '#lib/types';
 
 /** 帝国・古典期（ローマ・漢・インド・その他の世界）の決断イベント */
-export const CLASSICAL_EVENTS: DecisionEvent[] = [
+export const CLASSICAL_EVENTS: DecisionEvent[] = ([
   {
     "id": "cls_rome_insula_fire",
     "title": "ローマ市街の木造高層アパート（インスラ）の大火",
@@ -833,4 +834,4 @@ export const CLASSICAL_EVENTS: DecisionEvent[] = [
       }
     ]
   }
-];
+] satisfies DecisionEvent[]).map(expandEventScope);

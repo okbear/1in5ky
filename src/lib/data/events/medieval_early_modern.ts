@@ -1,7 +1,8 @@
+import { expandEventScope } from '#lib/data/regionChildren';
 import type { DecisionEvent } from '#lib/types';
 
 /** 中世・近世の歴史的大波・戦争・悪税・理不尽社会制度イベント */
-export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
+export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = ([
 	{
 		id: 'medieval_feudal_war_famine',
 		title: '戦乱と長雨による凶作',
@@ -380,4 +381,4 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = [
 			}
 		]
 	}
-];
+] satisfies DecisionEvent[]).map(expandEventScope);

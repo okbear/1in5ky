@@ -2,19 +2,17 @@
 	import { game } from '#lib/game.svelte';
 	import { ERAS } from '#lib/data/eras';
 	import { expectedLifespan, formatYear, formatYen } from '#lib/engine/util';
-	import { regionsForEra } from '#lib/data/regions';
 	import { getBabyImage } from '#lib/data/babyImages';
 
 	const c = $derived(game.char!);
-	const regionShare = $derived(
-		(regionsForEra(c.era.id).find((r) => r.id === c.region.id)?.birthWeight ?? 0) / 100
-	);
+	const regionShare = $derived(c.region.birthWeight / 100);
 	const peersOku = $derived(ERAS[c.era.id].cumulativeBirthsOku * regionShare);
 	const peerText = $derived(
 		peersOku >= 1 ? `約${peersOku.toFixed(1)}億人` : `約${Math.round(peersOku * 10000).toLocaleString('ja-JP')}万人`
 	);
 	const u5 = $derived(Math.round(c.region.under5Mortality / 10));
 	const e0 = $derived(Math.round(expectedLifespan(c.region, c.socialClass.mortalityMultiplier)));
+	const mortalityNote = $derived(c.region.statistics.infantMortality.note);
 	const baby = $derived(getBabyImage(c.region.id));
 </script>
 
@@ -71,11 +69,12 @@
 		<div class="foot">
 			<button class="ghost back" onclick={() => game.quit()}>最初に戻る</button>
 			<div class="actions">
-				<button class="ghost" onclick={() => game.roll()}>生まれ直す</button>
+				<button class="ghost" disabled={game.loading} onclick={() => game.roll()}>生まれ直す</button>
 				<button class="cta" onclick={() => game.begin()}>人生を始める</button>
 			</div>
 		</div>
 	</div>
+	<p class="src">{mortalityNote}</p>
 </section>
 
 <style>

@@ -1,3 +1,5 @@
+import { NATIONAL_VARIANTS } from '#lib/data/regions/national/modern';
+import { expandRegion } from '#lib/data/regions/national';
 import type { RegionProfile } from '#lib/types';
 import { baseRegion } from './common';
 
@@ -290,4 +292,4 @@ export const MODERN_REGIONS: RegionProfile[] = [
 		femaleNames: ['オリガ', 'ナターリヤ', 'タチアナ', 'エカテリーナ', 'スヴェトラーナ', 'イリーナ', 'アナスタシア', 'ユリア', 'マリヤ', 'ポリーナ', 'ダリア', 'クセニア', 'ヴィクトリア', 'アリョーナ', 'リュドミラ', 'ニーナ', 'ガリーナ', 'ワレンチナ', 'ナデジダ', 'ヴェロニカ', 'ヤナ', 'アリサ', 'マリーナ', 'オクサナ', 'リュボーフィ', 'ヴェラ'],
 		sceneTheme: { skyTop: '#7E9BB8', skyBottom: '#D5DFE8', ground: '#859080', accent: '#782835', architecture: 'modern' }
 	})
-];
+].flatMap((region) => expandRegion(region, NATIONAL_VARIANTS));

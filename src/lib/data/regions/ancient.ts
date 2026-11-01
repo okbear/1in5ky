@@ -1,3 +1,4 @@
+import { expandRegion } from '#lib/data/regions/national';
 import type { RegionProfile } from '#lib/types';
 import { baseRegion } from './common';
 
@@ -122,4 +123,4 @@ export const ANCIENT_REGIONS: RegionProfile[] = [
 		femaleNames: ["ヘレネ", "ペネロペ", "アンドロマケ", "ヘカベ", "クリュタイムネストラ", "カッサンドラ", "エレクトラ", "イピゲネイア", "アリアドネ", "パイドラ", "ブリセイス", "クリュセイス", "ディオメデ", "メガラ", "アルクメネ", "ダナエ", "エウリュディケ", "アンティゴネ", "イスメネ", "イオカステ", "デイアネイラ", "ヒッポダメイア", "ラオダメイア", "エウアドネ"],
 		sceneTheme: { skyTop: '#E5C98F', skyBottom: '#F4E5BE', ground: '#B8935A', accent: '#9C6238', architecture: 'classical' }
 	})
-];
+].flatMap((region) => expandRegion(region));

@@ -1,7 +1,8 @@
+import { expandEventScope } from '#lib/data/regionChildren';
 import type { DecisionEvent } from '#lib/types';
 
 /** 中世・封建期（ヨーロッパ・イスラム・中国・日本・その他の世界）の決断イベント */
-export const MEDIEVAL_EVENTS: DecisionEvent[] = [
+export const MEDIEVAL_EVENTS: DecisionEvent[] = ([
   {
     "id": "med_eur_tithe_dispute",
     "title": "十分の一税（ティス）の納入と司祭の倉",
@@ -1048,4 +1049,4 @@ export const MEDIEVAL_EVENTS: DecisionEvent[] = [
       }
     ]
   }
-];
+] satisfies DecisionEvent[]).map(expandEventScope);

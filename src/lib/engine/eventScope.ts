@@ -7,6 +7,7 @@ export function matchesEventSetting(
 ): boolean {
 	if (event.eraIds && !event.eraIds.includes(character.era.id)) return false;
 	if (event.regionIds) {
+		if (character.region.eraId !== character.era.id) return false;
 		if (!event.regionIds.includes(character.region.id)) return false;
 	} else if (event.allRegions !== true) {
 		return false;

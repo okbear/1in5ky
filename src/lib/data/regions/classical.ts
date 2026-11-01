@@ -1,3 +1,4 @@
+import { expandRegion } from '#lib/data/regions/national';
 import type { RegionProfile } from '#lib/types';
 import { baseRegion } from './common';
 
@@ -46,8 +47,8 @@ export const CLASSICAL_REGIONS: RegionProfile[] = [
 		beliefSystem: '儒教的秩序、黄老思想。のち仏教伝来。',
 		medicalCommonSense: '陰陽五行と気。鍼灸、漢方薬。',
 		worldviewCommonSense: '皇帝は天子。人頭税と兵役・徭役は逃れられない。',
-		maleNames: ['王徳', '李広', '張安', '劉平', '陳勝', '趙忠', '周進', '呉良', '孫順', '馬成', '劉邦', '項羽', '韓信', '張良', '蕭何', '曹参', '陳平', '周勃', '霍去病', '衛青', '司馬遷', '董仲舒', '張騫', '蘇武', '班超', '班固', '蔡倫', '張衡', '華佗'],
-		femaleNames: ['阿蘭', '阿芳', '春華', '小玉', '玉環', '秀英', '素貞', '采薇', '文君', '清婉', '呂雉', '薄姫', '竇漪房', '王娡', '衛子夫', '李夫人', '趙飛燕', '趙合徳', '陰麗華', '鄧綏', '班昭', '蔡琰', '卓文君', '王昭君', '馮媛', '許平君', '馬皇后', '甄宓', '卞夫人', '蔡文姫'],
+		maleNames: ["徳", "広", "安", "平", "勝", "忠", "進", "良", "順", "成", "邦", "信", "遷", "舒", "騫", "武", "超", "固", "衡", "佗", "嘉", "康", "勇", "文"],
+		femaleNames: ["阿蘭", "阿芳", "春華", "小玉", "秀英", "素貞", "采薇", "文君", "清婉", "秀蘭", "桂花", "玉珍", "秋菊", "春桃", "翠花", "淑珍", "月娥", "春蘭", "玉英", "月仙", "秀娟", "金鳳", "青蓮", "淑徳"],
 		sceneTheme: { skyTop: '#C9D6DF', skyBottom: '#EDF1F3', ground: '#B09A70', accent: '#8C283B', architecture: 'classical' }
 	}),
 	baseRegion('classical', {
@@ -170,4 +171,4 @@ export const CLASSICAL_REGIONS: RegionProfile[] = [
 		femaleNames: ["ヒメ", "タマ", "サヨ", "アヤ", "ミヤ", "ナカ", "ミオ", "カヤ", "サキ", "ツキ", "ハナ", "イワ", "ヨリ", "オリ", "ミチ", "カワヒメ", "トヨヒメ", "ヤマヒメ", "ナツ", "アキ", "ユキヒメ", "アサヒメ", "サヨヒメ", "ミズヒメ"],
 		sceneTheme: { skyTop: '#D8C894', skyBottom: '#EFE4C0', ground: '#A78C5C', accent: '#9C6238', architecture: 'edo' }
 	})
-];
+].flatMap((region) => expandRegion(region));

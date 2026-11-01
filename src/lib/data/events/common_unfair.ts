@@ -1,7 +1,8 @@
+import { expandEventScope } from '#lib/data/regionChildren';
 import type { DecisionEvent } from '#lib/types';
 
 /** 複数時代にまたがる日常の病気・感染症・悪税・身分制・都市火災イベント */
-export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
+export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = ([
 	{
 		id: 'fever_premodern',
 		title: '高熱が三日続いている',
@@ -238,16 +239,12 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 	},
 	{
 		id: 'window_salt_tax',
-		title: '「窓の数」と「生きるための塩」にかけられた悪税',
-		regionIds: ['em_europe'],
-		category: 'livelihood',
-		eraIds: ['early_modern'],
-		classIds: ['peasant', 'artisan'],
-		minAge: 16,
-		maxAge: 65,
-		description:
-			'領主と王室の財政難から、「家の窓の数に応じた窓税」と「高価な専売塩の強制購入」が触れ出された。まともに払えば冬の食料が買えない。',
-		factBox: '近世ヨーロッパの窓税では貧困層が窓を板やレンガで塞いだため日光と換気が失われ結核やくる病が蔓延し、フランスの塩税（ガベル）では密造塩を使った農民がガレー船奴隷に送られた。',
+		title: '窓を塞いで「窓税」を避けるか',
+		regionIds: ['em_britain'], eraIds: ['early_modern'],
+		category: 'livelihood', classIds: ['artisan', 'elite'], isUrban: true,
+		yearRange: [1696, 1799], minAge: 16, maxAge: 65,
+		description: '窓の多い住居に、窓数に応じた税が課された。窓を塞げば負担を下げられるが、光と換気が失われる。',
+		factBox: 'イングランドの窓税は1696年に導入された。対象住居では、窓を煉瓦で塞いで課税を避ける行動が見られた。フランスの塩税とは別の制度である。',
 		choices: [
 			{
 				id: 'board_up_windows',
@@ -259,6 +256,17 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				outcomeText: '昼でも真っ暗なジメジメした部屋で暮らすようになり、家族の咳が止まらなくなった。',
 				deathText: '肺結核・呼吸器疾患により、手当も間に合わぬまま力尽きた。'
 			},
+			{ id: 'pay_window_tax', label: '税を納め、窓を残す', subLabel: '家計は圧迫されるが光と風を確保する', effects: { wealthDelta: -20, health: 5 }, outcomeText: '蓄えを取り崩して税を納め、窓からの明かりを残した。' }
+		]
+	},
+	{
+		id: 'french_salt_tax', title: '王室専売の塩と「ガベル」の負担',
+		regionIds: ['em_france'], eraIds: ['early_modern'], places: ['パリ'],
+		category: 'livelihood', classIds: ['peasant', 'artisan'],
+		yearRange: [1500, 1789], minAge: 16, maxAge: 65,
+		description: '王室専売の高価な塩を買う負担が家計にのしかかる。闇の塩を使えば、塩役人の取り締まりを受ける危険がある。',
+		factBox: 'アンシャン・レジームの塩税ガベルは、地域によって負担や制度が異なった。このイベントはパリの課税地域を舞台にし、フランス全土へ一律には適用しない。',
+		choices: [
 			{
 				id: 'smuggle_salt',
 				label: '闇の塩商人から安い密造塩をこっそり買う',
@@ -268,7 +276,8 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 				effects: { wealthDelta: -5, happiness: -5 },
 				outcomeText: '塩役人の家宅捜索に怯えながら、床下に隠した塩で食べ物を漬けた。',
 				deathText: '塩税違反による投獄・ガレー船労役により、手当も間に合わぬまま力尽きた。'
-			}
+			},
+			{ id: 'buy_royal_salt', label: '公認の塩を買い、負担を受け入れる', subLabel: '食費を切り詰める', effects: { wealthDelta: -20, happiness: -5 }, outcomeText: '高価な塩を少しずつ使いながら、残りの食料をやりくりした。' }
 		]
 	},
 	{
@@ -512,4 +521,4 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = [
 			}
 		]
 	}
-];
+] satisfies DecisionEvent[]).map(expandEventScope);

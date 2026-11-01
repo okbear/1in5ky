@@ -97,3 +97,9 @@ export const ERA_ORDER: EraId[] = [
 ];
 
 export const TOTAL_CUMULATIVE_BIRTHS_OKU = 650; // 紀元前3000年以降の推計出生総数（約650億人）
+
+/** Birth era stays immutable; the current calendar year determines the environment era. */
+export function eraForYear(year: number): EraId {
+ return ERA_ORDER.find((id) => year >= ERAS[id].yearStart && year <= ERAS[id].yearEnd)
+  ?? (year < ERAS.ancient.yearStart ? 'ancient' : 'modern');
+}

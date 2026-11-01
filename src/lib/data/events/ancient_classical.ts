@@ -1,7 +1,8 @@
+import { expandEventScope } from '#lib/data/regionChildren';
 import type { DecisionEvent } from '#lib/types';
 
 /** 古代・古典期の歴史の大波・戦争・神判・悪税イベント */
-export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
+export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = ([
 	{
 		id: 'ancient_corvee',
 		title: '王と神殿の大工事への徴用',
@@ -210,4 +211,4 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = [
 			}
 		]
 	}
-];
+] satisfies DecisionEvent[]).map(expandEventScope);

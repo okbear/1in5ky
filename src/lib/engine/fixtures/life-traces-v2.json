@@ -1,0 +1,170 @@
+[
+  {
+    "eraId": "ancient",
+    "seed": 1,
+    "calls": 152,
+    "decisions": 12,
+    "digest": "c8a4d8677b5cf4743fb34e942ba5f5d5fda4ed158afd2caed9af81fcdbe409c3"
+  },
+  {
+    "eraId": "ancient",
+    "seed": 42,
+    "calls": 169,
+    "decisions": 10,
+    "digest": "c949898e4f1cd1a858992362fd139f39871f03fe17b73a38130b45e0b12d032e"
+  },
+  {
+    "eraId": "ancient",
+    "seed": 2026,
+    "calls": 24,
+    "decisions": 0,
+    "digest": "ae1725b4934ff03e23fd4aeffe3fbaded51ed814693faea90e33bff8c733acb0"
+  },
+  {
+    "eraId": "ancient",
+    "seed": 5000,
+    "calls": 27,
+    "decisions": 0,
+    "digest": "3cd2630416df286f7c0dea13e35d0b154f8277a9ada898e62057230b94f1f588"
+  },
+  {
+    "eraId": "classical",
+    "seed": 1,
+    "calls": 352,
+    "decisions": 20,
+    "digest": "7c2832ad7679c00dee07468301344f2bd70db4c5a51f08b6d9311de11351c847"
+  },
+  {
+    "eraId": "classical",
+    "seed": 42,
+    "calls": 75,
+    "decisions": 2,
+    "digest": "f40d2025a9391c2bfe6c50b7f1d1b98944e2e367a2dd6f1d05718b094f45afdd"
+  },
+  {
+    "eraId": "classical",
+    "seed": 2026,
+    "calls": 24,
+    "decisions": 0,
+    "digest": "2ff01ebfae468ffa1553f671b47baa1179c45e84ef4c1ddc5cfba30799a2db29"
+  },
+  {
+    "eraId": "classical",
+    "seed": 5000,
+    "calls": 92,
+    "decisions": 1,
+    "digest": "818e6494c79dbdd9ab97f526380a7da25a912fad950764865be27591e27f6565"
+  },
+  {
+    "eraId": "medieval",
+    "seed": 1,
+    "calls": 68,
+    "decisions": 0,
+    "digest": "6416cb23094b5f19de7fa8c4c01ddaafbb7718eee9b1cdc0b2a9c1419eb23e06"
+  },
+  {
+    "eraId": "medieval",
+    "seed": 42,
+    "calls": 23,
+    "decisions": 0,
+    "digest": "a1f7310563552583cd72dffa45968e5a813a763519f4ab0b8c0535ceb2b9a4e2"
+  },
+  {
+    "eraId": "medieval",
+    "seed": 2026,
+    "calls": 197,
+    "decisions": 8,
+    "digest": "296ae6405c55e9b6ed11ecf6fb4ec395e7d470cbc3880eba5ce325b59e215d9c"
+  },
+  {
+    "eraId": "medieval",
+    "seed": 5000,
+    "calls": 110,
+    "decisions": 2,
+    "digest": "03759f0849f290cfcadaf0aa335195fee53c2fcf9cde80182d832a68df937174"
+  },
+  {
+    "eraId": "early_modern",
+    "seed": 1,
+    "calls": 301,
+    "decisions": 20,
+    "digest": "cba34a6b7ff1fd442453b028795337d00262caba5cfeca2a338323212ef2c78c"
+  },
+  {
+    "eraId": "early_modern",
+    "seed": 42,
+    "calls": 223,
+    "decisions": 10,
+    "digest": "7e0f50aa3cc929311c15e9a378e862143543fe2616201ffd4c9d3f4f8819b27b"
+  },
+  {
+    "eraId": "early_modern",
+    "seed": 2026,
+    "calls": 217,
+    "decisions": 6,
+    "digest": "e10784e05b3501eeca02bf9310205171d8f07c94bd8534556ca619dc67b7959e"
+  },
+  {
+    "eraId": "early_modern",
+    "seed": 5000,
+    "calls": 26,
+    "decisions": 0,
+    "digest": "77a62631f813f029b1941fc7fbd55fef76976cfe7d65aefedb81c194cd0b527c"
+  },
+  {
+    "eraId": "industrial",
+    "seed": 1,
+    "calls": 57,
+    "decisions": 0,
+    "digest": "470442824d9d80084bc98f41be37f957946aedac60903933a9cfc3875e2a8186"
+  },
+  {
+    "eraId": "industrial",
+    "seed": 42,
+    "calls": 64,
+    "decisions": 3,
+    "digest": "76b03b570b60c51358049c50fc13e8073c3cb9d8310dd3456e9d54aa2963cc4d"
+  },
+  {
+    "eraId": "industrial",
+    "seed": 2026,
+    "calls": 128,
+    "decisions": 4,
+    "digest": "faaaaacca4eeda656a3ca01ade11ddfe57dc4d3a9cab2815763b707b3f220701"
+  },
+  {
+    "eraId": "industrial",
+    "seed": 5000,
+    "calls": 26,
+    "decisions": 0,
+    "digest": "7d757a58506b9037e288691e38ccc698a04ca8f922da9cb4e4ca08f39de8b17e"
+  },
+  {
+    "eraId": "modern",
+    "seed": 1,
+    "calls": 184,
+    "decisions": 8,
+    "digest": "5ab51c8b825d79183e25026404d73b31e99db1b8a8813e4c4e3623749941029c"
+  },
+  {
+    "eraId": "modern",
+    "seed": 42,
+    "calls": 547,
+    "decisions": 22,
+    "digest": "8415b8f2fe915164c1cccb7738b97c2be5da03c1213b682e63778258fd47f9a0"
+  },
+  {
+    "eraId": "modern",
+    "seed": 2026,
+    "calls": 754,
+    "decisions": 28,
+    "digest": "549df3be05455772166c15e9690200d07653c0c5d7bdd639aa5f7b1a90c528c1"
+  },
+  {
+    "eraId": "modern",
+    "seed": 5000,
+    "calls": 539,
+    "decisions": 23,
+    "digest": "baccc697c89bc8c51ae389ff43dca06b6e44fa56960a3d711f2c3b1b77fdf440"
+  }
+]

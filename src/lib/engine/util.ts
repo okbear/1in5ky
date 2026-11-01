@@ -1,4 +1,4 @@
-import type { EraId, RegionProfile } from '../types';
+import type { EraId, RegionProfile } from '#lib/types';
 
 export const formatYear = (y: number): string => (y < 0 ? `紀元前${-y}年` : `${y}年`);
 
@@ -79,12 +79,12 @@ const calibrate = (r: RegionProfile): number => {
 	return Math.sqrt(lo * hi);
 };
 
-const calibrationCache = new Map<string, number>();
+const calibrationCache = new Map<number, number>();
 const adultA = (r: RegionProfile): number => {
-	let a = calibrationCache.get(r.id);
+	let a = calibrationCache.get(r.lifeExpectancyAt15);
 	if (a === undefined) {
 		a = calibrate(r);
-		calibrationCache.set(r.id, a);
+		calibrationCache.set(r.lifeExpectancyAt15, a);
 	}
 	return a;
 };

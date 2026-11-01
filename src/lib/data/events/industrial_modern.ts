@@ -1,7 +1,8 @@
+import { expandEventScope } from '#lib/data/regionChildren';
 import type { DecisionEvent } from '#lib/types';
 
 /** 近代・現代の歴史的大波・戦争・公害・構造的格差イベント */
-export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
+export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = ([
 	{
 		id: 'cholera_1850',
 		title: '井戸の水を飲んだ者が死ぬ',
@@ -529,4 +530,4 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = [
 			}
 		]
 	}
-];
+] satisfies DecisionEvent[]).map(expandEventScope);

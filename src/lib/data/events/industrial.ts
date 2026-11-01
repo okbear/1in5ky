@@ -1,7 +1,8 @@
+import { expandEventScope } from '#lib/data/regionChildren';
 import type { DecisionEvent } from '#lib/types';
 
 /** 近代・産業革命（欧米・日本・中国・インド・ロシア中東南米）の決断イベント */
-export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
+export const INDUSTRIAL_EVENTS: DecisionEvent[] = ([
   {
     "id": "ind_eur_mill_loom_crush",
     "title": "マンチェスター木綿工場の自動織機と巻き込み",
@@ -830,7 +831,12 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
     "regionIds": [
       "ind_southeast_asia"
     ],
-    "places": ["クアラルンプール", "ペナン", "マラッカ", "マレー半島のゴム農園"],
+    "places": [
+      "クアラルンプール",
+      "ペナン",
+      "マラッカ",
+      "マレー半島のゴム農園"
+    ],
     "minAge": 15,
     "maxAge": 50,
     "description": "自動車のタイヤ需要で沸く英領マレーのゴム園へタミル系移民労働者として渡った。ゴムの樹液が最もよく出る夜明け前の暗闇のなか、額にランプをつけて幹に螺旋の切り込みを入れる。",
@@ -1087,4 +1093,4 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = [
       "シベリアの集落"
     ]
   }
-];
+] satisfies DecisionEvent[]).map(expandEventScope);

@@ -1,10 +1,11 @@
-import type { EraId, RegionProfile } from '../types';
-import { ANCIENT_REGIONS } from './regions/ancient';
-import { CLASSICAL_REGIONS } from './regions/classical';
-import { MEDIEVAL_REGIONS } from './regions/medieval';
-import { EARLY_MODERN_REGIONS } from './regions/early_modern';
-import { INDUSTRIAL_REGIONS } from './regions/industrial';
-import { MODERN_REGIONS } from './regions/modern';
+import { ERA_ORDER } from '#lib/data/eras';
+import type { EraId, RegionProfile } from '#lib/types';
+import { ANCIENT_REGIONS } from '#lib/data/regions/ancient';
+import { CLASSICAL_REGIONS } from '#lib/data/regions/classical';
+import { MEDIEVAL_REGIONS } from '#lib/data/regions/medieval';
+import { EARLY_MODERN_REGIONS } from '#lib/data/regions/early_modern';
+import { INDUSTRIAL_REGIONS } from '#lib/data/regions/industrial';
+import { MODERN_REGIONS } from '#lib/data/regions/modern';
 
 const REGIONS_BY_ERA: Record<EraId, RegionProfile[]> = {
 	ancient: ANCIENT_REGIONS,
@@ -15,13 +16,6 @@ const REGIONS_BY_ERA: Record<EraId, RegionProfile[]> = {
 	modern: MODERN_REGIONS
 };
 
-export const REGIONS: RegionProfile[] = [
-	...ANCIENT_REGIONS,
-	...CLASSICAL_REGIONS,
-	...MEDIEVAL_REGIONS,
-	...EARLY_MODERN_REGIONS,
-	...INDUSTRIAL_REGIONS,
-	...MODERN_REGIONS
-];
+export const REGIONS: RegionProfile[] = ERA_ORDER.flatMap((eraId) => REGIONS_BY_ERA[eraId]);
 
 export const regionsForEra = (eraId: EraId): RegionProfile[] => REGIONS_BY_ERA[eraId];

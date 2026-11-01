@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { game } from '#lib/game.svelte';
+	import { namingDescription } from '#lib/engine/names';
 	import { expectedLifespan, formatYear, formatYen } from '#lib/engine/util';
 	import type { FocusOption } from '#lib/types';
 	import Scene from './Scene.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
-	import { getEventImage } from '#lib/data/eventImages';
+	import DecisionDialog from '#lib/components/DecisionDialog.svelte';
+	import { PLAYBACK_SPEEDS } from '#lib/session/controller';
+	import { tick } from 'svelte';
+	import { STATISTIC_SOURCES } from '#lib/data/statisticSources';
 
 	const focuses: FocusOption[] = [
 		{ id: 'survival', label: '生き延びる', sub: '体を守る' },
@@ -13,44 +17,38 @@
 		{ id: 'learning', label: '学ぶ', sub: '知識を増やす' },
 		{ id: 'faith', label: '祈る', sub: '心の支え' }
 	];
-	const speeds = [1, 2, 4, 8, 16];
+	const speeds = PLAYBACK_SPEEDS;
 
 	const c = $derived(game.char!);
+	const env = $derived(c.environment);
+	const mortalitySource = $derived(STATISTIC_SOURCES[env.region.statistics.infantMortality.sourceIds[0] as keyof typeof STATISTIC_SOURCES]);
 	const stats = $derived([
 		{ k: '健康', v: c.health },
 		{ k: '幸福', v: c.happiness },
 		{ k: '知識', v: c.knowledge },
 		{ k: '人間関係', v: c.relations }
 	]);
-	const living = $derived(c.family.filter((f) => f.alive));
-	const gone = $derived(c.family.filter((f) => !f.alive));
-	const e0 = $derived(Math.round(expectedLifespan(c.region, c.socialClass.mortalityMultiplier)));
+	const living = $derived(c.family.filter((f) => f.status === 'alive'));
+	const gone = $derived(c.family.filter((f) => f.status === 'dead'));
+	const e0 = $derived(Math.round(expectedLifespan(env.region, env.socialClass.mortalityMultiplier)));
 	const jobLabel = $derived(
 		c.age < 6
-			? `幼少（${c.socialClass.name}の子）`
-			: c.age < 13 && c.era.id === 'modern'
+			? `幼少（${env.socialClass.name}の子）`
+			: c.age < 13 && env.era.id === 'modern'
 				? '就学・手伝い'
 				: c.occupation
 	);
 	const chronicles = $derived([...c.chronicle].reverse());
 
 	let chronicleEl = $state<HTMLUListElement | null>(null);
-	let dialogEl = $state<HTMLDivElement | null>(null);
 	let speedPickerEl = $state<HTMLDivElement | null>(null);
 	let speedOpen = $state(false);
 	let returnBtnEl = $state<HTMLButtonElement | null>(null);
 
-	const dismissDecisionAndFocus = (): void => {
+	const dismissDecisionAndFocus = async (): Promise<void> => {
 		game.dismissDecision();
-		setTimeout(() => {
-			returnBtnEl?.focus();
-		}, 0);
-	};
-
-	const onScrimClick = (e: MouseEvent): void => {
-		if (e.target === e.currentTarget) {
-			dismissDecisionAndFocus();
-		}
+		await tick();
+		returnBtnEl?.focus();
 	};
 
 	$effect(() => {
@@ -63,7 +61,6 @@
 	$effect(() => {
 		if (game.decision && !game.decisionHidden) {
 			speedOpen = false;
-			dialogEl?.querySelector<HTMLButtonElement>('.choices button')?.focus();
 		}
 	});
 
@@ -78,9 +75,6 @@
 			speedOpen = false;
 			return;
 		}
-		if (game.decision && !game.decisionHidden && e.key === 'Escape') {
-			dismissDecisionAndFocus();
-		}
 	};
 </script>
 
@@ -89,13 +83,13 @@
 <div class="life-shell" inert={!!game.decision && !game.decisionHidden}>
 	<header class="topbar">
 		<div class="header-watermark" aria-hidden="true">
-			<Scene region={c.region} />
+			<Scene region={env.region} />
 		</div>
 		<div class="wrap tbar">
 			<div class="brand">5000年分の<em>1</em></div>
 			<div class="agebox">
 				<div class="age mono">{c.age}<small>歳</small></div>
-				<div class="yr">{formatYear(c.currentYear)} · {c.region.name}</div>
+				<div class="yr">{formatYear(c.currentYear)} · {env.region.name}</div>
 			</div>
 			<ThemeToggle />
 			<button class="quit-btn" onclick={() => game.quit()}>中断</button>
@@ -112,8 +106,9 @@
 				<div class="in">
 					<div class="nm">{c.name}</div>
 					<dl class="id-meta">
+						{#if c.name !== c.birthName}<div><dt>出生時の名前</dt><dd>{c.birthName}</dd></div>{/if}
 						<div><dt>居所</dt><dd>{c.place}</dd></div>
-						<div><dt>身分</dt><dd>{c.socialClass.name}</dd></div>
+						<div><dt>身分</dt><dd>{env.socialClass.name}</dd></div>
 						<div><dt>仕事</dt><dd>{jobLabel}</dd></div>
 						<div><dt>読み書き</dt><dd>{c.literate ? 'できる' : 'できない'}</dd></div>
 					</dl>
@@ -135,7 +130,7 @@
 					<span class="lbl">収入</span>
 					<span class="income-val">
 						<b class="mono">{c.annualIncomeUnits.toLocaleString('ja-JP')}</b>
-						<span class="unit">{c.region.currencyUnit}/年</span>
+						<span class="unit">{env.region.currencyUnit}/年</span>
 						<small>（現代換算 約{formatYen(c.modernFeelJpy)}）</small>
 					</span>
 				</div>
@@ -204,27 +199,32 @@
 				<section class="panel" aria-label="家族">
 					<h3><span>家族</span><span class="lbl">生存 {living.length}人{gone.length > 0 ? ` · 故人 ${gone.length}人` : ''}</span></h3>
 					<div class="fam">
-						{#each living as f (f.name)}
-							<div class="row"><span>{f.relation}</span><span>{f.name}</span></div>
+						{#each living as f (f.id)}
+							<div class="row"><span>{f.relation}</span><span>{f.name}（{c.currentYear - f.birthYear}歳）</span></div>
 						{/each}
-						{#each gone as f (f.name)}
-							<div class="row gone"><span>{f.relation}</span><span>{f.name}（{f.deathPlayerAge}歳のとき没）</span></div>
+						{#each gone as f (f.id)}
+							<div class="row gone"><span>{f.relation}</span><span>{f.name}（{(f.deathYear ?? c.currentYear) - c.birthYear}歳のとき没）</span></div>
 						{/each}
 					</div>
+					<p class="src">{namingDescription(c)}</p>
 				</section>
 
 				<section class="panel" aria-label="この時代・この地域">
 					<h3><span>この時代・この地域</span></h3>
 					<dl class="stats">
-						<dt>乳児死亡率</dt><dd>{c.region.infantMortality}‰</dd>
+						<dt>乳児死亡率</dt><dd>{env.region.infantMortality}‰</dd>
 						<dt>平均寿命（出生時）</dt><dd>約{e0}歳</dd>
-						<dt>15歳時点の平均寿命</dt><dd>約{c.region.lifeExpectancyAt15}歳</dd>
-						<dt>5歳未満死亡率</dt><dd>{Math.round(c.region.under5Mortality / 10)}%</dd>
-						<dt>識字率</dt><dd>{c.region.literacyRate}%</dd>
-						<dt>都市人口率</dt><dd>{c.region.urbanizationRate}%</dd>
-						<dt>主食</dt><dd>{c.region.dietStaple}</dd>
+						<dt>15歳時点の平均寿命</dt><dd>約{env.region.lifeExpectancyAt15}歳</dd>
+						<dt>5歳未満死亡率</dt><dd>{Math.round(env.region.under5Mortality / 10)}%</dd>
+						<dt>識字率</dt><dd>{env.region.literacyRate}%</dd>
+						<dt>都市人口率</dt><dd>{env.region.urbanizationRate}%</dd>
+						<dt>主食</dt><dd>{env.region.dietStaple}</dd>
 					</dl>
-					<p class="src">{c.region.medicalCommonSense}</p>
+					<p class="src">{env.region.medicalCommonSense}</p>
+					{#if env.coverage === 'retained'}<p class="src">この年・地域の対応資料がないため、出生時の地域推定値を継続して使用しています。</p>{/if}
+					<p class="src">{env.region.statistics.infantMortality.note}
+						{#if mortalitySource?.url}<a href={mortalitySource.url} target="_blank" rel="noopener noreferrer">資料を読む</a>{/if}
+					</p>
 				</section>
 			</div>
 		</div>
@@ -292,52 +292,12 @@
 </div>
 
 {#if game.decision && !game.decisionHidden}
-	{@const d = game.decision}
-	{@const evImg = getEventImage(d.id)}
-	<div class="scrim" onclick={onScrimClick} role="presentation">
-		<div class="dec" class:dec-loss={d.isFamilyLoss} bind:this={dialogEl} role="dialog" aria-modal="true" aria-label={d.title}>
-			<div class="hd" class:hd-loss={d.isFamilyLoss}>
-				<span>{d.isFamilyLoss ? '訃報' : d.isLifecycle ? '人生の転機' : d.category === 'historical_wave' ? `歴史の大波 · ${d.historicalYearLabel ?? ''}` : '決断'} · {c.age}歳</span>
-				<button
-					type="button"
-					class="dec-close-btn"
-					aria-label="閉じる"
-					onclick={() => dismissDecisionAndFocus()}
-				>
-					閉じる
-				</button>
-			</div>
-			<div class="bd">
-				<div class="dec-lead" class:has-visual={!!evImg}>
-					{#if evImg}
-						<div class="dec-visual">
-							<div class="dec-frame">
-								<img src={evImg.src} alt={evImg.alt} loading="eager" />
-								{#if evImg.caption}
-									<span class="dec-badge">{evImg.caption}</span>
-								{/if}
-							</div>
-						</div>
-					{/if}
-					<div class="dec-text">
-						<h2>{d.title}</h2>
-						<p>{d.description}</p>
-					</div>
-				</div>
-				<div class="fact">{d.factBox}</div>
-				<div class="choices">
-					{#each d.choices as ch (ch.id)}
-						<button onclick={() => game.choose(ch)}>
-							<b>{ch.label}</b>
-							{#if ch.subLabel}
-								<small>{ch.subLabel}</small>
-							{/if}
-						</button>
-					{/each}
-				</div>
-			</div>
-		</div>
-	</div>
+	<DecisionDialog
+		decision={game.decision}
+		age={c.age}
+		onchoose={(choice) => game.choose(choice)}
+		ondismiss={dismissDecisionAndFocus}
+	/>
 {/if}
 
 <style>
@@ -963,73 +923,4 @@
 		filter: brightness(1.07);
 	}
 
-	/* 決断モーダル内の挿絵カード */
-	.dec-lead.has-visual {
-		display: grid;
-		grid-template-columns: 140px 1fr;
-		gap: 16px;
-		align-items: start;
-		margin-bottom: 12px;
-	}
-	@media (max-width: 520px) {
-		.dec-lead.has-visual {
-			grid-template-columns: 1fr;
-			gap: 12px;
-		}
-	}
-	.dec-visual {
-		max-width: 140px;
-	}
-	@media (max-width: 520px) {
-		.dec-visual {
-			max-width: 160px;
-			margin: 0 auto;
-		}
-	}
-	.dec-frame {
-		position: relative;
-		width: 100%;
-		aspect-ratio: 1 / 1;
-		border-radius: 4px;
-		overflow: hidden;
-		background: #14110e;
-		border: 1px solid var(--rule);
-		box-shadow: 0 2px 8px rgba(35, 28, 22, 0.12);
-	}
-	.dec-frame img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-	}
-	.dec-badge {
-		position: absolute;
-		bottom: 6px;
-		right: 6px;
-		background: rgba(20, 17, 14, 0.85);
-		color: #f4eee2;
-		font-size: 10px;
-		padding: 2px 6px;
-		border-radius: 2px;
-		letter-spacing: 0.03em;
-		backdrop-filter: blur(4px);
-		pointer-events: none;
-	}
-	.dec-text {
-		min-width: 0;
-	}
-	:global(.dec.dec-loss) {
-		border-color: var(--bad);
-	}
-	:global(.dec .hd.hd-loss) {
-		background: rgba(168, 53, 43, 0.08);
-		color: var(--bad);
-		font-weight: 600;
-	}
-	:global(.dec.dec-loss .choices button) {
-		border-color: var(--bad);
-	}
-	:global(.dec.dec-loss .choices button:hover) {
-		background: rgba(168, 53, 43, 0.06);
-	}
 </style>

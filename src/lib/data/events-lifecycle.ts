@@ -1,7 +1,8 @@
+import { expandEventScope } from '#lib/data/regionChildren';
 import type { DecisionEvent } from '../types';
 
 /** ライフイベント（進路・結婚・出産・中年期・老年期・徴税・児童労働） */
-export const LIFECYCLE_EVENTS: DecisionEvent[] = [
+export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 	{
 		id: 'work_choice_youth',
 		title: '一人前として働き始める歳になった',
@@ -9,6 +10,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 		category: 'livelihood',
 		classIds: ['peasant', 'artisan'],
 		isLifecycle: true,
+		lifecycleKind: 'career',
 		minAge: 12,
 		maxAge: 16,
 		description: '親の仕事を継ぐか、別の道を探すか。選べる道は、生まれた場所と身分で大きく限られている。',
@@ -48,7 +50,9 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 		classIds: ['peasant'],
 		requiresUnmarried: true,
 		isLifecycle: true,
+		lifecycleKind: 'marriage',
 		repeatable: true,
+		cooldownYears: 4,
 		minAge: 16,
 		maxAge: 32,
 		description:
@@ -79,7 +83,9 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 		eraIds: ['ancient', 'classical', 'medieval', 'early_modern', 'industrial'],
 		requiresUnmarried: true,
 		isLifecycle: true,
+		lifecycleKind: 'marriage',
 		repeatable: true,
+		cooldownYears: 4,
 		minAge: 15,
 		maxAge: 34,
 		description:
@@ -110,7 +116,9 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 		eraIds: ['modern'],
 		requiresUnmarried: true,
 		isLifecycle: true,
+		lifecycleKind: 'marriage',
 		repeatable: true,
+		cooldownYears: 4,
 		minAge: 20,
 		maxAge: 40,
 		description:
@@ -142,7 +150,10 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 		sex: 'F',
 		requiresSpouse: true,
 		isLifecycle: true,
+		lifecycleKind: 'childbirth',
+		maxChildren: 6,
 		repeatable: true,
+		cooldownYears: 2,
 		minAge: 16,
 		maxAge: 40,
 		description:
@@ -180,7 +191,10 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 		sex: 'M',
 		requiresSpouse: true,
 		isLifecycle: true,
+		lifecycleKind: 'childbirth',
+		maxChildren: 6,
 		repeatable: true,
+		cooldownYears: 2,
 		minAge: 17,
 		maxAge: 45,
 		description:
@@ -212,7 +226,10 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 		sex: 'F',
 		requiresSpouse: true,
 		isLifecycle: true,
+		lifecycleKind: 'childbirth',
+		maxChildren: 6,
 		repeatable: true,
+		cooldownYears: 2,
 		minAge: 20,
 		maxAge: 42,
 		description:
@@ -247,7 +264,10 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 		sex: 'M',
 		requiresSpouse: true,
 		isLifecycle: true,
+		lifecycleKind: 'childbirth',
+		maxChildren: 6,
 		repeatable: true,
+		cooldownYears: 2,
 		minAge: 20,
 		maxAge: 48,
 		description:
@@ -278,6 +298,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 		eraIds: ['ancient', 'classical', 'medieval', 'early_modern'],
 		classIds: ['peasant', 'artisan'],
 		repeatable: true,
+		cooldownYears: 4,
 		minAge: 18,
 		maxAge: 60,
 		description: '今年の収穫の半分近くを納めよ、と命じられた。残りでは、冬を越せるか分からない。',
@@ -427,4 +448,4 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = [
 			}
 		]
 	}
-];
+] satisfies DecisionEvent[]).map(expandEventScope);

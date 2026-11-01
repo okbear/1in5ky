@@ -1,7 +1,8 @@
+import { expandEventScope } from '#lib/data/regionChildren';
 import type { DecisionEvent } from '#lib/types';
 
 /** 近世・大航海期（江戸・アジア・ヨーロッパ・大西洋）の決断イベント */
-export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
+export const EARLY_MODERN_EVENTS: DecisionEvent[] = ([
   {
     "id": "em_edo_mizunomi_peasant_work",
     "title": "水呑百姓の困窮と江戸下町への出稼ぎ",
@@ -1065,4 +1066,4 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = [
       "ハドソン湾岸の交易集落"
     ]
   }
-];
+] satisfies DecisionEvent[]).map(expandEventScope);

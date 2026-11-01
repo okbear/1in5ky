@@ -1,3 +1,5 @@
+import { NATIONAL_VARIANTS } from '#lib/data/regions/national/early_modern';
+import { expandRegion } from '#lib/data/regions/national';
 import type { RegionProfile } from '#lib/types';
 import { baseRegion } from './common';
 
@@ -46,8 +48,8 @@ export const EARLY_MODERN_REGIONS: RegionProfile[] = [
 		beliefSystem: '儒教（朱子学・陽明学）・仏教・道教と祖先祭祀。',
 		medicalCommonSense: '漢方医学・本草綱目・人痘接種法。',
 		worldviewCommonSense: '中華帝国こそ世界の中心（天下思想）。科挙と宗族の秩序。',
-		maleNames: ['王大', '李二', '張三', '趙四', '劉六', '陳七', '楊八', '周九', '呉十', '鄭順', '康熙', '雍正', '乾隆', '嘉慶', '道光', '鄭成功', '呉三桂', '施琅', '紀暁嵐', '劉墉', '和珅', '曹雪芹', '蒲松齢', '顧炎武', '黄宗羲', '王夫之'],
-		femaleNames: ['阿芳', '小梅', '桂花', '秀蘭', '玉珍', '秋菊', '春桃', '翠花', '淑珍', '月娥', '陳円円', '柳如是', '董小宛', '卞玉京', '顧横波', '李香君', '寇白門', '馬湘蘭', '王端淑', '呉藻', '汪端', '席佩蘭', '金逸', '駱綺蘭', '沈善宝', '許延禧'],
+		maleNames: ["大成", "徳成", "順", "文清", "志遠", "守仁", "福生", "天佑", "長生", "有才", "明", "清", "俊", "平", "安", "義", "文", "林", "志明", "徳勝", "成林", "有為", "富貴", "金生"],
+		femaleNames: ["阿芳", "小梅", "桂花", "秀蘭", "玉珍", "秋菊", "春桃", "翠花", "淑珍", "月娥", "秀英", "玉蘭", "金鳳", "玉英", "春蘭", "青蓮", "彩雲", "秋香", "冬梅", "夏荷", "素珍", "巧雲", "菊仙", "金妹"],
 		sceneTheme: { skyTop: '#D5CDB0', skyBottom: '#EEE9D6', ground: '#A89868', accent: '#8C283B', architecture: 'classical' }
 	}),
 	baseRegion('early_modern', {
@@ -218,4 +220,4 @@ export const EARLY_MODERN_REGIONS: RegionProfile[] = [
 		femaleNames: ["メアリー", "アンナ", "エリザベス", "サラ", "マーサ", "ジェーン", "アリス", "レベッカ", "ルース", "キャサリン", "エミリー", "マーガレット", "ハンナ", "ルイーザ", "シャーロット", "キャロライン", "イーディス", "フローレンス", "ベアトリス", "ヘレン", "アグネス", "ドロシー", "リリアン", "ロザリンド", "アデレード", "セシリア", "ヴィクトリア", "アイリーン", "グレース"],
 		sceneTheme: { skyTop: '#B8CBA6', skyBottom: '#E6EFD9', ground: '#7E8F58', accent: '#0F6E68', architecture: 'medieval' }
 	})
-];
+].flatMap((region) => expandRegion(region, NATIONAL_VARIANTS));

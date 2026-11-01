@@ -1,7 +1,8 @@
+import { expandEventScope } from '#lib/data/regionChildren';
 import type { DecisionEvent } from '#lib/types';
 
 /** 現代〜近未来（日本・東アジア・南アジア・アフリカ中東・欧米）の決断イベント */
-export const MODERN_EVENTS: DecisionEvent[] = [
+export const MODERN_EVENTS: DecisionEvent[] = ([
   {
     "id": "mod_jpn_minamata_mercury_fish",
     "title": "不知火海の魚と原因不明の手足の痺れ",
@@ -1708,4 +1709,4 @@ export const MODERN_EVENTS: DecisionEvent[] = [
       }
     ]
   }
-];
+] satisfies DecisionEvent[]).map(expandEventScope);

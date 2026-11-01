@@ -11,7 +11,7 @@ test.describe('1in5ky E2E smoke tests', () => {
 		await page.locator('button.cta').first().click();
 		const cert = page.locator('.cert');
 		await expect(cert).toBeVisible();
-		await expect(cert.locator('.caption-title')).toHaveText('現代サハラ以南アフリカ');
+		await expect(cert.locator('.caption-title')).toHaveText('現代コンゴ民主共和国');
 		const portrait = cert.getByRole('img', { name: '出生時の肖像画は準備中' });
 		await expect(portrait).toBeVisible();
 		await expect(cert.locator('.frame img')).toHaveCount(0);
@@ -90,72 +90,85 @@ test.describe('1in5ky E2E smoke tests', () => {
 		expect(pageErrors).toEqual([]);
 	});
 
-	test('decision modal: can close modal, view background, and reopen via "決断に戻る"', async ({ page }) => {
+	test('decision modal: hides, restores and keeps keyboard focus inside the active decision', async ({ page }) => {
 		const pageErrors: Error[] = [];
-		page.on('pageerror', (err) => pageErrors.push(err));
-
+		page.on('pageerror', (error) => pageErrors.push(error));
 		await page.goto('/', { waitUntil: 'networkidle' });
-
-		// Roll a life and begin
+		// A reproducible modern life survives infancy and encounters a dated historical wave.
+		await page.evaluate(() => {
+			let calls = 0;
+			Math.random = () => calls++ === 0 ? 0.99 : 0.5;
+		});
 		await page.locator('button.cta').first().click();
-		const cert = page.locator('.cert');
-		await expect(cert).toBeVisible();
-		await cert.locator('button.cta').click();
+		await expect(page.locator('.cert')).toBeVisible();
+		await page.locator('.cert button.cta').click();
+		await page.locator('.bottombar button').filter({ hasText: '»' }).click();
 
-		const life = page.locator('.life');
-		await expect(life).toBeVisible();
+		const dialog = page.getByRole('dialog');
+		const firstChoice = dialog.locator('.choices button').first();
+		const lastChoice = dialog.locator('.choices button').last();
+		const close = dialog.getByRole('button', { name: '閉じる' });
+		await expect(dialog).toBeVisible();
+		await expect(firstChoice).toBeFocused();
+		await expect(page.locator('.life-shell')).toHaveAttribute('inert');
+		await lastChoice.focus();
+		await page.keyboard.press('Tab');
+		await expect(close).toBeFocused();
+		await page.keyboard.press('Shift+Tab');
+		await expect(lastChoice).toBeFocused();
 
-		// Advance until a decision modal appears
-		let foundDecision = false;
-		for (let i = 0; i < 40; i++) {
-			if (await page.locator('.scrim .choices button').first().isVisible()) {
-				foundDecision = true;
-				break;
-			}
-			if (await page.locator('.dead').isVisible()) {
-				// Character died before a decision; re-roll by restarting
-				break;
-			}
-			const ffBtn = page.locator('.bottombar button').filter({ hasText: '»' }).first();
-			if (await ffBtn.isVisible()) {
-				await ffBtn.click();
-			}
-			await page.waitForTimeout(100);
-		}
-
-		if (foundDecision) {
-			const scrim = page.locator('.scrim');
-			await expect(scrim).toBeVisible();
-
-			// 1. Click close button on modal
-			const closeBtn = page.locator('.dec-close-btn');
-			await expect(closeBtn).toBeVisible();
-			await expect(closeBtn).toHaveText('閉じる');
-			await closeBtn.click();
-
-			// 2. Modal is now hidden, background is interactive
-			await expect(scrim).not.toBeVisible();
-			const lifeShell = page.locator('.life-shell');
-			await expect(lifeShell).not.toHaveAttribute('inert');
-
-			// 3. Bottom bar has "決断に戻る" button instead of "次の決断まで »"
-			const returnBtn = page.locator('.bottombar button').filter({ hasText: '決断に戻る' }).first();
-			await expect(returnBtn).toBeVisible();
-
-			// 4. Click "決断に戻る" to reopen modal
-			await returnBtn.click();
-			await expect(scrim).toBeVisible();
-
-			// 5. Select a choice to resolve decision
-			const choiceBtn = page.locator('.scrim .choices button').first();
-			await expect(choiceBtn).toBeVisible();
-			await choiceBtn.click();
-
-			// Modal closes after choice selection
-			await expect(scrim).not.toBeVisible();
-		}
-
+		await page.keyboard.press('Escape');
+		await expect(dialog).not.toBeVisible();
+		await expect(page.locator('.life-shell')).not.toHaveAttribute('inert');
+		const restore = page.getByRole('button', { name: '決断に戻る' });
+		await expect(restore).toBeFocused();
+		await restore.click();
+		await expect(firstChoice).toBeFocused();
+		await close.click();
+		await expect(dialog).not.toBeVisible();
+		await restore.click();
+		await firstChoice.click();
+		await expect(dialog).not.toBeVisible();
 		expect(pageErrors).toEqual([]);
+	});
+
+	test('birth data: handles a failed chunk and recovers after reloading', async ({ page }) => {
+		await page.goto('/', { waitUntil: 'networkidle' });
+		let failed = false;
+		await page.route('**/*', (route) => {
+			if (!failed && route.request().resourceType() === 'script') {
+				failed = true;
+				return route.abort();
+			}
+			return route.continue();
+		});
+		await page.evaluate(() => {
+			let calls = 0;
+			Math.random = () => calls++ === 0 ? 0.99 : 0.65;
+		});
+		await page.locator('button.cta').first().click();
+		await expect(page.getByRole('alert')).toContainText('時代のデータを読み込めませんでした');
+		await expect(page.locator('.cert')).not.toBeVisible();
+		await page.getByRole('button', { name: '再読み込みしてやり直す' }).click();
+		await page.waitForLoadState('networkidle');
+		await page.locator('button.cta').first().click();
+		await expect(page.locator('.cert')).toBeVisible();
+	});
+
+	test('Chinese family names: father and child share a surname while mother keeps her own', async ({ page }) => {
+		await page.goto('/', { waitUntil: 'networkidle' });
+		await page.evaluate(() => {
+			const draws = [0.99, 0.1, 0.1, 0.1, 0.5, 0.99, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.6, 0.2, 0.2, 0.2, 0.1];
+			Math.random = () => draws.shift() ?? 0.99;
+		});
+		await page.locator('button.cta').first().click();
+		await expect(page.locator('.cert .bio h2')).toHaveText('陳勇');
+		await page.locator('.cert button.cta').click();
+		await expect(page.locator('.life .nm')).toHaveText('陳勇');
+		const family = page.getByRole('region', { name: '家族', exact: true });
+		await expect(family).toContainText('陳軍');
+		await expect(family).toContainText('林麗');
+		await expect(family).toContainText('夫婦はそれぞれの姓を保持');
 	});
 
 	test('theme toggle: overrides OS scheme and persists across reload', async ({ browser }) => {
