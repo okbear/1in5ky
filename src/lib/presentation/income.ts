@@ -27,6 +27,6 @@ export function incomePresentation(c: CharacterState) {
  const nominal = statistic.status === 'sourced' && year >= statistic.period[0] && year <= statistic.period[1]
   && currency === region.currencyUnit && !/・|旧|現地/.test(currency)
   ? { amount: c.annualIncomeUnits, unit: currency } : undefined;
- return { currency, periodExample, nominal,
+ return { currency, periodExample, nominal, modeledIncome: { amount: c.annualIncomeUnits, unit: currency },
   note: nominal ? statistic.note : '当時の名目年収は換算未整備。生活実感はゲーム上の推定です。' };
 }

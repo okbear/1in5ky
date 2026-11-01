@@ -129,14 +129,13 @@
 					{/each}
 				</div>
 				<div class="income-row">
-					<span class="lbl">暮らし向き</span>
+					<span class="lbl">収入</span>
 					<span class="income-val">
-						<b class="mono">現代の年収 約{formatYen(c.modernFeelJpy)}相当</b>
-						<small>生活実感の推定</small>
+						<b class="mono">{income.modeledIncome.amount.toLocaleString('ja-JP')}</b>
+						<span>{income.modeledIncome.unit}/年</span>
+						<small>（現代換算 約{formatYen(c.modernFeelJpy)}）</small>
 					</span>
 				</div>
-				<p class="lbl">通貨・単位{income.periodExample ? '（期間内の例）' : ''}：{income.currency}</p>
-				<p class="lbl">{income.nominal ? `名目年収：${income.nominal.amount.toLocaleString('ja-JP')} ${income.nominal.unit}` : income.note}</p>
 			</section>
 		</div>
 

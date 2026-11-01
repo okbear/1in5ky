@@ -137,7 +137,7 @@ src/
 - `literacyRate`（識字率 %）
 - `urbanizationRate`（都市人口率 %）
 - `gdpPerCapitaPPP` / `modernFeelJpy`（当時の通貨と現代日本円の生活実感換算）
-- 通貨名と名目所得の較正は別扱い。国別・年代別の名目所得が未整備の箇所では、現代円での生活実感の推定を主表示にし、名目年収は換算未整備と表示する。通貨史の範囲は [通貨と所得の表示](./docs/currency-income.md) を参照。
+- 収入は当時の通貨・単位でのゲーム推定額と、現代円の生活実感を併記する。推定についての説明はトップの共通注記に集約し、プレイ画面へ換算未整備などの説明を繰り返さない。通貨史と較正の限界は [通貨と所得の表示](./docs/currency-income.md) を参照。
 - `classes`（身分構成：奴隷/農民/職人商人/兵士/学者聖職者/貴族）
 - `maleNames` / `femaleNames`（文化圏に応じた人名リスト各10件以上）
 - `dietStaple` / `beliefSystem` / `medicalCommonSense` / `worldviewCommonSense`

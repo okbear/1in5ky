@@ -11,6 +11,7 @@ test.describe('1in5ky E2E smoke tests', () => {
 		await page.locator('button.cta').first().click();
 		const cert = page.locator('.cert');
 		await expect(cert).toBeVisible();
+		await expect(cert.locator('.fields')).toContainText(/年 [\d,]+/);
 		await expect(cert.locator('.caption-title')).toHaveText('現代コンゴ民主共和国');
 		const portrait = cert.getByRole('img', { name: '出生時の肖像画は準備中' });
 		await expect(portrait).toBeVisible();
@@ -46,6 +47,7 @@ test.describe('1in5ky E2E smoke tests', () => {
 		// 5. Confirm transition to Life screen (.life exists)
 		const life = page.locator('.life');
 		await expect(life).toBeVisible();
+		await expect(life.locator('.income-val')).toContainText('/年');
 
 		// 6. Fast-forward through life by answering decisions and advancing years until death
 		// Maximum 200 iterations (safe ceiling well beyond MAX_AGE 110 with all decisions answered)
