@@ -384,6 +384,81 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/anc_indus_monsoon_failure.jpg',
 		alt: '干上がり始めた川を背に、焼きレンガの井戸のそばでわずかな水と土器を見つめるインダス文明末期の家族',
 		caption: '流路の変化と水源の枯渇'
+	},
+
+	// === 古典期ローマ（暮らしと市民のつながり） ===
+	cls_rome_lead_poisoning: {
+		src: '/images/events/cls_rome_lead_poisoning.jpg',
+		alt: 'ローマの台所で腹を押さえて座る男性と妻、甘味料を煮詰める鉛色の器と陶器の酒器',
+		caption: '鉛の器と原因不明の腹痛'
+	},
+	cls_rome_patron_morning_client: {
+		src: '/images/events/cls_rome_patron_morning_client.jpg',
+		alt: 'ローマの邸宅前でトガ姿の市民が列を作り、施しを待つ客人へ厳しく語りかけるパトロン',
+		caption: '夜明けのサリュタティオ'
+	},
+
+	cls_rome_grain_dole_fraud: {
+		src: '/images/events/cls_rome_grain_dole_fraud.jpg',
+		alt: '小麦袋の並ぶローマの給付所で、木製の受給票を役人に示し隣人について訴える市民たち',
+		caption: '穀物給付の受給資格調査'
+	},
+
+	// === 漢代中国（生業と徴税、災害と交易） ===
+	cls_han_salt_iron_monopoly: {
+		src: '/images/events/cls_han_salt_iron_monopoly.jpg',
+		alt: '漢代の村の市場で、折れた鉄製農具を手にする農民と塩の包みを持つ商人',
+		caption: '塩鉄専売と農民の負担'
+	},
+
+	cls_han_local_official_bribe: {
+		src: '/images/events/cls_han_local_official_bribe.jpg',
+		alt: '漢代の農家の前で、銭と布と穀物を前に徴税役人と向き合う一家と、木簡に記録する書記',
+		caption: '算賦を取り立てる役人'
+	},
+
+	cls_han_locust_plague: {
+		src: '/images/events/cls_han_locust_plague.jpg',
+		alt: 'バッタの群れに覆われた漢代の小麦畑で、傷んだ穂を調べ、網と籠で虫を集める農民たち',
+		caption: '蝗害に襲われた小麦畑'
+	},
+
+	cls_han_silk_road_caravan: {
+		src: '/images/events/cls_han_silk_road_caravan.jpg',
+		alt: '布包みの荷を背負うフタコブラクダを引き、砂塵の道から遠いオアシスを目指す漢代の隊商',
+		caption: '河西回廊のラクダ隊商'
+	},
+
+	// === 古典期インド（水と医療、香辛料交易） ===
+	cls_india_ganges_monsoon_fever: {
+		src: '/images/events/cls_india_ganges_monsoon_fever.jpg',
+		alt: '濁水に囲まれたガンジス川流域の村で、軒下の炉で水を煮る女性と筵で休む病人',
+		caption: '雨期の氾濫と村の熱病'
+	},
+
+	cls_india_caste_boundary: {
+		src: '/images/events/cls_india_caste_boundary.jpg',
+		alt: '旱魃の村の井戸で、空の水壺を持って離れて待つ夫婦と、水汲みを制限する井戸の管理人',
+		caption: '共同井戸の身分の境界'
+	},
+
+	cls_india_ayurveda_herbs: {
+		src: '/images/events/cls_india_ayurveda_herbs.jpg',
+		alt: '薬草と石の乳鉢、ギーの器を並べ、筵に座る村人を診る古典期インドの医師',
+		caption: '村を訪れたヴァイディヤ'
+	},
+
+	cls_india_pepper_cultivation: {
+		src: '/images/events/cls_india_pepper_cultivation.jpg',
+		alt: '木に絡む胡椒の蔓から実を採る南インドの人々と、莚に実を広げる女性',
+		caption: 'マラバールの黒胡椒収穫'
+	},
+
+	// === メソアメリカ（黒曜石の採掘） ===
+	cls_other_teotihuacan_obsidian: {
+		src: '/images/events/cls_other_teotihuacan_obsidian.jpg',
+		alt: '松明で照らされたパチューカの坑内で、石と木の道具で黒曜石を掘り、天井を警戒する鉱夫たち',
+		caption: '緑色黒曜石の採掘坑'
 	}
 };
 
