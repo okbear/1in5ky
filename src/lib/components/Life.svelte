@@ -140,17 +140,17 @@
 					</span>
 				</div>
 				<div class="income-row">
-					<span class="lbl">{c.savings < 0 ? '借り・負債' : '家の蓄え'}</span>
+					<span class="lbl">{c.savings < 0 ? '負債' : '貯蓄'}</span>
 					<span class="income-val"><b class="mono">年収 約{Math.abs(savingsMonths).toFixed(1)}か月分</b></span>
 					<div class="finance-gauge">
-						<div class="finance-track" role="meter" aria-label="家の蓄え・負債"
+						<div class="finance-track" role="meter" aria-label="貯蓄・負債"
 							aria-valuemin={-12} aria-valuemax={12} aria-valuenow={savingsGauge}
-							aria-valuetext={`${c.savings < 0 ? '負債' : '蓄え'}：年収約${Math.abs(savingsMonths).toFixed(1)}か月分`}>
+							aria-valuetext={`${c.savings < 0 ? '負債' : '貯蓄'}：年収約${Math.abs(savingsMonths).toFixed(1)}か月分`}>
 							<span class:debt={savingsGauge < 0}
 								style:left="{50 + Math.min(0, savingsGauge) / 12 * 50}%"
 								style:width="{Math.abs(savingsGauge) / 12 * 50}%"></span>
 						</div>
-						<div class="finance-scale" aria-hidden="true"><span>負債1年分</span><span>0</span><span>蓄え1年分</span></div>
+						<div class="finance-scale" aria-hidden="true"><span>負債1年分</span><span>0</span><span>貯蓄1年分</span></div>
 					</div>
 				</div>
 			</section>
@@ -415,7 +415,7 @@
 	/* 1. 名前 → 状態 コンパクト上部ストリップ */
 	.summary-row {
 		display: grid;
-		grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 12px;
 		align-items: stretch;
 	}
@@ -475,20 +475,23 @@
 	}
 
 	.status-card {
-		padding: 10px 14px;
+		padding: 10px 12px;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
-		gap: 8px;
+		justify-content: flex-start;
+		gap: 6px;
 	}
 	.status-card > h3 {
 		margin: 0;
-		font-size: 13.5px;
+		font-size: 12px;
+	}
+	.status-card > h3 .lbl {
+		font-size: 11px;
 	}
 	.stat-grid {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 5px 16px;
+		gap: 4px 12px;
 	}
 	@media (max-width: 440px) {
 		.stat-grid {
@@ -499,9 +502,9 @@
 	.stat {
 		display: grid;
 		grid-template-columns: 4.3em 1fr 2em;
-		gap: 8px;
+		gap: 6px;
 		align-items: center;
-		font-size: 12.5px;
+		font-size: 11.5px;
 	}
 	.stat .sk {
 		color: var(--ink2);
@@ -509,17 +512,17 @@
 	}
 	.stat .sv {
 		text-align: right;
-		font-size: 12px;
+		font-size: 11px;
 	}
 	.income-row {
 		display: flex;
 		align-items: baseline;
 		justify-content: space-between;
-		gap: 8px;
+		gap: 5px 8px;
 		flex-wrap: wrap;
 		border-top: 1px dashed var(--rule);
-		padding-top: 7px;
-		font-size: 12.5px;
+		padding-top: 5px;
+		font-size: 11.5px;
 	}
 	.income-val {
 		display: inline-flex;
@@ -528,12 +531,12 @@
 		flex-wrap: wrap;
 	}
 	.income-val b {
-		font-size: 14px;
+		font-size: 12px;
 		font-weight: 700;
 	}
 	.income-val small {
 		color: var(--ink3);
-		font-size: 12px;
+		font-size: 11px;
 	}
 	.finance-gauge {
 		flex-basis: 100%;
@@ -541,7 +544,7 @@
 	}
 	.finance-track {
 		position: relative;
-		height: 8px;
+		height: 6px;
 		background: var(--rule);
 		border-radius: 4px;
 		overflow: hidden;
