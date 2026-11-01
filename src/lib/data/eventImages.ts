@@ -1,7 +1,10 @@
+import type { RegionId } from '#lib/types';
+
 export interface EventImageInfo {
 	src: string;
 	alt: string;
 	caption?: string;
+	regionIds?: readonly [RegionId, ...RegionId[]]; // The depicted culture can be narrower than the event's scope.
 }
 
 export const EVENT_IMAGES: Record<string, EventImageInfo> = {
@@ -480,11 +483,13 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 
 	// === 古代〜古典期共通・軍事と労役 ===
 	ancient_corvee: {
+		regionIds: ['anc_mesopotamia'],
 		src: '/images/events/ancient_corvee.jpg',
 		alt: '灼熱の太陽のもと、巨大な日干しレンガ神殿の普請現場で木製ソリに乗せた巨石を引く農民工夫たちと粘土板を持つ監督官',
 		caption: '神殿大工事の労役普請'
 	},
 	ancient_chariot_war: {
+		regionIds: ['anc_mesopotamia'],
 		src: '/images/events/ancient_chariot_war.jpg',
 		alt: '灌漑水路の堤防沿いで、牛皮の盾と青銅槍を構える農民歩兵密集陣と四輪戦車、涙で見送る家族たち',
 		caption: '境界水路の戦車戦と歩兵徴集'
@@ -500,6 +505,7 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		caption: '長城警備への徴兵木簡'
 	},
 	classical_punic_legion_siege: {
+		regionIds: ['cls_rome'],
 		src: '/images/events/classical_punic_legion_siege.jpg',
 		alt: '街道を進軍するローマ軍団の砂塵の下、農家から冬越しの穀物甕や家畜を強引に奪い去る輜重兵と泣き崩れる農民一家',
 		caption: '軍団進軍と食料強制徴発'
@@ -528,6 +534,7 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 	}
 };
 
-export function getEventImage(eventId: string): EventImageInfo | undefined {
-	return EVENT_IMAGES[eventId];
+export function getEventImage(eventId: string, regionId: RegionId): EventImageInfo | undefined {
+	const image = EVENT_IMAGES[eventId];
+	return image && (!image.regionIds || image.regionIds.includes(regionId)) ? image : undefined;
 }

@@ -314,6 +314,7 @@
 	<DecisionDialog
 		decision={game.decision}
 		age={c.age}
+		regionId={env.region.id}
 		onchoose={(choice) => game.choose(choice)}
 		ondismiss={dismissDecisionAndFocus}
 	/>

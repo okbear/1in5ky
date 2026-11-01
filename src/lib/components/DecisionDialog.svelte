@@ -1,14 +1,15 @@
 <script lang="ts">
-	import type { ChoiceOption, DecisionEvent } from '#lib/types';
+	import type { ChoiceOption, DecisionEvent, RegionId } from '#lib/types';
 	import { getEventImage } from '#lib/data/eventImages';
 
-	let { decision: d, age, onchoose, ondismiss }: {
+	let { decision: d, age, regionId, onchoose, ondismiss }: {
 		decision: DecisionEvent;
 		age: number;
+		regionId: RegionId;
 		onchoose: (choice: ChoiceOption) => void;
 		ondismiss: () => void;
 	} = $props();
-	const evImg = $derived(getEventImage(d.id));
+	const evImg = $derived(getEventImage(d.id, regionId));
 	let dialogEl = $state<HTMLDivElement | null>(null);
 
 	$effect(() => {
