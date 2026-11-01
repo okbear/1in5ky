@@ -205,24 +205,27 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = ([
 	},
 	{
 		id: 'collective_punishment',
-		title: '隣家の夜逃げと「連座制」の理不尽',
+		requiresInstitutions: ['edo-gonin-gumi'],
+		title: '隣家の夜逃げと五人組の連帯負担',
 		category: 'livelihood',
-		regionIds: ['cls_han', 'med_china', 'med_japan', 'em_edo', 'em_china'],
-		classIds: ['peasant', 'artisan'],
+		eraIds: ['early_modern'],
+		regionIds: ['em_edo'],
+		classIds: ['peasant'],
+		isUrban: false,
 		minAge: 16,
 		maxAge: 65,
 		description:
-			'朝起きると、隣の家が夜のうちに荷物をまとめて逃げ出していた。役人がやってきて「村の連帯責任だ。隣の分の年貢と労役もすべてお前たちが納めよ」と命じた。',
-		factBox: '秦・漢の什伍制や江戸時代の五人組など、東アジアの前近代社会では納税と治安維持のため、隣人の逃亡や犯罪の責任を周囲の家に連帯して負わせた。',
+			'隣の家が夜のうちに荷物をまとめて逃げ出していた。五人組と村の中で年貢の不足分をどう納めるか話し合いになり、自分の家にも負担を求められた。',
+		factBox: '江戸時代の五人組には、年貢納入や治安維持の連帯責任を負わせる役割があった。中国の什伍制・保甲制とは時代も仕組みも異なるため、このイベントは江戸期の農村に限定する。',
 		choices: [
 			{
 				id: 'pay_neighbors_share',
-				label: '歯を食いしばり、隣家の分の年貢・労役まで背負う',
+				label: '家計を切り詰め、割り当てられた不足分を負担する',
 				subLabel: '逆らえば自分の家も処罰される',
 				survivalChance: 0.86,
 				deathCause: '過労と栄養失調',
 				effects: { wealthDelta: -35, health: -10, happiness: -12 },
-				outcomeText: '自分の家に何の落ち度もないのに、倍の年貢を納めるため夜遅くまで働き詰めの年になった。',
+				outcomeText: '自分の家の分に加えた負担を工面するため、夜遅くまで働き詰めの年になった。',
 				deathText: '過労と栄養失調により、手当も間に合わぬまま力尽きた。'
 			},
 			{
@@ -319,17 +322,18 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = ([
 	},
 	{
 		id: 'rural_lord_hunt',
+		requiresInstitutions: ['english-hunting-privilege'],
 		title: '領主の狩猟隊が、収穫前の畑を馬で踏み荒らした',
 		category: 'livelihood',
-		eraIds: ['classical', 'medieval', 'early_modern'],
-		regionIds: ['med_europe', 'em_europe', 'med_japan', 'em_edo'],
-		classIds: ['enslaved', 'peasant'],
+		eraIds: ['medieval'],
+		regionIds: ['med_britain'],
+		classIds: ['peasant'],
 		isUrban: false,
 		minAge: 14,
 		maxAge: 65,
 		description:
 			'半年かけて育てた作物がもうすぐ刈り入れという日、領主と貴族の狩猟隊が獲物を追って柵を蹴破り、馬と猟犬の群れで畑を踏み潰していった。',
-		factBox: '封建社会では領主の狩猟権は農民の耕作権より上位にあり、畑を荒らされても補償はなく、領主の森の鹿や兎を農民が獲れば死刑や耳削ぎの刑に処された。',
+		factBox: '中世イングランドでは、王や有力者の狩猟権と森林法が土地利用を制約した。権利や刑罰は年代・法域で異なり、日本や欧州全域で同じ制度だったわけではない。',
 		choices: [
 			{
 				id: 'bow_in_mud',
@@ -343,12 +347,12 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = ([
 			},
 			{
 				id: 'plead_compensation',
-				label: '馬の前に立ちはだかり、年貢の減免を直訴する',
-				subLabel: '無礼討ち・鞭打ちの危険',
+				label: '従者に近づき、被害の埋め合わせを求める',
+				subLabel: '取り合われず、暴力を受ける危険',
 				survivalChance: 0.58,
 				deathCause: '領主の従者による鞭打ち・暴行',
 				effects: { health: -20, happiness: -10, wealthDelta: -15 },
-				outcomeText: '従者の鞭で背中を打たれて突き飛ばされた。年貢は一粒もまけてもらえなかった。',
+				outcomeText: '従者に背中を打たれて突き飛ばされた。被害を訴えても取り合ってもらえなかった。',
 				deathText: '領主の従者による鞭打ち・暴行により、手当も間に合わぬまま力尽きた。'
 			}
 		]
@@ -390,26 +394,27 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = ([
 	},
 	{
 		id: 'serf_master_whim',
-		title: '主人・領主の借金のカタに、暮らしを引き剥がされる',
-		regionIds: ['cls_rome', 'med_europe', 'em_europe', 'em_caribbean'],
+		requiresInstitutions: ['roman-slavery'],
+		title: '奴隷として売られ、働く場所を変えられる',
+		regionIds: ['cls_rome'],
 		category: 'livelihood',
-		eraIds: ['ancient', 'classical', 'medieval', 'early_modern'],
-		classIds: ['enslaved', 'peasant'],
+		eraIds: ['classical'],
+		classIds: ['enslaved'],
 		minAge: 12,
 		maxAge: 60,
 		description:
-			'主人（領主）が戦費や遊興で借金を抱え、その返済のためにあなたの家の家畜と農具を召し上げたうえ、別の領主の鉱山・農園へ働き手を差し出すと決めた。',
-		factBox: '奴隷や農奴・隷属農民は土地や主人の財産の一部として扱われ、主人の都合ひとつで家族と引き離されたり売買・譲渡されたりした。',
+			'所有者があなたを別の家へ売ると決めた。働く場所も生活の条件も、自分の意思では決められない。慣れた暮らしから引き離されようとしている。',
+		factBox: 'ローマ社会の奴隷は売買の対象とされ、労働や暮らしを所有者に左右された。自由農民や中世の農奴とは法的立場が異なるため、このイベントは奴隷身分だけを対象にする。',
 		choices: [
 			{
 				id: 'submit_transfer',
-				label: '逆らう術はなく、命じられた鉱山・農園へ送られる',
+				label: '命じられた新しい働き先へ従う',
 				subLabel: '過酷な労働環境へ移る',
 				survivalChance: 0.75,
-				deathCause: '鉱山・農園での過労死',
+				deathCause: '強制労働での過労死',
 				effects: { health: -15, happiness: -18, relations: -15, wealthDelta: -30 },
-				outcomeText: '慣れ親しんだ土地と引き離され、日の当たらない場所で働き続けることになった。',
-				deathText: '鉱山・農園での過労死により、手当も間に合わぬまま力尽きた。'
+				outcomeText: '新しい所有者のもとで、厳しい仕事と慣れない暮らしに耐えた。',
+				deathText: '強制労働での過労死により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'flee_master',
@@ -418,7 +423,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = ([
 				survivalChance: 0.62,
 				deathCause: '逃亡奴隷・逃散農民としての処刑',
 				effects: { wealthDelta: -40, relations: -15, occupationChange: '都市の雑役・日雇い', locationChange: 'urban' },
-				outcomeText: '猟犬の声を背後に聞きながら夜通し走り続け、城壁のある町へ紛れ込んだ。',
+				outcomeText: '追手を恐れながら身を隠し、人の多い町で生き延びる道を探した。',
 				deathText: '逃亡奴隷・逃散農民としての処刑により、手当も間に合わぬまま力尽きた。'
 			}
 		]

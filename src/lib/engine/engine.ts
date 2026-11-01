@@ -1,3 +1,4 @@
+import maternalMortality from '#lib/data/annualMaternalMortality.json';
 import annualMortality from '#lib/data/annualMortality.json';
 import { ERAS, ERA_ORDER } from '#lib/data/eras';
 import { REGIONS } from '#lib/data/regions';
@@ -9,5 +10,5 @@ export { canRevive, revive } from '#lib/engine/mortality';
 export { makeIncome } from '#lib/engine/character';
 export type { PostMortem } from '#lib/engine/history';
 
-const simulation = bindSimulation({ regions: REGIONS, events: ALL_EVENTS, chronicles: ERA_CHRONICLES, timeline: WORLD_TIMELINE, beliefs: OVERTURNED_BELIEFS, mortality: annualMortality.series });
+const simulation = bindSimulation({ regions: REGIONS, events: ALL_EVENTS, chronicles: ERA_CHRONICLES, timeline: WORLD_TIMELINE, beliefs: OVERTURNED_BELIEFS, mortality: annualMortality.series, maternalMortality: maternalMortality.series });
 export const { rollBirth, stepYear, resolveChoice, postMortem } = simulation;

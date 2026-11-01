@@ -16,7 +16,7 @@
 | 地域ID | 地域 | 命名 | 通貨 | 出典確認済／継承／推定 |
 | --- | --- | --- | --- | --- |
 | anc_mesopotamia | メソポタミア | personal-only | 大麦（シラ） | 0 / 0 / 10 |
-| anc_egypt | エジプト | personal-only | デベン銅貨・穀物配給 | 0 / 0 / 10 |
+| anc_egypt | エジプト | personal-only | 金属の重量・価値単位（デベン）・穀物配給 | 0 / 0 / 10 |
 | anc_china | 黄河・長江流域 | personal-only | 貝貨・粟 | 0 / 0 / 10 |
 | anc_indus | インダス流域 | personal-only | 穀物・家畜 | 0 / 0 / 10 |
 | anc_aegean | エーゲ海世界 | personal-only | 穀物・家畜 | 0 / 0 / 10 |

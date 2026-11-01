@@ -33,7 +33,7 @@ export async function loadBirth(rng: Rng, forceEra?: EraId): Promise<LoadedBirth
  const index = ERA_ORDER.indexOf(era);
  // At most one era boundary can be crossed during MAX_AGE; preload its data before starting time.
  const eras = ERA_ORDER.slice(index, index + 2);
- const [profiles, specificEvents, topics, broad, common, lifecycleExtra, lifecycle, history, engine, mortality] = await Promise.all([
+ const [profiles, specificEvents, topics, broad, common, lifecycleExtra, lifecycle, history, engine, mortality, maternalMortality] = await Promise.all([
   Promise.all(eras.map((id) => regions[id]())),
   Promise.all(eras.map((id) => events[id]())),
   Promise.all(eras.map((id) => chronicles[id]())),
@@ -44,13 +44,14 @@ export async function loadBirth(rng: Rng, forceEra?: EraId): Promise<LoadedBirth
   ]),
   import('#lib/data/events/common_unfair'), import('#lib/data/events/lifecycle_extra'), import('#lib/data/events-lifecycle'),
   import('#lib/data/worldHistory'), import('#lib/engine/simulation'),
-  eras.includes('modern') ? import('#lib/data/annualMortality.json').then((m) => m.default.series) : undefined
+  eras.includes('modern') ? import('#lib/data/annualMortality.json').then((m) => m.default.series) : undefined,
+  eras.includes('modern') ? import('#lib/data/annualMaternalMortality.json').then((m) => m.default.series) : undefined
  ]);
  const simulation = engine.bindSimulation({
   regions: profiles.flat(),
   events: [...broad.flat(), ...common.COMMON_UNFAIR_EVENTS, ...specificEvents.flat(), ...lifecycleExtra.LIFECYCLE_EXTRA_EVENTS, ...lifecycle.LIFECYCLE_EVENTS],
   chronicles: Object.fromEntries(eras.map((id, i) => [id, topics[i]])),
-  timeline: history.WORLD_TIMELINE, beliefs: history.OVERTURNED_BELIEFS, mortality
+  timeline: history.WORLD_TIMELINE, beliefs: history.OVERTURNED_BELIEFS, mortality, maternalMortality
  });
  return { character: simulation.rollBirth(rng, era), simulation };
 }

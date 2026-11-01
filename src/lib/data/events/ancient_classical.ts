@@ -178,16 +178,17 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = ([
 	},
 	{
 		id: 'trial_by_ordeal',
+		requiresInstitutions: ['english-ordeal'],
 		title: '身に覚えのない盗みの疑いと「熱湯の神判」',
-		regionIds: ['med_europe', 'cls_india', 'med_india'],
+		regionIds: ['med_britain'],
 		category: 'common_sense',
-		eraIds: ['ancient', 'classical', 'medieval'],
+		eraIds: ['medieval'],
 		classIds: ['enslaved', 'peasant', 'artisan'],
 		minAge: 14,
 		maxAge: 65,
 		description:
 			'有力者の倉から穀物と銀が盗まれ、たまたま近くを通ったあなたに嫌疑がかかった。証拠はない。「神が真偽を裁く」として、煮えたぎる釜の底から素手で石を掴み出す「神判」を命じられた。',
-		factBox: '古代メソポタミアの川神判、日本の盟神探湯（くがたち）、中世ヨーロッパの熱湯・鉄火裁判など、前近代の裁判では火傷の治り具合で有罪・無罪が決められた。',
+		factBox: '中世イングランドでは神判が用いられたが、1215年のラテラノ公会議は聖職者の関与を禁じた。川・熱湯・鉄火などの神判は別の方法であり、全文化で同じ手続きが行われたわけではない。',
 		choices: [
 			{
 				id: 'endure_ordeal',

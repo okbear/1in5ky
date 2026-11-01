@@ -40,16 +40,17 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = ([
 	},
 	{
 		id: 'ww1_1914',
-		title: '召集令状が届いた',
+		title: '第一次世界大戦と、戦争を支える仕事',
 		category: 'historical_wave',
-		regionIds: ['ind_europe', 'ind_north_america', 'ind_russia'],
+		regionIds: ['ind_britain', 'ind_france', 'ind_germany', 'ind_canada', 'ind_russia'],
+		eraIds: ['industrial'],
 		sex: 'M',
 		yearRange: [1914, 1918],
 		minAge: 18,
 		maxAge: 42,
 		isHistoricalWave: true,
-		historicalYearLabel: '1914年',
-		description: '「クリスマスまでには帰れる」と誰もが言った。塹壕は、冬になっても終わらなかった。',
+		historicalYearLabel: '第一次世界大戦期',
+		description: '戦争が暮らしを変え、兵員や軍需産業の働き手が求められている。軍務に就くか、軍需の仕事を探すか、今後の身の振り方を考える。',
 		factBox: '第一次世界大戦の軍人の死者は約900万人、民間人を含めれば約2,000万人とされる。',
 		choices: [
 			{
@@ -67,10 +68,10 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = ([
 				label: '軍需工場で働く',
 				subLabel: '銃後を支える',
 				survivalChance: 0.9,
-				deathCause: '工場事故・スペイン風邪',
+				deathCause: '軍需工場での事故・病気',
 				effects: { wealthDelta: 20, health: -5 },
 				outcomeText: '賃金は上がったが、工場の空気は重かった。',
-				deathText: '工場事故・スペイン風邪により、手当も間に合わぬまま力尽きた。'
+				deathText: '軍需工場での事故・病気により、手当も間に合わぬまま力尽きた。'
 			}
 		]
 	},
@@ -112,16 +113,18 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = ([
 	{
 		id: 'industrial_total_war_air_raid',
 		title: '空襲警報のサイレンと、燃える夜の街',
-		regionIds: ['ind_europe', 'ind_japan', 'ind_china', 'ind_russia'],
+		regionIds: ['mod_japan'],
+		places: ['東京'],
+		isUrban: true,
 		category: 'historical_wave',
-		eraIds: ['industrial'],
-		yearRange: [1937, 1945],
+		eraIds: ['modern'],
+		yearRange: [1945, 1945],
 		minAge: 8,
 		maxAge: 90,
 		isHistoricalWave: true,
-		historicalYearLabel: '第二次世界大戦期',
+		historicalYearLabel: '1945年・東京',
 		description:
-			'戦争は前線だけでなく街や村の頭上にもやってきた。食料はわずかな配給だけになり、夜になるとサイレンが鳴り響いて空から焼夷弾と爆弾が降ってくる。',
+			'東京の空に警報が響き、住宅の密集する地区へ焼夷弾が降ってくる。火の手が広がり、家族とどこへ逃げるかを決めなければならない。',
 		factBox: '第二次世界大戦は前線と銃後の区別が消えた「総力戦」となり、空襲・包囲戦・飢餓などにより軍人以上の民間人（推計4,000万〜5,000万人）が命を落とした。',
 		choices: [
 			{
@@ -152,12 +155,13 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = ([
 		regionIds: ['ind_japan'],
 		category: 'livelihood',
 		eraIds: ['industrial'],
+		yearRange: [1937, 1944],
 		sex: 'M',
-		minAge: 19,
+		minAge: 20,
 		maxAge: 38,
 		description:
-			'近代国家の国民皆兵制のもと、満20歳での徴兵検査で合格となり、軍隊への入営（または戦地への召集令状）が命じられた。家の働き手を失う家族は泣きながらも、表向きは「名誉なことだ」と送り出すしかない。',
-		factBox: '19世紀〜20世紀前半、国民国家は戸籍と鉄道網によってあらゆる階層から若者を徴兵できるようになり、機関銃と重砲の近代戦へ数千万人が動員された。',
+			'徴兵検査を経たあなたのもとへ、戦時の召集令状が届いた。軍務のため家を離れるよう命じられ、家族も不安を抱えている。',
+		factBox: '日本の徴兵令は1873年に発せられた。徴兵検査と戦時の臨時召集は同じ手続きではなく、このイベントは1937〜1944年の戦時召集を扱う。',
 		choices: [
 			{
 				id: 'serve_frontline',
@@ -218,34 +222,35 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = ([
 	},
 	{
 		id: 'modern_cold_war_conflict',
-		title: '国境紛争・内戦の勃発と動員令',
+		title: '1971年、独立戦争と避難生活',
 		category: 'livelihood',
 		eraIds: ['modern'],
-		regionIds: ['mod_south_asia', 'mod_southeast_asia', 'mod_subsaharan_africa', 'mod_mena'],
+		regionIds: ['mod_bangladesh'],
+		yearRange: [1971, 1971],
 		minAge: 16,
 		maxAge: 55,
 		description:
-			'独立後の国境問題や冷戦下の代理戦争・内戦が激化し、近くの町まで砲声が響いてきた。軍や武装勢力が若者を徴兵し始め、幹線道路は荷物を抱えた避難民で溢れている。',
-		factBox: '第二次世界大戦後もアジア・中東・アフリカなどでは局地紛争や内戦が絶えず、今日でも世界で1億1,000万人以上が紛争や迫害により故郷を追われている（UNHCR）。',
+			'東パキスタンで独立をめぐる戦争が激化し、住民の暮らしが脅かされている。荷物を抱えて避難する人が増え、家族の安全と日々の食料をどう確保するか迫られている。',
+		factBox: '1971年の独立戦争では、多くの人々がインドへ逃れ、国連機関も救援と帰還後の復興に関わった。このイベントは現在のバングラデシュに当たる地域の1971年に限定する。',
 		choices: [
 			{
 				id: 'flee_as_refugee',
-				label: '徴兵と戦火を逃れ、家族を連れて隣国・大都市へ避難する',
+				label: '家族と近くの避難先を探し、戦火から身を守る',
 				subLabel: '財産や職は失うが、戦場になる前に離れる',
 				survivalChance: 0.9,
 				deathCause: '避難途上での襲撃・感染症',
-				effects: { wealthDelta: -45, happiness: -12, relations: -8, locationChange: 'urban' },
-				outcomeText: '検問所をいくつも越えて安全な地域へたどり着き、ゼロから暮らしを立て直した。',
+				effects: { wealthDelta: -45, happiness: -12, relations: -8 },
+				outcomeText: '身を寄せられる場所を探し、食料と水を工面しながら家族の命をつないだ。',
 				deathText: '避難途上での襲撃・感染症により、手当も間に合わぬまま力尽きた。'
 			},
 			{
 				id: 'stay_or_drafted',
-				label: '家と土地を手放せずにとどまり、防衛・徴兵に応じる',
-				subLabel: '故郷は守れるかもしれないが、戦闘と地雷の危険が迫る',
+				label: '家を離れず、身を隠しながら食料を確保する',
+				subLabel: '日々の生活を保とうとするが、砲撃や襲撃の危険がある',
 				survivalChance: 0.72,
 				deathCause: '内戦・局地紛争での戦死・砲撃',
 				effects: { health: -18, happiness: -15, wealthDelta: -20 },
-				outcomeText: '停戦合意が結ばれるまで、銃声と停電が続く街で生き延びた。',
+				outcomeText: '銃声を避けて身を隠し、乏しい食料を分け合いながら日々を生き延びた。',
 				deathText: '内戦・局地紛争での戦死・砲撃により、手当も間に合わぬまま力尽きた。'
 			}
 		]
@@ -530,4 +535,20 @@ export const INDUSTRIAL_MODERN_EVENTS: DecisionEvent[] = ([
 			}
 		]
 	}
-] satisfies DecisionEvent[]).map(expandEventScope);
+] satisfies DecisionEvent[]).flatMap((event): DecisionEvent[] => {
+ if (event.id === 'ww1_1914') return [
+  event,
+  { ...event, allRegions: undefined, id: 'ww1_italy_1915', regionIds: ['ind_italy'], yearRange: [1915, 1918], historicalYearLabel: '1915〜1918年' },
+  { ...event, allRegions: undefined, id: 'ww1_usa_1917', regionIds: ['ind_usa'], yearRange: [1917, 1918], historicalYearLabel: '1917〜1918年' }
+ ];
+ if (event.id === 'industrial_total_war_air_raid') return [event, {
+  ...event, allRegions: undefined, eraIds: ['industrial'], id: 'london_blitz_1940', regionIds: ['ind_britain'], places: ['ロンドン'], yearRange: [1940, 1941],
+  historicalYearLabel: '1940〜1941年・ロンドン', title: 'ロンドンの夜空と空襲警報',
+  description: 'ロンドンへの空襲が続いている。警報が鳴り、爆発と火災のなかで家族の避難先を探さなければならない。',
+  factBox: '1940年9月から1941年5月にかけてのブリッツでは、ロンドンをはじめ英国の都市が大規模な空襲を受けた。このイベントはロンドンを対象とする。',
+  choices: event.choices.map(choice => choice.id === 'stay_shelter' ? {
+   ...choice, label: '避難所へ向かい、身を守る', subLabel: '避難中も爆撃や火災の危険がある'
+  } : { ...choice, outcomeText: '住まいを離れ、避難先で食料と寝場所を工面した。' })
+ }];
+ return [event];
+}).map(expandEventScope);

@@ -149,7 +149,9 @@ export const resolveChoice = (
 	makeIncome(c);
 
 	if (choice.survivalChance !== undefined) {
-		const p = clamp(choice.survivalChance + (c.health - 50) / 500, 0.02, 0.99);
+		const p = choice.survivalModel === 'fixed'
+			? clamp(choice.survivalChance, 0, 1)
+			: clamp(choice.survivalChance + (c.health - 50) / 500, 0.02, 0.99);
 		if (rng() >= p) {
 			const deathText = choice.deathText ?? choice.outcomeText;
 			pushFeed(c, `▸ 「${choice.label}」を選んだ。${deathText}`, 'danger');
@@ -187,7 +189,7 @@ export const resolveChoice = (
 			sp.deathYear = c.currentYear;
 			c.happiness = clamp(c.happiness - 22, 0, 100);
 			c.relations = clamp(c.relations - 10, 0, 100);
-			pushFeed(c, `${sp.relation}の${sp.name}が、産後の肥立ちが悪く亡くなった。`, 'loss', '近代以前、産褥熱や難産による母体死亡は日常的な悲劇だった。');
+			pushFeed(c, `${sp.relation}の${sp.name}が、産後の肥立ちが悪く亡くなった。`, 'loss', '妊娠・出産に関連する死亡には、出血や感染などがあり、医療や介助へのアクセスによって危険は異なる。');
 		}
 	}
 	return { died: false, text: choice.outcomeText };

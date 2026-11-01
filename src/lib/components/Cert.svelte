@@ -3,6 +3,7 @@
 	import { ERAS } from '#lib/data/eras';
 	import { expectedLifespan, formatYear, formatYen } from '#lib/engine/util';
 	import { getBabyImage } from '#lib/data/babyImages';
+	import { incomePresentation } from '#lib/presentation/income';
 
 	const c = $derived(game.char!);
 	const regionShare = $derived(c.region.birthWeight / 100);
@@ -14,6 +15,7 @@
 	const e0 = $derived(Math.round(expectedLifespan(c.region, c.socialClass.mortalityMultiplier)));
 	const mortalityNote = $derived(c.region.statistics.infantMortality.note);
 	const baby = $derived(getBabyImage(c.region.id));
+	const income = $derived(incomePresentation(c));
 </script>
 
 <section class="wrap roll">
@@ -59,7 +61,9 @@
 				<div><span class="lbl">地域</span><b>{c.region.name}</b></div>
 				<div><span class="lbl">身分</span><b>{c.socialClass.name}</b></div>
 				<div><span class="lbl">主食</span><b>{c.region.dietStaple}</b></div>
-				<div><span class="lbl">家の暮らし向き</span><b>年 {c.annualIncomeUnits.toLocaleString('ja-JP')} {c.region.currencyUnit}（現代換算 約{formatYen(c.modernFeelJpy)}）</b></div>
+				<div><span class="lbl">家の暮らし向き</span><b>生活実感：現代の年収 約{formatYen(c.modernFeelJpy)}相当（推定）</b></div>
+				<div><span class="lbl">通貨・単位{income.periodExample ? '（期間内の例）' : ''}</span><b>{income.currency}</b></div>
+				<div><span class="lbl">名目年収</span><b>{income.nominal ? `年 ${income.nominal.amount.toLocaleString('ja-JP')} ${income.nominal.unit}` : '換算未整備'}</b></div>
 				<div><span class="lbl">平均寿命・識字率</span><b>約{e0}歳 · 識字率 {c.region.literacyRate}%</b></div>
 			</div>
 			<div class="odds">
@@ -75,6 +79,7 @@
 		</div>
 	</div>
 	<p class="src">{mortalityNote}</p>
+	<p class="src">{income.note}</p>
 </section>
 
 <style>

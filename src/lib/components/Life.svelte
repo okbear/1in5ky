@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { game } from '#lib/game.svelte';
 	import { namingDescription } from '#lib/engine/names';
+	import { incomePresentation } from '#lib/presentation/income';
 	import { expectedLifespan, formatYear, formatYen } from '#lib/engine/util';
 	import type { FocusOption } from '#lib/types';
 	import Scene from './Scene.svelte';
@@ -21,6 +22,7 @@
 
 	const c = $derived(game.char!);
 	const env = $derived(c.environment);
+	const income = $derived(incomePresentation(c));
 	const mortalitySource = $derived(STATISTIC_SOURCES[env.region.statistics.infantMortality.sourceIds[0] as keyof typeof STATISTIC_SOURCES]);
 	const stats = $derived([
 		{ k: '健康', v: c.health },
@@ -127,13 +129,14 @@
 					{/each}
 				</div>
 				<div class="income-row">
-					<span class="lbl">収入</span>
+					<span class="lbl">暮らし向き</span>
 					<span class="income-val">
-						<b class="mono">{c.annualIncomeUnits.toLocaleString('ja-JP')}</b>
-						<span class="unit">{env.region.currencyUnit}/年</span>
-						<small>（現代換算 約{formatYen(c.modernFeelJpy)}）</small>
+						<b class="mono">現代の年収 約{formatYen(c.modernFeelJpy)}相当</b>
+						<small>生活実感の推定</small>
 					</span>
 				</div>
+				<p class="lbl">通貨・単位{income.periodExample ? '（期間内の例）' : ''}：{income.currency}</p>
+				<p class="lbl">{income.nominal ? `名目年収：${income.nominal.amount.toLocaleString('ja-JP')} ${income.nominal.unit}` : income.note}</p>
 			</section>
 		</div>
 
@@ -512,10 +515,6 @@
 	.income-val b {
 		font-size: 14px;
 		font-weight: 700;
-	}
-	.income-val .unit {
-		color: var(--ink2);
-		font-size: 12px;
 	}
 	.income-val small {
 		color: var(--ink3);

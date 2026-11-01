@@ -4,6 +4,7 @@ import { stepYear, resolveChoice } from '#lib/engine/core';
 import { postMortem } from '#lib/engine/history';
 import { revive } from '#lib/engine/mortality';
 import { weighted } from '#lib/engine/util';
+import { maternalChoice, maternalDecision } from '#lib/engine/maternal';
 import type { Simulation, SimulationWorld } from '#lib/engine/world';
 
 export function bindSimulation(world: SimulationWorld): Simulation {
@@ -13,8 +14,11 @@ export function bindSimulation(world: SimulationWorld): Simulation {
    if (!world.regions.some((region) => region.eraId === era)) throw new Error(`Era not loaded: ${era}`);
    return createCharacter(rng, era, world);
   },
-  stepYear: (c, rng = Math.random) => stepYear(c, rng, world),
-  resolveChoice,
+  stepYear: (c, rng = Math.random) => {
+   const result = stepYear(c, rng, world);
+   return result.decision ? { ...result, decision: maternalDecision(c, result.decision, world.maternalMortality) } : result;
+  },
+  resolveChoice: (c, choice, rng) => resolveChoice(c, maternalChoice(c, choice, world.maternalMortality), rng),
   postMortem: (c) => postMortem(c, world),
   revive
  };

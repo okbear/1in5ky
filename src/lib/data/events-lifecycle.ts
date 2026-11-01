@@ -7,6 +7,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 		id: 'work_choice_youth',
 		title: '一人前として働き始める歳になった',
 		allRegions: true,
+		eraIds: ['ancient', 'classical', 'medieval', 'early_modern', 'industrial'],
 		category: 'livelihood',
 		classIds: ['peasant', 'artisan'],
 		isLifecycle: true,
@@ -14,7 +15,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 		minAge: 12,
 		maxAge: 16,
 		description: '親の仕事を継ぐか、別の道を探すか。選べる道は、生まれた場所と身分で大きく限られている。',
-		factBox: '前近代社会では、人口の8〜9割が親と同じ農業に従事し、職業選択の自由は近代以降までほとんど存在しなかった。',
+		factBox: '家業の継承、他家での仕事、町への移動など、選べる道は地域・年代・身分や家計によって異なる。',
 		choices: [
 			{
 				id: 'inherit',
@@ -44,6 +45,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 	},
 	{
 		id: 'marriage_serf_merchet',
+		requiresInstitutions: ['manorial-marriage-dues'],
 		title: '結婚したければ領主に「結婚税」を納めよ',
 		category: 'livelihood',
 		regionIds: ['med_britain'],
@@ -240,12 +242,14 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 		choices: [
 			{
 				id: 'birth_modern_hospital',
-				label: '医療設備の整った病院で出産し、子どもを育てる',
-				subLabel: '費用を負担し、専門的な医療支援を求める',
+				maternalRisk: true,
+				label: '利用できる出産の支援を求め、子どもを育てる',
+				subLabel: '医療や介助を受けられる条件は、地域や家計によって異なる',
 				survivalChance: 0.996,
+				survivalModel: 'fixed',
 				deathCause: '出産時の合併症',
 				effects: { wealthDelta: -12, happiness: 12, relations: 10, addChild: true },
-				outcomeText: '清潔な病室で新しい命を迎えた。これからの暮らしが賑やかになる。',
+				outcomeText: '出産を助けてもらい、新しい命を迎えた。これからの暮らしが賑やかになる。',
 				deathText: '分娩の途中で容体が急変し、医師たちが駆け寄った。懸命な処置もむなしく、新しい命を抱くことなく帰らぬ人となった。'
 			},
 			{
@@ -278,10 +282,11 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 		choices: [
 			{
 				id: 'birth_modern_father_hospital',
-				label: '医療設備の整った病院での出産を支え、子どもを育てる',
-				subLabel: '費用を負担し、専門的な医療支援を求める',
+				maternalRisk: true,
+				label: '利用できる出産の支援を探し、子どもを迎える',
+				subLabel: '医療や介助を受けられる条件は、地域や家計によって異なる',
 				effects: { wealthDelta: -12, happiness: 12, relations: 10, addChild: true, killSpouseChance: 0.002 },
-				outcomeText: '清潔な病室で新しい命を迎えた。これからの暮らしが賑やかになる。'
+				outcomeText: '出産を助けてもらい、新しい命を迎えた。これからの暮らしが賑やかになる。'
 			},
 			{
 				id: 'birth_modern_father_wait',
@@ -298,13 +303,14 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 		allRegions: true,
 		category: 'livelihood',
 		eraIds: ['ancient', 'classical', 'medieval', 'early_modern'],
-		classIds: ['peasant', 'artisan'],
+		classIds: ['peasant'],
+		isUrban: false,
 		repeatable: true,
 		cooldownYears: 4,
 		minAge: 18,
 		maxAge: 60,
 		description: '今年の収穫の半分近くを納めよ、と命じられた。残りでは、冬を越せるか分からない。',
-		factBox: '前近代の農民は収穫の3〜5割を税・地代・十分の一税として納めるのが普通だった。',
+		factBox: '農村の負担には税や地代、労役などがあり、徴収の割合や方法は地域・時代・土地の権利関係によって異なる。',
 		choices: [
 			{
 				id: 'pay',
@@ -388,28 +394,28 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 	},
 	{
 		id: 'midlife_crisis_30s',
-		title: '隣家が借財で土地を手放した',
+		title: '隣家が借財で暮らしを手放した',
 		allRegions: true,
 		category: 'livelihood',
 		minAge: 28,
 		maxAge: 46,
 		description:
-			'不作や病が重なり、長年隣で暮らしてきた一家が土地や家財を手放して去ることになった。助けを求められているが、自分の家にも余裕はない。',
-		factBox: '公的な社会保障や保険が存在しなかった時代、凶作や働き手の病気はそのまま一家の離散や身売りにつながった。',
+			'収入の減少や病が重なり、長年隣で暮らしてきた一家が家財や仕事道具を手放して去ることになった。助けを求められているが、自分の家にも余裕はない。',
+		factBox: '病や収入の途絶に対して利用できる公的支援・保険・共同体の助けは、地域・時代や家族の条件によって異なる。',
 		choices: [
 			{
 				id: 'share_food',
 				label: '蓄えを分けて助ける',
 				subLabel: '自分の家は苦しくなるが、縁は残る',
 				effects: { wealthDelta: -20, relations: 15, happiness: 6 },
-				outcomeText: 'わずかな食料と銭を分け与えた。苦しい冬だったが、周囲との信頼は深まった。'
+				outcomeText: 'わずかな食料と蓄えを分け与えた。家計は苦しくなったが、周囲との信頼は深まった。'
 			},
 			{
 				id: 'buy_land',
-				label: '手放された道具や畑を引き受ける',
+				label: '手放された仕事道具を引き受ける',
 				subLabel: '冷徹だが家の暮らしを広げる好機',
 				effects: { wealthDelta: 25, relations: -12, happiness: -4 },
-				outcomeText: '安く譲り受けた畑で収穫は増えたが、近隣の視線はしばらく冷たかった。'
+				outcomeText: '譲り受けた道具を自分の仕事に役立てたが、近隣の視線はしばらく冷たかった。'
 			},
 			{
 				id: 'watch_quietly',

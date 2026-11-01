@@ -41,7 +41,7 @@ export const ANCIENT_REGIONS: RegionProfile[] = [
 		literacyRate: 1,
 		urbanizationRate: 8,
 		gdpPerCapitaPPP: 650,
-		currencyUnit: 'デベン銅貨・穀物配給',
+		currencyUnit: '金属の重量・価値単位（デベン）・穀物配給',
 		modernFeelJpy: 420000,
 		dietStaple: 'エンマー小麦のパン、ビール、玉ねぎ',
 		beliefSystem: '王は神の子。死後の審判と来世が人生の目的。',

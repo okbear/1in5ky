@@ -136,6 +136,7 @@ src/
 - `literacyRate`（識字率 %）
 - `urbanizationRate`（都市人口率 %）
 - `gdpPerCapitaPPP` / `modernFeelJpy`（当時の通貨と現代日本円の生活実感換算）
+- 通貨名と名目所得の較正は別扱い。国別・年代別の名目所得が未整備の箇所では、現代円での生活実感の推定を主表示にし、名目年収は換算未整備と表示する。通貨史の範囲は [通貨と所得の表示](./docs/currency-income.md) を参照。
 - `classes`（身分構成：奴隷/農民/職人商人/兵士/学者聖職者/貴族）
 - `maleNames` / `femaleNames`（文化圏に応じた人名リスト各10件以上）
 - `dietStaple` / `beliefSystem` / `medicalCommonSense` / `worldviewCommonSense`
@@ -148,6 +149,7 @@ src/
 
 ### 4.4 イベント構造 (`events-*.ts`)
 - 適用範囲は `regionIds: [RegionId, ...RegionId[]]` と `allRegions: true` のいずれか必須。省略は不可。
+- 制度依存イベントは型付き `requiresInstitutions` で必要な制度を指定できる。地域・年代・場所・出典は `data/institutions.ts` に登録し、すべての必要条件を共通判定で照合する。詳細は [制度の適用条件](./docs/institutions.md) を参照。
 - 地域内の局所イベントは `places` で出生地の都市・農村に限定する。時代・地域・場所・年代は `engine/eventScope.ts` の共通判定を通す。
 - 対応する肖像画のない分割地域では中立的な仮画像を表示し、異文化の肖像画を流用しない。
 - `WAVE_EVENTS`: 歴史上の確定戦争・大疫病・大飢饉（ペスト、モンゴル侵攻、天明の飢饉、世界大戦、空襲、徴兵令など）。
@@ -183,6 +185,7 @@ src/
 - `FamilyRelation`、出生年、`unborn / alive / dead`、死亡年を保持する。未出生の弟妹を家族欄に表示しない。
 - 配偶者は同年齢という簡略モデル。子どもも成人後まで年齢別の死亡判定を続ける。初年度は乳児ハザードを適用する。
 - 結婚と本人の子の出生は必ずライフサイクル決断を通す。
+- 現代の出産選択ではWorld Bank / MMEIGの国別・年別妊産婦死亡推計を出生1回の母体リスクへ近似し、男女双方で同じ値を参照する。欠落時は暫定値、将来は最終年の据え置きと明示する。特定病院の治療成績として表示しない。適用範囲は [出産リスクモデル](./docs/maternal-risk.md) を参照。
 - 現在名と出生時の名前を別に保持する。婚姻改姓で出生家族・既存の子・故人の名前を書き換えない。
 
 ### 5.4 1年進行処理 (`stepYear`)

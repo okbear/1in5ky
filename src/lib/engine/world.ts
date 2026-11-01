@@ -6,6 +6,7 @@ import type { PostMortem } from '#lib/engine/history';
 export type AnnualMortality = Partial<Record<CountryId, Record<string, number[]>>>;
 
 export interface SimulationWorld {
+ maternalMortality?: AnnualMortality;
  mortality?: AnnualMortality;
  regions: readonly RegionProfile[];
  events: readonly DecisionEvent[];

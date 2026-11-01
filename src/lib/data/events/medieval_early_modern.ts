@@ -88,14 +88,15 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = ([
 		id: 'mongol_1220',
 		title: '地平線に騎馬隊が現れた',
 		category: 'historical_wave',
-		regionIds: ['med_islam', 'med_china', 'med_europe'],
-		yearRange: [1219, 1260],
+		regionIds: ['med_central_asia'],
+		places: ['サマルカンド', 'ブハラ'],
+		yearRange: [1220, 1220],
 		minAge: 10,
 		maxAge: 99,
 		isHistoricalWave: true,
-		historicalYearLabel: '13世紀前半',
+		historicalYearLabel: '1220年',
 		description: '砂塵の向こうに、数えきれない騎馬隊。降伏した町は税を納め、抵抗した町は消えたという。',
-		factBox: 'モンゴル帝国の征服戦争による死者は数百万〜数千万と推計されるが、降伏した都市は多く助かった。',
+		factBox: '1220年、モンゴル軍はブハラとサマルカンドを攻略した。このイベントは両都市を対象とし、欧州やイスラム圏全域へ同時に侵攻を発生させない。',
 		choices: [
 			{
 				id: 'surrender',
@@ -317,7 +318,7 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = ([
 		title: '暴徒化した傭兵軍団が村になだれ込んできた',
 		category: 'livelihood',
 		eraIds: ['early_modern'],
-		regionIds: ['em_europe'],
+		regionIds: ['em_germany'],
 		yearRange: [1618, 1648],
 		minAge: 14,
 		maxAge: 65,
@@ -381,4 +382,16 @@ export const MEDIEVAL_EARLY_MODERN_EVENTS: DecisionEvent[] = ([
 			}
 		]
 	}
-] satisfies DecisionEvent[]).map(expandEventScope);
+] satisfies DecisionEvent[]).flatMap((event): DecisionEvent[] => {
+ if (event.id !== 'mongol_1220') return [event];
+ return [event, {
+  ...event, id: 'mongol_baghdad_1258', title: 'モンゴル軍がバグダードを包囲した',
+  regionIds: ['med_iraq'], places: ['バグダード'], yearRange: [1258, 1258], historicalYearLabel: '1258年',
+  description: 'モンゴル軍が都市を包囲し、城内では戦闘と略奪への恐怖が広がっている。家族とともに、どう生き延びるかを決めなければならない。',
+  factBox: '1258年、フレグ率いるモンゴル軍がバグダードを攻略した。都市の降伏は住民の安全を保証せず、大きな破壊と殺戮が起きた。',
+  choices: event.choices.map(choice => choice.id === 'surrender' ? {
+   ...choice, label: '武器を捨て、家族と身を隠す', subLabel: '降伏しても安全の保証はない',
+   outcomeText: '戦いを避けて身を隠し、破壊された町の片隅で命をつないだ。'
+  } : choice.id === 'flee_west' ? { ...choice, label: '家族を連れて町から逃れる' } : choice)
+ }];
+}).map(expandEventScope);

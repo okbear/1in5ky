@@ -212,6 +212,8 @@ export interface ChoiceOption {
 	label: string;
 	subLabel: string;
 	survivalChance?: number; // 0-1, if risk of immediate/near death
+	survivalModel?: 'health-adjusted' | 'fixed'; // fixed preserves an explicitly calibrated event probability
+	maternalRisk?: true; // national maternal-risk approximation, not a hospital-specific treatment effect
 	deathCause?: string;
 	effects: {
 		health?: number;
@@ -231,6 +233,8 @@ export interface ChoiceOption {
 	deathText?: string; // survivalChance の判定に敗れたときに記録される結果（survivalChance があれば必須）
 }
 
+export type InstitutionId = 'english-ordeal' | 'manorial-marriage-dues' | 'english-hunting-privilege' | 'roman-slavery' | 'edo-gonin-gumi';
+
 export interface DecisionEventSpec {
 	id: string;
 	title: string;
@@ -238,6 +242,8 @@ export interface DecisionEventSpec {
 	eraIds?: EraId[];
 	/** Optional exact place restriction within the allowed regions. */
 	places?: string[];
+	/** Every named institution must be supported at the current place and year. */
+	requiresInstitutions?: [InstitutionId, ...InstitutionId[]];
 	classIds?: SocialClassId[];
 	sex?: 'M' | 'F';
 	requiresSpouse?: boolean;
