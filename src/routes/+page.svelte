@@ -42,9 +42,7 @@
 	<meta name="twitter:image" content="{origin}/ogp.png" />
 </svelte:head>
 
-{#if game.loading}
-	<p class="wrap" role="status">生まれる時代のデータを読み込んでいます…</p>
-{:else if game.loadError}
+{#if game.loadError}
 	<div class="wrap" role="alert">
 		<p>{game.loadError}</p>
 		<button class="ghost" onclick={() => window.location.reload()}>再読み込みしてやり直す</button>

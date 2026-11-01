@@ -132,6 +132,32 @@ test.describe('1in5ky E2E smoke tests', () => {
 		expect(pageErrors).toEqual([]);
 	});
 
+	test('birth loading: shows a spinner inside the button without shifting the page', async ({ page }) => {
+		await page.goto('/', { waitUntil: 'networkidle' });
+		let held = false;
+		let release = () => {};
+		const gate = new Promise<void>((resolve) => { release = resolve; });
+		await page.route('**/*', async (route) => {
+			if (!held && route.request().resourceType() === 'script') {
+				held = true;
+				await gate;
+			}
+			await route.continue();
+		});
+		const button = page.getByRole('button', { name: '生まれる', exact: true });
+		await button.scrollIntoViewIfNeeded();
+		const before = await button.boundingBox();
+		await button.click();
+		try {
+			await expect(button).toHaveAttribute('aria-busy', 'true');
+			await expect(button).toBeDisabled();
+			await expect(button.locator('.spinner')).toBeVisible();
+			await expect(page.getByText('生まれる時代のデータを読み込んでいます…')).toHaveCount(0);
+			expect(await button.boundingBox()).toEqual(before);
+		} finally { release(); }
+		await expect(page.locator('.cert')).toBeVisible();
+	});
+
 	test('birth data: handles a failed chunk and recovers after reloading', async ({ page }) => {
 		await page.goto('/', { waitUntil: 'networkidle' });
 		let failed = false;

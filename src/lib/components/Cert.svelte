@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { game } from '#lib/game.svelte';
+	import LoadingLabel from '#lib/components/LoadingLabel.svelte';
 	import { ERAS } from '#lib/data/eras';
 	import { expectedLifespan, formatYear, formatYen } from '#lib/engine/util';
 	import { getBabyImage } from '#lib/data/babyImages';
@@ -73,8 +74,8 @@
 		<div class="foot">
 			<button class="ghost back" onclick={() => game.quit()}>最初に戻る</button>
 			<div class="actions">
-				<button class="ghost" disabled={game.loading} onclick={() => game.roll()}>生まれ直す</button>
-				<button class="cta" onclick={() => game.begin()}>人生を始める</button>
+				<button class="ghost" disabled={game.loading} aria-busy={game.loading} aria-label="生まれ直す" onclick={() => game.roll()}><LoadingLabel loading={game.loading} label="生まれ直す" /></button>
+				<button class="cta" disabled={game.loading} onclick={() => game.begin()}>人生を始める</button>
 			</div>
 		</div>
 	</div>

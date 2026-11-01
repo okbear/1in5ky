@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { game } from '#lib/game.svelte';
+	import LoadingLabel from '#lib/components/LoadingLabel.svelte';
 	import { ERAS, ERA_ORDER, TOTAL_CUMULATIVE_BIRTHS_OKU } from '#lib/data/eras';
 	import Timeline from './Timeline.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
@@ -29,7 +30,7 @@
 	</div>
 
 	<div class="ctarow">
-		<button class="cta" disabled={game.loading} onclick={() => game.roll()}>生まれる</button>
+		<button class="cta" disabled={game.loading} aria-busy={game.loading} aria-label="生まれる" onclick={() => game.roll()}><LoadingLabel loading={game.loading} label="生まれる" /></button>
 	</div>
 
 	<div class="panel memo">

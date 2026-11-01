@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { game } from '#lib/game.svelte';
+	import LoadingLabel from '#lib/components/LoadingLabel.svelte';
 	import { expectedLifespan, formatYear, survivalRateAtAge } from '#lib/engine/util';
 	import { canRevive } from '#lib/engine/mortality';
 	import { buildLifeTimelineRows, groupLifeTimeline } from '#lib/presentation/lifeTimeline';
@@ -154,7 +155,7 @@
 	</div>
 
 	<div class="endbtns">
-		<button class="cta" disabled={game.loading} onclick={() => game.roll()}>もう一度生まれる</button>
+		<button class="cta" disabled={game.loading} aria-busy={game.loading} aria-label="もう一度生まれる" onclick={() => game.roll()}><LoadingLabel loading={game.loading} label="もう一度生まれる" /></button>
 		<a class="x-btn" href={shareHref} target="_blank" rel="noopener noreferrer">
 			<span class="x-mark" aria-hidden="true">𝕏</span>
 			<span>この人生をポスト</span>
