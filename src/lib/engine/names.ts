@@ -98,7 +98,7 @@ export function updateFamilyNames(c: CharacterState, rng: Rng): string | undefin
   c.nameParts = withSurname(c.nameParts, birthSurname, 'japanese');
   for (const f of c.family) {
    if (f.status === 'dead' || !f.nameParts || f.nameParts.familyName) continue;
-   const birthRelative = f.relation === '父' || f.relation === '兄弟' || f.relation === '姉妹';
+   const birthRelative = f.relation === '父' || f.relation === '兄' || f.relation === '姉' || f.relation === '弟' || f.relation === '妹';
    f.nameParts = withSurname(f.nameParts, birthRelative ? birthSurname : pick(policy.surnames, rng), 'japanese');
    f.name = formatPersonalName(f.nameParts);
   }

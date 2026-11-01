@@ -29,7 +29,6 @@ function birth(id: RegionId, year: number, sex: 'M' | 'F' = 'M', socialClassId: 
 const marry = { id: 'marry', label: '結婚する', subLabel: '', effects: { marry: true }, outcomeText: '所帯を持った。' };
 const giveBirth = { id: 'birth', label: '迎える', subLabel: '', effects: { addChild: true }, outcomeText: '子を迎えた。' };
 const becomeAdult = (c: CharacterState, age = 25) => { c.age = age; c.currentYear = c.birthYear + age; };
-const relatives = (c: CharacterState) => c.family.filter((f) => ['父', '兄弟', '姉妹'].includes(f.relation));
 
 for (const id of ['cls_han', 'med_china', 'em_china', 'ind_china', 'mod_china', 'mod_taiwan', 'mod_korea'] as const) {
  test(`${id}: surname is inherited rather than redrawn independently for each relative`, () => {
@@ -37,7 +36,7 @@ for (const id of ['cls_han', 'med_china', 'em_china', 'ind_china', 'mod_china', 
   for (const seed of [1, 42, 2026]) {
    const { c } = birth(id, years[id], 'M', 'peasant', seed);
    expect(c.nameParts.familyName).toBeDefined();
-   for (const f of relatives(c)) expect(f.nameParts!.familyName).toBe(c.nameParts.familyName);
+   for (const f of c.family.filter((m) => ['父', '兄', '姉', '弟', '妹'].includes(m.relation))) expect(f.nameParts!.familyName).toBe(c.nameParts.familyName);
    const mother = c.family.find((f) => f.relation === '母')!;
    expect(mother.nameParts!.familyName).toBe(mother.nameParts!.birthFamilyName);
    for (const f of c.family) expect(f.name).toBe(formatPersonalName(f.nameParts!));
