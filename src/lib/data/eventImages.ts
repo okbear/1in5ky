@@ -531,6 +531,11 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/med_eur_manor_bakehouse.jpg',
 		alt: '石造りの領主専売パン焼き窯の炎の前で、高い手数料を巻き上げるパン焼き役人と隠し石臼に手を伸ばす農民',
 		caption: '領主の専売窯とバナリテ'
+	},
+	med_eur_leper_crossing: {
+		src: '/images/events/med_eur_leper_crossing.jpg',
+		alt: '霧深き城壁外の街道で、鳴子と物乞いの木椀を手にした頭巾姿の癩病患者と、布で口元を覆い距離を置いて通り過ぎる旅人たち',
+		caption: '街道の鳴子と癩病隔離所'
 	}
 };
 
