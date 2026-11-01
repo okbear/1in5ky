@@ -4,14 +4,14 @@
     "seed": 1,
     "calls": 152,
     "decisions": 12,
-    "digest": "c8a4d8677b5cf4743fb34e942ba5f5d5fda4ed158afd2caed9af81fcdbe409c3"
+    "digest": "50d5311a470239928a386ee9a498601a4171c69c71c249436cdca2cafa43aef5"
   },
   {
     "eraId": "ancient",
     "seed": 42,
     "calls": 169,
     "decisions": 10,
-    "digest": "c949898e4f1cd1a858992362fd139f39871f03fe17b73a38130b45e0b12d032e"
+    "digest": "1a4e112f92a5839b3d78bd9d09c1590a1aa35c422ad9a21cc8a41bd85f911c9c"
   },
   {
     "eraId": "ancient",
@@ -32,7 +32,7 @@
     "seed": 1,
     "calls": 352,
     "decisions": 20,
-    "digest": "7c2832ad7679c00dee07468301344f2bd70db4c5a51f08b6d9311de11351c847"
+    "digest": "39a7c19cf7de50e957cdcb154ac6a9e0254da83713472926eea5523d96bb74a4"
   },
   {
     "eraId": "classical",
@@ -74,7 +74,7 @@
     "seed": 2026,
     "calls": 197,
     "decisions": 8,
-    "digest": "296ae6405c55e9b6ed11ecf6fb4ec395e7d470cbc3880eba5ce325b59e215d9c"
+    "digest": "c29d4ca1c8e938647fc65cba273e1a215f5cc78324b1185f6a7372e9c093ac56"
   },
   {
     "eraId": "medieval",
@@ -88,21 +88,21 @@
     "seed": 1,
     "calls": 301,
     "decisions": 20,
-    "digest": "cba34a6b7ff1fd442453b028795337d00262caba5cfeca2a338323212ef2c78c"
+    "digest": "cec0de894782200978e068cfddc65c3257e99de657044f5f0b27ed9b96164926"
   },
   {
     "eraId": "early_modern",
     "seed": 42,
     "calls": 223,
     "decisions": 10,
-    "digest": "7e0f50aa3cc929311c15e9a378e862143543fe2616201ffd4c9d3f4f8819b27b"
+    "digest": "076dea538fd03afecc2e45280e710abc5e75efe2aea9b4ecad1cc905acf5e2e1"
   },
   {
     "eraId": "early_modern",
     "seed": 2026,
     "calls": 217,
     "decisions": 6,
-    "digest": "e10784e05b3501eeca02bf9310205171d8f07c94bd8534556ca619dc67b7959e"
+    "digest": "6dd4a5b534dc5ad899287667134e61a9e4f37f8d98c5341f6d0edfa3eb40feb5"
   },
   {
     "eraId": "early_modern",
@@ -151,20 +151,20 @@
     "seed": 42,
     "calls": 547,
     "decisions": 22,
-    "digest": "8415b8f2fe915164c1cccb7738b97c2be5da03c1213b682e63778258fd47f9a0"
+    "digest": "6eadba32e7f01f2d98e4ed57428fbbb9bd73e9c226c2a27f2042a8855f5aff46"
   },
   {
     "eraId": "modern",
     "seed": 2026,
     "calls": 754,
     "decisions": 28,
-    "digest": "549df3be05455772166c15e9690200d07653c0c5d7bdd639aa5f7b1a90c528c1"
+    "digest": "ae867f65d0380b08712360c38cbd421a2fa8b4aeca3beaa197e3f6dffdb6b189"
   },
   {
     "eraId": "modern",
     "seed": 5000,
     "calls": 539,
     "decisions": 23,
-    "digest": "baccc697c89bc8c51ae389ff43dca06b6e44fa56960a3d711f2c3b1b77fdf440"
+    "digest": "36db364b95021da9392ddc51102410b4a70bb99090fc98a7c94441ebc260b184"
   }
 ]

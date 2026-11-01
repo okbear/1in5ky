@@ -46,7 +46,9 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 		id: 'marriage_serf_merchet',
 		title: '結婚したければ領主に「結婚税」を納めよ',
 		category: 'livelihood',
-		regionIds: ['med_europe'],
+		regionIds: ['med_britain'],
+		eraIds: ['medieval'],
+		isUrban: false,
 		classIds: ['peasant'],
 		requiresUnmarried: true,
 		isLifecycle: true,
@@ -56,8 +58,8 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 		minAge: 16,
 		maxAge: 32,
 		description:
-			'同じ荘園の相手と所帯を持とうとしたが、農奴は領主の許可なく結婚することができない。領主の代官から「結婚税（メルケット）として家畜か銀貨を納めよ」と命じられた。',
-		factBox: '中世ヨーロッパの農奴には結婚の自由すらなく、結婚する際には領主へ「結婚税（メルケット）」を納める義務があった。',
+			'荘園で隷属的な立場にある家の婚姻に際し、領主の代官から婚姻に伴う納付金を求められた。蓄えを差し出して所帯を持つか、今回は見送るか。',
+		factBox: '英国の荘園記録には、隷属的な借地人の家の婚姻に伴う納付金が見られる。対象や条件は荘園により異なり、欧州全域の農民に一律の結婚税があったわけではない。',
 		choices: [
 			{
 				id: 'pay_merchet',
@@ -89,15 +91,15 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 		minAge: 15,
 		maxAge: 34,
 		description:
-			'親や周囲が縁談をまとめてきた。顔もよく知らない相手で、家の格や持参金・働き手としての都合が優先されているが、断れば家に居づらくなる。',
-		factBox: '近代以前の社会では、結婚は個人の恋愛ではなく、労働力の確保と家同士の経済的・身分的取り決めだった。',
+			'周囲から縁談が持ち込まれた。相手との暮らしだけでなく、家族との関係や生活の見通しも考えて返事をすることになった。',
+		factBox: '婚姻に家族や共同体が関わる形、財産のやり取り、本人の意思が尊重される度合いは、地域・時代・身分によって異なる。',
 		choices: [
 			{
 				id: 'accept',
 				label: '家の取り決めどおり縁談を受ける',
 				subLabel: '新しい所帯を持ち、家の働き手を増やす',
 				effects: { relations: 15, happiness: 5, wealthDelta: 10, marry: true },
-				outcomeText: '祝言の日、相手の顔を初めてまともに見た。今日からこの人と生きていくことになる。'
+				outcomeText: '婚姻を決め、二人の暮らしが始まった。今日からこの人と生きていくことになる。'
 			},
 			{
 				id: 'refuse',
@@ -157,8 +159,8 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 		minAge: 16,
 		maxAge: 40,
 		description:
-			'陣痛が始まった。消毒という概念も帝王切開もない時代、お産は文字どおり命がけの大仕事であり、産婆も手を洗わずに処置にあたる。',
-		factBox: '19世紀にゼンメルワイスが「医師の手洗い」を提唱するまで、産褥熱（細菌感染）や難産により出産100回あたり1〜2人の母親が命を落とした。複数回出産すれば生涯で1割近い女性が亡くなった。',
+			'陣痛が始まった。身近に頼れる助けを探すが、出血や感染、難産に十分に対処できるとは限らない。誰に助けを求めるか決めなければならない。',
+		factBox: '出産時の危険は衛生環境、栄養状態、介助者や医療へのアクセスで異なる。古代から近代までの全地域を、一つの妊産婦死亡率で表すことはできない。',
 		choices: [
 			{
 				id: 'midwife',
@@ -234,12 +236,12 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 		maxAge: 42,
 		description:
 			'パートナーとの間に子どもを持つか、またどこで出産・子育てをするかを話し合っている。現代の医療は出産の危険を劇的に減らしたが、子育てと教育には大きな費用がかかる。',
-		factBox: '現代では妊産婦死亡率は前近代の100分の1以下に激減し、生まれた子どもの95%以上が成人する一方、養育費・教育費の負担から少子化が進んでいる。',
+		factBox: '妊産婦や子どもの生存には、国・年代・所得層による大きな差がある。安全な医療にアクセスできるか、育児をどう支えるかも家族によって異なる。',
 		choices: [
 			{
 				id: 'birth_modern_hospital',
 				label: '医療設備の整った病院で出産し、子どもを育てる',
-				subLabel: '費用はかかるが母子ともに安心',
+				subLabel: '費用を負担し、専門的な医療支援を求める',
 				survivalChance: 0.996,
 				deathCause: '出産時の合併症',
 				effects: { wealthDelta: -12, happiness: 12, relations: 10, addChild: true },
@@ -272,12 +274,12 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 		maxAge: 48,
 		description:
 			'妻との間に子どもを持つか、またどのように子育てと家計をやりくりするかを話し合っている。現代の医療は出産の危険を劇的に減らしたが、子育てと教育には大きな費用がかかる。',
-		factBox: '現代では妊産婦死亡率は前近代の100分の1以下に激減し、生まれた子どもの95%以上が成人する一方、養育費・教育費の負担から少子化が進んでいる。',
+		factBox: '妊産婦や子どもの生存には、国・年代・所得層による大きな差がある。安全な医療にアクセスできるか、育児をどう支えるかも家族によって異なる。',
 		choices: [
 			{
 				id: 'birth_modern_father_hospital',
 				label: '医療設備の整った病院での出産を支え、子どもを育てる',
-				subLabel: '費用はかかるが母子ともに安心',
+				subLabel: '費用を負担し、専門的な医療支援を求める',
 				effects: { wealthDelta: -12, happiness: 12, relations: 10, addChild: true, killSpouseChance: 0.002 },
 				outcomeText: '清潔な病室で新しい命を迎えた。これからの暮らしが賑やかになる。'
 			},

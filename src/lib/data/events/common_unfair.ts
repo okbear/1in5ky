@@ -110,11 +110,11 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = ([
 		maxAge: 70,
 		description:
 			'石臼の砂が混じった穀物を噛み続けてすり減った奥歯が割れ、歯茎の奥に膿が溜まった。水も飲めないほど顎と首が腫れ上がり、悪寒が止まらない。',
-		factBox: '17世紀ロンドンの死因統計（死亡表）では「歯（Teeth）」が毎年上位の死因として記録されていた。抜歯は医師ではなく床屋や鍛冶屋の仕事だった。',
+		factBox: '抗菌薬や安全な麻酔が利用できない時代、歯の感染や抜歯には危険が伴った。手当てを担う者や方法は地域・時代によって異なる。',
 		choices: [
 			{
 				id: 'barber_pull',
-				label: '鍛冶屋・床屋外科医に麻酔なしで抜いてもらう',
+				label: '抜歯を引き受ける者に、麻酔なしで抜いてもらう',
 				subLabel: '鉄のやっとこで力任せに引き抜く',
 				survivalChance: 0.8,
 				deathCause: '抜歯後の大量出血・敗血症',
@@ -228,7 +228,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = ([
 			{
 				id: 'abscond_too',
 				label: '限界を超え、自分の家も夜逃げして都市や山へ逃れる',
-				subLabel: '人別帳から外れ、無宿・流民になる',
+				subLabel: '土地と生活の基盤を失い、逃亡者として暮らす',
 				survivalChance: 0.72,
 				deathCause: '逃亡生活での飢え・行き倒れ',
 				effects: { wealthDelta: -45, relations: -20, occupationChange: '流民・日雇い', locationChange: 'urban' },
@@ -283,16 +283,17 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = ([
 	{
 		id: 'press_gang_conscription',
 		title: '夕暮れの道で「強制徴募隊」に棍棒で殴られた',
-		regionIds: ['em_europe', 'ind_europe'],
+		regionIds: ['em_britain', 'ind_britain'],
+		yearRange: [1700, 1815],
 		category: 'livelihood',
-		eraIds: ['classical', 'medieval', 'early_modern', 'industrial'],
+		eraIds: ['early_modern', 'industrial'],
 		classIds: ['peasant', 'artisan'],
 		sex: 'M',
 		minAge: 16,
 		maxAge: 42,
 		description:
-			'仕事帰りに道を歩いていただけで、武装した徴募隊に取り囲まれ、有無を言わさず殴り倒された。気づくと軍艦の船底（または辺境行きの荷車）に押し込められており、「今日から兵卒・水夫だ」と告げられた。',
-		factBox: '17〜19世紀初頭の英国海軍のプレスギャング（強制徴募隊）をはじめ、歴史上の多くの軍隊は路上の庶民を暴力的に拉致・強制徴集して兵員を補充した。',
+			'船の仕事を終えて帰る途中、海軍の徴募隊に呼び止められた。船員としての経験を問われ、抵抗すると殴り倒された。気づくと軍艦の船底に押し込められ、「今日から海軍の水夫だ」と告げられた。',
+		factBox: '英国海軍の強制徴募は主に船員経験者を対象とし、保護や免除を巡る争いもあった。このイベントは1700〜1815年のブリテンを扱い、欧州全域の庶民に同じ制度を適用しない。',
 		choices: [
 			{
 				id: 'endure_service',
@@ -413,7 +414,7 @@ export const COMMON_UNFAIR_EVENTS: DecisionEvent[] = ([
 			{
 				id: 'flee_master',
 				label: '夜のうちに逃げ出し、都市や山奥へ身を隠す',
-				subLabel: '「都市の空気は自由にする」が、追手に捕まれば処刑',
+				subLabel: '追手を避け、生活の基盤を探す',
 				survivalChance: 0.62,
 				deathCause: '逃亡奴隷・逃散農民としての処刑',
 				effects: { wealthDelta: -40, relations: -15, occupationChange: '都市の雑役・日雇い', locationChange: 'urban' },

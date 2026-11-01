@@ -3,6 +3,30 @@ import { baseHazard } from '#lib/engine/util';
 import { REGIONS } from '#lib/data/regions';
 import { parseMemorials, toMemorialRecord } from '#lib/engine/memorials';
 import { die, rollBirth } from '#lib/engine/engine';
+import { ALL_EVENTS } from '#lib/data/events';
+import { matchesEventSetting } from '#lib/engine/eventScope';
+import { ERAS } from '#lib/data/eras';
+
+test('manorial marriage dues stay in medieval Britain rather than every European region', () => {
+	const event = ALL_EVENTS.find((entry) => entry.id === 'marriage_serf_merchet')!;
+	for (const region of REGIONS) {
+		expect(matchesEventSetting({ region, era: ERAS[region.eraId], currentYear: ERAS[region.eraId].yearEnd, place: region.ruralAreas[0] }, event))
+			.toBe(region.id === 'med_britain');
+	}
+	expect(event.isUrban).toBe(false);
+});
+
+test('British naval impressment does not leak into other European countries or later years', () => {
+	const event = ALL_EVENTS.find((entry) => entry.id === 'press_gang_conscription')!;
+	for (const region of REGIONS.filter((entry) => event.eraIds?.includes(entry.eraId))) {
+		for (const year of [1699, 1700, 1799, 1800, 1815, 1816, 1900]) {
+			const era = ERAS[region.eraId];
+			if (year < era.yearStart || year > era.yearEnd) continue;
+			expect(matchesEventSetting({ region, era, currentYear: year, place: region.cities[0] }, event))
+				.toBe(region.country === 'britain' && year >= 1700 && year <= 1815);
+		}
+	}
+});
 
 test('mortality calibration follows life-table inputs when profiles share an ID', () => {
 	const profile = REGIONS[0];
