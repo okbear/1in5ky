@@ -33,8 +33,10 @@ const makeFamily = (
   const sex = rng() < 0.5 ? 'M' : 'F';
   const nameParts = makeName(context, sex, usedNames, rng, playerName.familyName);
   const siblingBirthYear = birthYear - (Math.floor(rng() * 8) - 4);
-  fam.push({ id: `sibling-${i}`, relation: sex === 'M' ? '兄弟' : '姉妹', name: formatPersonalName(nameParts),
-   nameParts, birthYear: siblingBirthYear, status: siblingBirthYear > birthYear ? 'unborn' : 'alive' });
+  const younger = siblingBirthYear > birthYear;
+  const relation = younger ? (sex === 'M' ? '弟' : '妹') : (sex === 'M' ? '兄' : '姉');
+  fam.push({ id: `sibling-${i}`, relation, name: formatPersonalName(nameParts),
+   nameParts, birthYear: siblingBirthYear, status: younger ? 'unborn' : 'alive' });
  }
  return fam;
 };

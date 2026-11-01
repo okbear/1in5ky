@@ -54,7 +54,7 @@ describe('Explicit event rules', () => {
 describe('Family calendar', () => {
  test('future siblings are unborn and have no exposure before their birth year', () => {
   const c = born('em_edo', 1700);
-  const sibling: FamilyMember = { id: 'sibling', relation: '姉妹', name: 'おはる', birthYear: 1702, status: 'unborn' };
+  const sibling: FamilyMember = { id: 'sibling', relation: '妹', name: 'おはる', birthYear: 1702, status: 'unborn' };
   c.family = [sibling];
   let calls = 0;
   c.currentYear = 1701; familyTick(c, () => { calls++; return 0; });
@@ -63,9 +63,10 @@ describe('Family calendar', () => {
   expect(sibling.status).toBe('alive'); expect(calls).toBe(0);
   c.currentYear = 1703; familyTick(c, () => { calls++; return 0; });
   expect(sibling.status).toBe('dead'); expect(calls).toBe(1);
+  expect(c.feed.some((f) => f.text === '妹のおはるが生まれた。')).toBe(true);
  });
  test('the first complete year uses the uncapped infant hazard for all infant relatives', () => {
-  for (const relation of ['子', '兄弟', '姉妹'] as const) {
+  for (const relation of ['子', '兄', '姉', '弟', '妹'] as const) {
    const c = born('em_edo', 1700); c.currentYear = 1701;
    const baby: FamilyMember = { id: 'baby', relation, name: 'baby', birthYear: 1700, status: 'alive' };
    c.family = [baby];
@@ -81,6 +82,13 @@ describe('Family calendar', () => {
   expect(c.family[0].status).toBe('dead');
   resolveChoice(c, { id: 'marry', label: '', subLabel: '', effects: { marry: true }, outcomeText: '' }, () => 0.9);
   expect(c.family.find((f) => f.relation === '妻' || f.relation === '夫')!.birthYear).toBe(c.birthYear);
+ });
+ test('loss wording adapts when no other living family members remain', () => {
+  const c = born('em_edo', 1700); c.age = 20; c.currentYear = 1720;
+  c.family = [{ id: 'father', relation: '父', name: '権兵衛', birthYear: 1670, status: 'alive' }];
+  const ev = familyTick(c, () => 0)!;
+  expect(ev.description.includes('残された家族')).toBe(false);
+  expect(ev.choices[0].label).toBe('静まり返った家で、別れの時を過ごす');
  });
 });
 

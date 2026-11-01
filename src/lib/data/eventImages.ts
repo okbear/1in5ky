@@ -459,6 +459,72 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/cls_other_teotihuacan_obsidian.jpg',
 		alt: '松明で照らされたパチューカの坑内で、石と木の道具で黒曜石を掘り、天井を警戒する鉱夫たち',
 		caption: '緑色黒曜石の採掘坑'
+	},
+
+	// === 古典期オアシス・ペルシア・草原 ===
+	cls_other_silk_oasis_tax: {
+		src: '/images/events/cls_other_silk_oasis_tax.jpg',
+		alt: 'タリム盆地クチャの日干しレンガ隊商宿で、天秤ばかりと絹織物を前に割増し関税を迫る徴税官と抗議するソグド商人',
+		caption: 'クチャ隊商宿の関税徴収'
+	},
+	cls_other_desert_qanat_collapse: {
+		src: '/images/events/cls_other_desert_qanat_collapse.jpg',
+		alt: '砂漠の地下深くを貫くカナートの暗闇で、縦穴から差す光のもと泥を掻き出し亀裂の入った支保工を警戒する工夫たち',
+		caption: '地下水路カナートの浚渫'
+	},
+	cls_other_steppes_nomad_raid: {
+		src: '/images/events/cls_other_steppes_nomad_raid.jpg',
+		alt: '月光と炎が交錯する夜のステップ草原で、燃えるユルタと家畜を守るため弓と短剣を構える遊牧民一家と襲撃する騎兵',
+		caption: 'ステップ草原の夜襲と家畜防衛'
+	},
+
+	// === 古代〜古典期共通・軍事と労役 ===
+	ancient_corvee: {
+		src: '/images/events/ancient_corvee.jpg',
+		alt: '灼熱の太陽のもと、巨大な日干しレンガ神殿の普請現場で木製ソリに乗せた巨石を引く農民工夫たちと粘土板を持つ監督官',
+		caption: '神殿大工事の労役普請'
+	},
+	ancient_chariot_war: {
+		src: '/images/events/ancient_chariot_war.jpg',
+		alt: '灌漑水路の堤防沿いで、牛皮の盾と青銅槍を構える農民歩兵密集陣と四輪戦車、涙で見送る家族たち',
+		caption: '境界水路の戦車戦と歩兵徴集'
+	},
+	classical_plague_war: {
+		src: '/images/events/classical_plague_war.jpg',
+		alt: 'アントニヌスの疫病が蔓延するローマの街道で、布で口を覆う市民の葬列とバシリカ前で辺境派兵を命じる百人隊長',
+		caption: 'アントニヌスの疫病と徴兵'
+	},
+	classical_great_wall_frontier: {
+		src: '/images/events/classical_great_wall_frontier.jpg',
+		alt: '晩秋の冷風が吹きすさぶ農家の庭で、長城守備への徴兵木簡を呆然と見つめる前漢の青年と遠くに見える烽火台',
+		caption: '長城警備への徴兵木簡'
+	},
+	classical_punic_legion_siege: {
+		src: '/images/events/classical_punic_legion_siege.jpg',
+		alt: '街道を進軍するローマ軍団の砂塵の下、農家から冬越しの穀物甕や家畜を強引に奪い去る輜重兵と泣き崩れる農民一家',
+		caption: '軍団進軍と食料強制徴発'
+	},
+	trial_by_ordeal: {
+		src: '/images/events/trial_by_ordeal.jpg',
+		alt: 'ロマネスク教会の前庭で、十字架を掲げる司祭の祈りのもと煮えたぎる大釜から素手で石を拾い出そうとする農民の青年',
+		caption: '熱湯の神判'
+	},
+
+	// === 中世ヨーロッパ（封建領主と教会、農民の受難） ===
+	med_eur_tithe_dispute: {
+		src: '/images/events/med_eur_tithe_dispute.jpg',
+		alt: 'ぬかるんだ農家の庭で、小麦俵と子羊を教会へ差し出すよう迫る教区司祭と冬の食糧を案じ跪いて懇願する農奴',
+		caption: '十分の一税の納入'
+	},
+	med_eur_ergot_poisoning: {
+		src: '/images/events/med_eur_ergot_poisoning.jpg',
+		alt: '薄暗い土室の藁ベッドで、黒い麦角パンによる手足の灼熱痛に悶える若者と薬草を当てる老婆、幻覚に怯える村人',
+		caption: 'ライ麦の麦角中毒'
+	},
+	med_eur_manor_bakehouse: {
+		src: '/images/events/med_eur_manor_bakehouse.jpg',
+		alt: '石造りの領主専売パン焼き窯の炎の前で、高い手数料を巻き上げるパン焼き役人と隠し石臼に手を伸ばす農民',
+		caption: '領主の専売窯とバナリテ'
 	}
 };
 

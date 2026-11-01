@@ -290,7 +290,7 @@ export interface PersonalName {
 	convention: 'personal-only' | 'chinese' | 'japanese' | 'korean';
 }
 
-export type FamilyRelation = '父' | '母' | '兄弟' | '姉妹' | '妻' | '夫' | '子';
+export type FamilyRelation = '父' | '母' | '兄' | '姉' | '弟' | '妹' | '妻' | '夫' | '子';
 export interface FamilyMember {
 	id: string;
 	relation: FamilyRelation;
