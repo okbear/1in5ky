@@ -124,8 +124,31 @@ test.describe('1in5ky E2E smoke tests', () => {
 		await expect(page.locator('.life-shell')).not.toHaveAttribute('inert');
 		const restore = page.getByRole('button', { name: '決断に戻る' });
 		await expect(restore).toBeFocused();
-		await restore.click();
+		// Reopen from a scrolled page and verify that only the modal can scroll.
+		await page.evaluate(() => {
+			document.body.style.minHeight = '300vh';
+			window.scrollTo(0, 160);
+		});
+		const scrollBefore = await page.evaluate(() => window.scrollY);
+		expect(scrollBefore).toBeGreaterThan(0);
+		const background = page.locator('.life-shell');
+		const topBefore = await background.evaluate((el) => el.getBoundingClientRect().top);
+		await page.keyboard.press('Enter');
 		await expect(firstChoice).toBeFocused();
+		await expect(page.locator('body')).toHaveCSS('position', 'fixed');
+		await expect.poll(() => background.evaluate((el) => el.getBoundingClientRect().top)).toBe(topBefore);
+		await dialog.evaluate((el) => { el.style.minHeight = '200vh'; });
+		await page.mouse.move(20, 20);
+		await page.mouse.wheel(0, 400);
+		await expect.poll(() => page.locator('.scrim').evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
+		expect(await background.evaluate((el) => el.getBoundingClientRect().top)).toBe(topBefore);
+		await page.keyboard.press('Escape');
+		await expect(dialog).not.toBeVisible();
+		await expect(page.locator('body')).not.toHaveCSS('position', 'fixed');
+		await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(scrollBefore);
+		await page.mouse.wheel(0, 200);
+		await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(scrollBefore);
+		await restore.click();
 		await close.click();
 		await expect(dialog).not.toBeVisible();
 		await restore.click();

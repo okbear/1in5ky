@@ -12,6 +12,39 @@
 	let dialogEl = $state<HTMLDivElement | null>(null);
 
 	$effect(() => {
+		const root = document.documentElement;
+		const body = document.body;
+		const { scrollX, scrollY } = window;
+		const scrollbarWidth = window.innerWidth - root.clientWidth;
+		const paddingRight = getComputedStyle(body).paddingRight;
+		const properties = ['position', 'top', 'left', 'width', 'overflow', 'padding-right'];
+		const previous = properties.map((property) => ({
+			property,
+			value: body.style.getPropertyValue(property),
+			priority: body.style.getPropertyPriority(property)
+		}));
+		const rootOverflow = root.style.overflow;
+
+		// Fix the page in place on touch browsers as well as desktop browsers.
+		root.style.overflow = 'hidden';
+		body.style.position = 'fixed';
+		body.style.top = `-${scrollY}px`;
+		body.style.left = `-${scrollX}px`;
+		body.style.width = '100%';
+		body.style.overflow = 'hidden';
+		body.style.paddingRight = `calc(${paddingRight} + ${scrollbarWidth}px)`;
+
+		return () => {
+			for (const { property, value, priority } of previous) {
+				if (value) body.style.setProperty(property, value, priority);
+				else body.style.removeProperty(property);
+			}
+			root.style.overflow = rootOverflow;
+			window.scrollTo({ left: scrollX, top: scrollY, behavior: 'instant' });
+		};
+	});
+
+	$effect(() => {
 		d;
 		dialogEl?.querySelector<HTMLButtonElement>('.choices button')?.focus();
 	});
@@ -89,6 +122,10 @@
 	</div>
 
 <style>
+	.scrim {
+		overscroll-behavior: contain;
+	}
+
 	/* 決断モーダル内の挿絵カード */
 	.dec-lead.has-visual {
 		display: grid;

@@ -50,7 +50,7 @@
 	const dismissDecisionAndFocus = async (): Promise<void> => {
 		game.dismissDecision();
 		await tick();
-		returnBtnEl?.focus();
+		returnBtnEl?.focus({ preventScroll: true });
 	};
 
 	$effect(() => {
