@@ -220,7 +220,8 @@ export interface ChoiceOption {
 		happiness?: number;
 		knowledge?: number;
 		relations?: number;
-		wealthDelta?: number; // % change
+		wealthDelta?: number; // one-off balance change, % of current annual household income
+		incomeDelta?: number; // lasting % change in earning capacity
 		occupationChange?: string;
 		locationChange?: string;
 		literate?: boolean;
@@ -382,7 +383,10 @@ export interface CharacterState {
 	knowledge: number;
 	relations: number;
 	annualIncomeUnits: number;
-	wealth: number; // 1.0 = class baseline; changed by decisions
+	incomeMultiplier: number; // earning capacity; 1 = class baseline
+	savings: number; // household reserves minus debt, in class-baseline annual income equivalents
+	hardshipYears: number;
+	lastFinanceEventAge: number;
 	modernFeelJpy: number;
 	focus: FocusOption['id'];
 	alive: boolean;

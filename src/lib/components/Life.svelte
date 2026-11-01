@@ -23,6 +23,8 @@
 	const c = $derived(game.char!);
 	const env = $derived(c.environment);
 	const income = $derived(incomePresentation(c));
+	const savingsMonths = $derived(c.savings / c.incomeMultiplier * 12);
+	const savingsGauge = $derived(Math.max(-12, Math.min(12, savingsMonths)));
 	const mortalitySource = $derived(STATISTIC_SOURCES[env.region.statistics.infantMortality.sourceIds[0] as keyof typeof STATISTIC_SOURCES]);
 	const stats = $derived([
 		{ k: '健康', v: c.health },
@@ -136,6 +138,20 @@
 						<span>{income.modeledIncome.unit}/年</span>
 						<small>（現代換算 約{formatYen(c.modernFeelJpy)}）</small>
 					</span>
+				</div>
+				<div class="income-row">
+					<span class="lbl">{c.savings < 0 ? '借り・負債' : '家の蓄え'}</span>
+					<span class="income-val"><b class="mono">年収 約{Math.abs(savingsMonths).toFixed(1)}か月分</b></span>
+					<div class="finance-gauge">
+						<div class="finance-track" role="meter" aria-label="家の蓄え・負債"
+							aria-valuemin={-12} aria-valuemax={12} aria-valuenow={savingsGauge}
+							aria-valuetext={`${c.savings < 0 ? '負債' : '蓄え'}：年収約${Math.abs(savingsMonths).toFixed(1)}か月分`}>
+							<span class:debt={savingsGauge < 0}
+								style:left="{50 + Math.min(0, savingsGauge) / 12 * 50}%"
+								style:width="{Math.abs(savingsGauge) / 12 * 50}%"></span>
+						</div>
+						<div class="finance-scale" aria-hidden="true"><span>負債1年分</span><span>0</span><span>蓄え1年分</span></div>
+					</div>
 				</div>
 			</section>
 		</div>
@@ -517,6 +533,44 @@
 	.income-val small {
 		color: var(--ink3);
 		font-size: 12px;
+	}
+	.finance-gauge {
+		flex-basis: 100%;
+		min-width: 0;
+	}
+	.finance-track {
+		position: relative;
+		height: 8px;
+		background: var(--rule);
+		border-radius: 4px;
+		overflow: hidden;
+	}
+	.finance-track::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 0;
+		bottom: 0;
+		width: 1px;
+		background: var(--ink2);
+	}
+	.finance-track > span {
+		position: absolute;
+		height: 100%;
+		background: var(--stamp);
+	}
+	.finance-track > span.debt {
+		background: var(--accent);
+	}
+	.finance-scale {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		margin-top: 4px;
+		color: var(--ink3);
+		font-size: 10px;
+	}
+	.finance-scale > span:last-child {
+		text-align: right;
 	}
 
 	/* 2. 人生の記録（メイン・高視認性） */

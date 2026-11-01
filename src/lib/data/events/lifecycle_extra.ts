@@ -19,7 +19,7 @@ export const LIFECYCLE_EXTRA_EVENTS: DecisionEvent[] = ([{
 		{ id: 'learn_while_working', label: '働きながら学ぶ時間を作る', subLabel: '生活との両立に負担がかかる',
 			effects: { knowledge: 10, health: -3, wealthDelta: -10 }, outcomeText: '仕事の合間に学び続けた。使える時間は限られているが、少しずつ知識を増やした。' },
 		{ id: 'earn_now', label: '当面の収入を優先して仕事を探す', subLabel: '暮らしを支えるため、働く時間を増やす',
-			effects: { wealthDelta: 10, health: -4, relations: 3 }, outcomeText: '得られた仕事に力を注ぎ、日々の暮らしを支える道を選んだ。' },
+			effects: { incomeDelta: 10, health: -4, relations: 3 }, outcomeText: '得られた仕事に力を注ぎ、日々の暮らしを支える道を選んだ。' },
 		{ id: 'learn_practical_skills', label: '身近な働き手から仕事の技術を学ぶ', subLabel: '実地で経験を積む',
 			effects: { knowledge: 6, relations: 5, wealthDelta: -5 }, outcomeText: '身近な働き手に教わりながら、少しずつ仕事を覚えた。' }
 	]

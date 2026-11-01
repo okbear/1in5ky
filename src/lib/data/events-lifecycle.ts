@@ -28,7 +28,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 				id: 'apprentice',
 				label: '職人の徒弟・奉公に出る',
 				subLabel: '年季奉公で技術を学ぶ',
-				effects: { knowledge: 8, wealthDelta: 25, relations: -5, occupationChange: '徒弟・奉公人' },
+				effects: { knowledge: 8, incomeDelta: 25, relations: -5, occupationChange: '徒弟・奉公人' },
 				outcomeText: '親元を離れ、厳しい親方のもとで数年の下働きが始まった。'
 			},
 			{
@@ -37,7 +37,7 @@ export const LIFECYCLE_EVENTS: DecisionEvent[] = ([
 				subLabel: '故郷を離れる賭け（都市の不衛生と貧困リスク）',
 				survivalChance: 0.92,
 				deathCause: '都市での貧困・疫病',
-				effects: { wealthDelta: 20, relations: -15, knowledge: 4, occupationChange: '都市の日雇い労働者', locationChange: 'urban' },
+				effects: { incomeDelta: 20, relations: -15, knowledge: 4, occupationChange: '都市の日雇い労働者', locationChange: 'urban' },
 				outcomeText: '町は広く、頼れる知り合いは誰もいなかった。',
 				deathText: '人混みの裏手の長屋で寝起きするうち、咳と熱が抜けなくなった。身寄りのない町では、看病してくれる者も見つからなかった。'
 			}

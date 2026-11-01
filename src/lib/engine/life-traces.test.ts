@@ -1,10 +1,10 @@
 import { expect, test } from 'bun:test';
 import { resolveChoice, rollBirth, stepYear } from '#lib/engine/engine';
-import traces from '#lib/engine/fixtures/life-traces-v2.json';
+import traces from '#lib/engine/fixtures/life-traces-v3.json';
 import type { EraId } from '#lib/types';
 
-// Model v2 includes calendar environments, national profiles and real family ages.
-// The v1 fixture remains archived; this expectation protects the newly approved behavior.
+// Model v3 separates earnings and reserves and adds household hardship.
+// Earlier model fixtures remain archived; v3 protects deterministic life histories.
 for (const trace of traces) {
 	test(`preserves life history: ${trace.eraId}, seed ${trace.seed}`, () => {
 		let value = trace.seed;

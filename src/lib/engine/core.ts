@@ -2,6 +2,7 @@ import { makeName, contextFor, usedFamilyGivenNames, formatPersonalName, applyMa
 import type { SimulationWorld } from '#lib/engine/world';
 import { countryForBirth, updateEnvironment } from '#lib/engine/environment';
 import type { CharacterState, ChoiceOption, DecisionEvent } from '#lib/types';
+import { financeTick } from '#lib/engine/economy';
 import { makeIncome, pushFeed } from '#lib/engine/character';
 import { familyTick, spawnChild } from '#lib/engine/family';
 import { chronicleTick } from '#lib/engine/history';
@@ -62,9 +63,9 @@ const flavor = (c: CharacterState, rng: Rng): { text: string; fact?: string } | 
 	return null;
 };
 
-const FOCUS_EFFECT: Record<CharacterState['focus'], { health?: number; happiness?: number; knowledge?: number; relations?: number; wealth?: number }> = {
+const FOCUS_EFFECT: Record<CharacterState['focus'], { health?: number; happiness?: number; knowledge?: number; relations?: number; income?: number }> = {
 	survival: { health: 1.2 },
-	labor: { wealth: 0.02, health: -0.3 },
+	labor: { income: 0.02, health: -0.3 },
 	family: { relations: 1.5, happiness: 0.5 },
 	learning: { knowledge: 1.5 },
 	faith: { happiness: 1.2, relations: 0.4 }
@@ -96,8 +97,9 @@ export const stepYear = (c: CharacterState, rng: Rng, world: SimulationWorld): S
 	c.happiness = clamp(c.happiness + (f.happiness ?? 0) + (50 - c.happiness) * 0.03, 0, 100);
 	c.knowledge = clamp(c.knowledge + (f.knowledge ?? 0), 0, 100);
 	c.relations = clamp(c.relations + (f.relations ?? 0) - 0.3, 0, 100);
-	c.wealth = Math.max(0.05, c.wealth + (f.wealth ?? 0));
+	if (c.age >= 15) c.incomeMultiplier += f.income ?? 0;
 	makeIncome(c);
+	financeTick(c, rng);
 
 	// 2026年マイルストーン（現実の現代を突破し、未知の近未来へ）
 	if (c.currentYear === 2026) {
@@ -137,7 +139,8 @@ export const resolveChoice = (
 	c.happiness = clamp(c.happiness + (fx.happiness ?? 0), 0, 100);
 	c.knowledge = clamp(c.knowledge + (fx.knowledge ?? 0), 0, 100);
 	c.relations = clamp(c.relations + (fx.relations ?? 0), 0, 100);
-	if (fx.wealthDelta) c.wealth = Math.max(0.05, c.wealth * (1 + fx.wealthDelta / 100));
+	c.savings += (fx.wealthDelta ?? 0) / 100 * c.incomeMultiplier;
+	if (fx.incomeDelta) c.incomeMultiplier = Math.max(0.05, c.incomeMultiplier * (1 + fx.incomeDelta / 100));
 	if (fx.occupationChange) c.occupation = fx.occupationChange;
 	if (fx.locationChange) {
 		const toUrban = fx.locationChange === 'urban';

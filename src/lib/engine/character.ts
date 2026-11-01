@@ -40,8 +40,8 @@ const makeFamily = (
 };
 
 export const makeIncome = (c: CharacterState): void => {
-	c.annualIncomeUnits = Math.round(c.environment.region.annualBaseIncomeUnit * c.environment.socialClass.incomeMultiplier * c.wealth);
-	c.modernFeelJpy = Math.round(c.environment.region.modernFeelJpy * c.environment.socialClass.incomeMultiplier * c.wealth);
+	c.annualIncomeUnits = Math.round(c.environment.region.annualBaseIncomeUnit * c.environment.socialClass.incomeMultiplier * c.incomeMultiplier);
+	c.modernFeelJpy = Math.round(c.environment.region.modernFeelJpy * c.environment.socialClass.incomeMultiplier * c.incomeMultiplier);
 };
 
 export const pushFeed = (
@@ -102,7 +102,10 @@ export const createCharacter = (
 		knowledge: socialClass.literacyBonus > 50 ? 40 : 10,
 		relations: 60,
 		annualIncomeUnits: 0,
-		wealth: 1,
+		incomeMultiplier: 1,
+		savings: socialClass.id === 'elite' ? 2 : socialClass.id === 'enslaved' ? 0 : 0.25,
+		hardshipYears: 0,
+		lastFinanceEventAge: -3,
 		modernFeelJpy: 0,
 		focus: 'survival',
 		alive: true,
