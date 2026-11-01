@@ -29,9 +29,9 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		sceneDetail: '木彫りの揺りかごと未漂白の木綿布。'
 	},
 	anc_aegean: {
-		src: null,
+		src: "/images/babies/anc_aegean.webp",
 		caption: "エーゲ海世界",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 
 	// === 古典期 (classical) ===
@@ -51,24 +51,24 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		sceneDetail: '薄手の木綿モスリンと木彫りベッド。'
 	},
 	cls_persia: {
-		src: null,
+		src: "/images/babies/cls_persia.webp",
 		caption: "ペルシア・中央アジア",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	cls_mesoamerica: {
-		src: null,
+		src: "/images/babies/cls_mesoamerica.webp",
 		caption: "古典期メソアメリカ",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	cls_africa: {
-		src: null,
+		src: "/images/babies/cls_africa.webp",
 		caption: "アクスム・紅海沿岸",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	cls_yayoi: {
-		src: null,
+		src: "/images/babies/cls_yayoi.webp",
 		caption: "弥生時代の日本",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 
 	// === 中世 (medieval) ===
@@ -93,34 +93,34 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		sceneDetail: '麻の葉模様の産着と藁編みの籠（えじこ）。'
 	},
 	med_india: {
-		src: null,
+		src: "/images/babies/med_india.webp",
 		caption: "中世南アジア",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	med_west_africa: {
-		src: null,
+		src: "/images/babies/med_west_africa.webp",
 		caption: "中世西アフリカ",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	med_east_africa: {
-		src: null,
+		src: "/images/babies/med_east_africa.webp",
 		caption: "スワヒリ海岸",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	med_mesoamerica: {
-		src: null,
+		src: "/images/babies/med_mesoamerica.webp",
 		caption: "中世メソアメリカ",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	med_andes: {
-		src: null,
+		src: "/images/babies/med_andes.webp",
 		caption: "中世アンデス",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	med_southeast_asia: {
-		src: null,
+		src: "/images/babies/med_southeast_asia.webp",
 		caption: "アンコール・大陸東南アジア",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 
 	// === 近世 (early_modern) ===
@@ -145,29 +145,29 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		sceneDetail: 'レースのリネン産着と彫刻ベッド。'
 	},
 	em_west_africa: {
-		src: null,
+		src: "/images/babies/em_west_africa.webp",
 		caption: "近世西アフリカ",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	em_caribbean: {
-		src: null,
+		src: "/images/babies/em_caribbean.webp",
 		caption: "カリブ海・ブラジル農園地帯",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	em_andes: {
-		src: null,
+		src: "/images/babies/em_andes.webp",
 		caption: "近世アンデス植民地",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	em_mesoamerica: {
-		src: null,
+		src: "/images/babies/em_mesoamerica.webp",
 		caption: "近世メソアメリカ植民地",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	em_north_america: {
-		src: null,
+		src: "/images/babies/em_north_america.webp",
 		caption: "北米大西洋岸・ハドソン湾交易圏",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 
 	// === 近代 (industrial) ===
@@ -177,9 +177,9 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		sceneDetail: 'レースの洗礼ガウンと真鍮ベビーベッド。'
 	},
 	ind_north_america: {
-		src: null,
+		src: "/images/babies/ind_north_america.webp",
 		caption: "近代北米",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	ind_japan: {
 		src: '/images/babies/ind_japan.jpg',
@@ -197,29 +197,29 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		sceneDetail: '純白のカーディー木綿と小さな寝台。'
 	},
 	ind_southeast_asia: {
-		src: null,
+		src: "/images/babies/ind_southeast_asia.webp",
 		caption: "近代東南アジア",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	ind_russia: {
-		src: null,
+		src: "/images/babies/ind_russia.webp",
 		caption: "近代ロシア",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	ind_egypt: {
-		src: null,
+		src: "/images/babies/ind_egypt.webp",
 		caption: "近代エジプト",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	ind_congo: {
-		src: null,
+		src: "/images/babies/ind_congo.webp",
 		caption: "近代コンゴ",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 	ind_latin_america: {
-		src: null,
+		src: "/images/babies/ind_latin_america.webp",
 		caption: "近代ラテンアメリカ",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '布のおくるみに包まれ、住居の寝床で静かに眠る。'
 	},
 
 	// === 現代 (modern) ===
@@ -234,34 +234,34 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		sceneDetail: '柔らかなパステルブランケットとベビーベッド。'
 	},
 	mod_korea: {
-		src: null,
+		src: "/images/babies/mod_korea.webp",
 		caption: "現代韓国",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。'
 	},
 	mod_taiwan: {
-		src: null,
+		src: "/images/babies/mod_taiwan.webp",
 		caption: "現代台湾",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。'
 	},
 	mod_south_asia: {
-		src: null,
+		src: "/images/babies/mod_south_asia.webp",
 		caption: "現代南アジア",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。'
 	},
 	mod_southeast_asia: {
-		src: null,
+		src: "/images/babies/mod_southeast_asia.webp",
 		caption: "現代東南アジア",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。'
 	},
 	mod_subsaharan_africa: {
-		src: null,
+		src: "/images/babies/mod_subsaharan_africa.webp",
 		caption: "現代サハラ以南アフリカ",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。'
 	},
 	mod_mena: {
-		src: null,
+		src: "/images/babies/mod_mena.webp",
 		caption: "現代中東・北アフリカ",
-		sceneDetail: 'この地域に対応する肖像画は準備中です。'
+		sceneDetail: '柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。'
 	},
 	mod_europe: {
 		src: '/images/babies/mod_west.jpg',
@@ -283,65 +283,65 @@ export const BABY_IMAGES: Record<RegionId, BabyImageInfo> = {
 		caption: '現代ロシア・東欧の産科病院',
 		sceneDetail: '厳重に保温された厚手のキルティング毛布とおくるみ。'
 	},
-	med_britain: {"src": null, "caption": "中世ブリテン", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	med_france: {"src": null, "caption": "中世フランス", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	med_germany: {"src": null, "caption": "中世ドイツ地域", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	med_italy: {"src": null, "caption": "中世イタリア地域", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	em_britain: {"src": null, "caption": "近世ブリテン", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	em_france: {"src": null, "caption": "近世フランス", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	em_germany: {"src": null, "caption": "近世ドイツ地域", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	em_italy: {"src": null, "caption": "近世イタリア地域", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	ind_britain: {"src": null, "caption": "近代ブリテン", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	ind_france: {"src": null, "caption": "近代フランス", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	ind_germany: {"src": null, "caption": "近代ドイツ地域", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	ind_italy: {"src": null, "caption": "近代イタリア地域", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_britain: {"src": null, "caption": "現代ブリテン", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_france: {"src": null, "caption": "現代フランス", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_germany: {"src": null, "caption": "現代ドイツ地域", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_italy: {"src": null, "caption": "現代イタリア地域", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	ind_usa: {"src": null, "caption": "近代アメリカ合衆国", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	ind_canada: {"src": null, "caption": "近代カナダ", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_usa: {"src": null, "caption": "現代アメリカ合衆国", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_canada: {"src": null, "caption": "現代カナダ", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	ind_mexico: {"src": null, "caption": "近代メキシコ", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	ind_brazil: {"src": null, "caption": "近代ブラジル", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	ind_argentina: {"src": null, "caption": "近代アルゼンチン", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	ind_peru: {"src": null, "caption": "近代ペルー", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_brazil: {"src": null, "caption": "現代ブラジル", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_mexico: {"src": null, "caption": "現代メキシコ", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_argentina: {"src": null, "caption": "現代アルゼンチン", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_colombia: {"src": null, "caption": "現代コロンビア", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_india: {"src": null, "caption": "現代インド", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_pakistan: {"src": null, "caption": "現代パキスタン", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_bangladesh: {"src": null, "caption": "現代バングラデシュ", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_indonesia: {"src": null, "caption": "現代インドネシア", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_philippines: {"src": null, "caption": "現代フィリピン", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_thailand: {"src": null, "caption": "現代タイ", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_vietnam: {"src": null, "caption": "現代ベトナム", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_malaysia: {"src": null, "caption": "現代マレーシア", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_nigeria: {"src": null, "caption": "現代ナイジェリア", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_ghana: {"src": null, "caption": "現代ガーナ", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_kenya: {"src": null, "caption": "現代ケニア", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_congo: {"src": null, "caption": "現代コンゴ民主共和国", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_senegal: {"src": null, "caption": "現代セネガル", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_south_africa: {"src": null, "caption": "現代南アフリカ", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_egypt: {"src": null, "caption": "現代エジプト", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_iraq: {"src": null, "caption": "現代イラク", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_jordan: {"src": null, "caption": "現代ヨルダン", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_tunisia: {"src": null, "caption": "現代チュニジア", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_libya: {"src": null, "caption": "現代リビア", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_russia: {"src": null, "caption": "現代ロシア", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_ukraine: {"src": null, "caption": "現代ウクライナ", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_belarus: {"src": null, "caption": "現代ベラルーシ", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_kazakhstan: {"src": null, "caption": "現代カザフスタン", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	ind_malaya: {"src": null, "caption": "近代マレー半島", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	ind_java: {"src": null, "caption": "近代ジャワ", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	mod_syria: {"src": null, "caption": "現代シリア", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	med_iraq: {"src": null, "caption": "中世イラク", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	med_egypt: {"src": null, "caption": "中世エジプト", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	med_andalus: {"src": null, "caption": "中世アンダルス", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	med_central_asia: {"src": null, "caption": "中世中央アジア", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
-	em_netherlands: {"src": null, "caption": "近世ネーデルラント", "sceneDetail": "この地域に対応する肖像画は準備中です。"},
+	med_britain: {"src": "/images/babies/med_britain.webp", "caption": "中世ブリテン", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	med_france: {"src": "/images/babies/med_france.webp", "caption": "中世フランス", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	med_germany: {"src": "/images/babies/med_germany.webp", "caption": "中世ドイツ地域", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	med_italy: {"src": "/images/babies/med_italy.webp", "caption": "中世イタリア地域", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	em_britain: {"src": "/images/babies/em_britain.webp", "caption": "近世ブリテン", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	em_france: {"src": "/images/babies/em_france.webp", "caption": "近世フランス", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	em_germany: {"src": "/images/babies/em_germany.webp", "caption": "近世ドイツ地域", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	em_italy: {"src": "/images/babies/em_italy.webp", "caption": "近世イタリア地域", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	ind_britain: {"src": "/images/babies/ind_britain.webp", "caption": "近代ブリテン", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	ind_france: {"src": "/images/babies/ind_france.webp", "caption": "近代フランス", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	ind_germany: {"src": "/images/babies/ind_germany.webp", "caption": "近代ドイツ地域", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	ind_italy: {"src": "/images/babies/ind_italy.webp", "caption": "近代イタリア地域", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	mod_britain: {"src": "/images/babies/mod_britain.webp", "caption": "現代ブリテン", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_france: {"src": "/images/babies/mod_france.webp", "caption": "現代フランス", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_germany: {"src": "/images/babies/mod_germany.webp", "caption": "現代ドイツ地域", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_italy: {"src": "/images/babies/mod_italy.webp", "caption": "現代イタリア地域", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	ind_usa: {"src": "/images/babies/ind_usa.webp", "caption": "近代アメリカ合衆国", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	ind_canada: {"src": "/images/babies/ind_canada.webp", "caption": "近代カナダ", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	mod_usa: {"src": "/images/babies/mod_usa.webp", "caption": "現代アメリカ合衆国", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_canada: {"src": "/images/babies/mod_canada.webp", "caption": "現代カナダ", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	ind_mexico: {"src": "/images/babies/ind_mexico.webp", "caption": "近代メキシコ", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	ind_brazil: {"src": "/images/babies/ind_brazil.webp", "caption": "近代ブラジル", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	ind_argentina: {"src": "/images/babies/ind_argentina.webp", "caption": "近代アルゼンチン", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	ind_peru: {"src": "/images/babies/ind_peru.webp", "caption": "近代ペルー", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	mod_brazil: {"src": "/images/babies/mod_brazil.webp", "caption": "現代ブラジル", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_mexico: {"src": "/images/babies/mod_mexico.webp", "caption": "現代メキシコ", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_argentina: {"src": "/images/babies/mod_argentina.webp", "caption": "現代アルゼンチン", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_colombia: {"src": "/images/babies/mod_colombia.webp", "caption": "現代コロンビア", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_india: {"src": "/images/babies/mod_india.webp", "caption": "現代インド", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_pakistan: {"src": "/images/babies/mod_pakistan.webp", "caption": "現代パキスタン", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_bangladesh: {"src": "/images/babies/mod_bangladesh.webp", "caption": "現代バングラデシュ", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_indonesia: {"src": "/images/babies/mod_indonesia.webp", "caption": "現代インドネシア", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_philippines: {"src": "/images/babies/mod_philippines.webp", "caption": "現代フィリピン", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_thailand: {"src": "/images/babies/mod_thailand.webp", "caption": "現代タイ", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_vietnam: {"src": "/images/babies/mod_vietnam.webp", "caption": "現代ベトナム", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_malaysia: {"src": "/images/babies/mod_malaysia.webp", "caption": "現代マレーシア", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_nigeria: {"src": "/images/babies/mod_nigeria.webp", "caption": "現代ナイジェリア", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_ghana: {"src": "/images/babies/mod_ghana.webp", "caption": "現代ガーナ", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_kenya: {"src": "/images/babies/mod_kenya.webp", "caption": "現代ケニア", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_congo: {"src": "/images/babies/mod_congo.webp", "caption": "現代コンゴ民主共和国", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_senegal: {"src": "/images/babies/mod_senegal.webp", "caption": "現代セネガル", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_south_africa: {"src": "/images/babies/mod_south_africa.webp", "caption": "現代南アフリカ", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_egypt: {"src": "/images/babies/mod_egypt.webp", "caption": "現代エジプト", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_iraq: {"src": "/images/babies/mod_iraq.webp", "caption": "現代イラク", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_jordan: {"src": "/images/babies/mod_jordan.webp", "caption": "現代ヨルダン", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_tunisia: {"src": "/images/babies/mod_tunisia.webp", "caption": "現代チュニジア", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_libya: {"src": "/images/babies/mod_libya.webp", "caption": "現代リビア", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_russia: {"src": "/images/babies/mod_russia.webp", "caption": "現代ロシア", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_ukraine: {"src": "/images/babies/mod_ukraine.webp", "caption": "現代ウクライナ", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_belarus: {"src": "/images/babies/mod_belarus.webp", "caption": "現代ベラルーシ", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	mod_kazakhstan: {"src": "/images/babies/mod_kazakhstan.webp", "caption": "現代カザフスタン", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	ind_malaya: {"src": "/images/babies/ind_malaya.webp", "caption": "近代マレー半島", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	ind_java: {"src": "/images/babies/ind_java.webp", "caption": "近代ジャワ", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	mod_syria: {"src": "/images/babies/mod_syria.webp", "caption": "現代シリア", "sceneDetail": "柔らかな布のおくるみに包まれ、明るい部屋で静かに眠る。"},
+	med_iraq: {"src": "/images/babies/med_iraq.webp", "caption": "中世イラク", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	med_egypt: {"src": "/images/babies/med_egypt.webp", "caption": "中世エジプト", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	med_andalus: {"src": "/images/babies/med_andalus.webp", "caption": "中世アンダルス", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	med_central_asia: {"src": "/images/babies/med_central_asia.webp", "caption": "中世中央アジア", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
+	em_netherlands: {"src": "/images/babies/em_netherlands.webp", "caption": "近世ネーデルラント", "sceneDetail": "布のおくるみに包まれ、住居の寝床で静かに眠る。"},
 };
 
 export function getBabyImage(regionId: RegionId): BabyImageInfo {

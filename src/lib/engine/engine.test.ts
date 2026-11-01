@@ -33,12 +33,11 @@ describe('Data Consistency', () => {
 		}
 	});
 
-	test('all baby images exist in static/', () => {
+	test('all regions have a completed baby portrait in static/', () => {
 		for (const [id, info] of Object.entries(BABY_IMAGES)) {
-			if (info.src === null) {
-				expect(info.caption.length, id).toBeGreaterThan(0);
-				continue;
-			}
+			expect(info.src, id).not.toBeNull();
+			expect(info.caption.length, id).toBeGreaterThan(0);
+			expect(info.sceneDetail, id).not.toContain('準備中');
 			const path = 'static' + info.src;
 			expect(fs.existsSync(path)).toBe(true);
 		}

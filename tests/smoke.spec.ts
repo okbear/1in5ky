@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('1in5ky E2E smoke tests', () => {
-	test('split region: birth certificate shows a neutral portrait when regional artwork is unavailable', async ({ page }) => {
+	test('split region: birth certificate loads its regional baby portrait', async ({ page }) => {
 		await page.goto('/', { waitUntil: 'networkidle' });
 		// Choose the modern era, then the new sub-Saharan profile through the normal birth roll.
 		await page.evaluate(() => {
@@ -13,9 +13,11 @@ test.describe('1in5ky E2E smoke tests', () => {
 		await expect(cert).toBeVisible();
 		await expect(cert.locator('.fields')).toContainText(/年 [\d,]+/);
 		await expect(cert.locator('.caption-title')).toHaveText('現代コンゴ民主共和国');
-		const portrait = cert.getByRole('img', { name: '出生時の肖像画は準備中' });
+		const portrait = cert.locator('.frame img');
 		await expect(portrait).toBeVisible();
-		await expect(cert.locator('.frame img')).toHaveCount(0);
+		await expect(portrait).toHaveAttribute('src', '/images/babies/mod_congo.webp');
+		await expect(portrait).toHaveJSProperty('complete', true);
+		await expect(portrait).toHaveJSProperty('naturalWidth', 400);
 		const frameBox = await cert.locator('.frame').boundingBox();
 		const portraitBox = await portrait.boundingBox();
 		expect(portraitBox!.width).toBeLessThanOrEqual(frameBox!.width);
