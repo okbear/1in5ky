@@ -38,11 +38,11 @@ const makeFamilyDeathEvent = (c: CharacterState, f: FamilyMember, childAge?: num
 		choiceSubLabel = '深い悲しみを抱えながらも前を向く';
 		outcomeText = `冷たくなった${f.name}を土に還し、名もなき小石を墓標として置いた。悲しみを抱えながらも残された家族のために立ち上がった。`;
 	} else if (isParent) {
-		description = `これまで家を支えてくれた${f.relation}の${f.name}が病に倒れ、息を引き取った。家族皆で枕元に集まり、長年の感謝と別れを告げた。`;
+		description = `これまで家を支えていた${f.relation}の${f.name}が病に倒れ、息を引き取った。残された家族は悲しみに暮れ、家の中に重い静けさが広がっている。`;
 		factBox = `この時代・地域（${c.environment.region.name}）で15歳まで生存した人の平均到達年齢は約${c.environment.region.lifeExpectancyAt15}歳。医療環境は現在年に対応する地域プロファイルを用いている。`;
-		choiceLabel = `${f.relation}の教えを胸に、弔いを執り行う`;
-		choiceSubLabel = '親の遺志を受け継ぎ、家の役目を引き継ぐ';
-		outcomeText = `${f.relation}の${f.name}を弔い、家族とともに別れを惜しんだ。自分自身が家を支える番になったことを強く自覚した。`;
+		choiceLabel = '残された家族と寄り添い、別れの時を過ごす';
+		choiceSubLabel = '大きな支えを失った家で、これからの暮らしが始まる';
+		outcomeText = `${f.relation}の${f.name}を見送り、家族は深い喪失感のなかで身を寄せ合った。${f.relation}のいない新しい日々の暮らしが始まった。`;
 	} else if (isSpouse) {
 		description = `苦楽をともにしてきた${f.relation}の${f.name}が病に倒れ、帰らぬ人となった。一人残された部屋に深い静寂が広がる。`;
 		factBox = `過酷な労働環境や栄養状態、感染症により、人生の盛りの時期に配偶者に先立たれることは決して珍しくなかった。`;
@@ -50,11 +50,11 @@ const makeFamilyDeathEvent = (c: CharacterState, f: FamilyMember, childAge?: num
 		choiceSubLabel = '喪失の痛みに耐え、残された日々を生きる';
 		outcomeText = `${f.relation}の${f.name}を静かに見送った。ぽっかりと心に空いた穴を抱えながらも、残された日々を懸命に生きることを誓った。`;
 	} else {
-		description = `幼い頃からともに育ってきた${f.relation}の${f.name}が亡くなった。過酷な暮らしのなかで、またひとりの身内が世を去った。`;
+		description = `${f.relation}の${f.name}が亡くなった。家の中は深い悲しみに包まれ、家族は声をひそめて別れを惜しんでいる。`;
 		factBox = `兄弟姉妹も、親や配偶者、子どもと同じように、実際の年齢と現在の医療環境に応じた死亡判定を受ける。`;
-		choiceLabel = '思い出を胸に、静かに手を合わせる';
-		choiceSubLabel = '生きていく厳しさを噛み締め、冥福を祈る';
-		outcomeText = `${f.relation}の${f.name}を埋葬し、静かに手を合わせた。幼き日の面影を胸に抱きながら、その冥福を祈った。`;
+		choiceLabel = '悲しみに沈む家族と、静かな時間を過ごす';
+		choiceSubLabel = '家の中に重く静かな空気が流れている';
+		outcomeText = `${f.relation}の${f.name}を見送り、家族はしばらく深い悲しみに暮れた。少し寂しくなった家で、また日々の暮らしが続いていく。`;
 	}
 
 	return {
