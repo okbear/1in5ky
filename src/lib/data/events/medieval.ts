@@ -833,6 +833,13 @@ export const MEDIEVAL_EVENTS: DecisionEvent[] = ([
         "outcomeText": "町衆の固い結束で足軽の略奪を跳ね除け、洛中で奇跡的に焼け残った町屋を守り抜いた。",
         "deathText": "東軍の足軽隊が放った火矢で木戸が炎上し、斬り込んできた槍衾に貫かれて戦死した。"
       }
+    ],
+    "places": [
+      "平安京（京都）"
+    ],
+    "yearRange": [
+      1467,
+      1477
     ]
   },
   {

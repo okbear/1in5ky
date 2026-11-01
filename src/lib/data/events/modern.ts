@@ -172,6 +172,13 @@ export const MODERN_EVENTS: DecisionEvent[] = ([
         "outcomeText": "間一髪で津波の到達前に高台の歩道橋へ駆け上がり、二人で手を取り合って生還の涙を流した。",
         "deathText": "背後の堤防を越えて迫る津波の壁から逃げ切れず、高齢者とともに激流に呑み込まれて落命した。"
       }
+    ],
+    "yearRange": [
+      2011,
+      2011
+    ],
+    "places": [
+      "東北の沿岸集落"
     ]
   },
   {
@@ -214,6 +221,10 @@ export const MODERN_EVENTS: DecisionEvent[] = ([
         },
         "outcomeText": "家族の献身的な看病を受け、家庭内二次感染を一人も出すことなく無事に回復を果たした。"
       }
+    ],
+    "yearRange": [
+      2020,
+      2022
     ]
   },
   {

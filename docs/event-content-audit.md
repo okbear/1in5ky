@@ -9,6 +9,26 @@
 
 ## 征服・戦争の適用範囲
 
+- `anc_egypt_tomb_robbery`: テーベ・新王国期（紀元前1550〜1069年）へ限定。[エジプト観光考古省のテーベ解説](https://egymonuments.gov.eg/en/world-heritage/ancient-thebes-and-its-necropolis)。王家の谷の労働を全古代・全エジプトへ広げない。
+- `anc_china_oracle_sacrifice`: 殷墟・紀元前1200〜1050年のシナリオへ限定。[スコットランド国立博物館の後期殷の甲骨解説](https://blog.nms.ac.uk/2018/05/19/the-backside-of-the-bones-an-analytical-study-of-shang-dynasty-oracle-bones/)。甲骨占いそのものの全存続期間・全分布を再現する範囲ではない。
+- `anc_indus_great_bath_hygiene`: モヘンジョ・ダロの成熟期のシナリオ（紀元前2600〜1900年）へ限定。ハラッパーの住民へ同じ大浴場を出さない。新月の儀礼、神官の祝福、薬草茶による回復など、用途・信仰を確定したような本文を削除。[UNESCOの遺跡解説](https://whc.unesco.org/en/list/138/)、[Harappaの展示刊行物](https://www.harappa.com/sites/default/files/pdf/Rediscovering_Harappa.pdf)。清潔さや感染リスクの場面・確率はゲーム上の設定で、遺跡の水質を実測したものではない。
+- `med_jpn_onrui_fire_kyoto`: 京都・1467〜1477年へ限定。[京都市の応仁・文明の乱の解説](https://www2.city.kyoto.lg.jp/somu/rekishi/fm/nenpyou/htmlsheet/toshi14.html)。鎌倉・博多・中世全期間へ同じ市街戦を発生させない。
+
+全219件の適用条件は [自動生成一覧](./event-scope-inventory.md) で確認できる。更新は `bun scripts/audit-events.ts`。一覧に載ること自体は本文の史実監査完了を意味しない。
+
+- `em_eur_pressgang_navy` にも残っていた欧州全域の英国海軍徴募を、ロンドン1700〜1799年へ限定。船員経験を導入文に明記し、ポーツマスと実際の居所が食い違う本文も修正。[英国議会の解説](https://www.parliament.uk/about/living-heritage/transformingsociety/private-lives/yourcountry/overview/pressgangs-/)。既存の近代までの徴募イベントとは別IDのため、両方を監査した。
+- `em_ind_taj_mahal_quarry_labor`: アーグラ1632〜1653年の造営へ限定。[UNESCOのタージ・マハル解説](https://whc.unesco.org/en/list/252/)。採石場からの輸送はこの造営シナリオの導入として扱い、ラホールなどの全住民へ同じ現場労働を発生させない。
+- `ind_chn_may_fourth_protest`: 北京1919年へ限定。[英国国立公文書館の五四運動資料](https://www.nationalarchives.gov.uk/education/resources/may-fourth-movement-1919/)。`ind_chn_boxer_bullet_storm` は北京・天津1900〜1901年へ限定。[英国陸軍博物館](https://www.nam.ac.uk/explore/boxer-rebellion)。運動全体の全発生地・期間を再現するものではない。
+- `ind_jpn_rice_riot_store`: 鈴木商店の焼き討ちを含む本文のため、神戸1918年へ限定。[国立国会図書館の米騒動史料](https://www.ndl.go.jp/modern/cha3/description06.html)。米騒動全体を神戸だけの事件とする意味ではない。
+- `ind_ind_dandi_salt_gathering`: 1930年へ限定し、ダンディーに直接居合わせる本文を、塩の行進が伝わったボンベイで抗議に関わる導入へ変更。[インド政府Rajghatの年表](https://rajghat.gov.in/chronology)。選択肢は地域での不服従運動を扱うゲーム場面。
+- `mod_jpn_great_quake_liquefaction`: 東北の沿岸集落・2011年へ限定。[気象庁](https://www.jma.go.jp/jma/menu/jishin-portal.html)。場所を地域プロファイルに追加したため、既存の等確率の農村内抽選の配分は変わるが、日本全体の出生ウェイトは変えない。沿岸内部の浸水域・地形の精密化は未対応。
+- `mod_jpn_covid_isolation`: 宿泊療養のシナリオを2020〜2022年へ限定。[厚生労働省の2023年5月の移行資料](https://www.mhlw.go.jp/content/001094144.pdf)。2023年前半にも運用されていたが、年単位のため今回のシナリオでは除外する。感染症自体が2022年に終息したという意味ではない。
+
+- 古典期の `classical_plague_war` はローマ市165〜180年のアントニヌスの疫病を扱う範囲へ限定。漢・インド・ペルシアに同じ流行と死亡割合を与えない。[Gettyの事件レコード](https://www.getty.edu/cona/CONAIconographyRecord.aspx?iconid=901002637)。採用期間は流行の全終息を断定するものではない。
+- `classical_great_wall_frontier` と `cls_han_corvee_great_wall` は前漢期の紀元前1世紀へ限定。前者では男性農民の条件を付け、遅刻なら即斬首・全員同じ年数の勤務という断定も削除。[中央研究院の漢簡展示](https://museum.sinica.edu.tw/en/exhibitions/38/)。採用世紀は個別の徴発年や制度全期間ではない。代役・免役の個別制度や軍務の状態は未対応。
+- `cls_rome_gladiator_ticket` はローマ市80〜400年へ限定。[King's College Londonの建築史プロジェクト](https://aofm-os.kdl.kcl.ac.uk/explore/monuments/113/)。80年は開場年、400年はこのシナリオの採用上限で興行の完全終了年ではない。
+- `cls_india_ashoka_edicts_hearing` は紀元前250〜232年のシナリオへ限定。[UNESCOの法勅遺跡説明](https://whc.unesco.org/en/tentativelists/6803)。在位期間全体を碑文設置期間と同一視しない。碑文の種類・個別の建立年・読み聞かせ場所の精密化は残る。
+
 - `modern_cold_war_conflict`: 南・東南アジア、サハラ以南、中東・北アフリカの全対象国に年代指定なしで出ていた内戦を、現在のバングラデシュに当たる地域の1971年に限定し、独立戦争中の民間人の避難・生活維持へ本文を変更。[国連バングラデシュの歴史](https://bangladesh.un.org/en/about/about-the-un)。避難先として隣国を約束しつつ国内都市へしか移動しなかった効果は削除し、近くの避難先を探す表現にした。実際の国境越え・難民状態のモデルは未実装。従来の冷戦というIDは互換のため維持する。他国の紛争を否定せず、別の出典付き事件として今後追加する。
 - `industrial_conscription_order`: 1800年から出得た日本の赤紙召集を1937〜1944年、20歳以上へ限定。徴兵検査と臨時召集を混同しない本文へ変更。[国立公文書館の1873年徴兵令解説](https://www.archives.go.jp/ayumi/kobetsu/m06_1873_01.html)、[平和祈念展示資料館](https://www.heiwakinen.go.jp/about/josetsu-heishi/)。期間はこのシナリオの採用範囲であり制度の存続期間ではない。1945年は現代区分へ移るため今回の近代シナリオでは対象外。免除・召集対象・年齢の法改正すべてを再現してはいない。
 

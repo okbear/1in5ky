@@ -387,6 +387,13 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = ([
         },
         "outcomeText": "戒厳令下の軍隊の銃剣突撃を間一髪で回避し、家で家族とともに無事に騒乱をやり過ごした。"
       }
+    ],
+    "yearRange": [
+      1918,
+      1918
+    ],
+    "places": [
+      "神戸"
     ]
   },
   {
@@ -513,6 +520,14 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = ([
         },
         "outcomeText": "都の城門を間一髪で抜け出し、連合軍の略奪が始まる前に田舎の親類の元へ逃げ延びた。"
       }
+    ],
+    "yearRange": [
+      1900,
+      1901
+    ],
+    "places": [
+      "北京",
+      "天津"
     ]
   },
   {
@@ -601,6 +616,13 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = ([
         },
         "outcomeText": "若い工員たちに文字と世界の情勢を教え、新しい時代を担う多くの青年を育て上げた。"
       }
+    ],
+    "yearRange": [
+      1919,
+      1919
+    ],
+    "places": [
+      "北京"
     ]
   },
   {
@@ -780,7 +802,7 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = ([
   },
   {
     "id": "ind_ind_dandi_salt_gathering",
-    "title": "ガンディーの塩の行進と海辺での非暴力不服従",
+    "title": "塩の行進とボンベイでの非暴力不服従",
     "category": "historical_wave",
     "eraIds": [
       "industrial"
@@ -790,7 +812,7 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = ([
     ],
     "minAge": 15,
     "maxAge": 60,
-    "description": "マハトマ・ガンディーが不当な塩専売税に抗議して400キロを歩き、ダンディーの海岸に到着した。民衆とともに海水を煮詰め、自らの手で一握りの自然塩を作る運動に参加する。",
+    "description": "ガンディーがダンディーの海岸で塩法を破ったことが伝わり、抗議の動きが各地に広がっている。ボンベイでも塩の専売や植民地支配に対する非暴力の運動へ関わるか考える。",
     "factBox": "1930年の「塩の行進」はインド独立運動の象徴的転換点となり、数万人が警棒で殴打されながらも一歩も退かず逮捕された。",
     "choices": [
       {
@@ -819,6 +841,13 @@ export const INDUSTRIAL_EVENTS: DecisionEvent[] = ([
         },
         "outcomeText": "純白の手織り布を仕立てて身にまとい、経済的自立を訴える運動の強固な土台を支えた。"
       }
+    ],
+    "yearRange": [
+      1930,
+      1930
+    ],
+    "places": [
+      "ボンベイ"
     ]
   },
   {

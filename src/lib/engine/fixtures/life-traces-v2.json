@@ -2,9 +2,9 @@
   {
     "eraId": "ancient",
     "seed": 1,
-    "calls": 135,
-    "decisions": 13,
-    "digest": "ab6f4078567c90de32e751040f858b91f924a4a212ccf69e73d547407aa2ce35"
+    "calls": 126,
+    "decisions": 11,
+    "digest": "87f7a80841dfc25d1881c51edbbb20e2c53bb73df0a9b652bfeec22666eea365"
   },
   {
     "eraId": "ancient",
@@ -30,9 +30,9 @@
   {
     "eraId": "classical",
     "seed": 1,
-    "calls": 402,
-    "decisions": 19,
-    "digest": "0fee12b4cf8a6d9ac73cf224d284c6ca12baecf994c8da882d3ca4385ab32f46"
+    "calls": 301,
+    "decisions": 18,
+    "digest": "59f6e820ff9793b539b4950567bd21eb4fa306786655a6c5862e037976aaeade"
   },
   {
     "eraId": "classical",
@@ -156,9 +156,9 @@
   {
     "eraId": "modern",
     "seed": 2026,
-    "calls": 245,
-    "decisions": 12,
-    "digest": "a285c68fb517d66537e1e4a16abbe5fd4afec8fb0c394f3c5dc59dc4abb01c08"
+    "calls": 472,
+    "decisions": 21,
+    "digest": "e35d1cca539027b605d468c9298b63d11b479c1d1101f727e510a6e43d125de4"
   },
   {
     "eraId": "modern",

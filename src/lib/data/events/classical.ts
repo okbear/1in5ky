@@ -92,6 +92,8 @@ export const CLASSICAL_EVENTS: DecisionEvent[] = ([
   },
   {
     "id": "cls_rome_gladiator_ticket",
+    "places": ["ローマ"],
+    "yearRange": [80, 400],
     "title": "フラウィウス円形闘技場（コロッセウム）の興行",
     "category": "livelihood",
     "eraIds": [
@@ -254,6 +256,8 @@ export const CLASSICAL_EVENTS: DecisionEvent[] = ([
   },
   {
     "id": "cls_han_corvee_great_wall",
+    "yearRange": [-100, -1],
+    "sex": "M",
     "title": "北方辺境・長城防備の戍卒（じゅそつ）徴募",
     "category": "historical_wave",
     "eraIds": [
@@ -464,6 +468,7 @@ export const CLASSICAL_EVENTS: DecisionEvent[] = ([
   },
   {
     "id": "cls_india_ashoka_edicts_hearing",
+    "yearRange": [-250, -232],
     "title": "マウリヤ朝アショーカ王の法勅の石柱",
     "category": "common_sense",
     "eraIds": [

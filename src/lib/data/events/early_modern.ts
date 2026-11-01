@@ -543,6 +543,13 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = ([
         "outcomeText": "仲間の象使いと協力して難所のヤムナー川を渡り切り、怪我なく無事に皇帝からの特別報奨金を手にした。",
         "deathText": "泥濘に足を取られた運搬車が横転し、滑り落ちてきた巨大な大理石ブロックの下敷きとなって落命した。"
       }
+    ],
+    "yearRange": [
+      1632,
+      1653
+    ],
+    "places": [
+      "アーグラ"
     ]
   },
   {
@@ -803,11 +810,11 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = ([
       "early_modern"
     ],
     "regionIds": [
-      "em_europe"
+      "em_britain"
     ],
     "minAge": 16,
     "maxAge": 45,
-    "description": "ポーツマスの港町酒場でビールを飲んでいると、警棒とカトラスを持った海軍の徴募隊（プレス・ギャング）が突入してきた。外洋軍艦の水兵不足を補うため、居合わせた男たちが強制連行される。",
+    "description": "ロンドンの港の酒場で、海軍の徴募隊が船員経験のある者を探している。船の仕事をしてきたあなたも呼び止められ、軍艦への乗船を迫られた。",
     "factBox": "18世紀の英国海軍は慢性的な水兵不足を補うため「強制徴募（プレス）」を頻繁に行い、酒場や商船から船員を拉致同然に徴集した。",
     "choices": [
       {
@@ -838,6 +845,13 @@ export const EARLY_MODERN_EVENTS: DecisionEvent[] = ([
         "outcomeText": "大砲の装填手を務めて幾多の海戦を生き延び、拿捕賞金の分け前を手に入れて無事に除隊した。",
         "deathText": "海戦中に敵弾が砲甲板を貫通し、飛び散った巨大な木片が胸に突き刺さって戦死した。"
       }
+    ],
+    "yearRange": [
+      1700,
+      1799
+    ],
+    "places": [
+      "ロンドン"
     ]
   },
   {

@@ -76,7 +76,9 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = ([
 	{
 		id: 'classical_plague_war',
 		title: '街道を伝って疫病と徴兵がやってきた',
-		regionIds: ['cls_rome', 'cls_han', 'cls_india', 'cls_persia'],
+		regionIds: ['cls_rome'],
+		places: ['ローマ'],
+		yearRange: [165, 180],
 		category: 'historical_wave',
 		eraIds: ['classical'],
 		minAge: 14,
@@ -84,7 +86,7 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = ([
 		isHistoricalWave: true,
 		description:
 			'帝国を結ぶ街道と港は、富だけでなく遠方の戦争と未知の疫病も運んできた。都市の広場では毎日葬列が続き、辺境への派兵が触れ回られている。',
-		factBox: 'ローマ帝国のアントニヌスの疫病（165〜180年）や漢末の疫病は、交易網を通じて帝国全土に広がり人口の1〜2割を奪った。',
+		factBox: '165年以降、ローマ帝国ではアントニヌスの疫病が流行した。ここではローマ市の165〜180年を扱う。病原体や死亡規模には不確実性があり、漢・インド・ペルシアに同じ流行や死亡割合を当てはめない。',
 		choices: [
 			{
 				id: 'retreat_villa',
@@ -114,16 +116,19 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = ([
 		category: 'livelihood',
 		eraIds: ['classical'],
 		regionIds: ['cls_han'],
+		yearRange: [-100, -1],
+		sex: 'M',
+		classIds: ['peasant'],
 		minAge: 16,
 		maxAge: 48,
 		description:
-			'北方の騎馬遊牧民（匈奴）の侵攻を防ぐため、数千里離れた極寒の辺境へ「戍卒（国境守備兵）・築城人夫」として赴けという木簡が届いた。期日に遅れれば法により斬首される。',
-		factBox: '秦・漢帝国では成人男性に兵役と辺境警備（戍辺）が課された。「長城の下に白骨が連なる」と謳われたほど、寒さと飢えで多くの農民兵が命を落とした。',
+			'北方の辺境へ守備や築城の仕事に赴くよう命令が届いた。家を離れる負担も、遠い土地での寒さや食料不足も不安だが、家族と対応を考えなければならない。',
+		factBox: '漢代の簡牘には辺境の守備・開拓や連絡網の記録が残る。このイベントは前漢期の紀元前1世紀を採用し、秦漢以前や漢滅亡後まで同じ徴発制度を続けない。',
 		choices: [
 			{
 				id: 'go_frontier',
 				label: '家族に別れを告げ、北の辺境へ旅立つ',
-				subLabel: '凍える砂漠の砦で2年間の守備につく',
+				subLabel: '遠い砦で守備の務めを果たす',
 				survivalChance: 0.68,
 				deathCause: '辺境での凍死・過労・騎馬民族との戦闘',
 				effects: { health: -18, happiness: -15, relations: -8 },
@@ -132,7 +137,7 @@ export const ANCIENT_CLASSICAL_EVENTS: DecisionEvent[] = ([
 			},
 			{
 				id: 'pay_substitute_han',
-				label: '田畑を売って「更賦（代役税）」を払い、人を雇って代わりに行かせる',
+				label: '田畑を手放して資金を工面し、役の負担を軽くする手立てを探す',
 				subLabel: '命は助かるが、家の田畑を失い小作人に落ちる',
 				survivalChance: 0.95,
 				deathCause: '困窮による衰弱',

@@ -9,6 +9,70 @@ import { matchesEventSetting } from '#lib/engine/eventScope';
 import { ERAS } from '#lib/data/eras';
 import { isEventEligible } from '#lib/engine/events';
 
+test('ancient sites and the Onin War require the relevant city and period', () => {
+	for (const [id, regionId, place, year, expected] of [
+		['anc_egypt_tomb_robbery', 'anc_egypt', 'テーベ', -1200, true],
+		['anc_egypt_tomb_robbery', 'anc_egypt', 'メンフィス', -1200, false],
+		['anc_egypt_tomb_robbery', 'anc_egypt', 'テーベ', -2500, false],
+		['anc_china_oracle_sacrifice', 'anc_china', '殷墟', -1100, true],
+		['anc_china_oracle_sacrifice', 'anc_china', '鎬京', -1100, false],
+		['anc_china_oracle_sacrifice', 'anc_china', '殷墟', -600, false],
+		['anc_indus_great_bath_hygiene', 'anc_indus', 'モヘンジョ・ダロ', -2300, true],
+		['anc_indus_great_bath_hygiene', 'anc_indus', 'ハラッパー', -2300, false],
+		['med_jpn_onrui_fire_kyoto', 'med_japan', '平安京（京都）', 1467, true],
+		['med_jpn_onrui_fire_kyoto', 'med_japan', '鎌倉', 1467, false],
+		['med_jpn_onrui_fire_kyoto', 'med_japan', '平安京（京都）', 1300, false]
+	] as const) {
+		const region = REGIONS.find(entry => entry.id === regionId)!;
+		const event = ALL_EVENTS.find(entry => entry.id === id)!;
+		expect(matchesEventSetting({ region, era: ERAS[region.eraId], place, currentYear: year }, event)).toBe(expected);
+	}
+});
+
+test('named historical episodes stay within their dates and local settings', () => {
+	for (const [id, regionId, place, year, expected] of [
+		['em_ind_taj_mahal_quarry_labor', 'em_mughal_india', 'アーグラ', 1600, false],
+		['em_ind_taj_mahal_quarry_labor', 'em_mughal_india', 'アーグラ', 1640, true],
+		['em_ind_taj_mahal_quarry_labor', 'em_mughal_india', 'ラホール', 1640, false],
+		['em_eur_pressgang_navy', 'em_france', 'パリ', 1750, false],
+		['em_eur_pressgang_navy', 'em_britain', 'ロンドン', 1750, true],
+		['ind_chn_may_fourth_protest', 'ind_china', '北京', 1918, false],
+		['ind_chn_may_fourth_protest', 'ind_china', '北京', 1919, true],
+		['ind_chn_boxer_bullet_storm', 'ind_china', '上海', 1900, false],
+		['ind_jpn_rice_riot_store', 'ind_japan', '神戸', 1918, true],
+		['ind_jpn_rice_riot_store', 'ind_japan', '東京', 1918, false],
+		['ind_ind_dandi_salt_gathering', 'ind_india', 'ボンベイ', 1930, true],
+		['mod_jpn_great_quake_liquefaction', 'mod_japan', '東北の沿岸集落', 2011, true],
+		['mod_jpn_great_quake_liquefaction', 'mod_japan', '大阪', 2011, false],
+		['mod_jpn_covid_isolation', 'mod_japan', '東京', 1950, false],
+		['mod_jpn_covid_isolation', 'mod_japan', '東京', 2021, true]
+	] as const) {
+		const region = REGIONS.find(entry => entry.id === regionId)!;
+		const event = ALL_EVENTS.find(entry => entry.id === id)!;
+		expect(matchesEventSetting({ region, era: ERAS[region.eraId], place, currentYear: year }, event)).toBe(expected);
+	}
+});
+
+test('classical monuments, royal edicts and epidemics do not precede their historical setting', () => {
+	for (const [id, regionId, place, year, expected] of [
+		['cls_rome_gladiator_ticket', 'cls_rome', 'ローマ', 79, false],
+		['cls_rome_gladiator_ticket', 'cls_rome', 'ローマ', 80, true],
+		['cls_rome_gladiator_ticket', 'cls_rome', 'アレクサンドリア', 100, false],
+		['cls_india_ashoka_edicts_hearing', 'cls_india', 'パータリプトラ', -250, true],
+		['cls_india_ashoka_edicts_hearing', 'cls_india', 'パータリプトラ', 100, false],
+		['classical_plague_war', 'cls_rome', 'ローマ', 164, false],
+		['classical_plague_war', 'cls_rome', 'ローマ', 165, true],
+		['classical_plague_war', 'cls_india', 'パータリプトラ', 165, false],
+		['classical_great_wall_frontier', 'cls_han', '長安', -100, true],
+		['classical_great_wall_frontier', 'cls_han', '長安', 300, false],
+		['cls_han_corvee_great_wall', 'cls_han', '長安', 300, false]
+	] as const) {
+		const region = REGIONS.find(entry => entry.id === regionId)!;
+		const event = ALL_EVENTS.find(entry => entry.id === id)!;
+		expect(matchesEventSetting({ region, era: ERAS[region.eraId], place, currentYear: year }, event)).toBe(expected);
+	}
+});
+
 test('wartime Japanese call-up and Bangladesh conflict do not spill into peaceful years or other countries', () => {
 	for (const [id, regionId, year, expected] of [
 		['industrial_conscription_order', 'ind_japan', 1800, false],

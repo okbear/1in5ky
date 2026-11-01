@@ -10,7 +10,7 @@ export const MODERN_REGIONS: RegionProfile[] = [
 		subName: '戦後〜現代日本',
 		polity: '日本国',
 		cities: ['東京', '大阪', '名古屋', '福岡', '札幌'],
-		ruralAreas: ['東北の農村', '山陰の町', '九州の農村'],
+		ruralAreas: ['東北の農村', '山陰の町', '九州の農村', '東北の沿岸集落'],
 		birthWeight: 4,
 		infantMortality: 15,
 		under5Mortality: 20,
