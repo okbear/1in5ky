@@ -88,13 +88,14 @@
 			<Scene region={env.region} />
 		</div>
 		<div class="wrap tbar">
-			<div class="brand">5000年分の<em>1</em></div>
 			<div class="agebox">
 				<div class="age mono">{c.age}<small>歳</small></div>
 				<div class="yr">{formatYear(c.currentYear)} · {env.region.name}</div>
 			</div>
-			<ThemeToggle />
-			<button class="quit-btn" onclick={() => game.quit()}>中断</button>
+			<div class="header-actions">
+				<ThemeToggle />
+				<button class="quit-btn" onclick={() => game.quit()}>中断</button>
+			</div>
 		</div>
 	</header>
 
@@ -322,7 +323,7 @@
 		left: auto;
 		right: max(0px, calc(50% - 490px));
 		width: min(72%, 440px);
-		opacity: 0.72;
+		opacity: 0.28;
 		pointer-events: none;
 		-webkit-mask-image: linear-gradient(90deg, transparent, #000 48%);
 		mask-image: linear-gradient(90deg, transparent, #000 48%);
@@ -338,23 +339,19 @@
 		padding-block: 8px;
 		text-shadow: 0 1px 3px var(--paper), 0 0 8px var(--paper), 0 0 16px var(--paper);
 	}
-	.brand {
-		font-family: var(--f-display);
-		font-weight: 700;
-		font-size: 16px;
-		white-space: nowrap;
-	}
-	.brand em {
-		font-style: normal;
-		color: var(--accent);
+	.header-actions {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex: none;
 	}
 	.agebox {
 		display: flex;
-		align-items: baseline;
-		gap: 10px;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 5px;
 		flex: 1;
 		min-width: 0;
-		flex-wrap: wrap;
 	}
 	.age {
 		font-family: var(--f-display);
@@ -370,16 +367,16 @@
 	.yr {
 		font-size: 12.5px;
 		color: var(--ink2);
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
+		line-height: 1.5;
+		overflow-wrap: anywhere;
 	}
 	.quit-btn {
 		border: 1px solid var(--rule);
 		background: var(--paper);
-		color: var(--ink2);
+		color: var(--ink);
 		border-radius: 4px;
-		padding: 5px 11px;
+		min-height: 44px;
+		padding: 8px 14px;
 		font-size: 12.5px;
 		white-space: nowrap;
 	}
