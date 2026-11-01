@@ -323,7 +323,7 @@
 		left: auto;
 		right: max(0px, calc(50% - 490px));
 		width: min(72%, 440px);
-		opacity: 0.28;
+		opacity: 0.72;
 		pointer-events: none;
 		-webkit-mask-image: linear-gradient(90deg, transparent, #000 48%);
 		mask-image: linear-gradient(90deg, transparent, #000 48%);
