@@ -322,20 +322,22 @@
 		inset: 0;
 		left: auto;
 		right: max(0px, calc(50% - 490px));
-		width: min(62%, 380px);
-		opacity: 0.34;
+		width: min(72%, 440px);
+		opacity: 0.72;
 		pointer-events: none;
-		-webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 28%, #000 58%, rgba(0, 0, 0, 0.75) 86%, transparent 100%);
-		mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 28%, #000 58%, rgba(0, 0, 0, 0.75) 86%, transparent 100%);
+		-webkit-mask-image: linear-gradient(90deg, transparent, #000 48%);
+		mask-image: linear-gradient(90deg, transparent, #000 48%);
 	}
 	.tbar {
 		position: relative;
 		z-index: 1;
 		max-width: 980px;
+		min-height: 88px;
 		display: flex;
 		align-items: center;
 		gap: 14px;
 		padding-block: 8px;
+		text-shadow: 0 1px 3px var(--paper), 0 0 8px var(--paper), 0 0 16px var(--paper);
 	}
 	.brand {
 		font-family: var(--f-display);
@@ -375,7 +377,7 @@
 	}
 	.quit-btn {
 		border: 1px solid var(--rule);
-		background: transparent;
+		background: var(--paper);
 		color: var(--ink2);
 		border-radius: 4px;
 		padding: 5px 11px;
