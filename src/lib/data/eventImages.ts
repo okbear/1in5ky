@@ -597,6 +597,74 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/med_jpn_tokusei_ikki_pawn.jpg',
 		alt: '燃え上がる松明と竹槍を掲げて土倉（質屋）に押し入り、借用証文を篝火に投じて気勢を上げる徳政一揆の群衆',
 		caption: '室町の徳政一揆と土倉焼き討ち'
+	},
+
+	// === 歴史的決断イベント（戦乱・包囲戦・天災・近世近現代の過酷な試練） ===
+	medieval_feudal_war_famine: {
+		regionIds: ['med_britain', 'med_france', 'med_germany', 'med_italy'],
+		src: '/images/events/medieval_feudal_war_famine.jpg',
+		alt: '冷たい長雨が降り続くぬかるみの麦畑で、戦乱に踏み荒らされ腐敗した作物を前に立ち尽くす中世ヨーロッパの農民一家',
+		caption: '戦乱の荒廃と長雨の凶作'
+	},
+	mongol_baghdad_1258: {
+		regionIds: ['med_iraq'],
+		src: '/images/events/mongol_baghdad_1258.jpg',
+		alt: '1258年、ティグリス川沿いの城壁と中庭から、バグダードを包囲するモンゴル軍の投石機と立ち上る黒煙を怯え見つめるアッバース朝の家族',
+		caption: 'モンゴル軍のバグダード包囲'
+	},
+	medieval_ashigaru_levy: {
+		regionIds: ['med_japan'],
+		src: '/images/events/medieval_ashigaru_levy.jpg',
+		alt: '秋の霧煙る農村で、陣夫として若者を強制連行する足軽隊と、実りかけの稲を青刈りして強奪する刈田狼藉の兵たち',
+		caption: '陣夫狩りと刈田狼藉'
+	},
+	medieval_crusade_siege: {
+		regionIds: ['med_britain', 'med_france', 'med_germany', 'med_italy', 'med_iraq', 'med_egypt', 'med_andalus', 'med_central_asia'],
+		src: '/images/events/medieval_crusade_siege.jpg',
+		alt: '包囲された中世の城塞都市で、投石機の火壺が城壁に降り注ぐなか、枯渇した水槽の濁水を分け合い革を煮て飢えを凌ぐ籠城の人々',
+		caption: '籠城戦の飢餓と投石攻撃'
+	},
+	early_modern_little_ice_age: {
+		regionIds: ['em_britain', 'em_france', 'em_germany', 'em_italy', 'em_netherlands', 'em_north_america'],
+		src: '/images/events/early_modern_little_ice_age.jpg',
+		alt: '17世紀小氷期の極寒のなか、凍結した川と雪に埋もれた村の小道で、病気の家族をそりに乗せて運ぶ毛皮と毛織物姿の人々',
+		caption: '小氷期の厳冬と疫病'
+	},
+	smallpox_1520: {
+		regionIds: ['em_caribbean', 'em_andes', 'em_mesoamerica'],
+		src: '/images/events/smallpox_1520.jpg',
+		alt: '1520年の中米・先住民の集落で、筵の上に倒れ伏す天然痘の高熱患者たちに薬草水や香を捧げて介抱する母と祈祷師',
+		caption: '新大陸の未知の疫病（天然痘）'
+	},
+	tenmei_1783: {
+		regionIds: ['em_edo'],
+		src: '/images/events/tenmei_1783.jpg',
+		alt: '浅間山大噴火の火山灰が昼なお暗く空を覆い、降灰と冷夏で全滅した水田を前に立ち尽くす天明の大飢饉の農民一家',
+		caption: '天明の大飢饉と浅間山の火山灰'
+	},
+	early_modern_thirty_years_mercenary: {
+		regionIds: ['em_germany'],
+		src: '/images/events/early_modern_thirty_years_mercenary.jpg',
+		alt: '三十年戦争のドイツ農村で、火縄銃や長槍を手に家々を叩き壊して食料や家畜を略奪する荒れ狂った傭兵隊と怯える農民',
+		caption: '三十年戦争の傭兵略奪'
+	},
+	witch_scapegoat: {
+		regionIds: ['med_britain', 'med_france', 'med_germany', 'med_italy', 'em_britain', 'em_france', 'em_germany', 'em_italy', 'em_netherlands'],
+		src: '/images/events/witch_scapegoat.jpg',
+		alt: '疫病が続くヨーロッパの村で、松明と熊手を掲げた群衆と執行官に小屋の壁際へ追い詰められ、魔女の疑いをかけられる薬草摘みの老女',
+		caption: '疫病下の魔女裁判・スケープゴート'
+	},
+	industrial_phossy_pollution: {
+		regionIds: ['ind_britain', 'ind_france', 'ind_germany', 'ind_italy', 'ind_usa', 'ind_canada'],
+		src: '/images/events/industrial_phossy_pollution.jpg',
+		alt: '薄暗いヴィクトリア朝のマッチ工場で、立ち込める有毒な白リン蒸気のなか、リン顎症で腫れ上がった顎を押さえて苦悶する女工たち',
+		caption: 'マッチ工場の白リン中毒（リン顎症）'
+	},
+	london_blitz_1940: {
+		regionIds: ['ind_britain'],
+		src: '/images/events/london_blitz_1940.jpg',
+		alt: '1940年のロンドン大空襲の夜、炎上する街とサーチライトが交差する夜空の下、ガスマスク箱を抱えて地下鉄防空壕へ急ぐ市民たち',
+		caption: 'ロンドン空襲（ザ・ブリッツ）'
 	}
 };
 
