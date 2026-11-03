@@ -665,6 +665,78 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/london_blitz_1940.jpg',
 		alt: '1940年のロンドン大空襲の夜、炎上する街とサーチライトが交差する夜空の下、ガスマスク箱を抱えて地下鉄防空壕へ急ぐ市民たち',
 		caption: 'ロンドン空襲（ザ・ブリッツ）'
+	},
+	med_jpn_onrui_fire_kyoto: {
+		regionIds: ['med_japan'],
+		src: '/images/events/med_jpn_onrui_fire_kyoto.jpg',
+		alt: '応仁の乱の業火に包まれる京都洛中で、煙と火の粉が舞い上がるなか家財を積んだ荷車を引いて都落ちを急ぐ庶民一家と戦乱を見つめる僧侶',
+		caption: '応仁の乱と京都洛中の炎上'
+	},
+	med_other_trans_sahara_salt: {
+		regionIds: ['med_west_africa'],
+		src: '/images/events/med_other_trans_sahara_salt.jpg',
+		alt: 'サハラ砂漠を横断する隊商、岩塩板を運ぶラクダと藍染めのトゥアレグ族の導き手',
+		caption: 'サハラ砂漠の岩塩隊商'
+	},
+	med_other_chinampa_mud_harvest: {
+		regionIds: ['med_mesoamerica'],
+		src: '/images/events/med_other_chinampa_mud_harvest.jpg',
+		alt: 'テスココ湖のチナンパで泥をすくいトウモロコシや唐辛子を育てるアステカの農民たち',
+		caption: 'テスココ湖の浮島農園'
+	},
+	med_other_andes_quipu_tribute: {
+		regionIds: ['med_andes'],
+		src: '/images/events/med_other_andes_quipu_tribute.jpg',
+		alt: 'アンデスの段々畑の村で、結び目縄（キープ）を手に貢納と備蓄を査定するインカ帝国の巡察官',
+		caption: 'インカ帝国のキープ記録'
+	},
+	med_other_angkor_reservoir_breach: {
+		regionIds: ['med_southeast_asia'],
+		src: '/images/events/med_other_angkor_reservoir_breach.jpg',
+		alt: 'アンコール巨大貯水池の堤防決壊に立ち向かい、濁流の中で泥嚢や石を積むクメールの工夫たち',
+		caption: 'アンコール貯水池の堤防決壊'
+	},
+	med_other_swahili_dhow_sail: {
+		regionIds: ['med_east_africa'],
+		src: '/images/events/med_other_swahili_dhow_sail.jpg',
+		alt: 'スワヒリ海岸キルワの港で、三角帆のダウ船に象牙や木材を積み込み季節風を待つ船乗りたち',
+		caption: 'スワヒリ海岸のダウ船貿易'
+	},
+	em_edo_mizunomi_peasant_work: {
+		regionIds: ['em_edo'],
+		src: '/images/events/em_edo_mizunomi_peasant_work.jpg',
+		alt: '貧農の我が家を後に、送り手形を手に江戸下町へと日雇い出稼ぎに出る水呑百姓の青年',
+		caption: '水呑百姓の江戸出稼ぎ'
+	},
+	em_edo_sumptuary_edict: {
+		regionIds: ['em_edo'],
+		src: '/images/events/em_edo_sumptuary_edict.jpg',
+		alt: '幕府の奢侈禁止令のもと、地味な木綿羽織の裏地に鮮やかな絹縮緬を縫い込む江戸町人の裏勝り',
+		caption: '奢侈禁止令と裏勝りの美学'
+	},
+	em_edo_terakoya_calligraphy: {
+		regionIds: ['em_edo'],
+		src: '/images/events/em_edo_terakoya_calligraphy.jpg',
+		alt: '柔らかな光差す寺子屋の畳の上で、師匠に見守られながら筆を走らせる町人の子どもたち',
+		caption: '寺子屋の手習い風景'
+	},
+	em_edo_dojima_rice_exchange: {
+		regionIds: ['em_edo'],
+		src: '/images/events/em_edo_dojima_rice_exchange.jpg',
+		alt: '米価高騰に怒り狂う町衆が米問屋に押し寄せ、米俵を引き裂く打ちこわしの騒乱',
+		caption: '飢饉下の米屋打ちこわし'
+	},
+	em_chn_qing_queue_edict: {
+		regionIds: ['em_china'],
+		src: '/images/events/em_chn_qing_queue_edict.jpg',
+		alt: '清朝の八旗兵が見張る広場で、剃髪令に従い無念の面持ちで頭髪を剃られる漢民族の文人',
+		caption: '清朝の剃髪令と辮髪強制'
+	},
+	em_chn_canton_cohong_silver: {
+		regionIds: ['em_china'],
+		src: '/images/events/em_asia_canton_silver.jpg',
+		alt: '18世紀広州十三行の商館で、弁髪に清朝の長袍をまとった商人と書記が天秤ばかりと試金石でスペイン銀貨や銀錠を検定する執務風景',
+		caption: '広州十三行の銀貨鑑定'
 	}
 };
 
