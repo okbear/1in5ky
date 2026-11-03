@@ -737,6 +737,36 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/em_asia_canton_silver.jpg',
 		alt: '18世紀広州十三行の商館で、弁髪に清朝の長袍をまとった商人と書記が天秤ばかりと試金石でスペイン銀貨や銀錠を検定する執務風景',
 		caption: '広州十三行の銀貨鑑定'
+	},
+	em_chn_white_lotus_gathering: {
+		regionIds: ['em_china'],
+		src: '/images/events/em_chn_white_lotus_gathering.jpg',
+		alt: '土壁の農家で灯火を囲み、無生老母の経文を前に密かに集う白蓮教徒の農民たち',
+		caption: '白蓮教の夜間秘密集会'
+	},
+	em_chn_keju_examination_cubicle: {
+		regionIds: ['em_china'],
+		src: '/images/events/em_chn_keju_examination_cubicle.jpg',
+		alt: '貢院の狭小な独房（号舎）で蝋燭の光を頼りに答案と向き合い、袖口の微細文字カンニング布に苦悩する科挙受験生',
+		caption: '科挙郷試の号舎とカンニングの葛藤'
+	},
+	em_chn_literary_inquisition: {
+		regionIds: ['em_china'],
+		src: '/images/events/em_chn_literary_inquisition.jpg',
+		alt: '清朝官憲の捜索が迫る深夜、先祖の詩文や日記を火鉢の炎に投じて必死に焼き捨てる漢人知識人',
+		caption: '文字の獄と詩文の隠滅'
+	},
+	em_ind_mughal_mansab_cavalry: {
+		regionIds: ['em_mughal_india'],
+		src: '/images/events/em_ind_mughal_mansab_cavalry.jpg',
+		alt: '朝靄と砂埃の舞う宿営地で、鎖帷子と板金甲冑をまとった騎兵と軍馬を査定・点呼する下級マンサブダール',
+		caption: 'ムガル帝国の騎兵維持と軍馬査定'
+	},
+	em_ind_calico_cotton_weaving: {
+		regionIds: ['em_mughal_india'],
+		src: '/images/events/em_ind_calico_cotton_weaving.jpg',
+		alt: '光が差し込むスーラトの工房で手織機を操り白綿布を織る職人と、布地を吟味する東インド会社の商人',
+		caption: 'スーラトのキャラコ機織り工房'
 	}
 };
 
