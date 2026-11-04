@@ -767,6 +767,374 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/em_ind_calico_cotton_weaving.jpg',
 		alt: '光が差し込むスーラトの工房で手織機を操り白綿布を織る職人と、布地を吟味する東インド会社の商人',
 		caption: 'スーラトのキャラコ機織り工房'
+	},
+
+	em_ind_taj_mahal_quarry_labor: {
+		src: '/images/events/em_ind_taj_mahal_quarry_labor.jpg',
+		alt: '白大理石の塊を載せた牛車を押し、アーグラの造営現場へ運ぶムガル時代の労働者たち',
+		caption: 'タージ・マハル造営の大理石運搬'
+	},
+
+	em_ind_akbar_sulahkul_debate: {
+		src: '/images/events/em_ind_akbar_sulahkul_debate.jpg',
+		alt: '赤砂岩の広間で、異なる宗教の学者やイエズス会士の議論に耳を傾けるアクバル帝',
+		caption: 'アクバルの宗教討論館'
+	},
+
+	em_ind_monsoon_famine_relief: {
+		src: '/images/events/em_ind_monsoon_famine_relief.jpg',
+		alt: 'ひび割れた土の上に列を作り、城砦近くの炊き出しで粥を受け取るデカンの人々',
+		caption: 'デカン大飢饉の施粥所'
+	},
+
+	em_atl_maroon_mountain_escape: {
+		src: '/images/events/em_atl_maroon_mountain_escape.jpg',
+		alt: 'ジャマイカの霧深い山道を登り、尾根の見張りの合図を受ける農園から逃れた二人',
+		caption: 'ブルーマウンテンのマルーン共同体'
+	},
+
+	em_atl_slave_ship_middle_passage: {
+		src: '/images/events/em_atl_slave_ship_middle_passage.jpg',
+		alt: '低い梁と板張りの船底で、狭い明かり取りの下に身を寄せる大西洋奴隷船の囚われた人々',
+		caption: '中間航路の船底'
+	},
+
+	em_atl_potosi_quicksilver: {
+		src: '/images/events/em_atl_potosi_quicksilver.jpg',
+		alt: 'セロ・リコを背にした精錬場で、石造りの浅い槽の鉱泥を素足で踏むアンデスの労働者たち',
+		caption: 'ポトシ銀山の水銀精錬'
+	},
+
+	em_atl_beaver_fur_trap: {
+		src: '/images/events/em_atl_beaver_fur_trap.jpg',
+		alt: '雪に覆われた針葉樹林の小川で、氷の穴に罠を仕掛けるクリーの猟師たち',
+		caption: 'ハドソン湾岸のビーバー猟'
+	},
+
+	collective_punishment: {
+		src: '/images/events/collective_punishment.jpg',
+		alt: '江戸の農村の民家で、帳面と米俵を前に隣家の年貢不足を話し合う村人たち',
+		caption: '五人組と年貢の連帯負担'
+	},
+
+	window_salt_tax: {
+		src: '/images/events/window_salt_tax.jpg',
+		alt: 'イングランドの煉瓦造りの家で、窓税の負担を減らすために窓を煉瓦で塞ぐ職人',
+		caption: '窓税と塞がれる窓'
+	},
+
+	french_salt_tax: {
+		src: '/images/events/french_salt_tax.jpg',
+		alt: 'パリの塩売り場で、天秤で量られた塩の代金を払う女性と係員',
+		caption: 'パリの塩税ガベル'
+	},
+
+	em_eur_pressgang_navy: {
+		src: '/images/events/em_eur_pressgang_navy.jpg',
+		alt: 'ロンドン港の酒場で、出入口を押さえる徴募隊と、海軍への乗船を迫られる船員',
+		caption: 'ロンドン港の酒場と強制徴募'
+	},
+
+	press_gang_conscription: {
+		src: '/images/events/press_gang_conscription.jpg',
+		alt: '日暮れの英国の波止場で、腕を押さえられ、徴募隊から呼び止められた船員',
+		caption: '波止場での海軍強制徴募'
+	},
+
+	em_eur_witch_accusation_panic: {
+		regionIds: ['em_germany'],
+		src: '/images/events/em_eur_witch_accusation_panic.jpg',
+		alt: '枯れたブドウ棚のそばで、薬草を持つ女性に詰め寄る近世ドイツの村人たち',
+		caption: '冷害の村と魔女の告発'
+	},
+
+	em_eur_smallpox_variolation: {
+		regionIds: ['em_britain'],
+		src: '/images/events/em_eur_smallpox_variolation.jpg',
+		alt: '近世イングランドの室内で、袖をまくった患者が小さなランセットを持つ施術者と話し合う',
+		caption: '天然痘を前に人痘接種を考える'
+	},
+
+	em_eur_guild_entry_fee: {
+		regionIds: ['em_france'],
+		src: '/images/events/em_eur_guild_entry_fee.jpg',
+		alt: '止まった手織り機のそばに集まり、独立への道を閉ざされた不満を親方に訴えるフランスの職人たち',
+		caption: '毛織物工房と徒弟たちの抗議'
+	},
+
+	rural_lord_hunt: {
+		src: '/images/events/rural_lord_hunt.jpg',
+		alt: '折れた柵のそばで、馬と猟犬が収穫前の麦畑を横切るのを見つめる中世イングランドの農民',
+		caption: '領主の狩猟隊に踏み荒らされた畑'
+	},
+
+	serf_master_whim: {
+		src: '/images/events/serf_master_whim.jpg',
+		alt: '蝋板を前に売買を取り決める二人のそばで、荷物を抱えて住み慣れた家を振り返る奴隷身分の人物',
+		caption: '古代ローマで売られ、住まいを離れる'
+	},
+
+	ww1_italy_1915: {
+		src: '/images/events/ww1_italy_1915.jpg',
+		alt: '第一次世界大戦期のイタリアの駅で、兵士が列車に乗り込むのを見つめる労働者',
+		caption: 'イタリアの戦時動員と仕事'
+	},
+
+	ww1_usa_1917: {
+		src: '/images/events/ww1_usa_1917.jpg',
+		alt: '1917年の米国で、機械工場の入口に立ち、軍服姿の新兵を見送る作業着の男性',
+		caption: '米国の戦時動員と軍需工場'
+	},
+
+	industrial_conscription_order: {
+		src: '/images/events/industrial_conscription_order.jpg',
+		alt: '木造家屋の玄関で赤い召集令状を受け取った男性を、不安そうに見守る家族',
+		caption: '家に届いた戦時召集令状'
+	},
+
+	industrial_total_war_air_raid: {
+		src: '/images/events/industrial_total_war_air_raid.jpg',
+		alt: '木造家屋が燃える東京の夜、荷物を抱えて狭い路地から避難する家族',
+		caption: '1945年、東京の空襲'
+	},
+
+	modern_cold_war_conflict: {
+		src: '/images/events/modern_cold_war_conflict.jpg',
+		alt: '1971年、荷物や炊事道具を抱えて水田の間の道を進む東ベンガルの避難民',
+		caption: '1971年、東ベンガルからの避難'
+	},
+
+	ind_jpn_ashio_copper_pollution: {
+		src: '/images/events/ind_jpn_ashio_copper_pollution.jpg',
+		alt: '渡良瀬川のほとりで、枯れた稲を手に取り、被害を話し合う明治期の農民たち',
+		caption: '渡良瀬川沿いの足尾鉱毒被害'
+	},
+
+	ind_jpn_chiteki_blood_tax: {
+		src: '/images/events/ind_jpn_chiteki_blood_tax.jpg',
+		alt: '明治初期の農村で、淡い紙の徴兵検査通知を受け取り、家族と顔を見合わせる若者',
+		caption: '明治の徴兵検査通知'
+	},
+
+	ind_jpn_rice_riot_store: {
+		src: '/images/events/ind_jpn_rice_riot_store.jpg',
+		alt: '米袋を抱えた女性と人々が、煙の上がる神戸の商社倉庫前で群衆に巻き込まれる',
+		caption: '1918年、神戸の米騒動'
+	},
+
+	ind_jpn_chikuho_coal_mine: {
+		src: '/images/events/ind_jpn_chikuho_coal_mine.jpg',
+		alt: '狭い坑内で夫がつるはしで石炭を掘り、妻が浅い運搬板で石炭を引き出す',
+		caption: '筑豊炭鉱の切羽で働く夫婦'
+	},
+
+	ind_chn_opium_den_addiction: {
+		src: '/images/events/ind_chn_opium_den_addiction.jpg',
+		alt: '上海の薄暗い部屋で、肩を痛めた荷役労働者に仲間が盆の上の長い煙管を示す',
+		caption: '上海の阿片窟で勧められた煙管'
+	},
+
+	ind_chn_boxer_bullet_storm: {
+		src: '/images/events/ind_chn_boxer_bullet_storm.jpg',
+		alt: '灰色の煉瓦壁に身を寄せ、赤い帯を締めた義和団の一団が教会方面へ向かうのを見つめる市民',
+		caption: '1900年、北京の教会包囲'
+	},
+
+	ind_chn_may_fourth_protest: {
+		src: '/images/events/ind_chn_may_fourth_protest.jpg',
+		alt: '天安門前に集まり、紙を手に仲間へ呼びかける1919年の学生たち',
+		caption: '1919年、北京の五四運動'
+	},
+
+	ind_chn_warlord_grain_requisition: {
+		src: '/images/events/ind_chn_warlord_grain_requisition.jpg',
+		alt: '収穫した穀物を兵士が荷車に積むそばで、農民が代わりの紙の手形を受け取る',
+		caption: '軍閥の徴糧と紙の手形'
+	},
+
+	ind_ind_famine_relief_labor: {
+		src: '/images/events/ind_ind_famine_relief_labor.jpg',
+		alt: '干ばつの中、配給を受けるために鉄道の盛土で石を割り、籠で運ぶ南インドの労働者',
+		caption: '大飢饉の救済工事'
+	},
+
+	ind_ind_calcutta_jute_mill: {
+		src: '/images/events/ind_ind_calcutta_jute_mill.jpg',
+		alt: '窓からの光に黄麻の粉塵が浮かぶ工場で、ベルト駆動の紡績機を扱う労働者',
+		caption: 'カルカッタのジュート紡績工場'
+	},
+
+	ind_ind_dandi_salt_gathering: {
+		src: '/images/events/ind_ind_dandi_salt_gathering.jpg',
+		alt: '1930年のボンベイの海辺で、塩を前に集まる手織り綿布姿の非暴力運動の参加者',
+		caption: 'ボンベイの塩の不服従運動'
+	},
+
+	ind_oth_russian_mir_redemption: {
+		src: '/images/events/ind_oth_russian_mir_redemption.jpg',
+		alt: '木造家屋で帳面と硬貨を囲み、土地の償納金の負担を話し合うロシアの農民たち',
+		caption: '農奴解放と村の償納金'
+	},
+
+	ind_oth_congo_rubber_terror: {
+		src: '/images/events/ind_oth_congo_rubber_terror.jpg',
+		alt: '森林に近い集落で、武装した見張りの前に天然ゴムを持ち寄る人々',
+		caption: 'コンゴ自由国のゴム供出'
+	},
+
+	ind_oth_trans_siberian_blizzard: {
+		src: '/images/events/ind_oth_trans_siberian_blizzard.jpg',
+		alt: 'バイカル湖畔の崖沿いで、吹雪のなか長い鉄棒を使ってレールを枕木に据える労働者たち',
+		caption: '吹雪のバイカル湖畔で敷く鉄路'
+	},
+
+	ind_eur_broad_street_pump: {
+		regionIds: ['ind_britain'],
+		src: '/images/events/ind_eur_broad_street_pump.jpg',
+		alt: '1854年のロンドンで、水差しを手に井戸ポンプへ向かった女性に医師が話しかける',
+		caption: 'ブロード・ストリートの井戸ポンプ'
+	},
+
+	ind_eur_sweatshop_garment: {
+		regionIds: ['ind_britain'],
+		src: '/images/events/ind_eur_sweatshop_garment.jpg',
+		alt: 'ガス灯がともる狭い地下室で、コートのボタン付けや裾縫いに追われる労働者たち',
+		caption: 'ロンドン東部の縫製作業場'
+	},
+
+	ind_eur_tenement_consumption: {
+		src: '/images/events/ind_eur_tenement_consumption.jpg',
+		alt: 'ほとんど光の入らない狭い部屋に並ぶ寝床と、枕元の布や水差し',
+		caption: '過密長屋の病床'
+	},
+
+	ind_eur_coal_pit_explosion: {
+		src: '/images/events/ind_eur_coal_pit_explosion.jpg',
+		alt: '薄暗い坑道で、倒れたカナリアの籠と、奥から押し寄せる粉塵を見つめる炭鉱労働者',
+		caption: '炭鉱の奥で聞いた爆発'
+	},
+
+	ind_ind_malaya_rubber_tapping: {
+		regionIds: ['ind_malaya'],
+		src: '/images/events/ind_ind_malaya_rubber_tapping.jpg',
+		alt: '薄暗いゴム園で、タミル系の労働者が幹に切り込みを入れ、樹液を小さな器に受ける',
+		caption: '夜明け前のマレー半島のゴム園'
+	},
+
+	ind_oth_mexican_peon_debt: {
+		regionIds: ['ind_mexico'],
+		src: '/images/events/ind_oth_mexican_peon_debt.jpg',
+		alt: 'メキシコの大農園の売店で、トウモロコシ袋を前に係員が帳面へ負債を記すのを見守る農民',
+		caption: 'アシエンダの農場売店と借金'
+	},
+
+	mod_jpn_minamata_mercury_fish: {
+		src: '/images/events/mod_jpn_minamata_mercury_fish.jpg',
+		alt: '不知火海沿岸の漁村の家で、魚の皿を前に自分の手を見つめる男性と心配そうな家族',
+		caption: '不知火海の魚と水俣病'
+	},
+
+	mod_jpn_bubble_land_speculation: {
+		src: '/images/events/mod_jpn_bubble_land_speculation.jpg',
+		alt: '1980年代末の東京の古い家で、集合住宅の図面を広げる銀行員の話を聞く住人',
+		caption: 'バブル期の土地投資の勧誘'
+	},
+
+	mod_jpn_great_quake_liquefaction: {
+		src: '/images/events/mod_jpn_great_quake_liquefaction.jpg',
+		alt: '泥水がにじむひび割れた道路を背に、東北の沿岸集落から高台へ向かう家族',
+		caption: '2011年、東北沿岸から高台へ'
+	},
+
+	mod_jpn_covid_isolation: {
+		src: '/images/events/mod_jpn_covid_isolation.jpg',
+		alt: '弁当と水が置かれたホテルの一室で、指先にパルスオキシメーターを付けて座る療養者',
+		caption: 'ホテルでの宿泊療養'
+	},
+
+	mod_chn_foxconn_assembly_night: {
+		src: '/images/events/mod_chn_foxconn_assembly_night.jpg',
+		alt: '冷たい照明の下、流れ作業のラインでスマートフォンの小さな基板を扱う工員たち',
+		caption: '深圳の電子機器工場の夜勤'
+	},
+
+	mod_chn_hukou_registration_barrier: {
+		src: '/images/events/mod_chn_hukou_registration_barrier.jpg',
+		alt: '上海の窓口で戸籍の冊子と書類を持ち、子どもを連れて入学手続きの説明を聞く親',
+		caption: '上海の戸籍と入学手続き'
+	},
+
+	mod_chn_pm25_smog_winter: {
+		src: '/images/events/mod_chn_pm25_smog_winter.jpg',
+		alt: '黄灰色の煙霧で建物やバスの輪郭がかすむ冬の北京で、マスクをしてバスを待つ人',
+		caption: '冬の北京を覆うスモッグ'
+	},
+
+	mod_chn_zero_covid_lockdown: {
+		src: '/images/events/mod_chn_zero_covid_lockdown.jpg',
+		alt: '封鎖された上海の団地の柵越しに、防護服の係員から野菜の袋を受け取る住民',
+		caption: '上海の団地封鎖と食料の配給'
+	},
+
+	mod_asia_manila_smokey_mountain: {
+		regionIds: ['mod_philippines'],
+		src: '/images/events/mod_asia_manila_smokey_mountain.jpg',
+		alt: 'くすぶる処分場で袋を持ち、売却できる容器を拾い集めるマニラの人々',
+		caption: 'マニラの廃棄物回収'
+	},
+
+	mod_asia_bangkok_flood_sandbag: {
+		regionIds: ['mod_thailand'],
+		src: '/images/events/mod_asia_bangkok_flood_sandbag.jpg',
+		alt: '泥水が工業団地に迫るなか、工場の入口に土嚢を運んで積むタイの労働者たち',
+		caption: 'タイ中部の洪水と土嚢'
+	},
+
+	mod_asia_palm_oil_slash_burn: {
+		regionIds: ['mod_indonesia'],
+		src: '/images/events/mod_asia_palm_oil_slash_burn.jpg',
+		alt: '黄灰色の煙が集落を覆うなか、学校の窓を閉め、煙の上がる泥炭地を見やる住民',
+		caption: 'スマトラの泥炭火災と煙害'
+	},
+
+	mod_asia_indian_ocean_tsunami: {
+		regionIds: ['mod_indonesia'],
+		src: '/images/events/mod_asia_indian_ocean_tsunami.jpg',
+		alt: '海が沖へ引き、漁船が浅瀬に取り残されたアチェの海岸から、足早に離れる住民たち',
+		caption: '2004年、アチェの海岸から避難'
+	},
+
+	mod_afr_desert_locust_swarm: {
+		regionIds: ['mod_kenya'],
+		src: '/images/events/mod_afr_desert_locust_swarm.jpg',
+		alt: 'バッタの群れが飛ぶケニアの畑で、食い荒らされたトウモロコシを手に取る農民',
+		caption: '東アフリカのバッタの大群'
+	},
+
+	mod_afr_mediterranean_smuggler: {
+		regionIds: ['mod_libya'],
+		src: '/images/events/mod_afr_mediterranean_smuggler.jpg',
+		alt: '暗い海の上で、船外機が止まったゴムボートに身を寄せ、遠くの灯を見つめる人々',
+		caption: '夜の地中海で止まったボート'
+	},
+
+	mod_afr_ebola_containment: {
+		src: '/images/events/mod_afr_ebola_containment.jpg',
+		alt: '白い隔離テントの前で、防護服の医療従事者と距離を保って話す家族',
+		caption: 'エボラ対策の隔離テント'
+	},
+
+	mod_afr_sahel_drought_water: {
+		regionIds: ['mod_senegal'],
+		src: '/images/events/mod_afr_sahel_drought_water.jpg',
+		alt: '乾いた地面に列を作り、黄色い容器を持って給水車の順番を待つサヘルの住民たち',
+		caption: 'サヘルの村に来た給水車'
+	},
+
+	mod_eur_heatwave_stone_apartment: {
+		src: '/images/events/mod_eur_heatwave_stone_apartment.jpg',
+		alt: '熱帯夜の石造りの部屋で、窓を開け、手に持った紙で顔をあおぐ住人',
+		caption: '熱のこもる石造りの部屋'
 	}
 };
 
