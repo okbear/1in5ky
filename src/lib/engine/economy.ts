@@ -6,7 +6,7 @@ import type { CharacterState } from '#lib/types';
 export const financeTick = (c: CharacterState, rng: Rng): void => {
 	// Most income is consumed. Higher earnings also raise spending; debt has no
 	// automatic interest spiral. Childhood finances represent the household.
-	c.savings += 0.03 + (c.incomeMultiplier - 1) * 0.2;
+	c.savings += 0.02 + (c.incomeMultiplier - 1) * 0.1;
 	if (c.savings > 0) {
 		if (c.hardshipYears > 0) {
 			c.happiness = clamp(c.happiness + 5, 0, 100);

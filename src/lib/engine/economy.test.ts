@@ -29,7 +29,7 @@ test('earning improvements and annual household surplus are separate from reserv
  expect(c.annualIncomeUnits).toBeCloseTo(Math.round(income * 1.2), -1);
  expect(c.savings).toBe(savings);
  financeTick(c, () => 1);
- expect(c.savings).toBeCloseTo(savings + 0.07);
+ expect(c.savings).toBeCloseTo(savings + 0.04);
 });
 
 test('sustained debt causes bounded, spaced hardship and offers help and recovery', () => {
@@ -47,7 +47,7 @@ test('sustained debt causes bounded, spaced hardship and offers help and recover
  c.age += 2;
  const before = c.savings;
  financeTick(c, () => 0);
- expect(c.savings).toBeCloseTo(before + 0.33);
+ expect(c.savings).toBeCloseTo(before + 0.32);
  expect(c.feed[0].text).toContain('融通');
  c.savings = -0.01;
  financeTick(c, () => 1);
@@ -61,7 +61,7 @@ test('sustained debt causes bounded, spaced hardship and offers help and recover
 
 test('empty reserves can trigger hardship without adult health penalties in childhood', () => {
  const c = rollBirth(() => 0.5, 'ancient');
- c.savings = -0.03;
+ c.savings = -0.02;
  const health = c.health;
  financeTick(c, (() => { const values = [0, 0.9]; return () => values.shift()!; })());
  expect(c.savings).toBe(0);
@@ -76,7 +76,7 @@ test('annual progression applies finances after survival, and labor income start
  const before = c.savings;
  stepYear(c, () => 0.99);
  expect(c.incomeMultiplier).toBe(1);
- expect(c.savings).toBeCloseTo(before + 0.03);
+ expect(c.savings).toBeCloseTo(before + 0.02);
  stepYear(c, () => 0.99);
  expect(c.incomeMultiplier).toBeCloseTo(1.02);
  c.savings = -10; makeIncome(c);
