@@ -1135,6 +1135,225 @@ export const EVENT_IMAGES: Record<string, EventImageInfo> = {
 		src: '/images/events/mod_eur_heatwave_stone_apartment.jpg',
 		alt: '熱帯夜の石造りの部屋で、窓を開け、手に持った紙で顔をあおぐ住人',
 		caption: '熱のこもる石造りの部屋'
+	},
+
+	mod_eur_schengen_migrant_crisis: {
+		regionIds: ['mod_germany'],
+		src: '/images/events/mod_eur_schengen_migrant_crisis.jpg',
+		alt: 'ドイツの鉄道駅で、長旅を終えた人にボランティアが水を手渡す',
+		caption: '2015年、駅での避難者支援'
+	},
+
+	mod_eur_yellow_vests_fuel_tax: {
+		src: '/images/events/mod_eur_yellow_vests_fuel_tax.jpg',
+		alt: 'フランスの環状交差点で、黄色い安全ベストを着て集まった抗議参加者',
+		caption: '燃料税に抗議する黄色いベスト'
+	},
+
+	mod_eur_pension_reform_general_strike: {
+		src: '/images/events/mod_eur_pension_reform_general_strike.jpg',
+		alt: '年金改革をめぐるストライキで閉まった駅の入口に、労働者と通勤客が立つ',
+		caption: '年金改革への抗議と運休'
+	},
+
+	mod_na_opioid_painkiller_habit: {
+		src: '/images/events/mod_na_opioid_painkiller_habit.jpg',
+		alt: '作業着の人物が腰に手を当て、食卓に置いた処方薬の容器を見つめる',
+		caption: '腰痛と処方鎮痛薬'
+	},
+
+	mod_na_california_wildfire_smoke: {
+		src: '/images/events/mod_na_california_wildfire_smoke.jpg',
+		alt: '煙で空が橙色に染まるカリフォルニアの住宅街で、携帯電話を見ながら車に荷物を積む住民',
+		caption: '山火事の煙と避難通知'
+	},
+
+	mod_na_subprime_mortgage_foreclosure: {
+		src: '/images/events/mod_na_subprime_mortgage_foreclosure.jpg',
+		alt: '米国の住宅の玄関先で、荷造りの箱と鍵のそばに座り、届いた通知を読む住人',
+		caption: '住宅ローン破綻と立ち退き通知'
+	},
+
+	mod_na_hurricane_katrina_levee: {
+		src: '/images/events/mod_na_hurricane_katrina_levee.jpg',
+		alt: '堤防決壊で通りが水没したニューオーリンズで、玄関先から救助のボートを見つめる住民',
+		caption: 'カトリーナ後のニューオーリンズ'
+	},
+
+	mod_lat_favela_police_raid: {
+		src: '/images/events/mod_lat_favela_police_raid.jpg',
+		alt: 'リオデジャネイロの丘の住宅で、窓の外に装甲車が見えるなか、壁際に身を伏せる住民',
+		caption: 'ファヴェーラの警察突入'
+	},
+
+	mod_lat_hyperinflation_currency: {
+		regionIds: ['mod_argentina'],
+		src: '/images/events/mod_lat_hyperinflation_currency.jpg',
+		alt: 'アルゼンチンの食料品店で、店員が値札を替えるそばで紙幣を数える客',
+		caption: '急激なインフレと買い出し'
+	},
+
+	mod_lat_military_dictatorship_curfew: {
+		regionIds: ['mod_argentina'],
+		src: '/images/events/mod_lat_military_dictatorship_curfew.jpg',
+		alt: '夜のアルゼンチンの街で、カーテン越しに街灯の下の無標識の車を見つめる住人',
+		caption: '軍事政権下の夜間外出禁止令'
+	},
+
+	mod_lat_mexico_cartel_checkpoint: {
+		src: '/images/events/mod_lat_mexico_cartel_checkpoint.jpg',
+		alt: '停車した長距離バスの乗客が、窓越しに車の前照灯と検問所の人影を見つめる',
+		caption: '夜の高速道路の私設検問'
+	},
+
+	mod_rus_chernobyl_fallout: {
+		src: '/images/events/mod_rus_chernobyl_fallout.jpg',
+		alt: '平穏に見える集合住宅の庭で、携帯型の放射線測定器を確認する作業員と住民',
+		caption: 'チェルノブイリ事故後の測定'
+	},
+
+	mod_rus_ussr_collapse_voucher: {
+		src: '/images/events/mod_rus_ussr_collapse_voucher.jpg',
+		alt: 'ソ連崩壊後のロシアの市場で、パンを前に民営化バウチャーを手にする人',
+		caption: '民営化バウチャーと日々のパン'
+	},
+
+	mod_rus_chechen_war_draft: {
+		src: '/images/events/mod_rus_chechen_war_draft.jpg',
+		alt: '冬の出発場所で、荷物を持った若い徴兵兵士が心配そうな母親を振り返る',
+		caption: 'チェチェン紛争へ送られる徴兵兵士'
+	},
+
+	mod_rus_siberian_blizzard_district_heating: {
+		src: '/images/events/mod_rus_siberian_blizzard_district_heating.jpg',
+		alt: '窓が凍りついたシベリアの集合住宅で、防寒着を着たまま暖房器に手を当てる住人',
+		caption: '暖房が止まったシベリアの団地'
+	},
+
+	mod_rus_90s_gangster_extortion: {
+		src: '/images/events/mod_rus_90s_gangster_extortion.jpg',
+		alt: '自動車修理工場で、作業着の店主と向かい合い、金銭を要求する革ジャン姿の男たち',
+		caption: '修理工場に来たみかじめ料の要求'
+	},
+
+	modern_green_antibiotics: {
+		src: '/images/events/modern_green_antibiotics.jpg',
+		alt: '戦後の診療所の机に並ぶ薬瓶と小瓶。窓の外には新しい建物が立つ',
+		caption: '戦後の診療所と新しい薬'
+	},
+
+	modern_digital_wave: {
+		src: '/images/events/modern_digital_wave.jpg',
+		alt: '夜の窓辺で、使い込んだ手帳のそばに置かれた手がスマートフォンを持つ',
+		caption: '手のひらから世界へ'
+	},
+
+	modern_structural_trap: {
+		src: '/images/events/modern_structural_trap.jpg',
+		alt: '食卓に請求書と電卓、わずかな硬貨の入った瓶が並び、手が書類の上で止まっている',
+		caption: '重なる生活費と家計'
+	},
+
+	fever_premodern: {
+		src: '/images/events/fever_premodern.jpg',
+		alt: '薄暗い枕元に、水を入れた素焼きの器と畳まれた布が置かれている',
+		caption: '熱が続く夜の枕元'
+	},
+
+	minor_scratch_tetanus: {
+		src: '/images/events/minor_scratch_tetanus.jpg',
+		alt: '粗い木の板の上に、指先に布を巻いた手と小さな木片がある',
+		caption: '小さな棘と指の傷'
+	},
+
+	rotten_tooth_infection: {
+		src: '/images/events/rotten_tooth_infection.jpg',
+		alt: '水の入った素焼きの器のそばで、顎を手で押さえる人',
+		caption: '奥歯の痛みと手つかずの水'
+	},
+
+	spoiled_grain_ergot: {
+		src: '/images/events/spoiled_grain_ergot.jpg',
+		alt: '粗い布の上に置かれた麦の穂に、粒の代わりに黒紫色の細長い塊が混じっている',
+		caption: '長雨のあとに残った穀物'
+	},
+
+	mercury_lead_remedy: {
+		src: '/images/events/mercury_lead_remedy.jpg',
+		alt: '薄暗い場所に置かれた素焼きの皿に、灰色と赤色の丸薬が並ぶ',
+		caption: '万能薬と称された丸薬'
+	},
+
+	urban_filth_fire: {
+		src: '/images/events/urban_filth_fire.jpg',
+		alt: '狭い路地に水甕が残され、奥から火の光と煙が迫る',
+		caption: '密集した住居に広がる火'
+	},
+
+	modern_youth_path: {
+		src: '/images/events/modern_youth_path.jpg',
+		alt: '朝の光が差す机に、開いたノートと鉛筆、使い込まれた作業用の手袋が並ぶ',
+		caption: '学びと仕事のあいだ'
+	},
+
+	child_labor: {
+		src: '/images/events/child_labor.jpg',
+		alt: '粗い机に、数枚の硬貨と小さな石板、布に包まれた昼食が置かれている',
+		caption: 'わずかな賃金と通えない学校'
+	},
+
+	vaccine_modern: {
+		src: '/images/events/vaccine_modern.jpg',
+		alt: '診療所の机に、折り畳まれた案内状とトレーに載った小瓶が置かれている',
+		caption: '新しいワクチンの案内'
+	},
+
+	near_future_heat_crisis: {
+		src: '/images/events/near_future_heat_crisis.jpg',
+		alt: '強い日差しが照りつける通りを背に、日陰の避難所で水差しのそばに座る人々',
+		caption: '架空の近未来：猛暑の避難所'
+	},
+
+	near_future_caldera_eruption: {
+		src: '/images/events/near_future_caldera_eruption.jpg',
+		alt: '灰色の空の下、曇った温室で、霜に傷んだ作物と残った苗を調べる人々',
+		caption: '架空の近未来：火山の冬の温室'
+	},
+
+	near_future_solar_superflare: {
+		src: '/images/events/near_future_solar_superflare.jpg',
+		alt: '街の明かりが消えた窓辺で、ランタンのそばに電源の入らない携帯電話とラジオが置かれている',
+		caption: '架空の近未来：都市の大停電'
+	},
+
+	near_future_ocean_rise: {
+		src: '/images/events/near_future_ocean_rise.jpg',
+		alt: '水が建物の低層階に達した沿岸都市を背に、荷物を抱えて高台の道を進む人々',
+		caption: '架空の近未来：水没した沿岸都市'
+	},
+
+	near_future_asteroid_nearmiss: {
+		src: '/images/events/near_future_asteroid_nearmiss.jpg',
+		alt: '灰色の外光を背に、荷物を持って照明のともる地下通路へ階段を下りる人々',
+		caption: '架空の近未来：地下避難区画へ'
+	},
+
+	near_future_water_monopoly: {
+		src: '/images/events/near_future_water_monopoly.jpg',
+		alt: '赤い表示灯のついた蛇口の下に、空のコップが置かれている',
+		caption: '架空の近未来：止められた水道'
+	},
+
+	near_future_algorithmic_layoff: {
+		src: '/images/events/near_future_algorithmic_layoff.jpg',
+		alt: '赤い表示灯のついた入館ゲートの前で、携帯電話を見つめる仕事用バッグ姿の人',
+		caption: '架空の近未来：AIの解雇通知'
+	},
+
+	near_future_synthetic_meat_sickness: {
+		src: '/images/events/near_future_synthetic_meat_sickness.jpg',
+		alt: 'ペースト状の配給食が残る食卓で、喉に手を当てた人を隣の人が心配して見ている',
+		caption: '架空の近未来：配給食の異変'
 	}
 };
 
